@@ -10,6 +10,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 
 class User extends Authenticatable
 {
@@ -29,6 +31,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
+
     ];
 
     /**
@@ -63,5 +67,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    protected function role(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) =>  ["student", "tutor", "admin"][$value],
+        );
     }
 }

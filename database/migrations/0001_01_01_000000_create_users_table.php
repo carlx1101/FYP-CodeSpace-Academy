@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->tinyInteger('role')->default(0);
+             /* Users: 0=>Student, 1=>Tutor, 2=>Administrator */
+
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
