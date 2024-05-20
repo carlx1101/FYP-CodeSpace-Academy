@@ -28,7 +28,7 @@ class Course extends Model
         'welcome_message',
         'completion_message',
         'primary_language',
-        'is_published',
+        'publishing_status',
     ];
 
     protected $casts = [

@@ -33,7 +33,7 @@ return new class extends Migration
             $table->text('welcome_message')->nullable();
             $table->text('completion_message')->nullable();
 
-            $table->boolean('is_published')->default(false);  // New field
+            $table->boolean('publishing_status')->default(false);
 
             $table->timestamps();
         });

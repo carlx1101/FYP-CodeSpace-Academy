@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Tutor\CourseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +26,7 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
 Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'tutorDashboard'])->name('tutor.dashboard');
     Route::resource('courses', CourseController::class);
+
 
 });
 
