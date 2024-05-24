@@ -802,6 +802,20 @@
                             <i class="bi-trash dropdown-item-icon"></i> Curriculums
                           </a>
 
+                          <a class="dropdown-item" href="#"
+                          onclick="event.preventDefault(); document.getElementById('toggle-publishing-status-{{ $course->id }}').submit();">
+                           <i class="bi-trash dropdown-item-icon"></i>
+                           @if ($course->publishing_status)
+                               Unpublish
+                           @else
+                               Publish
+                           @endif
+                            </a>
+
+                       <form id="toggle-publishing-status-{{ $course->id }}" action="{{ route('courses.togglePublishingStatus', $course->id) }}" method="POST" style="display: none;">
+                           @csrf
+                       </form>
+
                           <a class="dropdown-item text-danger" href="{{route("courses.destroy",  $course->id)}}">
                             <i class="bi-trash dropdown-item-icon"></i> Delete
                           </a>

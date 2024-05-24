@@ -28,7 +28,10 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
 
 Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'tutorDashboard'])->name('tutor.dashboard');
+
+    // Manage Courses
     Route::resource('courses', CourseController::class);
+    Route::post('/courses/{course}/toggle-publishing', [CourseController::class, 'togglePublishingStatus'])->name('courses.togglePublishingStatus');
 
     // Manage sections
     Route::get('courses/{courseId}/sections', [SectionController::class, 'index'])->name('sections.index');

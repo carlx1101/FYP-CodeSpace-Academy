@@ -55,4 +55,10 @@ class Course extends Model
         return $this->hasMany(Section::class);
     }
 
+    public function togglePublishingStatus()
+    {
+        $this->publishing_status = !$this->publishing_status;
+        $this->save();
+    }
+
 }

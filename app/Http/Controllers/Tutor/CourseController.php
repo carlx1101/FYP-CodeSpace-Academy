@@ -98,4 +98,10 @@ class CourseController extends Controller
         return redirect()->route('courses.index')->with('success', 'Course deleted successfully');
     }
 
+    public function togglePublishingStatus(Course $course)
+    {
+        $course->togglePublishingStatus();
+        return redirect()->route('courses.index')->with('success', 'Course publishing status updated successfully.');
+    }
+
 }
