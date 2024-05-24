@@ -34,7 +34,7 @@ class CourseRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'subcategory_id' => 'required|exists:subcategories,id',
             'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'promotional_video' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'promotional_video' => 'nullable|mimes:mp4,mov,ogg,qt|max:20000',
             'price' => 'required|numeric|min:0',
             'is_free' => 'required|boolean',
             'welcome_message' => 'nullable|string',

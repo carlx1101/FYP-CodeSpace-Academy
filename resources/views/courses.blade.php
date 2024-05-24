@@ -847,101 +847,17 @@
           <!-- End Filter -->
 
           <div class="d-grid gap-5 mb-10">
+
+            @foreach ($courses as $course)
+
             <!-- Card -->
-            <a class="card card-flush" href="../demo-course/course-overview.html">
+            <a class="card card-flush" href="{{ route('course', $course->id) }}">
               <div class="row align-items-md-center">
                 <div class="col-sm-5 mb-3 mb-sm-0">
                   <!-- Card Pinned -->
                   <div class="card-pinned">
-                    <img class="card-img" src="../assets/svg/components/card-12.svg" alt="Image Description">
-
-                    <div class="card-pinned-top-start">
-                      <small class="badge bg-success">Bestseller</small>
-                    </div>
-
-                    <div class="card-pinned-bottom-start">
-                      <div class="d-flex align-items-center flex-wrap">
-                        <!-- Rating -->
-                        <div class="d-flex gap-1">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        </div>
-                        <!-- End Rating -->
-                        <div class="ms-1">
-                          <span class="fw-semibold text-white small me-1">4.91</span>
-                          <span class="text-white-70 small">(1.5k+ reviews)</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Card Pinned -->
-                </div>
-                <!-- End Col -->
-
-                <div class="col-sm-7">
-                  <div class="row mb-3">
-                    <div class="col">
-                      <small class="card-subtitle text-body">Code</small>
-                      <h3 class="card-title text-inherit">Complete Python Bootcamp: Go from zero to hero in Python 3</h3>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-auto">
-                      <div class="text-end">
-                        <p class="text-muted small mb-0"><del>$114.99</del></p>
-                        <h5 class="card-title text-primary">$99.99</h5>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-
-                  <div class="row align-items-center mb-2">
-                    <div class="col">
-                      <div class="avatar-group avatar-group-xs">
-                        <span class="avatar avatar-xs avatar-circle">
-                          <img class="avatar-img" src="../assets/img/160x160/img8.jpg" alt="Image Description">
-                        </span>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-auto">
-                      <ul class="list-inline list-separator text-body small">
-                        <li class="list-inline-item">
-                          <i class="bi-book me-1"></i> 10 lessons
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="bi-clock me-1"></i> 3h 25m
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="bi-bar-char-steps me-1"></i> All levels
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-
-                  <p class="card-text text-body">Learn Python like a Professional! Start from the basics and go all the way to creating your own applications and games!</p>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </a>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <a class="card card-flush" href="../demo-course/course-overview.html">
-              <div class="row align-items-md-center">
-                <div class="col-sm-5 mb-3 mb-sm-0">
-                  <!-- Card Pinned -->
-                  <div class="card-pinned">
-                    <img class="card-img" src="../assets/svg/components/card-13.svg" alt="Image Description">
-
+                    <img class="card-img" src="{{ asset('storage/' . $course->cover_image) }}" alt="{{ $course->title }}">
+{{--
                     <div class="card-pinned-bottom-start">
                       <div class="d-flex align-items-center flex-wrap">
                         <!-- Rating -->
@@ -958,7 +874,7 @@
                           <span class="text-white-70 small">(1k+ reviews)</span>
                         </div>
                       </div>
-                    </div>
+                    </div> --}}
                   </div>
                   <!-- End Card Pinned -->
                 </div>
@@ -967,15 +883,14 @@
                 <div class="col-sm-7">
                   <div class="row mb-3">
                     <div class="col">
-                      <small class="card-subtitle text-body">Design &amp; Illustration</small>
-                      <h3 class="card-title text-inherit">From the Top: Adobe Illustrator for Beginners</h3>
+                      <h3 class="card-title text-inherit">{{$course->subtitle}}</h3>
                     </div>
                     <!-- End Col -->
 
                     <div class="col-auto">
                       <div class="text-end">
-                        <p class="text-muted small mb-0"><del>$129.99</del></p>
-                        <h5 class="card-title text-primary">$119.99</h5>
+                        {{-- <p class="text-muted small mb-0"><del>$129.99</del></p> --}}
+                        <h5 class="card-title text-primary">RM{{$course->price}}</h5>
                       </div>
                     </div>
                     <!-- End Col -->
@@ -986,10 +901,10 @@
                     <div class="col">
                       <div class="avatar-group avatar-group-xs">
                         <span class="avatar avatar-xs avatar-circle">
-                          <img class="avatar-img" src="../assets/img/160x160/img5.jpg" alt="Image Description">
+                          <img class="avatar-img" src="{{asset('frontend/img/160x160/img5.jpg')}}" alt="Image Description">
                         </span>
                         <span class="avatar avatar-xs avatar-circle">
-                          <img class="avatar-img" src="../assets/img/160x160/img4.jpg" alt="Image Description">
+                          <img class="avatar-img" src="{{asset('frontend/img/160x160/img4.jpg')}}" alt="Image Description">
                         </span>
                       </div>
                     </div>
@@ -998,7 +913,7 @@
                     <div class="col-auto">
                       <ul class="list-inline list-separator text-body small">
                         <li class="list-inline-item">
-                          <i class="bi-book me-1"></i> 7 lessons
+                          <i class="bi-book me-1"></i> {{ $course->lessons_count }} lessons
                         </li>
                         <li class="list-inline-item">
                           <i class="bi-clock me-1"></i> 7h 59m
@@ -1012,7 +927,7 @@
                   </div>
                   <!-- End Row -->
 
-                  <p class="card-text text-body">The only course you need to learn Adobe Illustrator.</p>
+                  <p class="card-text text-body">{{$course->subtitle}}</p>
                 </div>
                 <!-- End Col -->
               </div>
@@ -1020,350 +935,9 @@
             </a>
             <!-- End Card -->
 
-            <!-- Card -->
-            <a class="card card-flush" href="../demo-course/course-overview.html">
-              <div class="row align-items-md-center">
-                <div class="col-sm-5 mb-3 mb-sm-0">
-                  <!-- Card Pinned -->
-                  <div class="card-pinned">
-                    <img class="card-img" src="../assets/svg/components/card-6.svg" alt="Image Description">
+            @endforeach
 
-                    <div class="card-pinned-top-start">
-                      <small class="badge bg-success rounded-pill">Featured</small>
-                    </div>
 
-                    <div class="card-pinned-bottom-start">
-                      <div class="d-flex align-items-center flex-wrap">
-                        <!-- Rating -->
-                        <div class="d-flex gap-1">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
-                        </div>
-                        <!-- End Rating -->
-                        <div class="ms-1">
-                          <span class="fw-semibold text-white small me-1">4.73</span>
-                          <span class="text-white-70 small">(4.7k+ reviews)</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Card Pinned -->
-                </div>
-                <!-- End Col -->
-
-                <div class="col-sm-7">
-                  <div class="row mb-3">
-                    <div class="col">
-                      <small class="card-subtitle text-body">Code</small>
-                      <h3 class="card-title text-inherit">Get started with Vue.js</h3>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-auto">
-                      <div class="text-end">
-                        <p class="text-muted small mb-0"><del>$169.99</del></p>
-                        <h5 class="card-title text-primary">$129.99</h5>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-
-                  <div class="row align-items-center mb-2">
-                    <div class="col">
-                      <div class="avatar-group avatar-group-xs">
-                        <span class="avatar avatar-xs avatar-circle">
-                          <img class="avatar-img" src="../assets/img/160x160/img3.jpg" alt="Image Description">
-                        </span>
-                        <span class="avatar avatar-xs avatar-circle">
-                          <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
-                        </span>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-auto">
-                      <ul class="list-inline list-separator text-body small">
-                        <li class="list-inline-item">
-                          <i class="bi-book me-1"></i> 25 lessons
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="bi-clock me-1"></i> 17h 46m
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="bi-bar-char-steps me-1"></i> All levels
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-
-                  <p class="card-text text-body">Master Vue.js and build awesome, web apps with the successor of Vue.js</p>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </a>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <a class="card card-flush" href="../demo-course/course-overview.html">
-              <div class="row align-items-md-center">
-                <div class="col-sm-5 mb-3 mb-sm-0">
-                  <!-- Card Pinned -->
-                  <div class="card-pinned">
-                    <img class="card-img" src="../assets/svg/components/card-15.svg" alt="Image Description">
-
-                    <div class="card-pinned-bottom-start">
-                      <div class="d-flex align-items-center flex-wrap">
-                        <!-- Rating -->
-                        <div class="d-flex gap-1">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="16">
-                        </div>
-                        <!-- End Rating -->
-                        <div class="ms-1">
-                          <span class="fw-semibold text-white small me-1">4.47</span>
-                          <span class="text-white-70 small">(3.8k+ reviews)</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Card Pinned -->
-                </div>
-                <!-- End Col -->
-
-                <div class="col-sm-7">
-                  <div class="row mb-3">
-                    <div class="col">
-                      <small class="card-subtitle text-body">Code</small>
-                      <h3 class="card-title text-inherit">The Ultimate MySQL Bootcamp: Go from SQL Beginner to Expert</h3>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-auto">
-                      <div class="text-end">
-                        <p class="text-muted small mb-0"><del>$159.99</del></p>
-                        <h5 class="card-title text-primary">$119.99</h5>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-
-                  <div class="row align-items-center mb-2">
-                    <div class="col">
-                      <div class="avatar-group avatar-group-xs">
-                        <span class="avatar avatar-xs avatar-circle">
-                          <img class="avatar-img" src="../assets/img/160x160/img5.jpg" alt="Image Description">
-                        </span>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-auto">
-                      <ul class="list-inline list-separator text-body small">
-                        <li class="list-inline-item">
-                          <i class="bi-book me-1"></i> 42 lessons
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="bi-clock me-1"></i> 31h 5m
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="bi-bar-char-steps me-1"></i> All levels
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-
-                  <p class="card-text text-body">Learn MSQL like a Professional! Start from the basics and go all the way to creating your own applications and games!</p>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </a>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <a class="card card-flush" href="../demo-course/course-overview.html">
-              <div class="row align-items-md-center">
-                <div class="col-sm-5 mb-3 mb-sm-0">
-                  <!-- Card Pinned -->
-                  <div class="card-pinned">
-                    <img class="card-img" src="../assets/svg/components/card-4.svg" alt="Image Description">
-
-                    <div class="card-pinned-bottom-start">
-                      <div class="d-flex align-items-center flex-wrap">
-                        <!-- Rating -->
-                        <div class="d-flex gap-1">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
-                        </div>
-                        <!-- End Rating -->
-                        <div class="ms-1">
-                          <span class="fw-semibold text-white small me-1">4.64</span>
-                          <span class="text-white-70 small">(723 reviews)</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Card Pinned -->
-                </div>
-                <!-- End Col -->
-
-                <div class="col-sm-7">
-                  <div class="row mb-3">
-                    <div class="col">
-                      <small class="card-subtitle text-body">Code</small>
-                      <h3 class="card-title text-inherit">Coding block for WordPress</h3>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-auto">
-                      <div class="text-end">
-                        <p class="text-muted small mb-0"><del>$159.99</del></p>
-                        <h5 class="card-title text-primary">$119.99</h5>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-
-                  <div class="row align-items-center mb-2">
-                    <div class="col">
-                      <div class="avatar-group avatar-group-xs">
-                        <span class="avatar avatar-xs avatar-circle">
-                          <img class="avatar-img" src="../assets/img/160x160/img8.jpg" alt="Image Description">
-                        </span>
-                        <span class="avatar avatar-xs avatar-circle">
-                          <img class="avatar-img" src="../assets/img/160x160/img6.jpg" alt="Image Description">
-                        </span>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-auto">
-                      <ul class="list-inline list-separator text-body small">
-                        <li class="list-inline-item">
-                          <i class="bi-book me-1"></i> 5 lessons
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="bi-clock me-1"></i> 8h 12m
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="bi-bar-char-steps me-1"></i> All levels
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-
-                  <p class="card-text text-body">Learn coding block from basics. Make your first 4 blocks in Unreal engine. Interactive tutorial.</p>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </a>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <a class="card card-flush" href="../demo-course/course-overview.html">
-              <div class="row align-items-md-center">
-                <div class="col-sm-5 mb-3 mb-sm-0">
-                  <!-- Card Pinned -->
-                  <div class="card-pinned">
-                    <img class="card-img" src="../assets/svg/components/card-14.svg" alt="Image Description">
-
-                    <div class="card-pinned-bottom-start">
-                      <div class="d-flex align-items-center flex-wrap">
-                        <!-- Rating -->
-                        <div class="d-flex gap-1">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        </div>
-                        <!-- End Rating -->
-                        <div class="ms-1">
-                          <span class="fw-semibold text-white small me-1">4.9</span>
-                          <span class="text-white-70 small">(961 reviews)</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Card Pinned -->
-                </div>
-                <!-- End Col -->
-
-                <div class="col-sm-7">
-                  <div class="row mb-3">
-                    <div class="col">
-                      <small class="card-subtitle text-body">Design &amp; Illustration</small>
-                      <h3 class="card-title text-inherit">Creative Magazine Layout Design</h3>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-auto">
-                      <div class="text-end">
-                        <p class="text-muted small mb-0"><del>$179.99</del></p>
-                        <h5 class="card-title text-primary">$129.99</h5>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-
-                  <div class="row align-items-center mb-2">
-                    <div class="col">
-                      <div class="avatar-group avatar-group-xs">
-                        <span class="avatar avatar-xs avatar-circle">
-                          <img class="avatar-img" src="../assets/img/160x160/img4.jpg" alt="Image Description">
-                        </span>
-                        <span class="avatar avatar-xs avatar-circle">
-                          <img class="avatar-img" src="../assets/img/160x160/img3.jpg" alt="Image Description">
-                        </span>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-auto">
-                      <ul class="list-inline list-separator text-body small">
-                        <li class="list-inline-item">
-                          <i class="bi-book me-1"></i> 33 lessons
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="bi-clock me-1"></i> 22h 14m
-                        </li>
-                        <li class="list-inline-item">
-                          <i class="bi-bar-char-steps me-1"></i> All levels
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-
-                  <p class="card-text text-body">Master magazine layout design and publish awesome layout designs.</p>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </a>
-            <!-- End Card -->
           </div>
 
           <!-- Pagination -->

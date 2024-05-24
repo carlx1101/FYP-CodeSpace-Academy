@@ -61,4 +61,14 @@ class Course extends Model
         $this->save();
     }
 
+
+
+   // Accessor to get the total count of lessons
+   public function getLessonsCountAttribute()
+   {
+       return $this->sections->sum(function($section) {
+           return $section->lessons->count();
+       });
+   }
+
 }
