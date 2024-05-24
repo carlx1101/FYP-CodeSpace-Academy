@@ -160,7 +160,7 @@
           <!-- End Col -->
 
           <div class="col-sm-auto">
-            <a class="btn btn-primary" href="./users-add-user.html">
+            <a class="btn btn-primary" href="{{route('courses.create')}}">
               <i class="bi bi-journals me-1"></i>
 
               Add course
@@ -798,7 +798,7 @@
                         <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="productsEditDropdown1">
 
 
-                          <a class="dropdown-item" href="">
+                          <a class="dropdown-item" href="{{route('sections.index',$course->id)}}">
                             <i class="bi-trash dropdown-item-icon"></i> Curriculums
                           </a>
 

@@ -707,8 +707,8 @@
                       <img class="avatar-img" src="./assets/img/160x160/img6.jpg" alt="Image Description">
                     </div>
                     <div class="flex-grow-1 ms-3">
-                      <h5 class="mb-0">Mark Williams</h5>
-                      <p class="card-text text-body">mark@site.com</p>
+                      <h5 class="mb-0">{{Auth::user()->name}}</h5>
+                      <p class="card-text text-body">{{Auth::user()->email}}</p>
                     </div>
                   </div>
                 </div>
@@ -757,25 +757,7 @@
 
                 <div class="dropdown-divider"></div>
 
-                <!-- Dropdown -->
-                <div class="dropdown">
-                  <a class="navbar-dropdown-submenu-item dropdown-item dropdown-toggle" href="javascript:;" id="navSubmenuPagesAccountDropdown2" data-bs-toggle="dropdown" aria-expanded="false">Customization</a>
-
-                  <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-sub-menu" aria-labelledby="navSubmenuPagesAccountDropdown2">
-                    <a class="dropdown-item" href="#">
-                      Invite people
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      Analytics
-                      <i class="bi-box-arrow-in-up-right"></i>
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      Customize Front
-                      <i class="bi-box-arrow-in-up-right"></i>
-                    </a>
-                  </div>
-                </div>
-                <!-- End Dropdown -->
+               
 
                 <a class="dropdown-item" href="#">Manage team</a>
 

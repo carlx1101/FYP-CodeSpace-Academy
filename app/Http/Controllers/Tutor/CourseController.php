@@ -98,12 +98,4 @@ class CourseController extends Controller
         return redirect()->route('courses.index')->with('success', 'Course deleted successfully');
     }
 
-    public function getSubcategories(Request $request)
-    {
-        dd('hi');
-
-        $subcategories = Subcategory::where('category_id', $request->category_id)->get();
-        dd($subcategories);
-        return response()->json($subcategories);
-    }
 }

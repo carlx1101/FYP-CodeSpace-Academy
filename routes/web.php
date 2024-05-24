@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Livewire\Sections;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Tutor\CourseController;
+use App\Http\Controllers\Tutor\LessonController;
+use App\Http\Controllers\Tutor\SectionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +29,16 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
 Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'tutorDashboard'])->name('tutor.dashboard');
     Route::resource('courses', CourseController::class);
+
+    // Manage sections
+    Route::get('courses/{courseId}/sections', [SectionController::class, 'index'])->name('sections.index');
+    Route::post('courses/{courseId}/sections', [SectionController::class, 'store'])->name('sections.store');
+    Route::delete('courses/{courseId}/sections/{sectionId}', [SectionController::class, 'destroy'])->name('sections.destroy');
+
+    // Manage Lesson
+    Route::post('sections/{section}/lessons', [LessonController::class, 'store'])->name('lessons.store');
+    Route::delete('sections/{section}/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
+
 
 
 });

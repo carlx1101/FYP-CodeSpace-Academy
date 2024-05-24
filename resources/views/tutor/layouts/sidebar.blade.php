@@ -25,7 +25,7 @@
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
             <!-- Collapse -->
             <div class="nav-item">
-              <a class="nav-link " href="" role="button" >
+              <a class="nav-link " href="{{route('tutor.dashboard')}}" role="button" >
                 <i class="bi-house-door nav-icon"></i>
                 <span class="nav-link-title">Dashboards</span>
               </a>
