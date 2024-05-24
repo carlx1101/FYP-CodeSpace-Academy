@@ -2,14 +2,17 @@
 
 use App\Http\Livewire\Sections;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Tutor\CourseController;
 use App\Http\Controllers\Tutor\LessonController;
 use App\Http\Controllers\Tutor\SectionController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/courses', [PageController::class, 'courses'])->name('courses');
+Route::get('/courses/{id}', [PageController::class, 'course'])->name('course');
+
 
 Route::middleware([
     'auth:sanctum',
