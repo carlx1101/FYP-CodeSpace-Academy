@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('lesson_type')->nullable();
+            $table->boolean('is_preview')->default(false);
 
             $table->timestamps();
         });

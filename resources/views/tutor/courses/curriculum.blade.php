@@ -331,11 +331,21 @@
                 </div>
               </div>
 
+              <div class="row mb-2">
+                <div class="mb-2 " style="text-align: left">
+                    <input type="checkbox" name="is_preview" class="form-check-input" value="1">
+                    <label class="form-check-label" >Preview Course</label>
+                </div>
+              </div>
 
                 <div class="row mb-2">
                   <div class="mb-2 " style="text-align: left">
                   <label class="form-label" for="description">Lesson Type</label>
                 </div>
+
+
+
+
 
                 <div class="col-sm mb-2 mb-sm-0">
                   <!-- Form Radio -->

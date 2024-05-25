@@ -9,7 +9,7 @@ class Lesson extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['section_id', 'title', 'content'];
+    protected $fillable = ['section_id', 'title', 'description', 'lesson_type', 'content','is_preview'];
 
     public function section()
     {
@@ -22,5 +22,5 @@ class Lesson extends Model
         return $this->hasOne(Video::class);
     }
 
-    
+
 }

@@ -9,7 +9,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        return view('home');
+        return view('student.home');
     }
 
     public function courses()
@@ -20,13 +20,13 @@ class PageController extends Controller
       ->with(['sections.lessons'])
       ->paginate(10);
 
-        return view('courses', compact('courses'));
+        return view('student.courses', compact('courses'));
 }
 
     public function course($id)
     {
         // Eager load sections and their lessons for the specific course
         $course = Course::with(['sections.lessons'])->findOrFail($id);
-        return view('course', compact('course'));
+        return view('student.course', compact('course'));
     }
 }

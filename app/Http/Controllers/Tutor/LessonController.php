@@ -12,12 +12,12 @@ class LessonController extends Controller
 {
     public function store(Request $request, Section $section)
     {
-        // dd('hi');
         // Create a new Lesson
         $lesson = new Lesson([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'lesson_type' => $request->input('lesson_type'),
+            'is_preview' => $request->input('is_preview'),
         ]);
 
         // Save the Lesson to the section
@@ -53,5 +53,5 @@ class LessonController extends Controller
         $lesson->delete();
         return redirect()->back();
     }
-    
+
 }

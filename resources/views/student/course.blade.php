@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>CodeSpace Academy</title>
+  <title>Course</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="../favicon.ico">
@@ -17,7 +17,6 @@
   <!-- CSS Implementing Plugins -->
   <link rel="stylesheet" href="{{asset('frontend/vendor/bootstrap-icons/font/bootstrap-icons.css')}}">
   <link rel="stylesheet" href="{{asset('frontend/vendor/hs-mega-menu/dist/hs-mega-menu.min.css')}}">
-  <link rel="stylesheet" href="{{asset('frontend/vendor/swiper/swiper-bundle.min.css')}}">
 
 
   <!-- CSS Front Template -->
@@ -403,12 +402,61 @@
           </div>
           <!-- End Search -->
 
-          <div class="d-inline-block ml-auto">
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarSignup" aria-controls="offcanvasNavbarSignup">
-              <span class="d-none d-lg-inline-block">Get started</span>
-              <i class="bi-person-fill d-lg-none"></i>
-            </button>
+          <!-- Account -->
+          <div class="dropdown">
+            <a href="#" id="navbarShoppingCartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
+              <img class="avatar avatar-xs avatar-circle" src="../assets/img/160x160/img9.jpg" alt="Image Description">
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarShoppingCartDropdown" style="min-width: 16rem;">
+              <a class="d-flex align-items-center p-2" href="#">
+                <div class="flex-shrink-0">
+                  <img class="avatar" src="../assets/img/160x160/img9.jpg" alt="Image Description">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <span class="d-block fw-semibold">Lida Reidy <span class="badge bg-primary ms-1">Pro</span></span>
+                  <span class="d-block text-muted small">lidareidy@gmail.com</span>
+                </div>
+              </a>
+
+              <div class="dropdown-divider my-3"></div>
+
+              <a class="dropdown-item" href="#">
+                <span class="dropdown-item-icon">
+                  <i class="bi-chat-left-dots"></i>
+                </span> Messages
+              </a>
+              <a class="dropdown-item" href="#">
+                <span class="dropdown-item-icon">
+                  <i class="bi-wallet2"></i>
+                </span> Purchase history
+              </a>
+              <a class="dropdown-item" href="#">
+                <span class="dropdown-item-icon">
+                  <i class="bi-person"></i>
+                </span> Account
+              </a>
+              <a class="dropdown-item" href="#">
+                <span class="dropdown-item-icon">
+                  <i class="bi-credit-card"></i>
+                </span> Payment methods
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <a class="dropdown-item" href="#">
+                <span class="dropdown-item-icon">
+                  <i class="bi-question-circle"></i>
+                </span> Help
+              </a>
+              <a class="dropdown-item" href="#">
+                <span class="dropdown-item-icon">
+                  <i class="bi-box-arrow-right"></i>
+                </span> Log out
+              </a>
+            </div>
           </div>
+          <!-- End Account -->
         </div>
         <!-- End Secondary Content -->
 
@@ -427,7 +475,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="../demo-course/index.html">Home</a>
+              <a class="nav-link " href="../demo-course/index.html">Home</a>
             </li>
 
             <!-- Courses -->
@@ -556,14 +604,77 @@
 
             <!-- Dropdown -->
             <li class="hs-has-sub-menu nav-item">
-              <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-              <div class="hs-sub-menu hs-position-right dropdown-menu" aria-labelledby="listingsDropdown" style="min-width: 14rem;">
+              <a id="listingsDropdown" class="hs-mega-menu-invoker nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+              <div class="hs-sub-menu dropdown-menu" aria-labelledby="listingsDropdown" style="min-width: 14rem;">
                 <a class="dropdown-item " href="../demo-course/courses.html">Courses</a>
-                <a class="dropdown-item " href="../demo-course/course-overview.html">Course Overview</a>
+                <a class="dropdown-item active" href="../demo-course/course-overview.html">Course Overview</a>
                 <a class="dropdown-item " href="../demo-course/author-profile.html">Author Profile</a>
               </div>
             </li>
             <!-- End Dropdown -->
+
+            <!-- My Courses -->
+            <li class="hs-has-mega-menu nav-item"
+                data-hs-mega-menu-item-options='{
+                  "desktop": {
+                    "maxWidth": "20rem"
+                  }
+                }'>
+              <a id="myCoursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Courses</a>
+
+              <!-- Mega Menu -->
+              <div class="hs-mega-menu hs-position-right dropdown-menu" aria-labelledby="myCoursesMegaMenu" style="min-width: 22rem;">
+                <!-- Course -->
+                <a class="navbar-dropdown-menu-media-link" href="#">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <img class="avatar" src="../assets/svg/components/card-16.svg" alt="Image Description">
+                    </div>
+
+                    <div class="flex-grow-1 ms-3">
+                      <div class="mb-3">
+                        <span class="navbar-dropdown-menu-media-title">Java programming masterclass for software developers</span>
+                        <p class="navbar-dropdown-menu-media-desc">By Emily Milda</p>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <span class="card-subtitle text-body">Completed</span>
+                        <small class="text-dark fw-semibold">25%</small>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <!-- End Course -->
+
+                <!-- Course -->
+                <a class="navbar-dropdown-menu-media-link" href="#">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <img class="avatar" src="../assets/svg/components/card-5.svg" alt="Image Description">
+                    </div>
+
+                    <div class="flex-grow-1 ms-3">
+                      <div class="mb-3">
+                        <span class="navbar-dropdown-menu-media-title">The Ultimate MySQL Bootcamp: Go from SQL Beginner</span>
+                        <p class="navbar-dropdown-menu-media-desc">By Nataly Gaga and 2 others</p>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <span class="card-subtitle text-body">Completed</span>
+                        <small class="text-dark fw-semibold">100%</small>
+                      </div>
+                      <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <!-- End Course -->
+              </div>
+              <!-- End Mega Menu -->
+            </li>
+            <!-- End My Courses -->
           </ul>
         </div>
         <!-- End Collapse -->
@@ -575,211 +686,30 @@
 
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
-    <!-- Hero -->
-    <div class="container content-space-2">
-      <div class="row justify-content-md-between align-items-sm-center">
-        <div class="col-8 col-sm-6 col-md-5 mb-5 mb-sm-0">
-          <img class="img-fluid" src="../assets/svg/illustrations/oc-growing.svg" alt="Image Description">
-        </div>
-        <!-- End Col -->
+    <div class="position-relative">
+      <!-- Hero -->
+      <div class="gradient-y-overlay-lg-white bg-img-start content-space-2" style="background-image: url({{asset('frontend/img/1920x800/img6.jpg')}});">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7 col-lg-8">
+              <small class="badge bg-success rounded-pill">Bestseller</small>
+              <h1>{{$course->title}}</h1>
+              <p>{{$course->subtitle}}</p>
 
-        <div class="col-sm-6">
-          <div class="mb-5">
-            <h1 class="display-4 mb-3">
-              Unlock your
-              <br>
-              <span class="text-primary text-highlight-warning">
-                <span class="js-typedjs"
-                      data-hs-typed-options='{
-                        "strings": ["future.", "potential.", "skills."],
-                        "typeSpeed": 90,
-                        "loop": true,
-                        "backSpeed": 30,
-                        "backDelay": 2500
-                      }'></span>
-              </span>
-            </h1>
-            <p class="lead">With our platform, you can quantify your skills, grow in your role and stay relevant on critical topics.</p>
-          </div>
-
-          <div class="d-grid d-md-flex gap-3 align-items-md-center">
-            <a class="btn btn-primary" href="../page-login.html">Start a free trial</a>
-
-            <!-- Fancybox -->
-            <a class="video-player video-player-btn" href="https://www.youtube.com/watch?v=d4eDWc8g0e0" role="button" data-fslightbox="youtube-video">
-              <span class="video-player-icon shadow-sm me-2">
-                <i class="bi-play-fill"></i>
-              </span>
-              How it works
-            </a>
-            <!-- End Fancybox -->
-          </div>
-        </div>
-        <!-- End Col -->
-      </div>
-      <!-- End Row -->
-    </div>
-    <!-- End Hero -->
-
-    <!-- Card Grid -->
-    <div class="content-space-b-2 content-space-b-lg-3 bg-img-start" style="background: url(../assets/svg/components/shape-5.svg) center no-repeat;">
-      <div class="position-relative">
-        <div class="container content-space-2">
-          <div class="row align-items-md-center mb-7">
-            <div class="col-md-6 mb-4 mb-md-0">
-              <h2>Check out our newest and most popular programs</h2>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-md-6 text-md-end">
-              <a class="link" href="#">See all programs <i class="bi-chevron-right small ms-1"></i></a>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-
-          <!-- Swiper Slider -->
-          <div class="swiper-center-mode-end">
-            <div class="js-swiper-course-hero swiper">
-              <div class="swiper-wrapper">
-                <!-- Slide -->
-                <div class="swiper-slide pt-2">
-                  <!-- Card -->
-                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img14.jpg); min-height: 15rem;">
-                    <div class="card-body">
-                      <span class="card-subtitle text-white-70">New</span>
-                      <h4 class="card-title text-white">Cloud computing</h4>
-
-                      <div class="card-footer pt-0">
-                        <span class="card-link text-white">Read now</span>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- End Card -->
+              <div class="d-flex align-items-center flex-wrap">
+                <!-- Media -->
+                <div class="d-flex align-items-center me-4">
+                  <div class="flex-shrink-0 avatar-group avatar-group-xs">
+                    <span class="avatar avatar-xs avatar-circle">
+                      <img class="avatar-img" src="../assets/img/160x160/img10.jpg" alt="Image Description">
+                    </span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <span class="ps-2">Created by <a class="link" href="../demo-course/author-profile.html">CodeSpace Academy</a></span>
+                  </div>
                 </div>
-                <!-- End Slide -->
+                <!-- End Media -->
 
-                <!-- Slide -->
-                <div class="swiper-slide pt-2">
-                  <!-- Card -->
-                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img13.jpg); min-height: 15rem;">
-                    <div class="card-body">
-                      <span class="card-subtitle text-white-70">Phython</span>
-                      <h4 class="card-title text-white">What's new in Phython 3.7.2</h4>
-
-                      <div class="card-footer pt-0">
-                        <span class="card-link text-white">Read now</span>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- End Card -->
-                </div>
-                <!-- End Slide -->
-
-                <!-- Slide -->
-                <div class="swiper-slide pt-2">
-                  <!-- Card -->
-                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img15.jpg); min-height: 15rem;">
-                    <div class="card-body">
-                      <span class="card-subtitle text-white-70">Tooling</span>
-                      <h4 class="card-title text-white">Build a staging server</h4>
-
-                      <div class="card-footer pt-0">
-                        <span class="card-link text-white">Read now</span>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- End Card -->
-                </div>
-                <!-- End Slide -->
-
-                <!-- Slide -->
-                <div class="swiper-slide pt-2">
-                  <!-- Card -->
-                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img16.jpg); min-height: 15rem;">
-                    <div class="card-body">
-                      <span class="card-subtitle text-white-70">JavaScript</span>
-                      <h4 class="card-title text-white">Laravel, Vue and SPAs</h4>
-
-                      <div class="card-footer pt-0">
-                        <span class="card-link text-white">Read now</span>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- End Card -->
-                </div>
-                <!-- End Slide -->
-
-                <!-- Slide -->
-                <div class="swiper-slide pt-2">
-                  <!-- Card -->
-                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img17.jpg); min-height: 15rem;">
-                    <div class="card-body">
-                      <span class="card-subtitle text-white-70">Popular</span>
-                      <h4 class="card-title text-white">Artificial Intelligence</h4>
-
-                      <div class="card-footer pt-0">
-                        <span class="card-link text-white">Read now</span>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- End Card -->
-                </div>
-                <!-- End Slide -->
-
-                <!-- Slide -->
-                <div class="swiper-slide pt-2">
-                  <!-- Card -->
-                  <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img18.jpg); min-height: 15rem;">
-                    <div class="card-body">
-                      <span class="card-subtitle text-white-70">PHP</span>
-                      <h4 class="card-title text-white">Programming terms explained</h4>
-
-                      <div class="card-footer pt-0">
-                        <span class="card-link text-white">Read now</span>
-                      </div>
-                    </div>
-                  </a>
-                  <!-- End Card -->
-                </div>
-                <!-- End Slide -->
-              </div>
-
-              <!-- Arrows -->
-              <div class="js-swiper-course-hero-button-next swiper-button-next"></div>
-              <div class="js-swiper-course-hero-button-prev swiper-button-prev"></div>
-            </div>
-          </div>
-          <!-- End Swiper Slider -->
-        </div>
-
-        <div class="w-100 w-md-65 bg-light position-absolute top-0 end-0 bottom-0 zi-n1"></div>
-      </div>
-    </div>
-    <!-- End Card Grid -->
-
-    <!-- Card Grid -->
-    <div class="container content-space-sm-2">
-      <!-- Title -->
-      <div class="w-md-75 text-center mx-md-auto mb-9">
-        <h2>Featured courses</h2>
-        <p>Discover your perfect program in our courses.</p>
-      </div>
-      <!-- End Title -->
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 mb-5">
-        <div class="col mb-5">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-12.svg" alt="Image Description">
-
-              <div class="card-pinned-top-start">
-                <small class="badge bg-success rounded-pill">Bestseller</small>
-              </div>
-
-              <div class="card-pinned-bottom-start">
                 <div class="d-flex align-items-center flex-wrap">
                   <!-- Rating -->
                   <div class="d-flex gap-1">
@@ -791,67 +721,948 @@
                   </div>
                   <!-- End Rating -->
                   <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.91</span>
-                    <span class="text-white-70">(1.5k+ reviews)</span>
+                    <span class="fw-semibold text-dark me-1">4.91</span>
+                    <span>(1.5k+ reviews)</span>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- End Card Pinned -->
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
+        </div>
+      </div>
+      <!-- End Hero -->
 
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Code</small>
+      <!-- Sidebar -->
+      <div class="container content-space-t-md-2 position-md-absolute top-0 start-0 end-0">
+        <div class="row justify-content-end">
+          <div class="col-md-5 col-lg-4 position-relative zi-2 mb-7 mb-md-0">
+            <!-- Sticky Block -->
+            <div id="stickyBlockStartPoint">
+              <div class="js-sticky-block"
+                   data-hs-sticky-block-options='{
+                     "parentSelector": "#stickyBlockStartPoint",
+                     "breakpoint": "md",
+                     "startPoint": "#stickyBlockStartPoint",
+                     "endPoint": "#stickyBlockEndPoint",
+                     "stickyOffsetTop": 12,
+                     "stickyOffsetBottom": 12
+                   }'>
+                <!-- Card -->
+                <div class="card">
+                  <div class="p-1">
+                    <!-- Fancybox -->
+                    <div class="bg-img-start text-center rounded-2 py-10 px-5" style="background-image: url({{ asset('storage/' . $course->cover_image) }});">
+                      <a class="video-player video-player-btn" href="{{ asset('storage/' . $course->promotional_video) }}" role="button" data-fslightbox="youtube-video">
+                        <span class="d-flex justify-content-center align-items-center">
+                          <span class="video-player-icon shadow-sm">
+                            <i class="bi-play-fill"></i>
+                          </span>
+                        </span>
+                        <span class="text-white">Preview this course</span>
+                      </a>
+                    </div>
+                    <!-- End Fancybox -->
+                  </div>
 
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="../demo-course/course-overview.html">Complete Python Bootcamp: Go from zero to hero in Python</a>
-                </h3>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <span class="card-title h2">RM {{$course->price}}</span>
+                      {{-- <span class="text-muted"><del>$114.99</del></span> --}}
+                    </div>
+
+                    <div class="d-grid mb-2">
+                      <a class="btn btn-primary btn-transition" href="#">Buy now</a>
+                    </div>
+
+                    <div class="text-center mb-4">
+                      <p class="card-text small">30-day money-back guarantee</p>
+                    </div>
+
+                    <h4 class="card-title">This course includes</h4>
+
+                    <ul class="list-unstyled list-py-1">
+                      <li><i class="bi-camera-video nav-icon"></i> 46.5 hours on-demand video</li>
+                      <li><i class="bi-file-text nav-icon"></i> 77 articles</li>
+                      <li><i class="bi-file-earmark-arrow-down nav-icon"></i> 85 downloadable resources</li>
+                      <li><i class="bi-stopwatch nav-icon"></i> Full time access</li>
+                      <li><i class="bi-phone nav-icon"></i> Access on mobile and Tablet</li>
+                      <li><i class="bi-award nav-icon"></i> Certificate of Completion</li>
+                    </ul>
+                  </div>
+                  <!-- End Card Body -->
+                </div>
+                <!-- End Card -->
               </div>
+            </div>
+            <!-- End Sticky Block -->
+          </div>
+        </div>
+      </div>
+      <!-- End Sidebar -->
+    </div>
 
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Nataly Gaga" href="#">
-                      <img class="avatar-img" src="../assets/img/160x160/img3.jpg" alt="Image Description">
+    <!-- Content -->
+    <div class="container content-space-t-2 content-space-t-md-1">
+      <div class="row">
+        <div class="col-md-7 col-lg-8">
+          <h3 class="mb-4">What you'll learn:</h3>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <!-- List Checked -->
+              <ul class="list-checked list-checked-primary">
+                @foreach (array_slice(json_decode($course->learning_objectives), 0, ceil(count(json_decode($course->learning_objectives)) / 2)) as $learning_objective)
+                <li class="list-checked-item">{{ $learning_objective }}</li>
+            @endforeach
+              </ul>
+              <!-- End List Checked -->
+            </div>
+            <!-- End Col -->
+
+            <div class="col-lg-6">
+              <!-- List Checked -->
+              <ul class="list-checked list-checked-primary">
+                    @foreach (array_slice(json_decode($course->learning_objectives), ceil(count(json_decode($course->learning_objectives)) / 2)) as $learning_objective)
+                    <li class="list-checked-item">{{ $learning_objective }}</li>
+                    @endforeach
+              </ul>
+              <!-- End List Checked -->
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
+
+          <!-- Accordion -->
+          <div class="border-top pt-7 mt-7">
+            <div class="row mb-4">
+              <div class="col-8">
+                <h3 class="mb-0">Course content</h3>
+              </div>
+              <!-- End Col -->
+
+              <div class="col-4 text-end">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <span class="small">186 lectures</span>
+                  </div>
+                  <!-- End Col -->
+
+                  <div class="col-lg-6">
+                    <span class="small">24:10:28</span>
+                  </div>
+                  <!-- End Col -->
+                </div>
+                <!-- End Row -->
+              </div>
+              <!-- End Col -->
+            </div>
+            <!-- End Row -->
+
+            <!-- Accordion -->
+            <div class="accordion accordion-btn-icon-start">
+
+                @foreach ($course->sections as $section)
+
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingBasicsOne">
+                    <a class="accordion-button" role="button" data-bs-toggle="collapse" data-bs-target="#accordionCourse{{$section->id}}" aria-expanded="true" aria-controls="accordionCourse{{$section->id}}">
+                      <div class="flex-grow-1 ps-3">
+                        <div class="row">
+                          <div class="col-8">
+
+                            {{$section->title}}
+                          </div>
+                          <!-- End Col -->
+
+                          <div class="col-4 text-end">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <span class="small text-muted fw-normal">{{count($section->lessons)}} Lessons</span>
+                              </div>
+                              <!-- End Col -->
+
+                              <div class="col-lg-6">
+                                <span class="small text-muted fw-normal">15:32</span>
+                              </div>
+                              <!-- End Col -->
+                            </div>
+                            <!-- End Row -->
+                          </div>
+                          <!-- End Col -->
+                        </div>
+                        <!-- End Row -->
+                      </div>
                     </a>
                   </div>
+                  <div id="accordionCourse{{$section->id}}" class="accordion-collapse collapse " aria-labelledby="headingBasicsOne">
+                    <div class="accordion-body">
+                      <!-- List Group -->
+                      <div class="list-group list-group-flush list-group-no-gutters">
+                        @foreach ($section->lessons as $lesson)
+
+                        <!-- Item -->
+                        <div class="list-group-item">
+                          <div class="row">
+                            <div class="col-8">
+                              <a class="d-flex" href="#">
+                                <div class="flex-shrink-0">
+                                  <i class="bi-play-circle-fill small"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-2">
+                                  <span class="small">{{$lesson->title}}</span>
+                                </div>
+                              </a>
+                            </div>
+                            <!-- End Col -->
+
+
+                            <div class="col-4 text-end">
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  @if($lesson->is_preview == 1)
+                                    <!-- Fancybox -->
+
+                                    <a class="video-player video-player-btn" href="{{$lesson->video->video_url}}" role="button" data-fslightbox="youtube-video">
+                                        <p style="font-size:13px;">Preview</p>
+                                       </a>
+                                    <!-- End Fancybox -->
+                                    @endif
+                                </div>
+                                <!-- End Col -->
+
+                                <div class="col-lg-6">
+                                  <span class="text-primary small">06:39</span>
+                                </div>
+                                <!-- End Col -->
+                              </div>
+                              <!-- End Row -->
+                            </div>
+                            <!-- End Col -->
+                          </div>
+                        </div>
+                        <!-- End Item -->
+                        @endforeach
+
+
+
+                      </div>
+                      <!-- End List Group -->
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+                @endforeach
+
+            </div>
+            <!-- End Accordion -->
+
+            <!-- Link -->
+            <div class="mt-3">
+              <a class="link small">2 more sections</a>
+            </div>
+            <!-- End Link -->
+          </div>
+          <!-- End Accordion -->
+
+          <!-- Content -->
+          <div class="border-top pt-7 mt-7">
+            <div class="mb-4">
+              <h3>Description</h3>
+            </div>
+
+            <p>Become a Python Programmer and learn one of employer's most requested skills of 2019!</p>
+
+            <p>This is the most comprehensive, yet straight-forward, course for the Python programming language on Udemy! Whether you have never programmed before, already know basic syntax, or want to learn about the advanced features of Python, this course is for you! In this course we will teach you Python 3. (Note, we also provide older Python 2 notes in case you need them)</p>
+
+            <!-- Read More - Collapse -->
+            <div class="collapse" id="collapseCourseDescriptionSection">
+              <p>With over 100 lectures and more than 20 hours of video this comprehensive course leaves no stone unturned! This course includes quizzes, tests, and homework assignments as well as 3 major projects to create a Python project portfolio!</p>
+
+              <p>This course will teach you Python in a practical manner, with every lecture comes a full coding screencast and a corresponding code notebook! Learn in whatever manner is best for you!</p>
+
+              <p>We will start by helping you get Python installed on your computer, regardless of your operating system, whether its Linux, MacOS, or Windows, we've got you covered!</p>
+
+              <p>We cover a wide variety of topics, including:</p>
+
+              <ul class="text-body pl-6">
+                <li>Command Line Basics</li>
+                <li>Installing Python</li>
+                <li>Running Python Code</li>
+                <li>Strings</li>
+                <li>Lists&nbsp;</li>
+                <li>Dictionaries</li>
+                <li>Tuples</li>
+                <li>Sets</li>
+                <li>Number Data Types</li>
+                <li>Print Formatting</li>
+                <li>Functions</li>
+                <li>Scope</li>
+                <li>args/kwargs</li>
+                <li>Built-in Functions</li>
+                <li>Debugging and Error Handling</li>
+                <li>Modules</li>
+                <li>External Modules</li>
+                <li>Object Oriented Programming</li>
+                <li>Inheritance</li>
+                <li>Polymorphism</li>
+                <li>File I/O</li>
+                <li>Advanced Methods</li>
+                <li>Unit Tests</li>
+                <li>and much more!</li>
+              </ul>
+
+              <p>This course comes with a 30 day money back guarantee! If you are not satisfied in any way, you'll get your money back. Plus you will keep access to the Notebooks as a thank you for trying out the course!</p>
+            </div>
+            <!-- End Read More - Collapse -->
+
+            <!-- Link -->
+            <a class="link link-collapse" data-bs-toggle="collapse" href="#collapseCourseDescriptionSection" role="button" aria-expanded="false" aria-controls="collapseCourseDescriptionSection">
+              <span class="link-collapse-default">Read more</span>
+              <span class="link-collapse-active">Read less</span>
+            </a>
+            <!-- End Link -->
+          </div>
+          <!-- End Content -->
+
+          <hr class="my-7">
+
+          <h3 class="mb-4">Students also bought</h3>
+
+          <div class="d-grid gap-5">
+            <!-- Card -->
+            <a class="d-block" href="../demo-course/course-overview.html">
+              <div class="row">
+                <div class="col-sm-5 col-lg-3 mb-3 mb-sm-0">
+                  <img class="card-img" src="../assets/svg/components/card-6.svg" alt="Image Description">
                 </div>
                 <!-- End Col -->
 
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 10 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 3h 25m
-                    </li>
-                  </ul>
+                <div class="col-sm-7 col-lg-9">
+                  <div class="row">
+                    <div class="col-lg-6 mb-2 mb-lg-0">
+                      <h5 class="text-inherit">Get started with Vue.js</h5>
+
+                      <div class="d-flex align-items-center flex-wrap">
+                        <!-- Rating -->
+                        <div class="d-flex gap-1">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        </div>
+                        <!-- End Rating -->
+                        <div class="ms-1">
+                          <span class="text-body ms-1">4.95</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End Col -->
+
+                    <div class="col-lg-6">
+                      <div class="row">
+                        <div class="col-7">
+                          <div class="text-muted small mb-2">
+                            <i class="bi-book me-1"></i> 10 lessons
+                          </div>
+                          <div class="text-muted small">
+                            <i class="bi-clock me-1"></i> 3h 25m
+                          </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-5 text-end">
+                          <p class="text-muted small mb-0"><del>$114.99</del></p>
+                          <h5 class="text-primary mb-0">$99.99</h5>
+                        </div>
+                        <!-- End Col -->
+                      </div>
+                      <!-- End Row -->
+                    </div>
+                    <!-- End Col -->
+                  </div>
+                  <!-- End Row -->
                 </div>
                 <!-- End Col -->
               </div>
               <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
+            </a>
+            <!-- End Card -->
 
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$114.99</del></span>
-                  <h5 class="card-title">$99.99</h5>
+            <!-- Card -->
+            <a class="d-block" href="../demo-course/course-overview.html">
+              <div class="row">
+                <div class="col-sm-5 col-lg-3 mb-3 mb-sm-0">
+                  <img class="card-img" src="../assets/svg/components/card-4.svg" alt="Image Description">
                 </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
+                <!-- End Col -->
 
-        <div class="col mb-5">
+                <div class="col-sm-7 col-lg-9">
+                  <div class="row">
+                    <div class="col-lg-6 mb-2 mb-lg-0">
+                      <h5 class="text-inherit">Coding block for WordPress</h5>
+
+                      <div class="d-flex align-items-center flex-wrap">
+                        <!-- Rating -->
+                        <div class="d-flex gap-1">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        </div>
+                        <!-- End Rating -->
+                        <div class="ms-1">
+                          <span class="text-body ms-1">4.95</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End Col -->
+
+                    <div class="col-lg-6">
+                      <div class="row">
+                        <div class="col-7">
+                          <div class="text-muted small mb-2">
+                            <i class="bi-book me-1"></i> 8 lessons
+                          </div>
+                          <div class="text-muted small">
+                            <i class="bi-clock me-1"></i> 1h 14m
+                          </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-5 text-end">
+                          <p class="text-muted small mb-0"><del>$59.99</del></p>
+                          <h5 class="text-primary mb-0">$39.99</h5>
+                        </div>
+                        <!-- End Col -->
+                      </div>
+                      <!-- End Row -->
+                    </div>
+                    <!-- End Col -->
+                  </div>
+                  <!-- End Row -->
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Row -->
+            </a>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <a class="d-block" href="../demo-course/course-overview.html">
+              <div class="row">
+                <div class="col-sm-5 col-lg-3 mb-3 mb-sm-0">
+                  <img class="card-img" src="../assets/svg/components/card-15.svg" alt="Image Description">
+                </div>
+                <!-- End Col -->
+
+                <div class="col-sm-7 col-lg-9">
+                  <div class="row">
+                    <div class="col-lg-6 mb-2 mb-lg-0">
+                      <h5 class="text-inherit">The Ultimate MySQL Bootcamp: Go from SQL Beginner to Expert</h5>
+
+                      <div class="d-flex align-items-center flex-wrap">
+                        <!-- Rating -->
+                        <div class="d-flex gap-1">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        </div>
+                        <!-- End Rating -->
+                        <div class="ms-1">
+                          <span class="text-body ms-1">4.87</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End Col -->
+
+                    <div class="col-lg-6">
+                      <div class="row">
+                        <div class="col-7">
+                          <div class="text-muted small mb-2">
+                            <i class="bi-book me-1"></i> 23 lessons
+                          </div>
+                          <div class="text-muted small">
+                            <i class="bi-clock me-1"></i> 7h 47m
+                          </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-5 text-end">
+                          <p class="text-muted small mb-0"><del>$99.99</del></p>
+                          <h5 class="text-primary mb-0">$89.99</h5>
+                        </div>
+                        <!-- End Col -->
+                      </div>
+                      <!-- End Row -->
+                    </div>
+                    <!-- End Col -->
+                  </div>
+                  <!-- End Row -->
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Row -->
+            </a>
+            <!-- End Card -->
+          </div>
+
+          <hr class="my-7">
+
+          <h3 class="mb-4">Nataly's books</h3>
+
+          <div class="row">
+            <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+              <!-- Card -->
+              <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img14.jpg); min-height: 15rem;">
+                <div class="card-body">
+                  <span class="card-subtitle text-white-70">New</span>
+                  <h4 class="card-title text-white">Cloud computing</h4>
+
+                  <div class="card-footer pt-0">
+                    <span class="card-link text-white">Read now</span>
+                  </div>
+                </div>
+              </a>
+              <!-- End Card -->
+            </div>
+            <!-- End Col -->
+
+            <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+              <!-- Card -->
+              <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img13.jpg); min-height: 15rem;">
+                <div class="card-body">
+                  <span class="card-subtitle text-white-70">Phython</span>
+                  <h4 class="card-title text-white">What's new in Phython 3.7.2</h4>
+
+                  <div class="card-footer pt-0">
+                    <span class="card-link text-white">Read now</span>
+                  </div>
+                </div>
+              </a>
+              <!-- End Card -->
+            </div>
+            <!-- End Col -->
+
+            <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+              <!-- Card -->
+              <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img15.jpg); min-height: 15rem;">
+                <div class="card-body">
+                  <span class="card-subtitle text-white-70">Tooling</span>
+                  <h4 class="card-title text-white">Build a staging server</h4>
+
+                  <div class="card-footer pt-0">
+                    <span class="card-link text-white">Read now</span>
+                  </div>
+                </div>
+              </a>
+              <!-- End Card -->
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
+
+          <hr class="my-7">
+
+          <div class="mb-4">
+            <h3>About the instructor</h3>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4 mb-4 mb-sm-0">
+              <div class="mb-3">
+                <img class="avatar avatar-xl avatar-circle" src="../assets/img/160x160/img10.jpg" alt="Image Description">
+              </div>
+
+              <ul class="list-unstyled list-py-1">
+                <li><i class="bi-star dropdown-item-icon"></i> 4.87 Instructor rating</li>
+                <li><i class="bi-chat-left-dots dropdown-item-icon"></i> 1,533 reviews</li>
+                <li><i class="bi-person dropdown-item-icon"></i> 23,912 students</li>
+                <li><i class="bi-play-circle dropdown-item-icon"></i> 29 courses</li>
+              </ul>
+            </div>
+            <!-- End Col -->
+
+            <div class="col-sm-8">
+              <!-- Info -->
+              <div class="mb-2">
+                <h4 class="mb-1"><a href="../demo-course/author-profile.html">Nataly Gaga</a></h4>
+                <p class="fw-semibold">Head of Data Science, Pierian Data Inc.</p>
+              </div>
+
+              <p>Nataly Gaga has a BS and MS in Mechanical Engineering from Santa Clara University and years of experience as a professional instructor and trainer for Data Science and programming. She has publications and patents in various fields such as microfluidics, materials science, and data science technologies.</p>
+              <!-- End Info -->
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
+
+          <hr class="my-7">
+
+          <div class="mb-4">
+            <h3>Student feedback</h3>
+          </div>
+
+          <div class="row mb-5">
+            <div class="col-lg-4">
+              <!-- Card -->
+              <div class="card card-sm bg-primary text-center mb-3">
+                <div class="card-body">
+                  <span class="display-4 text-white">4.7</span>
+
+                  <div class="d-flex justify-content-center gap-2 mb-2">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="22">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="22">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="22">
+                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="22">
+                    <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="22">
+                  </div>
+                  <span class="text-white">Course rating</span>
+                </div>
+              </div>
+              <!-- End Card -->
+            </div>
+            <!-- End Col -->
+
+            <div class="col-lg-8">
+              <!-- Ratings -->
+              <div class="d-grid gap-2">
+                <a class="row align-items-center" href="#">
+                  <div class="col-7">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <!-- End Col -->
+
+                  <div class="col-2 text-end">
+                    <div class="d-flex">
+                      <div class="d-flex gap-1 me-2">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                      </div>
+                      <span>205</span>
+                    </div>
+                  </div>
+                  <!-- End Col -->
+                </a>
+                <!-- End Row -->
+
+                <a class="row align-items-center" href="#">
+                  <div class="col-7">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 53%;" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <!-- End Col -->
+
+                  <div class="col-2 text-end">
+                    <div class="d-flex">
+                      <div class="d-flex gap-1 me-2">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                      </div>
+                      <span>55</span>
+                    </div>
+                  </div>
+                  <!-- End Col -->
+                </a>
+                <!-- End Row -->
+
+                <a class="row align-items-center" href="#">
+                  <div class="col-7">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <!-- End Col -->
+
+                  <div class="col-2 text-end">
+                    <div class="d-flex">
+                      <div class="d-flex gap-1 me-2">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                      </div>
+                      <span>23</span>
+                    </div>
+                  </div>
+                  <!-- End Col -->
+                </a>
+                <!-- End Row -->
+
+                <a class="row align-items-center" href="#">
+                  <div class="col-7">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <!-- End Col -->
+
+                  <div class="col-2 text-end">
+                    <div class="d-flex">
+                      <div class="d-flex gap-1 me-2">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                      </div>
+                      <span>0</span>
+                    </div>
+                  </div>
+                  <!-- End Col -->
+                </a>
+                <!-- End Row -->
+
+                <a class="row align-items-center" href="#">
+                  <div class="col-7">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 1%;" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <!-- End Col -->
+
+                  <div class="col-2 text-end">
+                    <div class="d-flex">
+                      <div class="d-flex gap-1 me-2">
+                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                      </div>
+                      <span>4</span>
+                    </div>
+                  </div>
+                  <!-- End Col -->
+                </a>
+                <!-- End Row -->
+              </div>
+              <!-- End Ratings -->
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
+
+          <!-- Heading -->
+          <div class="border-bottom pb-4 mb-4">
+            <div class="row align-items-center">
+              <div class="col-sm-6 mb-2 mb-sm-0">
+                <h3 class="mb-0">Reviews</h3>
+              </div>
+              <!-- End Col -->
+
+              <div class="col-sm-6">
+                <!-- Form -->
+                <form>
+                  <div class="input-group input-group-merge">
+                    <input type="search" class="form-control" placeholder="Search reviews" aria-label="Search reviews">
+                    <div class="input-group-append input-group-text">
+                      <i class="bi-search"></i>
+                    </div>
+                  </div>
+                </form>
+                <!-- End Form -->
+              </div>
+              <!-- End Col -->
+            </div>
+            <!-- End Row -->
+          </div>
+          <!-- End Heading -->
+
+          <!-- Comment -->
+          <ul class="list-comment list-comment-divider mb-7">
+            <!-- Item -->
+            <li class="list-comment-item">
+              <div class="d-flex gap-1 mb-3">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              </div>
+
+              <!-- Media -->
+              <div class="d-flex align-items-center mb-3">
+                <div class="flex-shrink-0">
+                  <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img3.jpg" alt="Image Description">
+                </div>
+
+                <div class="flex-grow-1 ms-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Dave Austin</h5>
+                    <span class="d-block small text-muted">April 3, 2019</span>
+                  </div>
+                </div>
+              </div>
+              <!-- End Media -->
+
+              <div class="mb-5">
+                <p>This course helped me in learning python in a very simple and effective way &amp; boosts up my confidence. Concepts have been explained in a crystal clear way.</p>
+              </div>
+
+              <div class="mb-2">
+                <span class="text-dark fw-semibold">Dave</span>
+                <span>- Verified Purchase</span>
+              </div>
+
+              <!-- Media -->
+              <div class="d-flex align-items-center">
+                <span class="small me-2">Was this helpful?</span>
+
+                <div class="d-flex gap-2">
+                  <a class="btn btn-white btn-xs" href="javascript:;">
+                    <i class="bi-hand-thumbs-up me-1"></i> Yes <span>(45)</span>
+                  </a>
+                  <a class="btn btn-white btn-xs" href="javascript:;">
+                    <i class="bi-hand-thumbs-down me-1"></i> No <span>(21)</span>
+                  </a>
+                </div>
+              </div>
+              <!-- End Media -->
+            </li>
+            <!-- End Item -->
+
+            <!-- Item -->
+            <li class="list-comment-item">
+              <div class="d-flex gap-1 mb-3">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              </div>
+
+              <!-- Media -->
+              <div class="d-flex align-items-center mb-3">
+                <div class="flex-shrink-0">
+                  <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img1.jpg" alt="Image Description">
+                </div>
+
+                <div class="flex-grow-1 ms-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Hailey</h5>
+                    <span class="d-block small text-muted">January 19, 2019</span>
+                  </div>
+                </div>
+              </div>
+              <!-- End Media -->
+
+              <div class="mb-5">
+                <p>HUUUUUUUUUUUGE fan of Emily Milda</p>
+                <p>Master of Python, I took other classes also. I was very impressed, a very good teacher, in detail explanations, easy to understand. I owe him many thanks and hopefully. THAAAANK YOUU!</p>
+              </div>
+
+              <div class="mb-2">
+                <span class="text-dark fw-semibold">Hailey</span>
+                <span>- Verified Purchase</span>
+              </div>
+
+              <!-- Media -->
+              <div class="d-flex align-items-center">
+                <span class="small me-2">Was this helpful?</span>
+
+                <div class="d-flex gap-2">
+                  <a class="btn btn-white btn-xs" href="javascript:;">
+                    <i class="bi-hand-thumbs-up me-1"></i> Yes <span>(2)</span>
+                  </a>
+                  <a class="btn btn-white btn-xs" href="javascript:;">
+                    <i class="bi-hand-thumbs-down me-1"></i> No <span>(0)</span>
+                  </a>
+                </div>
+              </div>
+              <!-- End Media -->
+            </li>
+            <!-- End Item -->
+
+            <!-- Item -->
+            <li class="list-comment-item">
+              <div class="d-flex gap-1 mb-3">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              </div>
+
+              <!-- Media -->
+              <div class="d-flex align-items-center mb-3">
+                <div class="flex-shrink-0">
+                  <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img8.jpg" alt="Image Description">
+                </div>
+
+                <div class="flex-grow-1 ms-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Chrizelle</h5>
+                    <span class="d-block small text-muted">December 21, 2018</span>
+                  </div>
+                </div>
+              </div>
+              <!-- End Media -->
+
+              <div class="mb-5">
+                <p>Section 19 needs to be addressed. the 1st topic in the section tells us it is optional and can be skipped. this is not true and your instructions tell us to contact udemy support if there is an issue. we did and they told us to contact you.</p>
+              </div>
+
+              <div class="mb-2">
+                <span class="text-dark fw-semibold">Chrizelle</span>
+                <span>- Verified Purchase</span>
+              </div>
+
+              <!-- Media -->
+              <div class="d-flex align-items-center">
+                <span class="small me-2">Was this helpful?</span>
+
+                <div class="d-flex gap-2">
+                  <a class="btn btn-white btn-xs" href="javascript:;">
+                    <i class="bi-hand-thumbs-up me-1"></i> Yes <span>(0)</span>
+                  </a>
+                  <a class="btn btn-white btn-xs" href="javascript:;">
+                    <i class="bi-hand-thumbs-down me-1"></i> No <span>(0)</span>
+                  </a>
+                </div>
+              </div>
+              <!-- End Media -->
+            </li>
+            <!-- End Item -->
+          </ul>
+          <!-- End Comment -->
+
+          <div class="text-center">
+            <a class="btn btn-outline-primary btn-transition" href="#">See all reviews</a>
+          </div>
+
+          <hr class="my-7">
+        </div>
+      </div>
+    </div>
+    <!-- End Content -->
+
+    <!-- Sticky Block End Point -->
+    <div id="stickyBlockEndPoint"></div>
+
+    <!-- Card Grid -->
+    <div class="container content-space-b-2">
+      <h3 class="mb-4">Students also bought</h3>
+
+      <div class="row">
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
           <!-- Card -->
           <div class="card card-bordered h-100">
             <!-- Card Pinned -->
@@ -933,7 +1744,7 @@
         </div>
         <!-- End Col -->
 
-        <div class="col mb-5">
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
           <!-- Card -->
           <div class="card card-bordered h-100">
             <!-- Card Pinned -->
@@ -952,7 +1763,7 @@
                     <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
                     <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
                     <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="16">
+                    <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
                   </div>
                   <!-- End Rating -->
                   <div class="ms-1">
@@ -1019,7 +1830,7 @@
         </div>
         <!-- End Col -->
 
-        <div class="col mb-5">
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
           <!-- Card -->
           <div class="card card-bordered h-100">
             <!-- Card Pinned -->
@@ -1097,386 +1908,10 @@
           <!-- End Card -->
         </div>
         <!-- End Col -->
-
-        <div class="col mb-5">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-4.svg" alt="Image Description">
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.64</span>
-                    <span class="text-white-70">(723 reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Code</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="../demo-course/course-overview.html">Coding block for WordPress</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="#">
-                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
-                    </a>
-                    <div class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="John O'nolan">
-                      <img class="avatar-img" src="../assets/img/160x160/img4.jpg" alt="Image Description">
-                    </div>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 5 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 8h 12m
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$64.99</del></span>
-                  <h5 class="card-title">$29.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
-
-        <div class="col mb-5">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-14.svg" alt="Image Description">
-
-              <div class="card-pinned-top-start">
-                <small class="badge bg-success rounded-pill">Hot</small>
-              </div>
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.9</span>
-                    <span class="text-white-70">(961 reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Design &amp; Illustration</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="../demo-course/course-overview.html">Creative Magazine Layout Design</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="#">
-                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
-                    </a>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 35 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 21h
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$179.99</del></span>
-                  <h5 class="card-title">$129.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
       </div>
       <!-- End Row -->
-
-      <div class="text-center">
-        <a class="btn btn-link" href="../demo-course/courses.html">See all courses <i class="bi-chevron-right small ms-1"></i></a>
-      </div>
     </div>
     <!-- End Card Grid -->
-
-    <!-- Testimonials -->
-    <div class="overflow-hidden content-space-2">
-      <div class="position-relative bg-light text-center rounded-2 zi-2 mx-3 mx-md-10">
-        <div class="container content-space-2">
-          <div class="text-center mb-5">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/illustrations/oc-person-2.svg" alt="Illustration">
-          </div>
-
-          <!-- Blockquote -->
-          <figure class="w-md-75 text-center mx-md-auto">
-            <blockquote class="blockquote mb-7">“ The best part about Front Course is the selection. You can find a course for anything you want to learn! Thank you Front Course! You've renewed my passion for learning and my dream of becoming a web developer. ”</blockquote>
-
-            <figcaption class="blockquote-footer mt-2">
-              Martin
-              <span class="blockquote-footer-source">Happy customer</span>
-            </figcaption>
-          </figure>
-          <!-- End Blockquote -->
-        </div>
-
-        <!-- SVG Shape -->
-        <figure class="position-absolute top-0 start-0 mt-10 ms-10">
-          <svg width="70" height="70" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M60.6655 74.9992C80.4557 74.9992 96.4988 58.9561 96.4988 39.1659C96.4988 19.3757 80.4557 3.33252 60.6655 3.33252C40.8753 3.33252 24.8322 19.3757 24.8322 39.1659C24.8322 58.9561 40.8753 74.9992 60.6655 74.9992Z" stroke="#97a4af" stroke-width="5" stroke-miterlimit="10"/>
-            <path d="M158.5 197.5C168.165 197.5 176 189.665 176 180C176 170.335 168.165 162.5 158.5 162.5C148.835 162.5 141 170.335 141 180C141 189.665 148.835 197.5 158.5 197.5Z" stroke="#97a4af" stroke-width="5" stroke-miterlimit="10"/>
-          </svg>
-        </figure>
-        <!-- End SVG Shape -->
-
-        <!-- SVG Shape -->
-        <figure class="position-absolute bottom-0 end-0 mb-n7 me-n7" style="width: 10rem;">
-          <img class="img-fluid" src="../assets/svg/components/dots.svg" alt="Image Description">
-        </figure>
-        <!-- End SVG Shape -->
-      </div>
-    </div>
-    <!-- End Testimonials -->
-
-    <!-- Clients -->
-    <div class="container content-space-t-1 content-space-t-lg-0">
-      <div class="w-lg-75 mx-lg-auto">
-        <div class="row">
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/capsule-dark.svg" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/fitbit-dark.svg" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/forbes-dark.svg" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/mailchimp-dark.svg" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="../assets/svg/brands/layar-dark.svg" alt="Logo">
-          </div>
-          <!-- End Col -->
-        </div>
-        <!-- End Row -->
-      </div>
-    </div>
-    <!-- End Clients -->
-
-    <!-- Signup Form -->
-    <div class="container content-space-2 content-space-lg-3">
-      <div class="row justify-content-lg-between align-items-md-center">
-        <div class="col-md-5 mb-7 mb-md-0">
-          <div class="mb-5">
-            <h2>Thousands of experts around the world ready to help you.</h2>
-            <p>See why leading organizations choose Front Course for Business as their destination for employee learning.</p>
-          </div>
-
-          <h4>Learn more about:</h4>
-
-          <!-- List Checked -->
-          <ul class="list-checked list-checked-primary">
-            <li class="list-checked-item">Unlimited access to the top 3,500+ courses</li>
-            <li class="list-checked-item">Fresh content taught by 1,300+ experts – for any learning style</li>
-            <li class="list-checked-item">Actionable learning insights <span class="badge bg-warning text-dark rounded-pill ms-1">Beta</span></li>
-          </ul>
-          <!-- End List Checked -->
-        </div>
-        <!-- End Col -->
-
-        <div class="col-md-7 col-lg-6">
-          <!-- Form -->
-          <form class="js-validate needs-validation" novalidate>
-            <!-- Card -->
-            <div class="card">
-              <div class="card-header bg-primary text-center">
-                <h4 class="card-header-title text-white">Try it free for 7 days <span class="badge bg-warning text-dark rounded-pill ms-1">starting at $59</span></h4>
-              </div>
-
-              <div class="card-body">
-                <div class="row gx-3">
-                  <div class="col-sm-6">
-                    <!-- Form -->
-                    <div class="mb-4">
-                      <label class="form-label" for="signupHeroFormFirstName">First name</label>
-                      <input type="text" class="form-control form-control-lg" name="signupHeroFormNameFirstName" id="signupHeroFormFirstName" placeholder="First name" aria-label="First name" required>
-                      <span class="invalid-feedback">Please enter your first name</span>
-                    </div>
-                    <!-- End Form -->
-                  </div>
-                  <!-- End Col -->
-
-                  <div class="col-sm-6">
-                    <!-- Form -->
-                    <div class="mb-4">
-                      <label class="form-label" for="signupHeroFormLasttName">Last name</label>
-                      <input type="text" class="form-control form-control-lg" name="signupHeroFormNameLastName" id="signupHeroFormLasttName" placeholder="Last name" aria-label="Last name" required>
-                      <span class="invalid-feedback">Please enter your last name</span>
-                    </div>
-                    <!-- End Form -->
-                  </div>
-                  <!-- End Col -->
-                </div>
-                <!-- End Row -->
-
-                <!-- Form -->
-                <div class="mb-4">
-                  <label class="form-label" for="signupHeroFormWorkEmail">Email address</label>
-                  <input type="email" class="form-control form-control-lg" name="signupHeroFormNameWorkEmail" id="signupHeroFormWorkEmail" placeholder="email@site.com" aria-label="email@site.com" required>
-                  <span class="invalid-feedback">Please enter your email address</span>
-                </div>
-                <!-- End Form -->
-
-                <div class="row gx-3">
-                  <div class="col-sm-6">
-                    <!-- Form -->
-                    <div class="mb-4">
-                      <label class="form-label" for="signupHeroFormSignupPassword">Password</label>
-                      <input type="password" class="form-control form-control-lg" name="password" id="signupHeroFormSignupPassword" placeholder="8+ characters required" aria-label="8+ characters required" required>
-                      <span class="invalid-feedback">Your password must include 8+ characters</span>
-                    </div>
-                    <!-- End Form -->
-                  </div>
-                  <!-- End Col -->
-
-                  <div class="col-sm-6">
-                    <!-- Form -->
-                    <div class="mb-4" data-hs-validation-validate-class>
-                      <label class="form-label" for="signupHeroFormSignupConfirmPassword">Confirm password</label>
-                      <input type="password" class="form-control form-control-lg" name="confirmPassword" id="signupHeroFormSignupConfirmPassword" placeholder="8+ characters required" aria-label="8+ characters required" required
-                             data-hs-validation-equal-field="#signupHeroFormSignupPassword">
-                      <span class="invalid-feedback">Password does not match the confirm password</span>
-                    </div>
-                    <!-- End Form -->
-                  </div>
-                  <!-- End Col -->
-                </div>
-                <!-- End Row -->
-
-                <!-- Check -->
-                <div class="form-check mb-4">
-                  <input type="checkbox" class="form-check-input" id="signupHeroFormPrivacyCheck" name="signupFormPrivacyCheck" required>
-                  <label class="form-check-label small" for="signupHeroFormPrivacyCheck"> By submitting this form I have read and acknowledged the <a href=../page-privacy.html>Privacy Policy</a></label>
-                  <span class="invalid-feedback">Please accept our Privacy Policy.</span>
-                </div>
-                <!-- End Check -->
-
-                <div class="row align-items-center">
-                  <div class="col-sm-7 mb-3 mb-sm-0">
-                    <p class="card-text small">Already have an account? <a class="link" href="../page-login.html">Log In</a></p>
-                  </div>
-                  <!-- End Col -->
-
-                  <div class="col-sm-5 text-sm-end">
-                    <button type="submit" class="btn btn-primary btn-lg">Sign up now</button>
-                  </div>
-                  <!-- End Col -->
-                </div>
-                <!-- End Row -->
-              </div>
-            </div>
-            <!-- End Card -->
-          </form>
-          <!-- End Form -->
-        </div>
-        <!-- End Col -->
-      </div>
-      <!-- End Row -->
-    </div>
-    <!-- End Signup Form -->
-
-    <!-- CTA -->
-    <div class="container content-space-b-2">
-      <div class="text-center bg-img-start py-6" style="background: url(../assets/svg/components/shape-6.svg) center no-repeat;">
-        <div class="mb-5">
-          <h2>Find the right learning path for you</h2>
-          <p>Answer a few questions and match your goals to our programs.</p>
-        </div>
-
-        <a class="btn btn-primary btn-transition" href="#">Explore by category</a>
-      </div>
-    </div>
-    <!-- End CTA -->
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
 
@@ -1673,173 +2108,6 @@
      }'>
     <i class="bi-chevron-up"></i>
   </a>
-
-  <!-- Offcanvas Signup -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarSignup">
-    <div class="offcanvas-header justify-content-end border-0 pb-0">
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-
-    <div class="offcanvas-body">
-      <!-- Log in -->
-      <div id="loginOffcanvasFormLogin">
-        <!-- Heading -->
-        <div class="text-center mb-7">
-          <h3 class="modal-title">Log in to Front</h3>
-          <p>Login to manage your account</p>
-        </div>
-        <!-- End Heading -->
-
-        <form class="js-validate needs-validation" novalidate>
-          <!-- Form -->
-          <div class="mb-3">
-            <label class="form-label" for="loginOffcanvasFormLoginEmail">Your email</label>
-            <input type="email" class="form-control form-control-lg" name="email" id="loginOffcanvasFormLoginEmail" placeholder="email@site.com" aria-label="email@site.com" required>
-            <span class="invalid-feedback">Please enter a valid email address.</span>
-          </div>
-          <!-- End Form -->
-
-          <!-- Form -->
-          <div class="mb-3">
-            <div class="d-flex justify-content-between align-items-center">
-              <label class="form-label" for="loginOffcanvasFormLoginPassword">Password</label>
-
-              <a class="js-animation-link form-label-link" href="javascript:;"
-                 data-hs-show-animation-options='{
-                   "targetSelector": "#loginOffcanvasFormResetPassword",
-                   "groupName": "idForm"
-                 }'>Forgot Password?</a>
-            </div>
-
-            <input type="password" class="form-control form-control-lg" name="password" id="loginOffcanvasFormLoginPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8">
-            <span class="invalid-feedback">Please enter a valid password.</span>
-          </div>
-          <!-- End Form -->
-
-          <div class="d-grid gap-3 text-center">
-            <button type="submit" class="btn btn-primary btn-lg">Log in</button>
-
-            <span class="divider-center">OR</span>
-
-            <button type="submit" class="btn btn-ghost-secondary">
-              <span class="d-flex justify-content-center align-items-center">
-                <img class="avatar avatar-xss me-2" src="../assets/svg/brands/google-icon.svg" alt="Image Description">
-                Log in with Google
-              </span>
-            </button>
-
-            <p>Don't have an account yet?
-              <a class="js-animation-link link" href="javascript:;" role="button"
-                 data-hs-show-animation-options='{
-                   "targetSelector": "#loginOffcanvasFormSignup",
-                   "groupName": "idForm"
-                 }'>Sign up</a>
-            </p>
-          </div>
-        </form>
-      </div>
-      <!-- End Log in -->
-
-      <!-- Log in -->
-      <div id="loginOffcanvasFormSignup" style="display: none; opacity: 0;">
-        <!-- Heading -->
-        <div class="text-center mb-7">
-          <h3 class="modal-title">Sign up</h3>
-          <p>Fill out the form to get started</p>
-        </div>
-        <!-- End Heading -->
-
-        <form class="js-validate needs-validation" novalidate>
-          <!-- Form -->
-          <div class="mb-3">
-            <label class="form-label" for="loginOffcanvasFormSignupEmail">Your email</label>
-            <input type="email" class="form-control form-control-lg" name="email" id="loginOffcanvasFormSignupEmail" placeholder="email@site.com" aria-label="email@site.com" required>
-            <span class="invalid-feedback">Please enter a valid email address.</span>
-          </div>
-          <!-- End Form -->
-
-          <!-- Form -->
-          <div class="mb-3">
-            <label class="form-label" for="loginOffcanvasFormSignupPassword">Password</label>
-            <input type="password" class="form-control form-control-lg" name="password" id="loginOffcanvasFormSignupPassword" placeholder="8+ characters required" aria-label="8+ characters required" required>
-            <span class="invalid-feedback">Your password is invalid. Please try again.</span>
-          </div>
-          <!-- End Form -->
-
-          <!-- Form -->
-          <div class="mb-3" data-hs-validation-validate-class>
-            <label class="form-label" for="loginOffcanvasFormSignupConfirmPassword">Confirm password</label>
-            <input type="password" class="form-control form-control-lg" name="confirmPassword" id="loginOffcanvasFormSignupConfirmPassword" placeholder="8+ characters required" aria-label="8+ characters required" required
-                   data-hs-validation-equal-field="#loginOffcanvasFormSignupPassword">
-            <span class="invalid-feedback">Password does not match the confirm password.</span>
-          </div>
-          <!-- End Form -->
-
-          <div class="text-center mb-3">
-            <p class="small mb-0">By continuing you agree to our <a href="#">Terms and Conditions</a></p>
-          </div>
-
-          <div class="d-grid gap-3 text-center">
-            <button type="submit" class="btn btn-primary btn-lg">Sign up</button>
-
-            <span class="divider-center">OR</span>
-
-            <button type="submit" class="btn btn-ghost-secondary">
-              <span class="d-flex justify-content-center align-items-center">
-                <img class="avatar avatar-xss me-2" src="../assets/svg/brands/google-icon.svg" alt="Image Description">
-                Sign up with Google
-              </span>
-            </button>
-
-            <p>Already have an account?
-              <a class="js-animation-link link" href="javascript:;" role="button"
-                 data-hs-show-animation-options='{
-                   "targetSelector": "#loginOffcanvasFormLogin",
-                   "groupName": "idForm"
-                 }'>Log in</a>
-            </p>
-          </div>
-        </form>
-      </div>
-      <!-- End Log in -->
-
-      <!-- Reset Password -->
-      <div id="loginOffcanvasFormResetPassword" style="display: none; opacity: 0;">
-        <!-- Heading -->
-        <div class="text-center mb-7">
-          <h3 class="modal-title">Forgot password</h3>
-          <p>Instructions will be sent to you</p>
-        </div>
-        <!-- End Heading -->
-
-        <form class="js-validate needs-validation" novalidate>
-          <!-- Form -->
-          <div class="mb-3">
-            <div class="d-flex justify-content-between align-items-center">
-              <label class="form-label" for="signupModalFormResetPasswordEmail" tabindex="0">Your email</label>
-
-              <a class="js-animation-link form-label-link" href="javascript:;"
-                 data-hs-show-animation-options='{
-                     "targetSelector": "#loginOffcanvasFormLogin",
-                     "groupName": "idForm"
-                   }'>
-                <i class="bi-chevron-left small"></i> Back to Log in
-              </a>
-            </div>
-
-            <input type="email" class="form-control form-control-lg" name="email" id="signupModalFormResetPasswordEmail" tabindex="1" placeholder="Enter your email address" aria-label="Enter your email address" required>
-            <span class="invalid-feedback">Please enter a valid email address.</span>
-          </div>
-          <!-- End Form -->
-
-          <div class="d-grid gap-3 text-center">
-            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-          </div>
-        </form>
-      </div>
-      <!-- End Reset Password -->
-    </div>
-  </div>
   <!-- ========== END SECONDARY CONTENTS ========== -->
 
   <!-- JS Global Compulsory  -->
@@ -1848,11 +2116,9 @@
   <!-- JS Implementing Plugins -->
   <script src="{{asset('frontend/vendor/hs-header/dist/hs-header.min.js')}}"></script>
   <script src="{{asset('frontend/vendor/hs-mega-menu/dist/hs-mega-menu.min.js')}}"></script>
-  <script src="{{asset('frontend/vendor/hs-show-animation/dist/hs-show-animation.min.js')}}"></script>
   <script src="{{asset('frontend/vendor/hs-go-to/dist/hs-go-to.min.js')}}"></script>
-  <script src="{{asset('frontend/vendor/typed.js/lib/typed.min.js')}}"></script>
+  <script src="{{asset('frontend/vendor/hs-sticky-block/dist/hs-sticky-block.min.js')}}"></script>
   <script src="{{asset('frontend/vendor/fslightbox/index.js')}}"></script>
-  <script src="{{asset('frontend/vendor/swiper/swiper-bundle.min.js')}}"></script>
 
   <!-- JS Front -->
   <script src="{{asset('frontend/js/theme.min.js')}}"></script>
@@ -1874,21 +2140,6 @@
         })
 
 
-      // INITIALIZATION OF SHOW ANIMATIONS
-      // =======================================================
-      new HSShowAnimation('.js-animation-link')
-
-
-      // INITIALIZATION OF BOOTSTRAP VALIDATION
-      // =======================================================
-      HSBsValidation.init('.js-validate', {
-        onSubmit: data => {
-          data.event.preventDefault()
-          alert('Submited')
-        }
-      })
-
-
       // INITIALIZATION OF BOOTSTRAP DROPDOWN
       // =======================================================
       HSBsDropdown.init()
@@ -1899,46 +2150,11 @@
       new HSGoTo('.js-go-to')
 
 
-      // INITIALIZATION OF TEXT ANIMATION (TYPING)
+      // INITIALIZATION OF STICKY BLOCKS
       // =======================================================
-      HSCore.components.HSTyped.init('.js-typedjs')
-
-
-      // INITIALIZATION OF SWIPER
-      // =======================================================
-      var swiper = new Swiper('.js-swiper-course-hero',{
-        preloaderClass: 'custom-swiper-lazy-preloader',
-        navigation: {
-          nextEl: '.js-swiper-course-hero-button-next',
-          prevEl: '.js-swiper-course-hero-button-prev',
-        },
-        slidesPerView: 1,
-        loop: 1,
-        breakpoints: {
-          380: {
-            slidesPerView: 2,
-            spaceBetween: 15,
-          },
-          580: {
-            slidesPerView: 3,
-            spaceBetween: 15,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 15,
-          },
-          1024: {
-            slidesPerView: 6,
-            spaceBetween: 15,
-          },
-        },
-        on: {
-          'imagesReady': function (swiper) {
-            const preloader = swiper.el.querySelector('.js-swiper-course-hero-preloader')
-            preloader.parentNode.removeChild(preloader)
-          }
-        }
-      });
+      new HSStickyBlock('.js-sticky-block', {
+        targetSelector: document.getElementById('header').classList.contains('navbar-fixed') ? '#header' : null
+      })
     })()
   </script>
 </body>
