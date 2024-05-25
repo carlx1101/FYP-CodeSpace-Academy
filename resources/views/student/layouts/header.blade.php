@@ -1,6 +1,5 @@
 <header id="header" class="navbar navbar-expand-lg navbar-end navbar-light">
 
-
     <div class="container">
       <nav class="js-mega-menu navbar-nav-wrap">
         <!-- Default Logo -->
@@ -34,20 +33,24 @@
           </div>
           <!-- End Search -->
 
+          @auth
+
           <!-- Account -->
           <div class="dropdown">
             <a href="#" id="navbarShoppingCartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
-              <img class="avatar avatar-xs avatar-circle" src="../assets/img/160x160/img9.jpg" alt="Image Description">
+                <img class="avatar avatar-xs avatar-circle" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
             </a>
 
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarShoppingCartDropdown" style="min-width: 16rem;">
               <a class="d-flex align-items-center p-2" href="#">
                 <div class="flex-shrink-0">
-                  <img class="avatar" src="../assets/img/160x160/img9.jpg" alt="Image Description">
+                    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                        <img class="avatar" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+                    @endif
                 </div>
                 <div class="flex-grow-1 ms-3">
-                  <span class="d-block fw-semibold">Lida Reidy <span class="badge bg-primary ms-1">Pro</span></span>
-                  <span class="d-block text-muted small">lidareidy@gmail.com</span>
+                    <span class="d-block fw-semibold">{{ Auth::user()->name }}<span class="badge bg-primary ms-1">Pro</span></span>
+                    <span class="d-block text-muted small">{{ Auth::user()->email }}</span>
                 </div>
               </a>
 
@@ -81,14 +84,23 @@
                   <i class="bi-question-circle"></i>
                 </span> Help
               </a>
-              <a class="dropdown-item" href="#">
-                <span class="dropdown-item-icon">
-                  <i class="bi-box-arrow-right"></i>
-                </span> Log out
-              </a>
+
+                <form method="POST" action="{{ route('logout') }}" >
+                    @csrf
+
+                    <button  type="submit" class="dropdown-item text-danger" href="{{ route('logout') }}">
+                    <span class="dropdown-item-icon">
+                        <i class="bi-box-arrow-right"></i>
+                    </span> Log out
+                    </button>
+
+                </form>
+
             </div>
           </div>
           <!-- End Account -->
+          @endauth
+
         </div>
         <!-- End Secondary Content -->
 
@@ -234,6 +246,8 @@
             </li>
             <!-- End Search Form -->
 
+            @auth
+
             <!-- My Courses -->
             <li class="hs-has-mega-menu nav-item"
                 data-hs-mega-menu-item-options='{
@@ -296,6 +310,8 @@
               <!-- End Mega Menu -->
             </li>
             <!-- End My Courses -->
+
+            @endauth
           </ul>
         </div>
         <!-- End Collapse -->
