@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tutor;
 use App\Models\Tutor\Video;
 use App\Models\Tutor\Lesson;
 use Illuminate\Http\Request;
+use App\Models\Tutor\Article;
 use App\Models\Tutor\Section;
 use App\Http\Controllers\Controller;
 
@@ -17,8 +18,16 @@ class LessonController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'lesson_type' => $request->input('lesson_type'),
-            'is_preview' => $request->input('is_preview'),
+
         ]);
+
+
+        if($request->input('is_preview')){
+            $lesson->is_preview = 1;
+        }
+        else {
+            $lesson->is_preview = 0;
+        }
 
         // Save the Lesson to the section
         $section->lessons()->save($lesson);

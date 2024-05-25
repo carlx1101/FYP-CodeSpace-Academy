@@ -246,9 +246,8 @@
             </li>
             <!-- End Search Form -->
 
-            @auth
-
-            <!-- My Courses -->
+            @if (Auth::user())
+           <!-- My Courses -->
             <li class="hs-has-mega-menu nav-item"
                 data-hs-mega-menu-item-options='{
                   "desktop": {
@@ -310,8 +309,17 @@
               <!-- End Mega Menu -->
             </li>
             <!-- End My Courses -->
+            @else
 
-            @endauth
+            <li>
+            
+                <button type="button" class="btn btn-primary" value="Open Window" onclick="window.open('/login','_self')">Learn Now !</button>
+
+            </li>
+            @endif
+
+
+
           </ul>
         </div>
         <!-- End Collapse -->

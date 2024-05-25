@@ -22,5 +22,10 @@ class Lesson extends Model
         return $this->hasOne(Video::class);
     }
 
+    public function article()
+    {
+        return $this->hasOne(Article::class);
+    }
+
 
 }
