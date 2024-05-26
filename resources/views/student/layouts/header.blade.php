@@ -309,13 +309,21 @@
               <!-- End Mega Menu -->
             </li>
             <!-- End My Courses -->
+
+            <li class="nav-item">
+                <!-- Shopping Cart -->
+                <button type="button" class="btn btn-ghost-secondary btn-sm btn-icon" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarEmptyShoppingCart" aria-controls="offcanvasNavbarEmptyShoppingCart">
+                    <i class="bi-basket"></i>
+                </button>
+                <!-- End Shopping Cart -->
+            </li>
             @else
 
-            <li>
-            
+            <li class="nav-item">
                 <button type="button" class="btn btn-primary" value="Open Window" onclick="window.open('/login','_self')">Learn Now !</button>
-
             </li>
+
+
             @endif
 
 

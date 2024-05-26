@@ -4,7 +4,7 @@
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
   <!-- Title -->
   <title>Course</title>
 
@@ -120,8 +120,17 @@
                     </div>
 
                     <div class="d-grid mb-2">
-                      <a class="btn btn-primary btn-transition" href="#">Buy now</a>
+                        <a class="btn btn-primary btn-transition" href="#">Buy now</a>
+
+
                     </div>
+
+
+                    <form action="{{ route('cart.store') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <input type="hidden" name="course_id" value="{{ $course->id }}">
+                            <button type="submit" class="btn btn-primary btn-transition">Add to Cart</button>
+                        </form>
 
                     <div class="text-center mb-4">
                       <p class="card-text small">30-day money-back guarantee</p>
@@ -272,7 +281,7 @@
                                   @if($lesson->is_preview == 1)
                                     <!-- Fancybox -->
 
-                                    <a class="video-player video-player-btn" href="{{$lesson->video->video_url}}" role="button" data-fslightbox="youtube-video">
+                                    <a class="video-player video-player-btn" href="" role="button" data-fslightbox="youtube-video">
                                         <p style="font-size:13px;">Preview</p>
                                        </a>
                                     <!-- End Fancybox -->
@@ -1269,7 +1278,7 @@
 
   <!-- ========== SECONDARY CONTENTS ========== -->
   <!-- Go To -->
-  <a class="js-go-to go-to position-fixed" href="javascript:;" style="visibility: hidden;"
+  {{-- <a class="js-go-to go-to position-fixed" href="javascript:;" style="visibility: hidden;"
      data-hs-go-to-options='{
        "offsetTop": 700,
        "position": {
@@ -1285,7 +1294,9 @@
        }
      }'>
     <i class="bi-chevron-up"></i>
-  </a>
+  </a> --}}
+
+  @include('student.components.offcanvas-cart')
   <!-- ========== END SECONDARY CONTENTS ========== -->
 
   <!-- JS Global Compulsory  -->
@@ -1335,5 +1346,29 @@
       })
     })()
   </script>
+
+
+    {{-- <script>
+        document.getElementById('add-to-cart-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let form = this;
+
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Course added to cart.');
+                } else {
+                    alert('An error occurred.');
+                }
+            });
+        });
+    </script> --}}
 </body>
 </html>

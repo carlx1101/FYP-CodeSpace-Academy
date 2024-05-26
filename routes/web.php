@@ -4,6 +4,7 @@ use App\Http\Livewire\Sections;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Student\CartController;
 use App\Http\Controllers\Tutor\CourseController;
 use App\Http\Controllers\Tutor\LessonController;
 use App\Http\Controllers\Tutor\SectionController;
@@ -53,3 +54,7 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
     Route::get('/dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
 });
 
+
+Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('cart', [CartController::class, 'store'])->name('cart.store');
+Route::delete('cart/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
