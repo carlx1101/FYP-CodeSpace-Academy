@@ -23,10 +23,11 @@
                 </a>
             @endforeach
 
-            
+
         </div>
 
-        <a class="btn btn-primary btn-transition rounded-pill px-6" href="../demo-shop/index.html">Start shopping</a>
+        <a class="btn btn-primary btn-transition rounded-pill px-6" href="{{route('cart.index')}}">My Cart</a>
+
       </div>
     </div>
   </div>

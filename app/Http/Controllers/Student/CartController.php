@@ -12,7 +12,7 @@ class CartController extends Controller
     public function index()
     {
         $cartItems = Auth::user()->cart()->with('course')->get();
-        return view('cart.index', compact('cartItems'));
+        return view('student.carts', compact('cartItems'));
     }
 
     public function store(Request $request)
@@ -42,7 +42,11 @@ class CartController extends Controller
 
     public function destroy(Cart $cart)
     {
-        $this->authorize('delete', $cart);
+        // Check if the authenticated user owns the cart item
+        if ($cart->user_id !== Auth::id()) {
+            return redirect()->route('cart.index')->with('error', 'You do not have permission to remove this course from the cart.');
+        }
+
         $cart->delete();
         return redirect()->route('cart.index')->with('success', 'Course removed from cart.');
     }

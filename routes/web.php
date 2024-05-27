@@ -28,6 +28,12 @@ Route::middleware([
 
 Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'studentDashboard'])->name('student.dashboard');
+
+    // Manage Cart
+    Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('cart', [CartController::class, 'store'])->name('cart.store');
+    Route::delete('cart/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
+
 });
 
 Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(function () {
@@ -55,6 +61,4 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
 });
 
 
-Route::get('cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('cart', [CartController::class, 'store'])->name('cart.store');
-Route::delete('cart/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
+
