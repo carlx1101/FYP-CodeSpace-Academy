@@ -42,6 +42,7 @@ class CartController extends Controller
 
     public function destroy(Cart $cart)
     {
+     
         // Check if the authenticated user owns the cart item
         if ($cart->user_id !== Auth::id()) {
             return redirect()->route('cart.index')->with('error', 'You do not have permission to remove this course from the cart.');

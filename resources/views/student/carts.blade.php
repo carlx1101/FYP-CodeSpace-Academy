@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Shop: Cart | Front - Multipurpose Responsive Template</title>
+  <title>My Cart</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="../favicon.ico">
@@ -42,183 +42,97 @@
           </div>
           <!-- End Heading -->
 
-          <!-- Form -->
-          <form>
+
+            @php
+                $subtotal = 0;
+                foreach($cartItems as $cartItem) {
+
+
+                        $subtotal += $cartItem->course->price;
+                }
+
+                $tax = $subtotal * 0.08;
+                $total = $subtotal + $tax;
+
+            @endphp
+
             <!-- List Group -->
             <ul class="list-group list-group-flush list-group-no-gutters mb-5">
-              <!-- Item -->
-              <li class="list-group-item">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <img class="avatar avatar-xl avatar-4x3" src="../assets/img/320x320/img2.jpg" alt="Image Description">
-                  </div>
 
-                  <div class="flex-grow-1 ms-3">
-                    <div class="row">
-                      <div class="col-sm-7 mb-3 mb-sm-0">
-                        <h5><a class="text-dark" href="#">Originals national backpack</a></h5>
+                @foreach($cartItems as $cartItem)
 
-                        <div class="d-block d-sm-none">
-                          <h5 class="mb-1">$29.99</h5>
-                        </div>
+                <!-- Item -->
+                <li class="list-group-item">
+                    <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <img class="avatar avatar-xl avatar-4x3" src="{{ asset('storage/' . $cartItem->course->cover_image) }}" alt="Image Description">
+                    </div>
 
-                        <div class="d-grid gap-1">
-                          <div class="text-body">
-                            <span class="small">Gender:</span>
-                            <span class="fw-semibold small">Men</span>
-                          </div>
-
-                          <div class="text-body">
-                            <span class="small">Color:</span>
-                            <span class="fw-semibold small">Grey</span>
-                          </div>
-
-                          <div class="text-body">
-                            <span class="small">Size:</span>
-                            <span class="fw-semibold small">One size</span>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End Col -->
-
-                      <div class="col-sm-3">
+                    <div class="flex-grow-1 ms-3">
                         <div class="row">
-                          <div class="col-auto">
-                            <!-- Select -->
-                            <select class="form-select form-select-sm mb-3">
-                              <option value="quantity1">1</option>
-                              <option value="quantity2">2</option>
-                              <option value="quantity3">3</option>
-                              <option value="quantity4">4</option>
-                              <option value="quantity5">5</option>
-                              <option value="quantity6">6</option>
-                              <option value="quantity7">7</option>
-                              <option value="quantity8">8</option>
-                              <option value="quantity9">9</option>
-                              <option value="quantity10">10</option>
-                            </select>
-                            <!-- End Select -->
-                          </div>
+                        <div class="col-sm-7 mb-3 mb-sm-0">
+                            <h5><a class="text-dark" href="#">{{ $cartItem->course->title }}</a></h5>
 
-                          <div class="col-auto">
-                            <div class="d-grid gap-2">
-                              <a class="link-sm link-secondary small" href="javascript:;">
-                                <i class="bi-trash me-1"></i> Remove
-                              </a>
-
-                              <a class="link-sm link-secondary small" href="javascript:;">
-                                <i class="bi-heart me-1"></i> Save for later
-                              </a>
+                            <div class="d-block d-sm-none">
+                            <h5 class="mb-1">RM {{ $cartItem->course->price }}</h5>
                             </div>
-                          </div>
-                          <!-- End Col -->
+
+                            <div class="d-grid gap-1">
+
+
+                            <div class="text-body">
+                                <span class="small">Category</span>
+                                <span class="fw-semibold small">{{ $cartItem->course->category->name }}</span>
+                            </div>
+
+
+                            </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-sm-3">
+                            <div class="row">
+
+                            <div class="col-auto">
+                                <div class="d-grid gap-2">
+                                    <form action="{{ route('cart.destroy', $cartItem->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="link-sm link-secondary small btn btn-link" style="padding: 0;">
+                                            <i class="bi-trash me-1"></i> Remove
+                                        </button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                            <!-- End Col -->
+                            </div>
+                            <!-- End Row -->
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-4 col-sm-2 d-none d-sm-inline-block text-right">
+                            <span class="h5 d-block mb-1">RM {{$cartItem->course->price}}</span>
+                        </div>
+                        <!-- End Col -->
                         </div>
                         <!-- End Row -->
-                      </div>
-                      <!-- End Col -->
-
-                      <div class="col-4 col-sm-2 d-none d-sm-inline-block text-right">
-                        <span class="h5 d-block mb-1">$29.99</span>
-                      </div>
-                      <!-- End Col -->
                     </div>
-                    <!-- End Row -->
-                  </div>
-                </div>
-              </li>
-              <!-- End Item -->
-
-              <!-- Item -->
-              <li class="list-group-item">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <img class="avatar avatar-xl avatar-4x3" src="../assets/img/320x320/img3.jpg" alt="Image Description">
-                  </div>
-
-                  <div class="flex-grow-1 ms-3">
-                    <div class="row">
-                      <div class="col-sm-7 mb-3 mb-sm-0">
-                        <h5><a class="text-dark" href="#">Vans large image t-shirt</a></h5>
-
-                        <div class="d-block d-sm-none">
-                          <h5 class="mb-1">$43.99</h5>
-                        </div>
-
-                        <div class="d-grid gap-1">
-                          <div class="text-body">
-                            <span class="small">Gender:</span>
-                            <span class="fw-semibold small">Women</span>
-                          </div>
-
-                          <div class="text-body">
-                            <span class="small">Color:</span>
-                            <span class="fw-semibold small">Core Black / Carbon</span>
-                          </div>
-
-                          <div class="text-body">
-                            <span class="small">Size:</span>
-                            <span class="fw-semibold small">S</span>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End Col -->
-
-                      <div class="col-sm-3">
-                        <div class="row">
-                          <div class="col-auto">
-                            <!-- Select -->
-                            <select class="form-select form-select-sm mb-3">
-                              <option value="quantity1">1</option>
-                              <option value="quantity2">2</option>
-                              <option value="quantity3">3</option>
-                              <option value="quantity4">4</option>
-                              <option value="quantity5">5</option>
-                              <option value="quantity6">6</option>
-                              <option value="quantity7">7</option>
-                              <option value="quantity8">8</option>
-                              <option value="quantity9">9</option>
-                              <option value="quantity10">10</option>
-                            </select>
-                            <!-- End Select -->
-                          </div>
-
-                          <div class="col-auto">
-                            <div class="d-grid gap-2">
-                              <a class="link-sm link-secondary small" href="javascript:;">
-                                <i class="bi-trash me-1"></i> Remove
-                              </a>
-
-                              <a class="link-sm link-secondary small" href="javascript:;">
-                                <i class="bi-heart me-1"></i> Save for later
-                              </a>
-                            </div>
-                          </div>
-                          <!-- End Col -->
-                        </div>
-                        <!-- End Row -->
-                      </div>
-                      <!-- End Col -->
-
-                      <div class="col-4 col-sm-2 d-none d-sm-inline-block text-right">
-                        <span class="h5 d-block mb-1">$29.99</span>
-                      </div>
-                      <!-- End Col -->
                     </div>
-                    <!-- End Row -->
-                  </div>
-                </div>
-              </li>
-              <!-- End Item -->
+                </li>
+                <!-- End Item -->
+                @endforeach
+
             </ul>
             <!-- End List Group -->
 
             <div class="d-sm-flex justify-content-end">
-              <a class="link" href="../demo-shop/index.html">
+              <a class="link" href="{{route('courses')}}">
                 <i class="bi-chevron-left small ms-1"></i> Continue shopping
               </a>
             </div>
-          </form>
-          <!-- End Form -->
+
         </div>
         <!-- End Col -->
 
@@ -239,20 +153,17 @@
                   <div class="border-bottom pb-4 mb-4">
                     <div class="d-grid gap-3">
                       <dl class="row">
-                        <dt class="col-sm-6">Item subtotal (2)</dt>
-                        <dd class="col-sm-6 text-sm-end mb-0">$73.98</dd>
+                        <dt class="col-sm-6">Item subtotal ({{ $cartItems->count() }})</dt>
+                        <dd class="col-sm-6 text-sm-end mb-0">RM {{ number_format($subtotal, 2) }}</dd>
                       </dl>
                       <!-- End Row -->
 
-                      <dl class="row">
-                        <dt class="col-sm-6">Delivery</dt>
-                        <dd class="col-sm-6 text-sm-end mb-0">Free</dd>
-                      </dl>
+
                       <!-- End Row -->
                     </div>
                   </div>
 
-                  <div class="border-bottom pb-4 mb-4">
+                  {{-- <div class="border-bottom pb-4 mb-4">
                     <div class="d-grid gap-3">
                       <!-- Check -->
                       <div class="form-check">
@@ -274,24 +185,24 @@
                       </div>
                       <!-- End Check -->
                     </div>
-                  </div>
+                  </div> --}}
 
                   <div class="d-grid gap-3 mb-4">
                     <dl class="row">
                       <dt class="col-sm-6">Estimated tax</dt>
-                      <dd class="col-sm-6 text-sm-end mb-0">$0.00</dd>
+                      <dd class="col-sm-6 text-sm-end mb-0"> RM{{ number_format($tax, 2) }}</dd>
                     </dl>
                     <!-- End Row -->
 
                     <dl class="row">
                       <dt class="col-sm-6">Total</dt>
-                      <dd class="col-sm-6 text-sm-end mb-0">$73.98</dd>
+                      <dd class="col-sm-6 text-sm-end mb-0">RM {{ number_format($total, 2) }}</dd>
                     </dl>
                     <!-- End Row -->
                   </div>
 
                   <div class="d-grid">
-                    <a class="btn btn-primary btn-lg" href="../demo-shop/checkout.html">Checkout</a>
+                    <a class="btn btn-primary btn-lg" href="">Checkout</a>
                   </div>
                 </form>
               </div>
