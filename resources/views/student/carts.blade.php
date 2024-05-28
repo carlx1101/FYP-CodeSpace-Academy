@@ -201,10 +201,18 @@
                     <!-- End Row -->
                   </div>
 
-                  <div class="d-grid">
-                    <a class="btn btn-primary btn-lg" href="">Checkout</a>
-                  </div>
+
                 </form>
+
+                <div class="d-grid">
+                    <form action="{{route('cart.checkout')}}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <button type="submit" class="btn btn-primary btn-lg">Checkout</button>
+                      </form>
+                  </div>
+
+
               </div>
               <!-- End Card -->
             </div>
