@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use Illuminate\Http\Request;
 use App\Models\Student\Order;
+use App\Models\Student\OrderItem;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,14 +17,17 @@ class PaymentController extends Controller
         $cartItems = Auth::user()->cart()->with('course')->get();
         $lineItems = [];
         $totalPrice = 0;
+
         foreach ($cartItems as $cartItem) {
             $totalPrice += $cartItem->course->price;
+            $imageUrl = asset('storage/' . $cartItem->course->cover_image);
+
                 $lineItems[] = [
                     'price_data' => [
                         'currency' => 'myr',
                         'product_data' => [
                             'name' => $cartItem->course->title,
-                            'images' =>  ['https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt4154796%2F&psig=AOvVaw0S0Rg7g18oHJW_BwwEvDP4&ust=1716968559842000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJjLibrsr4YDFQAAAAAdAAAAABAE'],
+                            'images' => [$imageUrl],
                         ],
                         'unit_amount' => $cartItem->course->price * 100, // Stripe expects amounts in cents
                     ],
@@ -46,14 +50,14 @@ class PaymentController extends Controller
             'status' => 'completed',
         ]);
 
-        // foreach ($cartItems as $cartItem) {
-        //     OrderItem::create([
-        //         'order_id' => $order->id,
-        //         'course_id' => $cartItem->course_id,
-        //         'quantity' => 1,
-        //         'price' => $cartItem->course->price,
-        //     ]);
-        // }
+        foreach ($cartItems as $cartItem) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'course_id' => $cartItem->course_id,
+                'quantity' => 1,
+                'price' => $cartItem->course->price,
+            ]);
+        }
 
 
 
