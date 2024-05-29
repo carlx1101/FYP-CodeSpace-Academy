@@ -16,10 +16,15 @@ class PaymentController extends Controller
 
         $cartItems = Auth::user()->cart()->with('course')->get();
         $lineItems = [];
-        $totalPrice = 0;
+        $subtotal = 0;
+
 
         foreach ($cartItems as $cartItem) {
-            $totalPrice += $cartItem->course->price;
+            $price = $cartItem->course->price;
+            $tax = $price * 0.08;
+            $totalItemPrice = $price + $tax;
+            $subtotal += $totalItemPrice;
+
             $imageUrl = asset('storage/' . $cartItem->course->cover_image);
 
                 $lineItems[] = [
@@ -29,12 +34,14 @@ class PaymentController extends Controller
                             'name' => $cartItem->course->title,
                             'images' => [$imageUrl],
                         ],
-                        'unit_amount' => $cartItem->course->price * 100, // Stripe expects amounts in cents
+                        'unit_amount' => $totalItemPrice * 100, // Stripe expects amounts in cents
                     ],
                     'quantity' => 1,
                 ];
 
         }
+
+
 
         $checkout_session = $stripe->checkout->sessions->create([
             'line_items' => $lineItems,
@@ -43,9 +50,28 @@ class PaymentController extends Controller
             'cancel_url' => route('checkout.cancel',[], true),
         ]);
 
+
+
+
+        return redirect($checkout_session->url);
+    }
+
+    public function success()
+    {
+        $cartItems = Auth::user()->cart()->with('course')->get();
+        $subtotal = 0;
+
+        foreach ($cartItems as $cartItem) {
+            $price = $cartItem->course->price;
+            $tax = $price * 0.08;
+            $totalItemPrice = $price + $tax;
+
+            $subtotal += $totalItemPrice;
+        }
+
         $order = Order::create([
             'user_id' => Auth::id(),
-            'total' => $totalPrice,
+            'total' => $subtotal,
             'payment_method' => 'stripe',
             'status' => 'completed',
         ]);
@@ -59,17 +85,12 @@ class PaymentController extends Controller
             ]);
         }
 
-
-
-
-        return redirect($checkout_session->url);
-    }
-
-    public function success(){
         // Clear the user's cart after successful checkout
         Auth::user()->cart()->delete();
+
         return view('student.checkout-success');
     }
+
 
     public function cancel(){
         return redirect()->back()->with('error', 'Payment was cancelled.');
