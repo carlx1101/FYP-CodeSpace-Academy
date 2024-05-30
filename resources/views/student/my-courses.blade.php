@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $course->title }}</h5>
                     <p class="card-text">{{ $course->description }}</p>
-                    <a href="{{ route('courses.show', $course->id) }}" class="btn btn-primary">Go to Course</a>
+                    <a href="{{ route('student.learn', ['courseTitle' => $course->title]) }}" class="btn btn-primary">Go to Course</a>
                 </div>
             </div>
         </div>

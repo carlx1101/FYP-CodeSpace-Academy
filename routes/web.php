@@ -45,6 +45,9 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
     // My Courses
     Route::get('/my-courses', [StudentCourseController::class, 'myCourses'])->name('my.courses');
 
+    // Learn Course
+    Route::get('/student/{courseTitle}/learn/{lessonId?}', [StudentCourseController::class, 'learn'])->name('student.learn');
+
 
 });
 
