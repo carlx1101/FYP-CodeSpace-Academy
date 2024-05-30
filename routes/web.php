@@ -10,6 +10,8 @@ use App\Http\Controllers\Tutor\LessonController;
 use App\Http\Controllers\Tutor\SectionController;
 use App\Http\Controllers\Student\PaymentController;
 
+use App\Http\Controllers\Student\CourseController as StudentCourseController;
+
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
@@ -39,6 +41,9 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
     Route::post('checkout', [PaymentController::class, 'checkout'])->name('cart.checkout');
     Route::get('success', [PaymentController::class, 'success'])->name('checkout.success');
     Route::get('cancel', [PaymentController::class, 'cancel'])->name('checkout.cancel');
+
+    // My Courses
+    Route::get('/my-courses', [StudentCourseController::class, 'myCourses'])->name('my.courses');
 
 
 });

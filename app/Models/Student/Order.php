@@ -2,8 +2,9 @@
 
 namespace App\Models\Student;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
@@ -25,5 +26,17 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
-    
+
+    public static function getPurchasedCoursesByUser($userId)
+    {
+        return self::where('user_id', $userId)
+            ->where('status', 'completed')
+            ->with('orderItems.course')
+            ->get()
+            ->pluck('orderItems')
+            ->flatten()
+            ->pluck('course');
+    }
+
+
 }

@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Models\Student\Order;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function studentDashboard(): View
     {
+
+        $myCourses = Auth::user()->orders()->with('orderItems.course')->get();
+        dd($myCourses);
         return view('student.dashboard');
     }
 
@@ -21,4 +26,6 @@ class DashboardController extends Controller
     {
         return view('admin.dashboard');
     }
+
+
 }

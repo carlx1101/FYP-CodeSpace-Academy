@@ -2,8 +2,10 @@
 
 namespace App\Models\Tutor;
 
+use App\Models\User;
 use App\Models\Admin\Category;
 use App\Models\Admin\Subcategory;
+use App\Models\Student\OrderItem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -63,12 +65,23 @@ class Course extends Model
 
 
 
-   // Accessor to get the total count of lessons
-   public function getLessonsCountAttribute()
-   {
-       return $this->sections->sum(function($section) {
-           return $section->lessons->count();
-       });
-   }
+    // Accessor to get the total count of lessons
+    public function getLessonsCountAttribute()
+    {
+        return $this->sections->sum(function($section) {
+            return $section->lessons->count();
+        });
+    }
+
+    // public function users()
+    // {
+    //     return $this->belongsToMany(User::class, 'orders', 'course_id', 'user_id');
+    // }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
 
 }
