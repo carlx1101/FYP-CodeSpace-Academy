@@ -29,15 +29,15 @@
 
 
 
-                    <iframe width="420" height="315"
-                    src={{$currentLesson->video->video_url}}>
-                    </iframe>
+                    <iframe width="420" height="315" src={{$currentLesson->video->video_url}}></iframe>
 
                 @elseif($currentLesson->lesson_type == 'article' && $currentLesson->article)
                     {!! $currentLesson->article->content !!}
                 @else
                     <p>No content available for this lesson.</p>
                 @endif
+
+                
             </div>
         </div>
     </div>

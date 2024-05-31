@@ -36,7 +36,7 @@ class CourseRequest extends FormRequest
             'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'promotional_video' => 'nullable|mimes:mp4,mov,ogg,qt|max:20000',
             'price' => 'required|numeric|min:0',
-            'is_free' => 'required|boolean',
+            'is_free' => 'nullable|boolean',
             'welcome_message' => 'nullable|string',
             'completion_message' => 'nullable|string',
             'primary_language' => 'required|string|max:255'
