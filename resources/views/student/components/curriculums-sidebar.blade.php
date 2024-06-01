@@ -52,7 +52,7 @@
 
                     @endif
 
-                    <span class="nav-link-title">lesson </span>
+                    <span class="nav-link-title"> {{ $lesson->title }} </span>
 
                     </a>
 

@@ -147,10 +147,9 @@
             <div class="card-body  py-5">
 
                 <h1 class="card-title">{{$currentLesson->title}}</h1>
+                <p class="card-text">{{$currentLesson->description}}</p> <br>
 
-                <p class="card-text">{{$currentLesson->description}}</p> <br><br>
-
-            <!-- Title -->
+                <!-- Title -->
                 @if($currentLesson->lesson_type == 'video' && $currentLesson->video)
 
                     <iframe width="100%" height="500" src="{{$currentLesson->video->video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -160,6 +159,11 @@
                 @else
                     <p>No content available for this lesson.</p>
                 @endif
+
+
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLessonNotes" aria-controls="offcanvasLessonNotes">Save Notes</button>
+
+                  <hr>
 
             </div>
         </div>
@@ -172,33 +176,17 @@
     <!-- End Fluid Content -->
 
 
-
-    <!-- Offcanvas Content -->
-    {{-- <div class="offcanvas offcanvas-start splitted-content-small splitted-content-bordered d-flex flex-column" tabindex="-1" id="splittedOffcanvasContent">
-      <div class="offcanvas-body">
-        <div class="d-flex justify-content-center flex-column align-items-center h-100 py-10 py-xl-0">
-
-        @foreach($sections as $section)
-            <li class="list-group-item">
-                <h5>{{ $section->title }}</h5>
-                <ul class="list-group">
-                    @foreach($section->lessons as $lesson)
-                        <li class="list-group-item">
-                            <a href="{{ route('student.learn', ['courseTitle' => $course->title, 'lessonId' => $lesson->id]) }}">
-                                {{ $lesson->title }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </li>
-        @endforeach
-
-
-
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLessonNotes" aria-labelledby="offcanvasLessonNotesLabel">
+        <div class="offcanvas-header">
+          <h5 id="offcanvasLessonNotesLabel">Note for this lesson</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-    </div> --}}
-    <!-- End Offcanvas Content -->
+        <div class="offcanvas-body">
+           notes goes here
+        </div>
+    </div>
 
+    
 
 
 
