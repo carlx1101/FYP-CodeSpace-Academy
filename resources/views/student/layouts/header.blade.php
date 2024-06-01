@@ -56,10 +56,10 @@
 
               <div class="dropdown-divider my-3"></div>
 
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{route('student.dashboard')}}">
                 <span class="dropdown-item-icon">
                   <i class="bi-chat-left-dots"></i>
-                </span> Messages
+                </span> Dashboard
               </a>
               <a class="dropdown-item" href="#">
                 <span class="dropdown-item-icon">

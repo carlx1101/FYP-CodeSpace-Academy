@@ -18,19 +18,14 @@
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
             <!-- Collapse -->
             <div class="nav-item">
-              <a class="nav-link dropdown-toggle active" href="#navbarVerticalMenuDashboards" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuDashboards" aria-expanded="true" aria-controls="navbarVerticalMenuDashboards">
+              <a class="nav-link" href="#navbarVerticalMenuDashboards">
                 <i class="bi-house-door nav-icon"></i>
                 <span class="nav-link-title">Dashboards</span>
               </a>
-
-              <div id="navbarVerticalMenuDashboards" class="nav-collapse collapse show" data-bs-parent="#navbarVerticalMenu">
-                <a class="nav-link active" href="../index.html">Default</a>
-                <a class="nav-link " href="../dashboard-alternative.html">Alternative</a>
-              </div>
             </div>
             <!-- End Collapse -->
 
-            <span class="dropdown-header mt-4">Pages</span>
+            <span class="dropdown-header mt-4">Course</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
 
             <!-- Collapse -->
@@ -38,38 +33,18 @@
 
             </div>
             <div id="navbarVerticalMenuPagesMenu">
-              <!-- Collapse -->
-              <div class="nav-item">
-                <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesUsersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesUsersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesUsersMenu">
-                  <i class="bi-people nav-icon"></i>
-                  <span class="nav-link-title">Users</span>
-                </a>
 
-                <div id="navbarVerticalMenuPagesUsersMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                  <a class="nav-link " href="../users.html">Overview</a>
-                  <a class="nav-link " href="../users-leaderboard.html">Leaderboard</a>
-                  <a class="nav-link " href="../users-add-user.html">Add User <span class="badge bg-info rounded-pill ms-1">Hot</span></a>
-                </div>
-              </div>
-              <!-- End Collapse -->
 
 
 
               <div class="nav-item">
-                <a class="nav-link " href="../api-keys.html" data-placement="left">
-                  <i class="bi-key nav-icon"></i>
-                  <span class="nav-link-title">API Keys</span>
+                <a class="nav-link " href="{{route('my.courses')}}" data-placement="left">
+                    <i class="bi bi-journals nav-icon"></i>
+                    <span class="nav-link-title">My Courses</span>
                 </a>
               </div>
 
-              <div class="nav-item">
-                <a class="nav-link " href="../welcome-page.html" data-placement="left">
-                  <i class="bi-eye nav-icon"></i>
-                  <span class="nav-link-title">Welcome Page</span>
-                </a>
-              </div>
 
-             
             </div>
             <!-- End Collapse -->
 

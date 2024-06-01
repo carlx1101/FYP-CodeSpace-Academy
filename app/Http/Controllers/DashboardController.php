@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
 
         $myCourses = Auth::user()->orders()->with('orderItems.course')->get();
-        dd($myCourses);
+
         return view('student.dashboard');
     }
 
