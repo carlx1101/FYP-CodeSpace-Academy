@@ -124,7 +124,10 @@
   <script src="{{asset('backend/js/hs.theme-appearance.js')}}"></script>
 
   <!-- ========== MAIN CONTENT ========== -->
-  {{-- @include('tutor.layouts.header') --}}
+  @include('student.layouts.dashboard-header')
+  @include('student.components.curriculums-sidebar')
+
+
 
 
 
@@ -134,44 +137,23 @@
   <main id="content" role="main" class="main splitted-content-main">
     <!-- Fluid Content -->
     <div class="splitted-content-fluid content-space">
-      <!-- Toggles -->
-      <div class="d-flex d-xl-none justify-content-end mt-3 me-3">
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <!-- Offcanvas Toggle -->
-            <button class="navbar-toggler splitted-content-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#splittedOffcanvasContent" aria-controls="splittedOffcanvasContent">
-              <span class="navbar-toggler-default">
-                <i class="bi-list"></i>
-              </span>
-              <span class="navbar-toggler-toggled">
-                <i class="bi-x"></i>
-              </span>
-            </button>
-            <!-- End Offcanvas Toggle -->
-          </li>
+      <div class="mt-xl-3">
 
-          <li class="list-inline-item">
-            <!-- Navbar Vertical Toggle -->
-            <button type="button" class="js-navbar-vertical-aside-toggle-invoker navbar-aside-toggler position-static">
-              <i class="bi-arrow-bar-left navbar-toggler-short-align" data-bs-toggle="tooltip" data-bs-placement="right" title="Collapse"></i>
-              <i class="bi-arrow-bar-right navbar-toggler-full-align" data-bs-template='<div class="tooltip d-none d-sm-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' data-bs-toggle="tooltip" data-bs-placement="right" title="Expand"></i>
-            </button>
-            <!-- End Navbar Vertical Toggle -->
-          </li>
-        </ul>
-      </div>
-      <!-- End Toggles -->
-
-      <div class="mt-xl-10">
 
 
         <!-- Card -->
-        <div class="card card-centered mb-3 mb-lg-5">
-            <div class="card-body py-10">
+        <div class="card  mb-3 mb-lg-5">
+
+            <div class="card-body  py-5">
+
+                <h1 class="card-title">{{$currentLesson->title}}</h1>
+
+                <p class="card-text">{{$currentLesson->description}}</p> <br><br>
+
             <!-- Title -->
                 @if($currentLesson->lesson_type == 'video' && $currentLesson->video)
 
-                    <iframe width="80%" height="500" src="{{$currentLesson->video->video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="100%" height="500" src="{{$currentLesson->video->video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
                 @elseif($currentLesson->lesson_type == 'article' && $currentLesson->article)
                     {!! $currentLesson->article->content !!}
@@ -192,7 +174,7 @@
 
 
     <!-- Offcanvas Content -->
-    <div class="offcanvas offcanvas-start splitted-content-small splitted-content-bordered d-flex flex-column" tabindex="-1" id="splittedOffcanvasContent">
+    {{-- <div class="offcanvas offcanvas-start splitted-content-small splitted-content-bordered d-flex flex-column" tabindex="-1" id="splittedOffcanvasContent">
       <div class="offcanvas-body">
         <div class="d-flex justify-content-center flex-column align-items-center h-100 py-10 py-xl-0">
 
@@ -214,8 +196,10 @@
 
 
         </div>
-    </div>
+    </div> --}}
     <!-- End Offcanvas Content -->
+
+
 
 
   </main>

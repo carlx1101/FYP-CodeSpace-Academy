@@ -1,3 +1,10 @@
+<style>
+    .nav-link-title {
+      word-wrap: break-word;
+      white-space: normal;
+    }
+</style>
+
 <aside class="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered bg-white  ">
     <div class="navbar-vertical-container">
       <div class="navbar-vertical-footer-offset">
@@ -23,34 +30,39 @@
         <!-- Content -->
         <div class="navbar-vertical-content">
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
-            <!-- Collapse -->
-            <div class="nav-item">
-              <a class="nav-link " href="{{route('tutor.dashboard')}}" role="button" >
-                <i class="bi-house-door nav-icon"></i>
-                <span class="nav-link-title">Dashboards</span>
-              </a>
-            </div>
-            <!-- End Collapse -->
 
-            <span class="dropdown-header mt-4">Course  </span>
+            @foreach($sections as $section)
+
+            <span class="dropdown-header mt-4">{{ $section->title }} </span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
 
-            <!-- Collapse -->
-            <div class="navbar-nav nav-compact">
 
-            </div>
             <div id="navbarVerticalMenuPagesMenu">
 
+                @foreach($section->lessons as $lesson)
 
+                <div class="nav-item">
+                    <a class="nav-link " href="{{ route('student.learn', ['courseTitle' => $course->title, 'lessonId' => $lesson->id]) }}" data-placement="left">
 
-              <div class="nav-item">
-                <a class="nav-link " href="{{route('my.courses')}}" data-placement="left">
+                    @if($lesson->lesson_type == 'video' )
+                    <i class="bi bi-play-circle nav-icon" ></i>
+
+                    @elseif($lesson->lesson_type == 'article')
                     <i class="bi bi-journals nav-icon"></i>
-                    <span class="nav-link-title">My Courses</span>
-                </a>
-              </div>
+
+                    @endif
+
+                    <span class="nav-link-title">lesson </span>
+
+                    </a>
+
+                </div>
+                @endforeach
+
             </div>
             <!-- End Collapse -->
+
+            @endforeach
 
 
 
