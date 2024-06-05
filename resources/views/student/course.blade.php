@@ -293,7 +293,6 @@
                                             <p style="font-size:13px;">Preview</p>
                                     </a>
 
-
                                     <!-- End Fancybox -->
                                     @endif
                                 </div>
