@@ -62,6 +62,7 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
     Route::get('courses/{courseId}/sections', [SectionController::class, 'index'])->name('sections.index');
     Route::post('courses/{courseId}/sections', [SectionController::class, 'store'])->name('sections.store');
     Route::delete('courses/{courseId}/sections/{sectionId}', [SectionController::class, 'destroy'])->name('sections.destroy');
+    Route::put('courses/{courseId}/sections/{sectionId}/edit', [SectionController::class, 'update'])->name('sections.edit');
 
     // Manage Lesson
     Route::post('sections/{section}/lessons', [LessonController::class, 'store'])->name('lessons.store');

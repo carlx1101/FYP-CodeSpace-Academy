@@ -71,9 +71,26 @@ class SectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $courseId, $sectionId)
     {
-        //
+        // Validate the request
+        $request->validate([
+            'title' => 'required|string|max:255',
+
+        ]);
+
+        // Find the course by ID
+        $course = Course::findOrFail($courseId);
+
+        // Find the section by ID within the given course
+        $section = $course->sections()->findOrFail($sectionId);
+
+        // Update the section's details
+        $section->title = $request->input('title');
+        $section->description = $request->input('description');
+        $section->save();
+
+        return redirect()->route('sections.index', ['courseId' => $courseId])->with('success', 'Section updated successfully');
     }
 
     /**
