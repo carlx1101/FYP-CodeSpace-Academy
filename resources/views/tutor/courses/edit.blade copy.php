@@ -216,14 +216,14 @@
             <h4>Intended Learners</h4>
             <hr>
 
-            <div class="row mb-4">
+                <!-- Form -->
                 <div class="js-add-field row mb-4"
                     data-hs-add-field-options='{
-                        "template": "#addLearningOutcomes",
-                        "container": "#addLearningOutcomesFieldContainer",
-                        "defaultCreated": 0
+                    "template": "#addLearningObjectiveFieldTemplate",
+                    "container": "#addLearningObjectiveFieldContainer",
+                    "defaultCreated": 0
                     }'>
-                    <label for="learningOutcomesLabel" class="col-sm-3 col-form-label form-label">Learning Outcomes</label>
+                    <label for="learningObjective" class="col-sm-3 col-form-label form-label">Learning Objectives</label>
 
                     <div class="col-sm-9">
                         @if (!empty($course->learning_objectives))
@@ -235,121 +235,94 @@
                             @endforeach
                         @endif
 
-                        <!-- Container For Input Field -->
-                        <div id="addLearningOutcomesFieldContainer"></div>
 
-                        <a href="javascript:;" class="js-create-field form-link">
-                            <i class="bi-plus-circle me-1"></i> Add field
-                        </a>
                     </div>
+                    <!-- End Form -->
+
+                    <!-- Add LO Input Field -->
+                    <div id="addLearningObjectiveFieldTemplate" style="display: none;">
+                        <div class="input-group-add-field">
+                            <input type="text" class="js-input-mask form-control" data-name="learning_objectives[]" placeholder="Enter Learning Objective" aria-label="Enter email">
+                        </div>
+
+                        <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
+                            <i class="bi-x-lg"></i>
+                        </a>
                 </div>
-            </div>
-
-            <!-- Add learning outcomes Input Field -->
-            <div id="addLearningOutcomes" style="display: none;">
-                <div class="input-group-add-field">
-                    <!-- Use "[]" in the name attribute to make it an array -->
-                    <input type="text" class="form-control" name="learning_objectives[]" placeholder="Enter learning outcomes">
-                </div>
-
-                <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
-                    <i class="bi-x-lg"></i>
-                </a>
-            </div>
-            <!-- End learning outcome Input Field -->
+                <!-- End Add LO Input Field -->
 
 
-             {{-- Prerequisites  --}}
-             <div class="row mb-4">
+                <!-- Form -->
                 <div class="js-add-field row mb-4"
-                data-hs-add-field-options='{
-                  "template": "#addPrerequisites",
-                  "container": "#addPrerequisitesFieldContainer",
-                  "defaultCreated": 0
-                }'>
-                <label for="prerequisitesLabel" class="col-sm-3 col-form-label form-label">Prerequisites</label>
+                    data-hs-add-field-options='{
+                    "template": "#addPrerequisitesFieldTemplate",
+                    "container": "#addPrerequisitesFieldContainer",
+                    "defaultCreated": 0
+                    }'>
+                    <label for="prerequisites" class="col-sm-3 col-form-label form-label">Prerequisites</label>
 
-                <div class="col-sm-9">
+                    <div class="col-sm-9">
 
-                  @if (!empty($course->prerequisites))
-                      @foreach(json_decode($course->prerequisites, true) as $prerequisites)
-                          <div class="input-group-add-field">
-                              <!-- Use "[]" in the name attribute to make it an array -->
-                              <input type="text" class="form-control" name="prerequisites[]" id="prerequisites" placeholder="Enter learning outcomes" value="{{ $prerequisites }}">
-                          </div>
-                      @endforeach
-                  @endif
+                        @if (!empty($course->prerequisites))
+                            @foreach(json_decode($course->prerequisites, true) as $prerequisites)
+                                <div class="input-group-add-field">
+                                    <!-- Use "[]" in the name attribute to make it an array -->
+                                    <input type="text" class="form-control" name="prerequisites[]" id="prerequisites" placeholder="Enter learning outcomes" value="{{ $prerequisites }}">
+                                </div>
+                            @endforeach
+                        @endif
 
 
 
-                <!-- Container For Input Field -->
-                <div id="addPrerequisitesFieldContainer"></div>
-
-                <a href="javascript:;" class="js-create-field form-link">
-                <i class="bi-plus-circle me-1"></i> Add field
-                </a>
-                </div>
+                    </div>
                 </div>
                 <!-- End Form -->
 
-                <!-- Add prerequisites Input Field -->
-                <div id="addPrerequisites" style="display: none;">
+                <!-- Add Phone  Field -->
+                <div id="addPrerequisitesFieldTemplate" style="display: none;">
+                    <div class="input-group-add-field">
+                        <input type="text" class="js-input-mask form-control" data-name="prerequisites[]" placeholder="Enter Prerequisites" aria-label="Enter Prerequisites">
+                    </div>
+
+                    <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
+                        <i class="bi-x-lg"></i>
+                    </a>
+                </div>
+                <!-- End Add Phone Input Field -->
+
+                <!-- Form -->
+                <div class="js-add-field row mb-4"
+                    data-hs-add-field-options='{
+                    "template": "#addTargetAudienceFieldTemplate",
+                    "container": "#addTargetAudienceFieldContainer",
+                    "defaultCreated": 0
+                    }'>
+                    <label for="target_audiences" class="col-sm-3 col-form-label form-label">Target Audiences</label>
+
+                    <div class="col-sm-9">
+                        @if (!empty($course->target_audiences))
+                            @foreach(json_decode($course->target_audiences, true) as $target_audience)
+                                <div class="input-group-add-field">
+                                    <!-- Use "[]" in the name attribute to make it an array -->
+                                    <input type="text" class="form-control" name="target_audiences[]" id="targetAudienceLabel" placeholder="Enter learning outcomes" value="{{ $target_audience }}">
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+                <!-- End Form -->
+
+                <!-- Add Phone Input Field -->
+                <div id="addTargetAudienceFieldTemplate" style="display: none;">
                 <div class="input-group-add-field">
-                <input type="text" class=" form-control"  name="prerequisites[]"  placeholder="Enter prerequisites" >
+                <input type="text" class="js-input-mask form-control" data-name="target_audiences[]" placeholder="Enter Target Audience" aria-label="Enter Target Audience">
                 </div>
 
                 <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
                 <i class="bi-x-lg"></i>
                 </a>
                 </div>
-                <!-- End prerequisites Input Field -->
-            </div>
-
-
-            <div class="row mb-4">
-                <div class="js-add-field row mb-4"
-                data-hs-add-field-options='{
-                  "template": "#addTargetAudience",
-                  "container": "#addTargetAudienceFieldContainer",
-                  "defaultCreated": 0
-                }'>
-                <label for="targetAudienceLabel" class="col-sm-3 col-form-label form-label">Target Audience</label>
-
-                <div class="col-sm-9">
-                {{-- <input type="text" class="form-control"  name="target_audiences[]" id="targetAudienceLabel" placeholder="Enter Target Audience" > --}}
-
-                @if (!empty($course->target_audiences))
-                @foreach(json_decode($course->target_audiences, true) as $target_audience)
-                    <div class="input-group-add-field">
-                        <!-- Use "[]" in the name attribute to make it an array -->
-                        <input type="text" class="form-control" name="target_audiences[]" id="targetAudienceLabel" placeholder="Enter learning outcomes" value="{{ $target_audience }}">
-                    </div>
-                @endforeach
-            @endif
-
-
-                <!-- Container For Input Field -->
-                <div id="addTargetAudienceFieldContainer"></div>
-
-                <a href="javascript:;" class="js-create-field form-link">
-                <i class="bi-plus-circle me-1"></i> Add field
-                </a>
-                </div>
-                </div>
-                <!-- End Form -->
-
-                    <!-- Add prerequisites Input Field -->
-                  <div id="addTargetAudience" style="display: none;">
-                    <div class="input-group-add-field">
-                    <input type="text" class=" form-control" name="target_audiences[]"  placeholder="Enter Target Audience" >
-                    </div>
-
-                    <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
-                    <i class="bi-x-lg"></i>
-                    </a>
-                    </div>
-                    <!-- End prerequisites Input Field -->
-            </div>
+                <!-- End Add Phone Input Field -->
 
 
                 <!-- Form -->
@@ -382,12 +355,13 @@
             <h4>Course Design</h4>
             <hr>
 
+
                 <!-- Form -->
                 <div class="row mb-4">
                     <label for="title" class="col-sm-3 col-form-label form-label">Title</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="title" value="{{$course->title}}" id="title" placeholder="Enter Title">
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
                     </div>
                 </div>
                 <!-- End Form -->
@@ -398,23 +372,35 @@
                     <label for="subtitle" class="col-sm-3 col-form-label form-label">Subtitle</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="subtitle" value="{{$course->subtitle}}" id="subtitle" placeholder="Enter Title">
+                        <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="Enter Title">
                     </div>
                 </div>
                 <!-- End Form -->
 
 
+                <!-- Form -->
                 <div class="row mb-4">
                     <label for="subtitle" class="col-sm-3 col-form-label form-label">Description</label>
+
                     <div class="col-sm-9">
                         <!-- Quill -->
                         <div class="quill-custom">
-                            <div class="js-quill" id="description-editor" style="min-height: 15rem;"></div>
+                            <div class="js-quill" id="description" style="min-height: 15rem;"
+                                data-hs-quill-options='{
+                                "placeholder": "Type your message...",
+                                "modules": {
+                                    "toolbar": [
+                                    ["bold", "italic", "underline", "strike", "link", "image", "blockquote", "code", {"list": "bullet"}]
+                                    ]
+                                }
+                                }'>
+                            </div>
                         </div>
                         <!-- End Quill -->
                     </div>
                 </div>
                 <!-- End Form -->
+
 
 
                 <!-- Form -->
@@ -432,7 +418,7 @@
                                             }'>
                                         <option value="">Select a category...</option>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" {{ $course->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -448,12 +434,13 @@
                                             }'>
                                         <option value="">Select a subcategory...</option>
                                         @foreach($subcategories as $subcategory)
-                                            <option value="{{ $subcategory->id }}" {{ $course->subcategory_id == $subcategory->id ? 'selected' : '' }}>{{ $subcategory->name }}</option>
+                                            <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <!-- End Select -->
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -541,7 +528,7 @@
                 <label for="price" class="col-sm-3 col-form-label form-label">Price</label>
 
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="price" value="{{$course->price}}" id="price" placeholder="Enter Price">
+                    <input type="text" class="form-control" name="price" id="price" placeholder="Enter Price">
                 </div>
               </div>
               <!-- End Form -->
@@ -552,8 +539,7 @@
                 <label for="is_free" class="col-sm-3 col-form-label form-label">Free Course</label>
 
                 <div class="col-sm-9">
-                    <input type="checkbox" class="form-check-input" id="is_free" name="is_free" value="1"
-                    @if($course->is_free == 1) checked @endif> Free Course
+                  <input type="checkbox" class="form-check-input" id="is_free" name="is_free" value="1"> Free Course
                 </div>
               </div>
               <!-- End Form -->
@@ -644,7 +630,7 @@
 
               <div class="d-flex justify-content-end ms-auto">
                   <button type="button" class="btn btn-white me-2" data-dismiss="modal" aria-label="Close">Cancel</button>
-                  <button id="basicVerStepFinishBtn" type="submit" class="btn btn-primary">Save course</button>
+                  <button id="basicVerStepFinishBtn" type="submit" class="btn btn-primary">Create course</button>
               </div>
             </div>
             <!-- End Footer -->
@@ -789,7 +775,7 @@
 
         // INITIALIZATION OF QUILLJS EDITOR
         // =======================================================
-        // HSCore.components.HSQuill.init('.js-quill')
+        HSCore.components.HSQuill.init('.js-quill')
 
         // INITIALIZATION OF SELECT
         // =======================================================
@@ -857,55 +843,6 @@
     </script>
 
   <!-- End Style Switcher JS -->
-
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var quillDescription = new Quill('#description-editor', {
-            placeholder: 'Type your message...',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline', 'strike', 'link', 'image', 'blockquote', 'code', {'list': 'bullet'}]
-                ]
-            },
-            theme: 'snow'
-        });
-
-        var quillWelcome = new Quill('#welcomeMessage', {
-            placeholder: 'Type your message...',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline', 'strike', 'link', 'image', 'blockquote', 'code', {'list': 'bullet'}]
-                ]
-            },
-            theme: 'snow'
-        });
-
-        var quillCompletion = new Quill('#completionMessage', {
-            placeholder: 'Type your message...',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline', 'strike', 'link', 'image', 'blockquote', 'code', {'list': 'bullet'}]
-                ]
-            },
-            theme: 'snow'
-        });
-
-        // Set the editor's content
-        var description = {!! json_encode($course->description) !!};
-        quillDescription.root.innerHTML = description;
-
-        var welcomeMessage = {!! json_encode($course->welcome_message) !!};
-        quillWelcome.root.innerHTML = welcomeMessage;
-
-        var completionMessage = {!! json_encode($course->completion_message) !!};
-        quillCompletion.root.innerHTML = completionMessage;
-    });
-</script>
-
-
-
-
 
   <!-- Custom JS  -->
   <script>

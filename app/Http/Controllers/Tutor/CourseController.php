@@ -69,7 +69,10 @@ class CourseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $course = Course::findOrFail($id);
+        $categories = Category::all();
+        $subcategories = Subcategory::all();
+        return view('tutor.courses.edit', compact('course', 'categories', 'subcategories'));
     }
 
     /**
