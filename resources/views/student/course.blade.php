@@ -281,9 +281,19 @@
                                   @if($lesson->is_preview == 1)
                                     <!-- Fancybox -->
 
-                                    <a class="video-player video-player-btn" href="" role="button" data-fslightbox="youtube-video">
-                                        <p style="font-size:13px;">Preview</p>
-                                       </a>
+                                    @php
+                                        $videoUrl = $lesson->video->video_url;
+                                        $isHttpUrl = Str::startsWith($videoUrl, ['http://', 'https://']);
+                                    @endphp
+
+                                    <a class="video-player video-player-btn"
+                                        href="{{ $isHttpUrl ? $videoUrl : asset('storage/' . $videoUrl) }}"
+                                        role="button"
+                                        data-fslightbox="youtube-video">
+                                            <p style="font-size:13px;">Preview</p>
+                                    </a>
+
+
                                     <!-- End Fancybox -->
                                     @endif
                                 </div>
