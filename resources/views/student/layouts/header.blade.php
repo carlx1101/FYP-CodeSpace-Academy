@@ -254,10 +254,10 @@
                     "maxWidth": "20rem"
                   }
                 }'>
-              <a id="myCoursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Courses</a>
+              <a id="myCoursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Courses</a>
 
               <!-- Mega Menu -->
-              <div class="hs-mega-menu hs-position-right dropdown-menu" aria-labelledby="myCoursesMegaMenu" style="min-width: 22rem;">
+              {{-- <div class="hs-mega-menu hs-position-right dropdown-menu" aria-labelledby="myCoursesMegaMenu" style="min-width: 22rem;">
                 <!-- Course -->
                 <a class="navbar-dropdown-menu-media-link" href="#">
                   <div class="d-flex">
@@ -305,7 +305,7 @@
                   </div>
                 </a>
                 <!-- End Course -->
-              </div>
+              </div> --}}
               <!-- End Mega Menu -->
             </li>
             <!-- End My Courses -->

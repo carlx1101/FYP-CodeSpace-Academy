@@ -152,7 +152,12 @@
                 <!-- Title -->
                 @if($currentLesson->lesson_type == 'video' && $currentLesson->video)
 
-                    <iframe width="100%" height="500" src="{{$currentLesson->video->video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                @php
+                    $videoUrl = $currentLesson->video->video_url;
+                    $isHttpUrl = Str::startsWith($videoUrl, ['http://', 'https://']);
+                @endphp
+
+                    <iframe width="95%" height="600" src="{{ $isHttpUrl ? $videoUrl : asset('storage/' . $videoUrl) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
                 @elseif($currentLesson->lesson_type == 'article' && $currentLesson->article)
                     {!! $currentLesson->article->content !!}
@@ -186,7 +191,7 @@
         </div>
     </div>
 
-    
+
 
 
 
