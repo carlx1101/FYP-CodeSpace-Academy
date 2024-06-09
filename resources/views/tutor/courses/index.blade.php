@@ -802,7 +802,7 @@
                             <i class="bi-trash dropdown-item-icon"></i> Curriculums
                           </a>
 
-                          <a class="dropdown-item" href="">
+                          <a class="dropdown-item" href="{{route('courses.students',$course->id)}}">
                             <i class="bi-trash dropdown-item-icon"></i> Students
                           </a>
 

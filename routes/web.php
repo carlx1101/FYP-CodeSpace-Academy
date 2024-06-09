@@ -70,6 +70,8 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
     Route::delete('sections/{section}/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
 
     Route::post('/courses/{course}/enroll', [EnrollmentController::class, 'enroll'])->name('courses.enroll');
+    Route::get('/courses/{course}/students', [CourseController::class, 'showStudents'])->name('courses.students');
+
 
 
 
