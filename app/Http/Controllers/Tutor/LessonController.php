@@ -13,6 +13,7 @@ class LessonController extends Controller
 {
     public function store(Request $request, Section $section)
     {
+        // dd($request->all());
         // Create a new Lesson
         $lesson = new Lesson([
             'title' => $request->input('title'),
@@ -36,15 +37,26 @@ class LessonController extends Controller
         $lessonType = $request->input('lesson_type'); // Assuming you have a 'type' field in your form
 
         if ($lessonType === 'video') {
-            // If the lesson type is "video," create a video record
-            $video = new Video([
-                'video_url' => $request->input('video_url'), // Assuming you have a 'video_url' field in your form
-            ]);
+            // Check if the user uploaded a video file
+            if ($request->hasFile('video_url')) {
+                // Store the uploaded video file in the 'lessons' folder
+                $videoPath = $request->file('video_url')->store('lessons', 'public');
+
+                // Create a video record with the stored path
+                $video = new Video([
+                    'video_url' => $videoPath,
+                ]);
+            } else {
+                // Use the provided video URL (e.g., YouTube)
+                $video = new Video([
+                    'video_url' => $request->input('video_url'),
+                ]);
+            }
+
             // Associate the video with the lesson
             $lesson->video()->save($video);
 
-
-        } elseif ($lessonType === 'article') {
+        }  elseif ($lessonType === 'article') {
             // If the lesson type is "article," create an article record
             $article = new Article([
                 'content' => $request->input('article_content'), // Assuming you have an 'article_content' field in your form

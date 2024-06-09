@@ -849,7 +849,7 @@
          // Create a new FormData object and append form data to it
          var formData = new FormData(this);
          var csrfToken = $('meta[name="csrf-token"]').attr('content');
-
+            
 
 
          // Get the 'coverPhoto' Dropzone element
@@ -916,7 +916,7 @@
  </script>
 
   <!-- End Custom JS  -->
-  
+
 
 </body>
 </html>

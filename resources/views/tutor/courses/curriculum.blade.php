@@ -4,6 +4,7 @@
   <!-- Required Meta Tags Always Come First -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Title -->
   <title>Manage Course</title>
@@ -376,128 +377,149 @@
 
 
 
-    <!-- Add lesson Modal -->
+    <!-- Add Lesson Modal -->
     <div id="addLessonModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg	" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">New Lesson</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-
-            <form method="POST">
-              @csrf
-              <div class="row">
-                <div class="mb-3 " style="text-align: left">
-                  <label class="form-label" for="title">Title</label>
-                  <input type="text" id="title" class="form-control" name="title" placeholder="Title">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">New Lesson</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-              </div>
+                <div class="modal-body">
+                    <form id="lessonCreateForm">
+                        <input type="text" id="section_id" name="section_id" value="{{$section->id}}">
 
-              <div class="row">
-                <div class="mb-3 " style="text-align: left">
-                <label class="form-label" for="description">Description</label>
-                <input type="text" id="description" name="description" class="form-control" placeholder="Describe what student will learn in this lesson">
+                        <div class="row">
+                            <div class="mb-3" style="text-align: left">
+                                <label class="form-label" for="title">Title</label>
+                                <input type="text" id="title" class="form-control" name="title" placeholder="Title">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3" style="text-align: left">
+                                <label class="form-label" for="description">Description</label>
+                                <input type="text" id="description" name="description" class="form-control" placeholder="Describe what student will learn in this lesson">
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="mb-2" style="text-align: left">
+                                <input type="checkbox" name="is_preview" class="form-check-input" value="1">
+                                <label class="form-check-label">Preview Course</label>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="mb-2" style="text-align: left">
+                                <label class="form-label" for="description">Lesson Type</label>
+                            </div>
+
+                            <div class="col-sm mb-2 mb-sm-0">
+                                <!-- Form Radio -->
+                                <label class="form-control" for="formControlRadioEg1">
+                                    <span class="form-check">
+                                        <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg1" value="video">
+                                        <span class="form-check-label">Video</span>
+                                    </span>
+                                </label>
+                                <!-- End Form Radio -->
+                            </div>
+
+                            <div class="col-sm mb-2 mb-sm-0">
+                                <!-- Form Radio -->
+                                <label class="form-control" for="formControlRadioEg2">
+                                    <span class="form-check">
+                                        <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg2" value="article">
+                                        <span class="form-check-label">Article</span>
+                                    </span>
+                                </label>
+                                <!-- End Form Radio -->
+                            </div>
+
+                            <div class="col-sm mb-2 mb-sm-0">
+                                <!-- Form Radio -->
+                                <label class="form-control" for="formControlRadioEg2">
+                                    <span class="form-check">
+                                        <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg2" value="assessment">
+                                        <span class="form-check-label">Assessment</span>
+                                    </span>
+                                </label>
+                                <!-- End Form Radio -->
+                            </div>
+
+                            <br>
+                            <div class="row mt-2">
+                                <div class="mb-3" id="videoFields" style="display: none; text-align: left;">
+                                <label class="form-label" for="title">Title</label>
+
+
+                                    <!-- Nav -->
+                                    <div>
+                                        <ul class="nav nav-segment mb-7" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="nav-one-eg1-tab" href="#nav-one-eg1" data-bs-toggle="pill" data-bs-target="#nav-one-eg1" role="tab" aria-controls="nav-one-eg1" aria-selected="true">Video URL</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="nav-two-eg1-tab" href="#nav-two-eg1" data-bs-toggle="pill" data-bs-target="#nav-two-eg1" role="tab" aria-controls="nav-two-eg1" aria-selected="false">Upload Video</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- End Nav -->
+
+                                    <!-- Tab Content -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="nav-one-eg1" role="tabpanel" aria-labelledby="nav-one-eg1-tab">
+                                            <label class="form-label" for="video_url">Video URL</label>
+                                            <input type="text" class="form-control" name="video_url" id="video_url">
+                                        </div>
+
+                                        <div class="tab-pane fade" id="nav-two-eg1" role="tabpanel" aria-labelledby="nav-two-eg1-tab">
+                                            <label class="form-label" for="video_url">Upload Video</label>
+                                            <!-- Dropzone -->
+                                            <div id="lessonVideo" class="js-dropzone row dz-dropzone dz-dropzone-card">
+                                                <div class="dz-message">
+                                                    <img class="avatar avatar-xl avatar-4x3 mb-3" src="{{ asset('backend/svg/illustrations/oc-browse.svg') }}" alt="Image Description">
+                                                    <h5>Drag and drop your video here</h5>
+                                                    <p class="mb-2">or</p>
+                                                    <span class="btn btn-white btn-sm">Browse video</span>
+                                                </div>
+                                            </div>
+                                            <!-- End Dropzone -->
+                                        </div>
+                                    </div>
+                                    <!-- End Tab Content -->
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="mb-3" id="articleFields" style="display: none; text-align: left;">
+                                    <!-- Article-specific fields go here -->
+                                    <label for="article_content">Article Content</label>
+                                    <textarea name="article_content" id="article_content"></textarea>
+                                    <script>
+                                        CKEDITOR.replace('article_content');
+                                    </script>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="assessmentFields" style="display: none;">
+                                <!-- Assessment-specific fields go here -->
+                                <label for="assessment_questions">Assessment Questions</label>
+                                <textarea name="assessment_questions" id="assessment_questions"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
                 </div>
-              </div>
-
-              <div class="row mb-2">
-                <div class="mb-2 " style="text-align: left">
-                    <input type="checkbox" name="is_preview" class="form-check-input" value="1">
-                    <label class="form-check-label" >Preview Course</label>
-                </div>
-              </div>
-
-                <div class="row mb-2">
-                  <div class="mb-2 " style="text-align: left">
-                  <label class="form-label" for="description">Lesson Type</label>
-                </div>
-
-
-
-
-
-                <div class="col-sm mb-2 mb-sm-0">
-                  <!-- Form Radio -->
-                  <label class="form-control" for="formControlRadioEg1">
-                    <span class="form-check">
-                      <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg1" value="video">
-                      <span class="form-check-label">Video</span>
-                    </span>
-                  </label>
-                  <!-- End Form Radio -->
-                </div>
-
-                <div class="col-sm mb-2 mb-sm-0">
-                  <!-- Form Radio -->
-                  <label class="form-control" for="formControlRadioEg2">
-                    <span class="form-check">
-                      <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg2" value="article">
-                      <span class="form-check-label">Article </span>
-                    </span>
-                  </label>
-                  <!-- End Form Radio -->
-                </div>
-
-                <div class="col-sm mb-2 mb-sm-0">
-                  <!-- Form Radio -->
-                  <label class="form-control" for="formControlRadioEg2">
-                    <span class="form-check">
-                      <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg2" value="assessment">
-                      <span class="form-check-label">Assessmemt </span>
-                    </span>
-                  </label>
-                  <!-- End Form Radio -->
-                </div>
-
-
-                <br>
-                <div class="row mt-2">
-                  <div class="mb-3 " id="videoFields" style="display: none; text-align: left;">
-                    <label class="form-label" for="video_url">Video</label>
-                    <input type="text" id="title" class="form-control"  name="video_url" id="video_url">
-                  </div>
-                </div>
-
-
-
-                <div class="row mt-2">
-                  <div class="mb-3 " id="articleFields" style="display: none; text-align: left;">
-                  <!-- Article-specific fields go here -->
-                  <label for="article_content">Article Content</label>
-
-                  <textarea name="article_content" id="article_content"></textarea>
-                  <script>
-                          CKEDITOR.replace( 'article_content' );
-                  </script>
-
-                </div>
-                </div>
-
-
-
-
-              <div class="form-group" id="assessmentFields" style="display: none;">
-                  <!-- Assessment-specific fields go here -->
-                  <label for="assessment_questions">Assessment Questions</label>
-                  <textarea name="assessment_questions" id="assessment_questions"></textarea>
-              </div>
-
-
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
-        </form>
-
+            </div>
         </div>
-      </div>
     </div>
     <!-- End Modal -->
-
 
 
 
@@ -536,9 +558,11 @@
   <script src="{{asset('backend/vendor/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
   <script src="{{asset('backend/vendor/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
   <script src="{{asset('backend/vendor/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
+  <script src="{{asset('backend/vendor/dropzone/dist/min/dropzone.min.js')}}"></script>
 
   <!-- JS Front -->
   <script src="{{asset('backend/js/theme.min.js')}}"></script>
+  <script src="{{asset('backend/js/hs.dropzone.js')}}"></script>
 
   <!-- JS Plugins Init. -->
   <script>
@@ -670,6 +694,11 @@
         // INITIALIZATION OF FILE ATTACHMENT
         // =======================================================
         new HSFileAttach('.js-file-attach')
+
+            // INITIALIZATION OF DROPZONE
+        // =======================================================
+        HSCore.components.HSDropzone.init('.js-dropzone')
+
       }
     })()
   </script>
@@ -813,6 +842,66 @@
         editSectionModalBody.append(div);
         });
     </script>
+
+
+
+
+    {{-- Lesson Form Submission AJAX --}}
+    <script>
+        $(document).ready(function() {
+            // Global variable to store section ID
+            var sectionId = null;
+
+            // Listen for the "Add Lesson" button click
+            $('.open-lesson-modal').on('click', function() {
+                sectionId = $(this).data('section-id');
+                console.log("Section ID:", sectionId);
+                $('#lessonCreateForm #section_id').val(sectionId);
+            });
+
+            // Form submission for creating a lesson
+            $("#lessonCreateForm").submit(function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Create a new FormData object and append form data to it
+                var formData = new FormData(this);
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                // Get the 'lessonVideo' Dropzone element
+                var lessonVideoDropzoneElement = $('#lessonVideo')[0].dropzone;
+
+                // Check if 'lessonVideo' Dropzone has files
+                if (lessonVideoDropzoneElement) {
+                    var lessonVideo = lessonVideoDropzoneElement.files[0];
+                    if (lessonVideo) {
+                        formData.append("video_url", lessonVideo);
+                    }
+                }
+
+                console.log("FormData:", formData);
+
+                // Make an AJAX request
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': csrfToken},
+                    url: "{{ route('lessons.store', 'sectionId') }}".replace('sectionId', sectionId),
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        // Handle success response
+                        console.log("Success:", response);
+                        location.reload(); // Optionally reload the page to see the new lesson
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error response
+                        console.log("Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
+
 
 </body>
 </html>
