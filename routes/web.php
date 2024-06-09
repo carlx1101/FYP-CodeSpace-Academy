@@ -10,6 +10,7 @@ use App\Http\Controllers\Tutor\LessonController;
 use App\Http\Controllers\Tutor\SectionController;
 use App\Http\Controllers\Student\PaymentController;
 
+use App\Http\Controllers\Student\EnrollmentController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
 
 
@@ -67,6 +68,8 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
     // Manage Lesson
     Route::post('sections/{section}/lessons', [LessonController::class, 'store'])->name('lessons.store');
     Route::delete('sections/{section}/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
+
+    Route::post('/courses/{course}/enroll', [EnrollmentController::class, 'enroll'])->name('courses.enroll');
 
 
 

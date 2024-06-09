@@ -107,4 +107,11 @@ class CourseController extends Controller
         return redirect()->route('courses.index')->with('success', 'Course publishing status updated successfully.');
     }
 
+    public function students(Course $course)
+    {
+        $students = $course->students;
+        return view('tutor.courses.students', compact('students', 'course'));
+    }
+
+
 }

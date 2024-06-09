@@ -13,7 +13,6 @@ class LessonController extends Controller
 {
     public function store(Request $request, Section $section)
     {
-        // dd($request->all());
         // Create a new Lesson
         $lesson = new Lesson([
             'title' => $request->input('title'),

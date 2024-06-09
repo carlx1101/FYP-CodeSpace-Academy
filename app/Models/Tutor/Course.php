@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Admin\Category;
 use App\Models\Admin\Subcategory;
 use App\Models\Student\OrderItem;
+use App\Models\Student\Enrollment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -73,14 +74,21 @@ class Course extends Model
         });
     }
 
-    // public function users()
-    // {
-    //     return $this->belongsToMany(User::class, 'orders', 'course_id', 'user_id');
-    // }
 
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'enrollments', 'course_id', 'student_id')
+                    ->withTimestamps();
     }
 
 

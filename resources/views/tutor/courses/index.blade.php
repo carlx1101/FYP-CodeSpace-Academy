@@ -802,6 +802,10 @@
                             <i class="bi-trash dropdown-item-icon"></i> Curriculums
                           </a>
 
+                          <a class="dropdown-item" href="">
+                            <i class="bi-trash dropdown-item-icon"></i> Students
+                          </a>
+
                           <a class="dropdown-item" href="#"
                           onclick="event.preventDefault(); document.getElementById('toggle-publishing-status-{{ $course->id }}').submit();">
                            <i class="bi-trash dropdown-item-icon"></i>

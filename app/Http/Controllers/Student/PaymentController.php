@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use Illuminate\Http\Request;
 use App\Models\Student\Order;
 use App\Models\Student\OrderItem;
+use App\Models\Student\Enrollment;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -87,6 +88,13 @@ class PaymentController extends Controller
 
         // Clear the user's cart after successful checkout
         Auth::user()->cart()->delete();
+
+        Enrollment::create([
+            'course_id' => $cartItem->course_id,
+            'student_id' => Auth::id(),
+            'enrolled_at' => now(),
+        ]);
+
 
         return view('student.checkout-success');
     }
