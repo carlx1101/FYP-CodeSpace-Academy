@@ -74,12 +74,6 @@ class Course extends Model
         });
     }
 
-
-    public function orderItems()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
-
     public function enrollments()
     {
         return $this->hasMany(Enrollment::class);
@@ -88,7 +82,9 @@ class Course extends Model
     public function students()
     {
         return $this->belongsToMany(User::class, 'enrollments', 'course_id', 'student_id')
-                    ->withTimestamps();
+                    ->withTimestamps()
+                    ->withPivot('enrolled_at');
+
     }
 
 

@@ -112,6 +112,7 @@ class CourseController extends Controller
         $course = Course::with('students')->findOrFail($courseId);
         $students = $course->students;
 
+
         return view('tutor.courses.students', compact('course', 'students'));
     }
 
