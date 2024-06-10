@@ -145,7 +145,7 @@
     <!-- Content -->
     <div class="content container-fluid">
                 <!-- Step Form -->
-        <form id="courseCreateForm" class="js-step-form"
+        <form id="courseEditForm" class="js-step-form"
         data-hs-step-form-options='{
         "progressSelector": "#basicVerStepFormProgress",
         "stepsSelector": "#basicVerStepFormContent",
@@ -808,6 +808,39 @@
         // INITIALIZATION OF DROPZONE
         // =======================================================
         HSCore.components.HSDropzone.init('.js-dropzone')
+        @if(isset($course->cover_image))
+        var coverPhotoDropzoneElement = $("#coverPhoto")[0].dropzone;
+
+        let picture = {name: "Cover Image", size: "{{Storage::size('public/' . $course->cover_image)}}" ,accepted: true, status: 'success'};
+        coverPhotoDropzoneElement.files.push(picture);
+        coverPhotoDropzoneElement.emit('addedfile', picture);
+        console.log("{{ asset(Storage::url($course->cover_image)) }}" );
+        coverPhotoDropzoneElement.emit('thumbnail', picture, "{{ asset(Storage::url($course->cover_image)) }}");
+        coverPhotoDropzoneElement.emit("complete", picture);
+        $('#coverPhoto .dz-progress')[0].remove();
+        if ($('#coverPhoto .dz-success-mark').length > 0) {
+          $('#coverPhoto .dz-success-mark').parent().remove();
+        }
+
+        @endif
+
+        @if(isset($course->promotional_video))
+        var promotionalVideoDropzoneElement = $("#promotionalVideo")[0].dropzone;
+
+        let video = {name: "Promotional Video", size: "{{Storage::size('public/' . $course->promotional_video)}}" ,accepted: true, status: 'success'};
+        promotionalVideoDropzoneElement.files.push(video);
+        promotionalVideoDropzoneElement.emit('addedfile', video);
+        console.log("{{ asset(Storage::url($course->promotional_video)) }}" );
+        promotionalVideoDropzoneElement.emit('thumbnail', video, "https://cdn-icons-png.flaticon.com/128/2377/2377793.png");
+        promotionalVideoDropzoneElement.emit("complete", video);
+        $('#promotionalVideo .dz-progress')[0].remove();
+        if ($('#promotionalVideo .dz-success-mark').length > 0) {
+          $('#promotionalVideo .dz-success-mark').parent().remove();
+        }
+
+        @endif
+
+
 
 
         // INITIALIZATION OF INPUT MASK
@@ -911,7 +944,7 @@
   <script>
     $(document).ready(function () {
      // Listen for the form submission
-     $("#courseCreateForm").submit(function (event) {
+     $("#courseEditForm").submit(function (event) {
          event.preventDefault(); // Prevent the default form submission
 
          // Create a new FormData object and append form data to it
@@ -930,6 +963,7 @@
                  formData.append("cover_image", coverPhoto);
              }
          }
+
 
 
 

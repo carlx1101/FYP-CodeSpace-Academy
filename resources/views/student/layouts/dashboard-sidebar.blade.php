@@ -32,7 +32,7 @@
             </div>
             <!-- End Collapse -->
 
-            <span class="dropdown-header mt-4">Course  </span>
+            <span class="dropdown-header mt-4">My Course  </span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
 
             <!-- Collapse -->
@@ -49,12 +49,30 @@
                     <span class="nav-link-title">My Courses</span>
                 </a>
               </div>
+
+
+
             </div>
             <!-- End Collapse -->
 
+            <span class="dropdown-header mt-4">Public </span>
+            <small class="bi-three-dots nav-subtitle-replacer"></small>
 
 
 
+
+            <div id="navbarVerticalMenuProfileMenu">
+
+                <div class="nav-item">
+                  <a class="nav-link " href="" data-placement="left">
+                      <i class="bi bi-journals nav-icon"></i>
+                      <span class="nav-link-title">My Portfolio</span>
+                  </a>
+                </div>
+
+
+
+            </div>
 
 
 

@@ -137,14 +137,14 @@
   <main id="content" role="main" class="main splitted-content-main">
     <!-- Fluid Content -->
     <div class="splitted-content-fluid content-space">
-      <div class="mt-xl-3">
+      <div class="mt-xl-2">
 
 
 
         <!-- Card -->
-        <div class="card  mb-3 mb-lg-5">
+        <div class="card mb-3 mb-lg-5">
 
-            <div class="card-body  py-5">
+            <div class="card-body ">
 
                 <h1 class="card-title">{{$currentLesson->title}}</h1>
                 <p class="card-text">{{$currentLesson->description}}</p> <br>
