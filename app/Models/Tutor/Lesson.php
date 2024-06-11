@@ -2,8 +2,9 @@
 
 namespace App\Models\Tutor;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Student\Note;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Lesson extends Model
 {
@@ -25,6 +26,11 @@ class Lesson extends Model
     public function article()
     {
         return $this->hasOne(Article::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
     }
 
 

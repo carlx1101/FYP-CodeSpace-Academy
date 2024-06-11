@@ -5,11 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Student\CartController;
+use App\Http\Controllers\Student\NoteController;
 use App\Http\Controllers\Tutor\CourseController;
 use App\Http\Controllers\Tutor\LessonController;
 use App\Http\Controllers\Tutor\SectionController;
-use App\Http\Controllers\Student\PaymentController;
 
+use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\EnrollmentController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
 
@@ -48,6 +49,10 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
 
     // Learn Course
     Route::get('/{courseTitle}/learn/{lessonId?}', [StudentCourseController::class, 'learn'])->name('student.learn');
+
+    // Notes
+    Route::resource('notes', NoteController::class);
+
 
 
 });

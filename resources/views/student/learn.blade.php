@@ -166,7 +166,10 @@
                 @endif
 
 
-                <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLessonNotes" aria-controls="offcanvasLessonNotes">Save Notes</button>
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLessonNotes" aria-controls="offcanvasLessonNotes">View Notes</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                    Add Note
+                  </button>
 
                   <hr>
 
@@ -183,13 +186,30 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLessonNotes" aria-labelledby="offcanvasLessonNotesLabel">
         <div class="offcanvas-header">
-          <h5 id="offcanvasLessonNotesLabel">Note for this lesson</h5>
+          <h5 id="offcanvasLessonNotesLabel">Notes for this lesson</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-           notes goes here
+            @if($currentLesson->notes->isEmpty())
+                <p>No notes found for this lesson.</p>
+            @else
+                <ul>
+                    @foreach($currentLesson->notes as $note)
+                        <li>
+                            {{ $note->content }}
+                            <form action="{{ route('notes.destroy', $note->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
+
+
 
 
 
@@ -198,6 +218,33 @@
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
 
+
+
+<!-- Modal -->
+<div id="exampleModalCenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add Note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('notes.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="lesson_id" value="{{ $currentLesson->id }}">
+                    <div class="input-group">
+                        <textarea class="form-control" name="content" aria-label="With textarea" required></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->
 
 
   <!-- JS Global Compulsory  -->

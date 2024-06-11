@@ -28,9 +28,11 @@ class CourseController extends Controller
         } else {
             // Default to the first lesson of the first section
             $currentLesson = $sections->first()->lessons->first();
+            $currentLesson->load('notes'); // Load notes for the default lesson
+
         }
 
-        
+
 
         return view('student.learn', compact('course', 'sections', 'currentLesson'));
     }
