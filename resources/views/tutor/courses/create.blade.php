@@ -849,7 +849,7 @@
          // Create a new FormData object and append form data to it
          var formData = new FormData(this);
          var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            
+
 
 
          // Get the 'coverPhoto' Dropzone element
@@ -877,6 +877,23 @@
          }
 
 
+
+         var coverPhotoDropzoneElement = $('#coverPhoto')[0].dropzone;
+        if (coverPhotoDropzoneElement && coverPhotoDropzoneElement.files.length > 0) {
+            var coverPhoto = coverPhotoDropzoneElement.files[0];
+            console.log("Cover Photo:", coverPhoto); // Ensure this is a file object
+            formData.append("cover_image", coverPhoto);
+        }
+
+        // Get the 'PromotionalVideo' Dropzone element and append file
+        var promotionalVideoDropzoneElement = $('#promotionalVideo')[0].dropzone;
+        if (promotionalVideoDropzoneElement && promotionalVideoDropzoneElement.files.length > 0) {
+            var promotionalVideo = promotionalVideoDropzoneElement.files[0];
+            console.log("Promotional Video:", promotionalVideo); // Ensure this is a file object
+            formData.append("promotional_video", promotionalVideo);
+        }
+
+        
 
          $getCompletionMessageFromQuill = Quill.find($('#completionMessage')[0]);
          $getWelcomeMessageFromQuill = Quill.find($('#welcomeMessage')[0]);

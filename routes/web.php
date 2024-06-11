@@ -57,6 +57,7 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
 
     // Manage Courses
     Route::resource('courses', CourseController::class);
+
     Route::post('/courses/{course}/toggle-publishing', [CourseController::class, 'togglePublishingStatus'])->name('courses.togglePublishingStatus');
 
     // Manage sections

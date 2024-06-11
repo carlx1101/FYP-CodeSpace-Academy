@@ -145,14 +145,12 @@
     <!-- Content -->
     <div class="content container-fluid">
                 <!-- Step Form -->
-        <form id="courseEditForm"  class="js-step-form"
+        <form id="courseCreateForm" class="js-step-form"
         data-hs-step-form-options='{
         "progressSelector": "#basicVerStepFormProgress",
         "stepsSelector": "#basicVerStepFormContent",
         "endSelector": "#basicVerStepFinishBtn"
         }'>
-
-
         <div class="row">
         <div class="col-lg-3">
         <!-- Step -->
@@ -218,14 +216,14 @@
             <h4>Intended Learners</h4>
             <hr>
 
-            <div class="row mb-4">
+                <!-- Form -->
                 <div class="js-add-field row mb-4"
                     data-hs-add-field-options='{
-                        "template": "#addLearningOutcomes",
-                        "container": "#addLearningOutcomesFieldContainer",
-                        "defaultCreated": 0
+                    "template": "#addLearningObjectiveFieldTemplate",
+                    "container": "#addLearningObjectiveFieldContainer",
+                    "defaultCreated": 0
                     }'>
-                    <label for="learningOutcomesLabel" class="col-sm-3 col-form-label form-label">Learning Outcomes</label>
+                    <label for="learningObjective" class="col-sm-3 col-form-label form-label">Learning Objectives</label>
 
                     <div class="col-sm-9">
                         @if (!empty($course->learning_objectives))
@@ -237,121 +235,94 @@
                             @endforeach
                         @endif
 
-                        <!-- Container For Input Field -->
-                        <div id="addLearningOutcomesFieldContainer"></div>
 
-                        <a href="javascript:;" class="js-create-field form-link">
-                            <i class="bi-plus-circle me-1"></i> Add field
-                        </a>
                     </div>
+                    <!-- End Form -->
+
+                    <!-- Add LO Input Field -->
+                    <div id="addLearningObjectiveFieldTemplate" style="display: none;">
+                        <div class="input-group-add-field">
+                            <input type="text" class="js-input-mask form-control" data-name="learning_objectives[]" placeholder="Enter Learning Objective" aria-label="Enter email">
+                        </div>
+
+                        <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
+                            <i class="bi-x-lg"></i>
+                        </a>
                 </div>
-            </div>
-
-            <!-- Add learning outcomes Input Field -->
-            <div id="addLearningOutcomes" style="display: none;">
-                <div class="input-group-add-field">
-                    <!-- Use "[]" in the name attribute to make it an array -->
-                    <input type="text" class="form-control" name="learning_objectives[]" placeholder="Enter learning outcomes">
-                </div>
-
-                <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
-                    <i class="bi-x-lg"></i>
-                </a>
-            </div>
-            <!-- End learning outcome Input Field -->
+                <!-- End Add LO Input Field -->
 
 
-             {{-- Prerequisites  --}}
-             <div class="row mb-4">
+                <!-- Form -->
                 <div class="js-add-field row mb-4"
-                data-hs-add-field-options='{
-                  "template": "#addPrerequisites",
-                  "container": "#addPrerequisitesFieldContainer",
-                  "defaultCreated": 0
-                }'>
-                <label for="prerequisitesLabel" class="col-sm-3 col-form-label form-label">Prerequisites</label>
+                    data-hs-add-field-options='{
+                    "template": "#addPrerequisitesFieldTemplate",
+                    "container": "#addPrerequisitesFieldContainer",
+                    "defaultCreated": 0
+                    }'>
+                    <label for="prerequisites" class="col-sm-3 col-form-label form-label">Prerequisites</label>
 
-                <div class="col-sm-9">
+                    <div class="col-sm-9">
 
-                  @if (!empty($course->prerequisites))
-                      @foreach(json_decode($course->prerequisites, true) as $prerequisites)
-                          <div class="input-group-add-field">
-                              <!-- Use "[]" in the name attribute to make it an array -->
-                              <input type="text" class="form-control" name="prerequisites[]" id="prerequisites" placeholder="Enter learning outcomes" value="{{ $prerequisites }}">
-                          </div>
-                      @endforeach
-                  @endif
+                        @if (!empty($course->prerequisites))
+                            @foreach(json_decode($course->prerequisites, true) as $prerequisites)
+                                <div class="input-group-add-field">
+                                    <!-- Use "[]" in the name attribute to make it an array -->
+                                    <input type="text" class="form-control" name="prerequisites[]" id="prerequisites" placeholder="Enter learning outcomes" value="{{ $prerequisites }}">
+                                </div>
+                            @endforeach
+                        @endif
 
 
 
-                <!-- Container For Input Field -->
-                <div id="addPrerequisitesFieldContainer"></div>
-
-                <a href="javascript:;" class="js-create-field form-link">
-                <i class="bi-plus-circle me-1"></i> Add field
-                </a>
-                </div>
+                    </div>
                 </div>
                 <!-- End Form -->
 
-                <!-- Add prerequisites Input Field -->
-                <div id="addPrerequisites" style="display: none;">
+                <!-- Add Phone  Field -->
+                <div id="addPrerequisitesFieldTemplate" style="display: none;">
+                    <div class="input-group-add-field">
+                        <input type="text" class="js-input-mask form-control" data-name="prerequisites[]" placeholder="Enter Prerequisites" aria-label="Enter Prerequisites">
+                    </div>
+
+                    <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
+                        <i class="bi-x-lg"></i>
+                    </a>
+                </div>
+                <!-- End Add Phone Input Field -->
+
+                <!-- Form -->
+                <div class="js-add-field row mb-4"
+                    data-hs-add-field-options='{
+                    "template": "#addTargetAudienceFieldTemplate",
+                    "container": "#addTargetAudienceFieldContainer",
+                    "defaultCreated": 0
+                    }'>
+                    <label for="target_audiences" class="col-sm-3 col-form-label form-label">Target Audiences</label>
+
+                    <div class="col-sm-9">
+                        @if (!empty($course->target_audiences))
+                            @foreach(json_decode($course->target_audiences, true) as $target_audience)
+                                <div class="input-group-add-field">
+                                    <!-- Use "[]" in the name attribute to make it an array -->
+                                    <input type="text" class="form-control" name="target_audiences[]" id="targetAudienceLabel" placeholder="Enter learning outcomes" value="{{ $target_audience }}">
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+                <!-- End Form -->
+
+                <!-- Add Phone Input Field -->
+                <div id="addTargetAudienceFieldTemplate" style="display: none;">
                 <div class="input-group-add-field">
-                <input type="text" class=" form-control"  name="prerequisites[]"  placeholder="Enter prerequisites" >
+                <input type="text" class="js-input-mask form-control" data-name="target_audiences[]" placeholder="Enter Target Audience" aria-label="Enter Target Audience">
                 </div>
 
                 <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
                 <i class="bi-x-lg"></i>
                 </a>
                 </div>
-                <!-- End prerequisites Input Field -->
-            </div>
-
-
-            <div class="row mb-4">
-                <div class="js-add-field row mb-4"
-                data-hs-add-field-options='{
-                  "template": "#addTargetAudience",
-                  "container": "#addTargetAudienceFieldContainer",
-                  "defaultCreated": 0
-                }'>
-                <label for="targetAudienceLabel" class="col-sm-3 col-form-label form-label">Target Audience</label>
-
-                <div class="col-sm-9">
-                {{-- <input type="text" class="form-control"  name="target_audiences[]" id="targetAudienceLabel" placeholder="Enter Target Audience" > --}}
-
-                @if (!empty($course->target_audiences))
-                @foreach(json_decode($course->target_audiences, true) as $target_audience)
-                    <div class="input-group-add-field">
-                        <!-- Use "[]" in the name attribute to make it an array -->
-                        <input type="text" class="form-control" name="target_audiences[]" id="targetAudienceLabel" placeholder="Enter learning outcomes" value="{{ $target_audience }}">
-                    </div>
-                @endforeach
-            @endif
-
-
-                <!-- Container For Input Field -->
-                <div id="addTargetAudienceFieldContainer"></div>
-
-                <a href="javascript:;" class="js-create-field form-link">
-                <i class="bi-plus-circle me-1"></i> Add field
-                </a>
-                </div>
-                </div>
-                <!-- End Form -->
-
-                    <!-- Add prerequisites Input Field -->
-                  <div id="addTargetAudience" style="display: none;">
-                    <div class="input-group-add-field">
-                    <input type="text" class=" form-control" name="target_audiences[]"  placeholder="Enter Target Audience" >
-                    </div>
-
-                    <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
-                    <i class="bi-x-lg"></i>
-                    </a>
-                    </div>
-                    <!-- End prerequisites Input Field -->
-            </div>
+                <!-- End Add Phone Input Field -->
 
 
                 <!-- Form -->
@@ -384,12 +355,13 @@
             <h4>Course Design</h4>
             <hr>
 
+
                 <!-- Form -->
                 <div class="row mb-4">
                     <label for="title" class="col-sm-3 col-form-label form-label">Title</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="title" value="{{$course->title}}" id="title" placeholder="Enter Title">
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
                     </div>
                 </div>
                 <!-- End Form -->
@@ -400,23 +372,35 @@
                     <label for="subtitle" class="col-sm-3 col-form-label form-label">Subtitle</label>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="subtitle" value="{{$course->subtitle}}" id="subtitle" placeholder="Enter Title">
+                        <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="Enter Title">
                     </div>
                 </div>
                 <!-- End Form -->
 
 
+                <!-- Form -->
                 <div class="row mb-4">
                     <label for="subtitle" class="col-sm-3 col-form-label form-label">Description</label>
+
                     <div class="col-sm-9">
                         <!-- Quill -->
                         <div class="quill-custom">
-                            <div class="js-quill" id="description-editor" style="min-height: 15rem;"></div>
+                            <div class="js-quill" id="description" style="min-height: 15rem;"
+                                data-hs-quill-options='{
+                                "placeholder": "Type your message...",
+                                "modules": {
+                                    "toolbar": [
+                                    ["bold", "italic", "underline", "strike", "link", "image", "blockquote", "code", {"list": "bullet"}]
+                                    ]
+                                }
+                                }'>
+                            </div>
                         </div>
                         <!-- End Quill -->
                     </div>
                 </div>
                 <!-- End Form -->
+
 
 
                 <!-- Form -->
@@ -434,7 +418,7 @@
                                             }'>
                                         <option value="">Select a category...</option>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" {{ $course->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -450,12 +434,13 @@
                                             }'>
                                         <option value="">Select a subcategory...</option>
                                         @foreach($subcategories as $subcategory)
-                                            <option value="{{ $subcategory->id }}" {{ $course->subcategory_id == $subcategory->id ? 'selected' : '' }}>{{ $subcategory->name }}</option>
+                                            <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <!-- End Select -->
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -467,6 +452,7 @@
                     <label for="subtitle" class="col-sm-3 col-form-label form-label">Cover Image</label>
 
                     <div class="col-sm-9">
+                        <form>
                             <!-- Dropzone -->
                             <div id="coverPhoto" class="js-dropzone row dz-dropzone dz-dropzone-card">
                               <div class="dz-message">
@@ -480,6 +466,7 @@
                               </div>
                             </div>
                             <!-- End Dropzone -->
+                          </form>
                     </div>
                 </div>
                 <!-- End Form -->
@@ -490,6 +477,7 @@
                     <label for="subtitle" class="col-sm-3 col-form-label form-label">Promotional Video</label>
 
                     <div class="col-sm-9">
+                        <form>
                             <!-- Dropzone -->
                             <div id="promotionalVideo" class="js-dropzone row dz-dropzone dz-dropzone-card">
                               <div class="dz-message">
@@ -503,6 +491,7 @@
                               </div>
                             </div>
                             <!-- End Dropzone -->
+                          </form>
                     </div>
                 </div>
                 <!-- End Form -->
@@ -539,7 +528,7 @@
                 <label for="price" class="col-sm-3 col-form-label form-label">Price</label>
 
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="price" value="{{$course->price}}" id="price" placeholder="Enter Price">
+                    <input type="text" class="form-control" name="price" id="price" placeholder="Enter Price">
                 </div>
               </div>
               <!-- End Form -->
@@ -550,8 +539,7 @@
                 <label for="is_free" class="col-sm-3 col-form-label form-label">Free Course</label>
 
                 <div class="col-sm-9">
-                    <input type="checkbox" class="form-check-input" id="is_free" name="is_free" value="1"
-                    @if($course->is_free == 1) checked @endif> Free Course
+                  <input type="checkbox" class="form-check-input" id="is_free" name="is_free" value="1"> Free Course
                 </div>
               </div>
               <!-- End Form -->
@@ -642,7 +630,7 @@
 
               <div class="d-flex justify-content-end ms-auto">
                   <button type="button" class="btn btn-white me-2" data-dismiss="modal" aria-label="Close">Cancel</button>
-                  <button type="submit" class="btn btn-primary">Save course</button>
+                  <button id="basicVerStepFinishBtn" type="submit" class="btn btn-primary">Create course</button>
               </div>
             </div>
             <!-- End Footer -->
@@ -787,7 +775,7 @@
 
         // INITIALIZATION OF QUILLJS EDITOR
         // =======================================================
-        // HSCore.components.HSQuill.init('.js-quill')
+        HSCore.components.HSQuill.init('.js-quill')
 
         // INITIALIZATION OF SELECT
         // =======================================================
@@ -805,40 +793,7 @@
 
         // INITIALIZATION OF DROPZONE
         // =======================================================
-        // HSCore.components.HSDropzone.init('.js-dropzone')
-        // @if(isset($course->cover_image))
-        // var coverPhotoDropzoneElement = $("#coverPhoto")[0].dropzone;
-
-        // let picture = {name: "Cover Image", size: "{{Storage::size('public/' . $course->cover_image)}}" ,accepted: true, status: 'success'};
-        // coverPhotoDropzoneElement.files.push(picture);
-        // coverPhotoDropzoneElement.emit('addedfile', picture);
-        // console.log("{{ asset(Storage::url($course->cover_image)) }}" );
-        // coverPhotoDropzoneElement.emit('thumbnail', picture, "{{ asset(Storage::url($course->cover_image)) }}");
-        // coverPhotoDropzoneElement.emit("complete", picture);
-        // $('#coverPhoto .dz-progress')[0].remove();
-        // if ($('#coverPhoto .dz-success-mark').length > 0) {
-        //   $('#coverPhoto .dz-success-mark').parent().remove();
-        // }
-
-        // @endif
-
-        // @if(isset($course->promotional_video))
-        // var promotionalVideoDropzoneElement = $("#promotionalVideo")[0].dropzone;
-
-        // let video = {name: "Promotional Video", size: "{{Storage::size('public/' . $course->promotional_video)}}" ,accepted: true, status: 'success'};
-        // promotionalVideoDropzoneElement.files.push(video);
-        // promotionalVideoDropzoneElement.emit('addedfile', video);
-        // console.log("{{ asset(Storage::url($course->promotional_video)) }}" );
-        // promotionalVideoDropzoneElement.emit('thumbnail', video, "https://cdn-icons-png.flaticon.com/128/2377/2377793.png");
-        // promotionalVideoDropzoneElement.emit("complete", video);
-        // $('#promotionalVideo .dz-progress')[0].remove();
-        // if ($('#promotionalVideo .dz-success-mark').length > 0) {
-        //   $('#promotionalVideo .dz-success-mark').parent().remove();
-        // }
-
-        // @endif
-
-
+        HSCore.components.HSDropzone.init('.js-dropzone')
 
 
         // INITIALIZATION OF INPUT MASK
@@ -889,189 +844,80 @@
 
   <!-- End Style Switcher JS -->
 
-
-  {{-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var quillDescription = new Quill('#description-editor', {
-            placeholder: 'Type your message...',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline', 'strike', 'link', 'image', 'blockquote', 'code', {'list': 'bullet'}]
-                ]
-            },
-            theme: 'snow'
-        });
-
-        var quillWelcome = new Quill('#welcomeMessage', {
-            placeholder: 'Type your message...',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline', 'strike', 'link', 'image', 'blockquote', 'code', {'list': 'bullet'}]
-                ]
-            },
-            theme: 'snow'
-        });
-
-        var quillCompletion = new Quill('#completionMessage', {
-            placeholder: 'Type your message...',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline', 'strike', 'link', 'image', 'blockquote', 'code', {'list': 'bullet'}]
-                ]
-            },
-            theme: 'snow'
-        });
-
-        // Set the editor's content
-        var description = {!! json_encode($course->description) !!};
-        quillDescription.root.innerHTML = description;
-
-        var welcomeMessage = {!! json_encode($course->welcome_message) !!};
-        quillWelcome.root.innerHTML = welcomeMessage;
-
-        var completionMessage = {!! json_encode($course->completion_message) !!};
-        quillCompletion.root.innerHTML = completionMessage;
-    });
-</script> --}}
-
-
-
-
-
   <!-- Custom JS  -->
   <script>
-document.addEventListener('DOMContentLoaded', function () {
-    var quillDescription = new Quill('#description-editor', {
-        placeholder: 'Type your message...',
-        modules: {
-            toolbar: [
-                ['bold', 'italic', 'underline', 'strike', 'link', 'image', 'blockquote', 'code', {'list': 'bullet'}]
-            ]
-        },
-        theme: 'snow'
-    });
+    $(document).ready(function () {
+     // Listen for the form submission
+     $("#courseCreateForm").submit(function (event) {
+         event.preventDefault(); // Prevent the default form submission
 
-    var quillWelcome = new Quill('#welcomeMessage', {
-        placeholder: 'Type your message...',
-        modules: {
-            toolbar: [
-                ['bold', 'italic', 'underline', 'strike', 'link', 'image', 'blockquote', 'code', {'list': 'bullet'}]
-            ]
-        },
-        theme: 'snow'
-    });
-
-    var quillCompletion = new Quill('#completionMessage', {
-        placeholder: 'Type your message...',
-        modules: {
-            toolbar: [
-                ['bold', 'italic', 'underline', 'strike', 'link', 'image', 'blockquote', 'code', {'list': 'bullet'}]
-            ]
-        },
-        theme: 'snow'
-    });
-
-    // Set the editor's content
-    quillDescription.root.innerHTML = {!! json_encode($course->description) !!};
-    quillWelcome.root.innerHTML = {!! json_encode($course->welcome_message) !!};
-    quillCompletion.root.innerHTML = {!! json_encode($course->completion_message) !!};
-});
-
-$(document).ready(function () {
-    var courseId = "{{ $course->id }}";
-
-    // Initialize Dropzones
-    HSCore.components.HSDropzone.init('.js-dropzone');
-
-    @if(isset($course->cover_image))
-    var coverPhotoDropzoneElement = $("#coverPhoto")[0].dropzone;
-    let picture = {name: "Cover Image", size: "{{Storage::size('public/' . $course->cover_image)}}" ,accepted: true, status: 'success'};
-    coverPhotoDropzoneElement.files.push(picture);
-    coverPhotoDropzoneElement.emit('addedfile', picture);
-    coverPhotoDropzoneElement.emit('thumbnail', picture, "{{ asset(Storage::url($course->cover_image)) }}");
-    coverPhotoDropzoneElement.emit("complete", picture);
-    $('#coverPhoto .dz-progress')[0].remove();
-    if ($('#coverPhoto .dz-success-mark').length > 0) {
-      $('#coverPhoto .dz-success-mark').parent().remove();
-    }
-    @endif
-
-    @if(isset($course->promotional_video))
-    var promotionalVideoDropzoneElement = $("#promotionalVideo")[0].dropzone;
-    let video = {name: "Promotional Video", size: "{{Storage::size('public/' . $course->promotional_video)}}" ,accepted: true, status: 'success'};
-    promotionalVideoDropzoneElement.files.push(video);
-    promotionalVideoDropzoneElement.emit('addedfile', video);
-    promotionalVideoDropzoneElement.emit('thumbnail', video, "https://cdn-icons-png.flaticon.com/128/2377/2377793.png");
-    promotionalVideoDropzoneElement.emit("complete", video);
-    $('#promotionalVideo .dz-progress')[0].remove();
-    if ($('#promotionalVideo .dz-success-mark').length > 0) {
-      $('#promotionalVideo .dz-success-mark').parent().remove();
-    }
-    @endif
-
-    // Listen for the form submission
-    $("#courseEditForm").submit(function (event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        // Create a new FormData object and append form data to it
-        var formData = new FormData(this);
-        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+         // Create a new FormData object and append form data to it
+         var formData = new FormData(this);
+         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
 
-              var coverPhotoDropzoneElement = $('#coverPhoto')[0].dropzone;
-        if (coverPhotoDropzoneElement && coverPhotoDropzoneElement.files.length > 0) {
-            var coverPhoto = coverPhotoDropzoneElement.files[0];
-            console.log("Cover Photo:", coverPhoto); // Ensure this is a file object
-            formData.append("cover_image", coverPhoto);
-        }
 
-        // Get the 'PromotionalVideo' Dropzone element and append file
-        var promotionalVideoDropzoneElement = $('#promotionalVideo')[0].dropzone;
-        if (promotionalVideoDropzoneElement && promotionalVideoDropzoneElement.files.length > 0) {
-            var promotionalVideo = promotionalVideoDropzoneElement.files[0];
-            console.log("Promotional Video:", promotionalVideo); // Ensure this is a file object
-            formData.append("promotional_video", promotionalVideo);
-        }
+         // Get the 'coverPhoto' Dropzone element
+         var coverPhotoDropzoneElement = $('#coverPhoto')[0].dropzone;
+
+         // Check if 'coverPhoto' Dropzone has files
+         if (coverPhotoDropzoneElement) {
+             var coverPhoto = coverPhotoDropzoneElement.files[0];
+             if (coverPhoto) {
+                 formData.append("cover_image", coverPhoto);
+             }
+         }
 
 
-        // Extract content from Quill editors
-        var quillDescription = Quill.find($('#description-editor')[0]);
-        var quillWelcome = Quill.find($('#welcomeMessage')[0]);
-        var quillCompletion = Quill.find($('#completionMessage')[0]);
 
-        formData.append("completion_message", quillCompletion.root.innerHTML);
-        formData.append("welcome_message", quillWelcome.root.innerHTML);
-        formData.append("description", quillDescription.root.innerHTML);
+         // Get the 'PromotionalVideo' Dropzone element
+         var promotionalVideoDropzoneElement = $('#promotionalVideo')[0].dropzone;
 
-        // Log all formData entries
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
+         // Check if 'PromotionalVideo' Dropzone has files
+         if (promotionalVideoDropzoneElement) {
+             var promotionalVideo = promotionalVideoDropzoneElement.files[0];
+             if (promotionalVideo) {
+                 formData.append("promotional_video", promotionalVideo);
+             }
+         }
 
-        // Make an AJAX request
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-            'X-HTTP-Method-Override': 'PUT'
 
-            },
-            url: "{{ route('courses.update', 'courseId') }}".replace('courseId', courseId),
-            method: 'POST', // Use POST for Laravel PUT method
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                // Handle success response
-                console.log("Success:", response);
-            },
-            error: function (xhr, status, error) {
-                // Handle error response
-                console.log("Error:", error);
-            }
-        });
-    });
-});
 
+         $getCompletionMessageFromQuill = Quill.find($('#completionMessage')[0]);
+         $getWelcomeMessageFromQuill = Quill.find($('#welcomeMessage')[0]);
+         $getCourseDescriptionFromQuill = Quill.find($('#description')[0]);
+
+         $extractedCompletionMessageFromQuill = $getCompletionMessageFromQuill.root.innerHTML;
+         $extractedWelcomeMessageFromQuill = $getWelcomeMessageFromQuill.root.innerHTML;
+         $extractedCourseDescriptionFromQuill = $getCourseDescriptionFromQuill.root.innerHTML;
+
+         // Append Quill content to formData
+         formData.append("completion_message",  $extractedCompletionMessageFromQuill);
+         formData.append("welcome_message", $extractedWelcomeMessageFromQuill);
+         formData.append("description", $extractedCourseDescriptionFromQuill);
+
+
+         console.log("FormData:", formData);
+
+         // Make an AJAX request
+         $.ajax({
+           headers: {'X-CSRF-TOKEN': csrfToken},
+             url: "{{route('courses.store')}}",
+             type: "POST",
+             data: formData,
+             contentType: false,
+             processData: false,
+             success: function (response) {
+                 // Handle success response
+                 console.log("Success:", response);
+             },
+             error: function (xhr, status, error) {
+                 // Handle error response
+                 console.log("Error:", error);
+             }
+         });
+     });
+   });
  </script>
 
   <!-- End Custom JS  -->

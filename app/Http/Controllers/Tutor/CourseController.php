@@ -80,7 +80,53 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $course = Course::findOrFail($id);
+
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'welcome_message' => 'nullable|string',
+            'completion_message' => 'nullable|string',
+            'category_id' => 'required|integer|exists:categories,id',
+            'subcategory_id' => 'required|integer|exists:subcategories,id',
+            'is_free' => 'sometimes|boolean',
+            'price' => 'nullable|numeric',
+           
+            'learning_objectives' => 'nullable|array',
+            'prerequisites' => 'nullable|array',
+            'target_audiences' => 'nullable|array',
+        ]);
+
+        if ($request->hasFile('cover_image')) {
+            // Delete the old cover image if it exists
+            if ($course->cover_image) {
+                Storage::disk('public')->delete($course->cover_image);
+            }
+
+            // Store the new cover image
+            $data['cover_image'] = $request->file('cover_image')->store('cover_images', 'public');
+        }
+
+        if ($request->hasFile('promotional_video')) {
+            // Delete the old promotional video if it exists
+            if ($course->promotional_video) {
+                Storage::disk('public')->delete($course->promotional_video);
+            }
+
+            // Store the new promotional video
+            $data['promotional_video'] = $request->file('promotional_video')->store('promotional_videos', 'public');
+        }
+
+        // Update JSON fields
+        $data['learning_objectives'] = json_encode($data['learning_objectives']);
+        $data['prerequisites'] = json_encode($data['prerequisites']);
+        $data['target_audiences'] = json_encode($data['target_audiences']);
+
+        // Update the course
+        $course->update($data);
+
+        return redirect()->route('courses.index')->with('success', 'Course updated successfully');
     }
 
     /**
