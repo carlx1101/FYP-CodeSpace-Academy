@@ -387,7 +387,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="lessonCreateForm">
-                        <input type="text" id="section_id" name="section_id" value="{{$section->id}}">
+                        <input type="text" id="section_id" name="section_id" value="{{ isset($section->id) ? $section->id : '' }}">
 
                         <div class="row">
                             <div class="mb-3" style="text-align: left">

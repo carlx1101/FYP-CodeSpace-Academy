@@ -3,13 +3,14 @@
 use App\Http\Livewire\Sections;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Student\CartController;
 use App\Http\Controllers\Student\NoteController;
 use App\Http\Controllers\Tutor\CourseController;
 use App\Http\Controllers\Tutor\LessonController;
-use App\Http\Controllers\Tutor\SectionController;
 
+use App\Http\Controllers\Tutor\SectionController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\EnrollmentController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
@@ -52,6 +53,9 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
 
     // Notes
     Route::resource('notes', NoteController::class);
+
+    // Profile
+    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
 
 

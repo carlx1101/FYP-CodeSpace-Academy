@@ -101,5 +101,10 @@ class User extends Authenticatable
                     ->withTimestamps();
     }
 
+    public function profile()
+{
+    return $this->hasOne(Profile::class);
+}
+
 
 }

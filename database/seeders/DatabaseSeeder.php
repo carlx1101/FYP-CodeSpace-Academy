@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
             CreateUsersSeeder::class,
             CategorySeeder::class,
             SubcategorySeeder::class,
+            ProfileSeeder::class, 
+
         ]);
     }
 }

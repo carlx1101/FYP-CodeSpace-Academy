@@ -3,7 +3,7 @@
       <div class="navbar-vertical-footer-offset">
         <!-- Logo -->
 
-        <a class="navbar-brand" href="./index.html" aria-label="Front">
+        <a class="navbar-brand" href="{{route('student.dashboard')}}" aria-label="Front">
           <img class="navbar-brand-logo" src="./assets/svg/logos/logo.svg" alt="Logo" data-hs-theme-appearance="default">
           <img class="navbar-brand-logo" src="./assets/svg/logos-light/logo.svg" alt="Logo" data-hs-theme-appearance="dark">
           <img class="navbar-brand-logo-mini" src="./assets/svg/logos/logo-short.svg" alt="Logo" data-hs-theme-appearance="default">
@@ -64,8 +64,8 @@
             <div id="navbarVerticalMenuProfileMenu">
 
                 <div class="nav-item">
-                  <a class="nav-link " href="" data-placement="left">
-                      <i class="bi bi-journals nav-icon"></i>
+                  <a class="nav-link" href="{{ route('profile.show', Auth::user()->id) }}" data-placement="left">
+                    <i class="bi bi-journals nav-icon"></i>
                       <span class="nav-link-title">My Portfolio</span>
                   </a>
                 </div>
