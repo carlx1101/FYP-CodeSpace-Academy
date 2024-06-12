@@ -24,6 +24,11 @@
   <link rel="preload" href="{{asset('backend/css/theme.min.css')}}" data-hs-appearance="default" as="style">
   <link rel="preload" href="{{asset('backend/css/theme-dark.min.css')}}" data-hs-appearance="dark" as="style">
 
+
+  @livewireStyles
+
+
+
   <style data-hs-appearance-onload-styles>
     *
     {
@@ -267,43 +272,12 @@
             <!-- Card -->
             <div class="card">
               <!-- Profile Cover -->
-              <div class="profile-cover">
-                <div class="profile-cover-img-wrapper">
-                  <img id="profileCoverImg" class="profile-cover-img" src="./assets/img/1920x400/img2.jpg" alt="Image Description">
-
-                  <!-- Custom File Cover -->
-                  <div class="profile-cover-content profile-cover-uploader p-3">
-                    <input type="file" class="js-file-attach profile-cover-uploader-input" id="profileCoverUplaoder" data-hs-file-attach-options='{
-                                "textTarget": "#profileCoverImg",
-                                "mode": "image",
-                                "targetAttr": "src",
-                                "allowTypes": [".png", ".jpeg", ".jpg"]
-                             }'>
-                    <label class="profile-cover-uploader-label btn btn-sm btn-white" for="profileCoverUplaoder">
-                      <i class="bi-camera-fill"></i>
-                      <span class="d-none d-sm-inline-block ms-1">Upload header</span>
-                    </label>
-                  </div>
-                  <!-- End Custom File Cover -->
-                </div>
-              </div>
+              @livewire('profile.cover-banner')
               <!-- End Profile Cover -->
 
               <!-- Avatar -->
-              <label class="avatar avatar-xxl avatar-circle avatar-uploader profile-cover-avatar" for="editAvatarUploaderModal">
-                <img id="editAvatarImgModal" class="avatar-img" src="./assets/img/160x160/img6.jpg" alt="Image Description">
+              @livewire('profile.avatar-upload')
 
-                <input type="file" class="js-file-attach avatar-uploader-input" id="editAvatarUploaderModal" data-hs-file-attach-options='{
-                            "textTarget": "#editAvatarImgModal",
-                            "mode": "image",
-                            "targetAttr": "src",
-                            "allowTypes": [".png", ".jpeg", ".jpg"]
-                         }'>
-
-                <span class="avatar-uploader-trigger">
-                  <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
-                </span>
-              </label>
               <!-- End Avatar -->
 
               <!-- Body -->
@@ -333,7 +307,7 @@
             <!-- End Card -->
 
             <!-- Card -->
-            <div class="card">
+            {{-- <div class="card">
               <div class="card-header">
                 <h2 class="card-title h4">Personal information</h2>
               </div>
@@ -406,99 +380,13 @@
                 <!-- End Form -->
               </div>
               <!-- End Body -->
-            </div>
+            </div> --}}
             <!-- End Card -->
+            @livewire('profile.personal-information')
 
 
-            <!-- Card -->
-              <div class="card" id="geoInfo">
-              <div class="card-header">
-                <h2 class="card-title h4">Geographical information</h2>
-              </div>
+            @livewire('profile.geographical-information')
 
-              <!-- Body -->
-              <div class="card-body">
-                <!-- Form -->
-                <form >
-
-
-
-
-                      <!-- Form -->
-                      <div class="row mb-4">
-                        <label for="addressOneLabel" class="col-sm-3 col-form-label form-label">Address 1</label>
-
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="addressOne" id="addressOneLabel" placeholder="Address One" aria-label="Address One" >
-                        </div>
-                      </div>
-                      <!-- End Form -->
-
-
-                      <!-- Form -->
-                      <div class="row mb-4">
-                        <label for="addressTwoLabel" class="col-sm-3 col-form-label form-label">Address 2 </label>
-
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" name="addressTwo" id="addressTwoLabel" placeholder="Address Two" aria-label="Address Two" >
-                        </div>
-                      </div>
-                      <!-- End Form -->
-
-                      <!-- Form -->
-                      <div class="row mb-4">
-                        <label for="firstNameLabel" class="col-sm-3 col-form-label form-label">State & Zipcode </label>
-
-                        <div class="col-sm-9">
-                          <div class="input-group input-group-sm-vertical">
-                            <input type="text" class="form-control" name="state" id="state" placeholder="State" >
-                            <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Zipcode" >
-                          </div>
-                        </div>
-                      </div>
-                      <!-- End Form -->
-
-
-
-                      <!-- Form -->
-                      <div class="row mb-4">
-                        <label for="countryLabel" class="col-sm-3 col-form-label form-label">Country</label>
-
-                        <div class="col-sm-9">
-                          <!-- Select -->
-                          <div class="tom-select-custom">
-                            <select class="js-select form-select" id="countryLabel" data-hs-tom-select-options='{
-                                      "searchInDropdown": false
-                                    }'>
-                              <option label="empty"></option>
-                              <option value="language1" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/><span>English (US)</span></span>'>English (US)</option>
-                              <option value="language2" selected data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/gb.svg" alt="Image description" width="16"/><span>English (UK)</span></span>'>English (UK)</option>
-                              <option value="language3" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/><span>Deutsch</span></span>'>Deutsch</option>
-                              <option value="language4" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/dk.svg" alt="Image description" width="16"/><span>Dansk</span></span>'>Dansk</option>
-                              <option value="language5" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/><span>Español</span></span>'>Español</option>
-                              <option value="language6" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/nl.svg" alt="Image description" width="16"/><span>Nederlands</span></span>'>Nederlands</option>
-                              <option value="language7" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/it.svg" alt="Image description" width="16"/><span>Italiano</span></span>'>Italiano</option>
-                              <option value="language8" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/><span>中文 (繁體)</span></span>'>中文 (繁體)</option>
-                            </select>
-                          </div>
-                          <!-- End Select -->
-                        </div>
-                      </div>
-                      <!-- End Form -->
-
-
-
-
-
-                  <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                  </div>
-                </form>
-                <!-- End Form -->
-              </div>
-              <!-- End Body -->
-              </div>
-            <!-- End Card -->
 
 
                   <!-- Card -->
@@ -593,99 +481,12 @@
 
 
 
-            <!-- Card -->
-            <div id="emailSection" class="card">
-              <div class="card-header">
-                <h4 class="card-title">Email</h4>
-              </div>
+            @livewire('profile.update-email')
 
-              <!-- Body -->
-              <div class="card-body">
-                <p>Your current email address is <span class="fw-semibold">mark@site.com</span></p>
-
-                <!-- Form -->
-                <form>
-                  <!-- Form -->
-                  <div class="row mb-4">
-                    <label for="newEmailLabel" class="col-sm-3 col-form-label form-label">New email address</label>
-
-                    <div class="col-sm-9">
-                      <input type="email" class="form-control" name="newEmail" id="newEmailLabel" placeholder="Enter new email address" aria-label="Enter new email address">
-                    </div>
-                  </div>
-                  <!-- End Form -->
-
-                  <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                  </div>
-                </form>
-                <!-- End Form -->
-              </div>
-              <!-- End Body -->
-            </div>
-            <!-- End Card -->
 
             <!-- Card -->
-            <div id="passwordSection" class="card">
-              <div class="card-header">
-                <h4 class="card-title">Change your password</h4>
-              </div>
+            @livewire('profile.change-password')
 
-              <!-- Body -->
-              <div class="card-body">
-                <!-- Form -->
-                <form id="changePasswordForm">
-                  <!-- Form -->
-                  <div class="row mb-4">
-                    <label for="currentPasswordLabel" class="col-sm-3 col-form-label form-label">Current password</label>
-
-                    <div class="col-sm-9">
-                      <input type="password" class="form-control" name="currentPassword" id="currentPasswordLabel" placeholder="Enter current password" aria-label="Enter current password">
-                    </div>
-                  </div>
-                  <!-- End Form -->
-
-                  <!-- Form -->
-                  <div class="row mb-4">
-                    <label for="newPassword" class="col-sm-3 col-form-label form-label">New password</label>
-
-                    <div class="col-sm-9">
-                      <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="Enter new password" aria-label="Enter new password">
-                    </div>
-                  </div>
-                  <!-- End Form -->
-
-                  <!-- Form -->
-                  <div class="row mb-4">
-                    <label for="confirmNewPasswordLabel" class="col-sm-3 col-form-label form-label">Confirm new password</label>
-
-                    <div class="col-sm-9">
-                      <div class="mb-3">
-                        <input type="password" class="form-control" name="confirmNewPassword" id="confirmNewPasswordLabel" placeholder="Confirm your new password" aria-label="Confirm your new password">
-                      </div>
-
-                      <h5>Password requirements:</h5>
-
-                      <p class="fs-6 mb-2">Ensure that these requirements are met:</p>
-
-                      <ul class="fs-6">
-                        <li>Minimum 8 characters long - the more, the better</li>
-                        <li>At least one lowercase character</li>
-                        <li>At least one uppercase character</li>
-                        <li>At least one number, symbol, or whitespace character</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!-- End Form -->
-
-                  <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                  </div>
-                </form>
-                <!-- End Form -->
-              </div>
-              <!-- End Body -->
-            </div>
             <!-- End Card -->
 
             <!-- Card -->
@@ -811,213 +612,12 @@
 
 
             <!-- Card -->
-            <div id="socialAccountsSection" class="card">
-              <div class="card-header">
-                <h4 class="card-title">Social accounts</h4>
-              </div>
+            @livewire('social-accounts')
 
-              <!-- Body -->
-              <div class="card-body">
-                <form>
-                  <div class="list-group list-group-lg list-group-flush list-group-no-gutters">
-                    <!-- Item -->
-                    <div class="list-group-item">
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <i class="bi-twitter list-group-icon"></i>
-                        </div>
-
-                        <div class="flex-grow-1">
-                          <div class="row align-items-center">
-                            <div class="col-sm mb-2 mb-sm-0">
-                              <h4 class="mb-0">Twitter</h4>
-                              <a class="fs-5" href="#">www.twitter.com/htmlstream</a>
-                            </div>
-                            <!-- End Col -->
-
-                            <div class="col-sm-auto">
-                              <a class="btn btn-white btn-sm" href="javascript:;">Disconnect</a>
-                            </div>
-                            <!-- End Col -->
-                          </div>
-                          <!-- End Row -->
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Item -->
-
-                    <!-- Item -->
-                    <div class="list-group-item">
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <i class="bi-facebook list-group-icon"></i>
-                        </div>
-
-                        <div class="flex-grow-1">
-                          <div class="row align-items-center">
-                            <div class="col-sm mb-2 mb-sm-0">
-                              <h4 class="mb-0">Facebook</h4>
-                              <a class="fs-5" href="#">www.facebook.com/htmlstream</a>
-                            </div>
-                            <!-- End Col -->
-
-                            <div class="col-sm-auto">
-                              <a class="btn btn-white btn-sm" href="javascript:;">Disconnect</a>
-                            </div>
-                            <!-- End Col -->
-                          </div>
-                          <!-- End Row -->
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Item -->
-
-
-
-                    <!-- Item -->
-                    <div class="list-group-item">
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <i class="bi-linkedin list-group-icon"></i>
-                        </div>
-
-                        <div class="flex-grow-1">
-                          <div class="row align-items-center">
-                            <div class="col-sm mb-2 mb-sm-0">
-                              <h4 class="mb-0">Linkedin</h4>
-                              <a class="fs-5" href="#">www.linkedin.com/htmlstream</a>
-                            </div>
-                            <!-- End Col -->
-
-                            <div class="col-sm-auto">
-                              <a class="btn btn-white btn-sm" href="javascript:;">Disconnect</a>
-                            </div>
-                            <!-- End Col -->
-                          </div>
-                          <!-- End Row -->
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Item -->
-
-                    <!-- Item -->
-                    <div class="list-group-item">
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <i class="bi-youtube list-group-icon"></i>
-                        </div>
-
-                        <div class="flex-grow-1">
-                          <div class="row align-items-center">
-                            <div class="col-sm mb-2 mb-sm-0">
-                              <h4 class="mb-0">Youtube</h4>
-                              <p class="fs-5 text-body mb-0">Not connected</p>
-                            </div>
-                            <!-- End Col -->
-
-                            <div class="col-sm-auto">
-                              <a class="btn btn-white btn-sm" href="javascript:;">Connect</a>
-                            </div>
-                            <!-- End Col -->
-                          </div>
-                          <!-- End Row -->
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Item -->
-
-
-                         <!-- Item -->
-                         <div class="list-group-item">
-                          <div class="d-flex">
-                            <div class="flex-shrink-0">
-                              <i class="bi-instagram list-group-icon"></i>
-                            </div>
-
-                            <div class="flex-grow-1">
-                              <div class="row align-items-center">
-                                <div class="col-sm mb-2 mb-sm-0">
-                                  <h4 class="mb-0">Instagram</h4>
-                                  <p class="fs-5 text-body mb-0">Not connected</p>
-                                </div>
-                                <!-- End Col -->
-
-                                <div class="col-sm-auto">
-                                  <a class="btn btn-white btn-sm" href="javascript:;">Connect</a>
-                                </div>
-                                <!-- End Col -->
-                              </div>
-                              <!-- End Row -->
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End Item -->
-
-
-
-
-                    <!-- Item -->
-                    <div class="list-group-item">
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <i class="bi-browser-chrome list-group-icon"></i>
-                        </div>
-
-                        <div class="flex-grow-1">
-                          <div class="row align-items-center">
-                            <div class="col-sm mb-2 mb-sm-0">
-                              <h4 class="mb-0">Website</h4>
-                              <p class="fs-5 text-body mb-0">Not connected</p>
-                            </div>
-                            <!-- End Col -->
-
-                            <div class="col-sm-auto">
-                              <a class="btn btn-white btn-sm" href="javascript:;">Connect</a>
-                            </div>
-                            <!-- End Col -->
-                          </div>
-                          <!-- End Row -->
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Item -->
-
-
-                  </div>
-                </form>
-              </div>
-              <!-- End Body -->
-            </div>
-            <!-- End Card -->
 
             <!-- Card -->
-            <div id="deleteAccountSection" class="card">
-              <div class="card-header">
-                <h4 class="card-title">Delete your account</h4>
-              </div>
+            @livewire('profile.delete-account')
 
-              <!-- Body -->
-              <div class="card-body">
-                <p class="card-text">When you delete your account, you lose access to Front account services, and we permanently delete your personal data. You can cancel the deletion for 14 days.</p>
-
-                <div class="mb-4">
-                  <!-- Form Check -->
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="deleteAccountCheckbox">
-                    <label class="form-check-label" for="deleteAccountCheckbox">
-                      Confirm that I want to delete my account.
-                    </label>
-                  </div>
-                  <!-- End Form Check -->
-                </div>
-
-                <div class="d-flex justify-content-end gap-3">
-                  <a class="btn btn-white" href="#">Learn more</a>
-                  <button type="submit" class="btn btn-danger">Delete</button>
-                </div>
-              </div>
-              <!-- End Body -->
-            </div>
             <!-- End Card -->
           </div>
 
@@ -1739,6 +1339,9 @@
 
   <!-- End Welcome Message Modal -->
   <!-- ========== END SECONDARY CONTENTS ========== -->
+
+  @livewireScripts
+
 
   <!-- JS Global Compulsory  -->
   <script src="{{asset('backend/vendor/jquery/dist/jquery.min.js')}}"></script>

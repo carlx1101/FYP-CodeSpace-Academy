@@ -8,8 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Student\CartController;
 use App\Http\Controllers\Student\NoteController;
 use App\Http\Controllers\Tutor\CourseController;
-use App\Http\Controllers\Tutor\LessonController;
 
+use App\Http\Controllers\Tutor\LessonController;
 use App\Http\Controllers\Tutor\SectionController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\EnrollmentController;
@@ -56,6 +56,8 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
 
     // Profile
     Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+
+
 
 
 
