@@ -29,7 +29,10 @@ class Profile extends Model
         'youtube_link',
         'instagram_link',
         'website_link',
+        'timezone',
+        'primary_language',
     ];
+    
     public function user()
     {
         return $this->belongsTo(User::class);

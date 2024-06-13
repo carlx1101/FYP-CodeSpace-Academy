@@ -39,6 +39,10 @@ return new class extends Migration
             $table->string('instagram_link')->nullable();
             $table->string('website_link')->nullable();
 
+            // Preference
+            $table->string('timezone')->nullable();
+            $table->string('primary_language')->nullable();
+
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

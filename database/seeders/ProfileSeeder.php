@@ -38,6 +38,8 @@ class ProfileSeeder extends Seeder
                 'youtube_link' => 'https://youtube.com/user/' . $user->name, // Assuming User model has name
                 'instagram_link' => 'https://instagram.com/' . $user->name, // Assuming User model has name
                 'website_link' => 'https://example.com/' . $user->name, // Example website link
+                'timezone' => 'America/New_York', // Example timezone
+                'primary_language' => 'en', // Example primary language
             ]);
         }
     }

@@ -490,129 +490,20 @@
             <!-- End Card -->
 
             <!-- Card -->
-            <div id="preferencesSection" class="card">
-              <div class="card-header">
-                <h4 class="card-title">Preferences</h4>
-              </div>
+            @livewire('profile.user-preferences')
 
-              <!-- Body -->
-              <div class="card-body">
-                <!-- Form -->
-                <form>
-                  <!-- Form -->
-                  <div class="row mb-4">
-                    <label for="languageLabel" class="col-sm-3 col-form-label form-label">Language</label>
-
-                    <div class="col-sm-9">
-                      <!-- Select -->
-                      <div class="tom-select-custom">
-                        <select class="js-select form-select" id="languageLabel" data-hs-tom-select-options='{
-                                  "searchInDropdown": false
-                                }'>
-                          <option label="empty"></option>
-                          <option value="language1" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/><span>English (US)</span></span>'>English (US)</option>
-                          <option value="language2" selected data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/gb.svg" alt="Image description" width="16"/><span>English (UK)</span></span>'>English (UK)</option>
-                          <option value="language3" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/><span>Deutsch</span></span>'>Deutsch</option>
-                          <option value="language4" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/dk.svg" alt="Image description" width="16"/><span>Dansk</span></span>'>Dansk</option>
-                          <option value="language5" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/><span>Español</span></span>'>Español</option>
-                          <option value="language6" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/nl.svg" alt="Image description" width="16"/><span>Nederlands</span></span>'>Nederlands</option>
-                          <option value="language7" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/it.svg" alt="Image description" width="16"/><span>Italiano</span></span>'>Italiano</option>
-                          <option value="language8" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/><span>中文 (繁體)</span></span>'>中文 (繁體)</option>
-                        </select>
-                      </div>
-                      <!-- End Select -->
-                    </div>
-                  </div>
-                  <!-- End Form -->
-
-                  <!-- Form -->
-                  <div class="row mb-4">
-                    <label for="timeZoneLabel" class="col-sm-3 col-form-label form-label">Time zone</label>
-
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" name="currentPassword" id="timeZoneLabel" placeholder="Your time zone" aria-label="Your time zone" value="GMT+01:00" readonly>
-                    </div>
-                  </div>
-                  <!-- End Form -->
-
-
-
-
-                  <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                  </div>
-                </form>
-                <!-- End Form -->
-              </div>
-              <!-- End Body -->
-            </div>
             <!-- End Card -->
 
 
 
-            <!-- Card -->
-            <div id="recentDevicesSection" class="card">
-              <div class="card-header">
-                <h4 class="card-title">Recent devices</h4>
-              </div>
+            @livewire('profile.user-devices')
 
-              <!-- Body -->
-              <div class="card-body">
-                <p class="card-text">View and manage devices where you're currently logged in.</p>
-              </div>
-              <!-- End Body -->
-
-              <!-- Table -->
-              <div class="table-responsive">
-                <table class="table table-thead-bordered table-nowrap table-align-middle card-table">
-                  <thead class="thead-light">
-                    <tr>
-                      <th>Browser</th>
-                      <th>Device</th>
-                      <th>Location</th>
-                      <th>Most recent activity</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td class="align-items-center">
-                        <img class="avatar avatar-xss me-2" src="./assets/svg/brands/chrome-icon.svg" alt="Image Description"> Chrome on Windows
-                      </td>
-                      <td><i class="bi-laptop fs-3 me-2"></i> Dell XPS 15 <span class="badge bg-soft-success text-success ms-1">Current</span></td>
-                      <td>London, UK</td>
-                      <td>Now</td>
-                    </tr>
-
-                    <tr>
-                      <td class="align-items-center">
-                        <img class="avatar avatar-xss me-2" src="./assets/svg/brands/chrome-icon.svg" alt="Image Description"> Chrome on Android
-                      </td>
-                      <td><i class="bi-phone fs-3 me-2"></i> Google Pixel 3a</td>
-                      <td>London, UK</td>
-                      <td>15, August 2020 15:08</td>
-                    </tr>
-
-                    <tr>
-                      <td class="align-items-center">
-                        <img class="avatar avatar-xss me-2" src="./assets/svg/brands/chrome-icon.svg" alt="Image Description"> Chrome on Windows
-                      </td>
-                      <td><i class="bi-display fs-3 me-2"></i> Microsoft Studio 2</td>
-                      <td>London, UK</td>
-                      <td>12, August 2020 20:07</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- End Table -->
-            </div>
-            <!-- End Card -->
 
 
 
 
             <!-- Card -->
-            @livewire('social-accounts')
+            @livewire('profile.social-accounts')
 
 
             <!-- Card -->
