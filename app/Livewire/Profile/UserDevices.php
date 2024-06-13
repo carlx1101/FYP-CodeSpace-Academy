@@ -34,6 +34,6 @@ class UserDevices extends Component
 
     public function render()
     {
-        return view('livewire.user-devices', ['sessions' => $this->sessions]);
+        return view('livewire.profile.user-devices', ['sessions' => $this->sessions]);
     }
 }

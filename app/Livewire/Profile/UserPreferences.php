@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Profile;
 
+use Log;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,7 +50,7 @@ class UserPreferences extends Component
         $this->timezone = $user->profile->timezone ?? '';
 
         // Log the loaded values
-        \Log::info('Preferences loaded:', [
+        Log::info('Preferences loaded:', [
             'primary_language' => $this->primary_language,
             'timezone' => $this->timezone,
         ]);
@@ -57,6 +58,6 @@ class UserPreferences extends Component
 
     public function render()
     {
-        return view('livewire.user-preferences');
+        return view('livewire.profile.user-preferences');
     }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\Tutor\CourseController;
 
 use App\Http\Controllers\Tutor\LessonController;
 use App\Http\Controllers\Tutor\SectionController;
+use App\Http\Controllers\Student\BillingController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\EnrollmentController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
@@ -56,6 +57,11 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
 
     // Profile
     Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+
+    // Billing
+
+    Route::get('/billings', [BillingController::class, 'index'])->name('billings.index');
+    Route::get('/billings/{order}', [BillingController::class, 'show'])->name('billings.show');
 
 
 

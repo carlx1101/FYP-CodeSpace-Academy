@@ -55,7 +55,7 @@
             </div>
             <!-- End Collapse -->
 
-            <span class="dropdown-header mt-4">Public </span>
+            <span class="dropdown-header mt-4">Account & Settings </span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
 
 
@@ -66,10 +66,16 @@
                 <div class="nav-item">
                   <a class="nav-link" href="{{ route('profile.show', Auth::user()->id) }}" data-placement="left">
                     <i class="bi bi-journals nav-icon"></i>
-                      <span class="nav-link-title">My Portfolio</span>
+                      <span class="nav-link-title">Account</span>
                   </a>
                 </div>
 
+                <div class="nav-item">
+                    <a class="nav-link" href="{{ route('billings.index') }}" data-placement="left">
+                      <i class="bi bi-journals nav-icon"></i>
+                        <span class="nav-link-title">Billings History</span>
+                    </a>
+                </div>
 
 
             </div>
