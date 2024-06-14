@@ -222,50 +222,106 @@
       <div class="tab-content" id="connectionsTabContent">
         <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
           <!-- Folders -->
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2">
+
+
+
+
+
 
 
             @foreach($courses as $course)
 
-            <div class="col mb-3 mb-lg-5">
-              <!-- Card -->
-              <div class="card card-sm card-hover-shadow card-header-borderless h-100 text-center">
-                <div class="card-header card-header-content-between border-0">
-                  <span class="small"></span>
 
-                  <!-- Dropdown -->
-                  <div class="dropdown">
-                    <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm card-dropdown-btn rounded-circle" id="filesGridDropdown2" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="bi-three-dots-vertical"></i>
-                    </button>
 
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="filesGridDropdown2" style="min-width: 13rem;">
-                      <span class="dropdown-header">Features</span>
 
-                      <a class="dropdown-item" href="{{ route('student.learn', ['courseTitle' => $course->title]) }}">
-                        <i class="bi-share dropdown-item-icon"></i> Learn course
-                      </a>
 
+
+                <div class="col mb-3 mb-lg-5">
+                <!-- Card -->
+                <div class="card card-hover-shadow text-center h-100">
+                    <!-- Progress -->
+                    <div class="card-progress-wrap">
+                    <div class="progress card-progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    </div>
+                    <!-- End Progress -->
+
+                    <!-- Body -->
+                    <div class="card-body">
+                    <div class="row align-items-center text-start mb-4">
+                        <div class="col">
+                        <span class="badge bg-soft-success text-success p-2">Completed</span>
+                        </div>
+
+                        <div class="col-auto">
+                        <!-- Dropdown -->
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm card-dropdown-btn rounded-circle" id="projectsGridDropdown6" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-three-dots-vertical"></i>
+                            </button>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="projectsGridDropdown6">
+                            <a class="dropdown-item" href="{{ route('student.learn', ['courseTitle' => $course->title]) }}">Learn Course </a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="#">Delete</a>
+                            </div>
+                        </div>
+                        <!-- End Dropdown -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+
+                    <div class="d-flex justify-content-center mb-2">
+                        <!-- Avatar -->
+                        <img class="avatar avatar-lg" src="{{ asset('storage/' . $course->cover_image) }}" alt="{{ $course->title }}">
 
                     </div>
-                  </div>
-                  <!-- End Dropdown -->
+
+                    <div class="mb-4">
+                        <h2 class="mb-1">{{ $course->title }}</h2>
+
+                        <span class="fs-5">Updated 1 day ago</span>
+                    </div>
+
+                    <a class="btn btn-primary" href="{{ route('student.learn', ['courseTitle' => $course->title]) }}">Learn Course </a>
+
+
+                    <a class="stretched-link" href="#"></a>
+                    </div>
+                    <!-- End Body -->
+
+                    <!-- Footer -->
+                    <div class="card-footer">
+                    <!-- Stats -->
+                    <div class="row col-divider">
+                        <div class="col">
+                        <span class="h4">7</span>
+                        <span class="d-block fs-5">Tasks</span>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col">
+                        <span class="h4">7</span>
+                        <span class="d-block fs-5">Completed</span>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col">
+                        <span class="h4">0</span>
+                        <span class="d-block fs-5">Days left</span>
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Stats -->
+                    </div>
+                    <!-- End Footer -->
+                </div>
+                <!-- End Card -->
                 </div>
 
-                <div class="card-body">
-                  <img class="avatar avatar-4x3" src="{{ asset('storage/' . $course->cover_image) }}" alt="{{ $course->title }}">
-
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">{{ $course->title }}</h5>
-                </div>
-                <br><br>
-                <a class="stretched-link" href="{{ route('student.learn', ['courseTitle' => $course->title]) }}"></a>
-              </div>
-              <!-- End Card -->
-            </div>
-            <!-- End Col -->
 
             @endforeach
 
@@ -366,7 +422,7 @@
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
 
- 
+
 
   <!-- JS Global Compulsory  -->
   <script src="{{asset('backend/vendor/jquery/dist/jquery.min.js')}}"></script>
