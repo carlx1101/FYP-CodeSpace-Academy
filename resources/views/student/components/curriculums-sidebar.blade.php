@@ -31,6 +31,19 @@
         <div class="navbar-vertical-content">
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
 
+            <span class="dropdown-header mt-4"> Annoucement </span>
+            <small class="bi-three-dots nav-subtitle-replacer"></small>
+            <div id="navbarVerticalMenuPagesMenu">
+                <a class="nav-link" href="javascript:;" data-bs-toggle="modal" data-bs-target="#welcomeMessageModal">
+                <i class="bi bi-journals nav-icon"></i>
+                    <span class="nav-link-title"> Welcome Message </span>
+                </a>
+
+
+
+            </div>
+
+
             @foreach($sections as $section)
 
             <span class="dropdown-header mt-4">{{ $section->title }} </span>
@@ -66,6 +79,15 @@
 
 
 
+            <span class="dropdown-header mt-4"> Congratulations </span>
+            <small class="bi-three-dots nav-subtitle-replacer"></small>
+            <div id="navbarVerticalMenuPagesMenu">
+                <a class="nav-link" href="javascript:;" data-bs-toggle="modal" data-bs-target="#completionMessageModal">
+                    <i class="bi bi-journals nav-icon"></i>
+                    <span class="nav-link-title"> Completion Message </span>
+                </a>
+
+            </div>
 
 
 
@@ -184,3 +206,72 @@
       </div>
     </div>
   </aside>
+
+
+{{-- Welcome Modal --}}
+<div class="modal fade" id="welcomeMessageModal" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-close">
+        <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm" data-bs-dismiss="modal" aria-label="Close">
+        <i class="bi-x-lg"></i>
+        </button>
+    </div>
+    <!-- End Header -->
+
+    <!-- Body -->
+    <div class="modal-body p-sm-5 ">
+        <div class="text-center">
+        <div class="w-75 w-sm-50 mx-auto mb-4">
+            <img class="img-fluid" src="{{asset('backend/svg/illustrations/oc-collaboration.svg')}}" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid" src="{{asset('backend/svg/illustrations-light/oc-collaboration.svg')}}" alt="Image Description" data-hs-theme-appearance="dark">
+        </div>
+
+        <h4 class="h1">Welcome </h4>
+        <h4 class="h4">{{$course->title}}</h4>
+
+        <p>{!!$course->welcome_message!!}</p>
+        </div>
+    </div>
+    <!-- End Body -->
+    </div>
+</div>
+</div>
+
+{{-- End Welcome Modal --}}
+
+
+
+{{-- Completion Modal --}}
+<div class="modal fade" id="completionMessageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <!-- Header -->
+        <div class="modal-close">
+            <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm" data-bs-dismiss="modal" aria-label="Close">
+            <i class="bi-x-lg"></i>
+            </button>
+        </div>
+        <!-- End Header -->
+
+        <!-- Body -->
+        <div class="modal-body p-sm-5 ">
+            <div class="text-center">
+            <div class="w-75 w-sm-50 mx-auto mb-4">
+                <img class="img-fluid" src="{{asset('backend/svg/illustrations/oc-collaboration.svg')}}" alt="Image Description" data-hs-theme-appearance="default">
+                <img class="img-fluid" src="{{asset('backend/svg/illustrations-light/oc-collaboration.svg')}}" alt="Image Description" data-hs-theme-appearance="dark">
+            </div>
+
+            <h4 class="h1">Congratulation!! </h4>
+            <h4 class="h4">{{$course->title}}</h4>
+
+            <p>{!!$course->completion_message!!}</p>
+            </div>
+        </div>
+        <!-- End Body -->
+        </div>
+    </div>
+</div>
+
+{{-- End Completion Modal --}}
