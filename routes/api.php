@@ -10,5 +10,5 @@ Route::get('/user', function (Request $request) {
 
 
 
-    // OPENAI Assitant
-    Route::post('/question', [AssistantController::class, 'question']);
+    // OPENAI Assistant
+    Route::post('/question', [AssistantController::class, 'question'])->name('question');

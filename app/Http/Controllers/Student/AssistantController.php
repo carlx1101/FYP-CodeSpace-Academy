@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use Log;
+use App\Models\Tutor\Lesson;
 use Illuminate\Http\Request;
 use OpenAI\Laravel\Facades\OpenAI;
 use App\Http\Controllers\Controller;
@@ -11,6 +12,12 @@ use Illuminate\Support\Facades\Storage;
 
 class AssistantController extends Controller
 {
+
+    public function assistant($lessonId)
+    {
+        $lesson = Lesson::findOrFail($lessonId);
+        return view('student.assistant', compact('lesson'));
+    }
 
     public function question(Request $request)
     {
@@ -91,6 +98,7 @@ class AssistantController extends Controller
             'answer' => $assistantResponse
         ]);
     }
+
 
 
 }

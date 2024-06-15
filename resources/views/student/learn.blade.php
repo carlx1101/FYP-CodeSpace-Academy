@@ -167,7 +167,8 @@
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                     Add Note
                   </button>
-                <a href="" >Launch Chatbot</a>
+                  <a href="{{ route('chatbot.assistant', ['lessonId' => $currentLesson->id]) }}" class="btn btn-primary">Launch Chatbot</a>
+
                   <hr>
 
             </div>

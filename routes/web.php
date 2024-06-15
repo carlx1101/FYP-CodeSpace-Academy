@@ -64,6 +64,9 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
     Route::get('/billings', [BillingController::class, 'index'])->name('billings.index');
     Route::get('/billings/{order}', [BillingController::class, 'show'])->name('billings.show');
 
+    // OpenAI Assistant
+    Route::get('/assistant/{lessonId}', [AssistantController::class, 'assistant'])->name('chatbot.assistant');
+
 
 });
 
