@@ -2,6 +2,7 @@
 
 namespace App\Models\Tutor;
 
+use App\Models\User;
 use App\Models\Student\Note;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,6 +32,13 @@ class Lesson extends Model
     public function notes()
     {
         return $this->hasMany(Note::class);
+    }
+
+    public function completedBy()
+    {
+        return $this->belongsToMany(User::class, 'completed_lessons')
+            ->withTimestamps()
+            ->withPivot(['user_id', 'lesson_id']);
     }
 
 

@@ -87,5 +87,10 @@ class Course extends Model
 
     }
 
+    public function lessons()
+    {
+        return $this->hasManyThrough(Lesson::class, Section::class);
+    }
+
 
 }

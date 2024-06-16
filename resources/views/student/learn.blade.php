@@ -168,6 +168,7 @@
                     Add Note
                   </button>
                   <a href="{{ route('chatbot.assistant', ['lessonId' => $currentLesson->id]) }}" class="btn btn-primary">Launch Chatbot</a>
+                  <livewire:complete-lesson :lesson="$currentLesson" />
 
                   <hr>
 

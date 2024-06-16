@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Student\Cart;
 use App\Models\Tutor\Course;
+use App\Models\Tutor\Lesson;
 use App\Models\Student\Order;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
@@ -103,9 +104,27 @@ class User extends Authenticatable
     }
 
     public function profile()
-{
-    return $this->hasOne(Profile::class);
-}
+    {
+        return $this->hasOne(Profile::class);
+    }
 
+    public function completedLessons()
+    {
+        return $this->belongsToMany(Lesson::class, 'completed_lessons')
+            ->withTimestamps()
+            ->withPivot(['user_id', 'lesson_id']);
+    }
+
+    public function courseProgress(Course $course)
+    {
+        $totalLessons = $course->lessons()->count();
+        $completedLessons = $this->completedLessons()->whereIn('lesson_id', $course->lessons()->pluck('id'))->count();
+
+        if ($totalLessons == 0) {
+            return 0;
+        }
+
+        return ($completedLessons / $totalLessons) * 100;
+    }
 
 }
