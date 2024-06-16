@@ -389,95 +389,8 @@
 
 
 
-                  <!-- Card -->
-                  <div class="card" id="experienceSection">
-                    <div class="card-header">
-                      <h2 class="card-title h4">Background & Experiences</h2>
-                    </div>
+            @livewire('profile.background-experience')
 
-                    <!-- Body -->
-                    <div class="card-body">
-                      <!-- Form -->
-                      <form >
-
-
-
-
-                            <!-- Form -->
-                            <div class="row mb-4">
-                              <label for="addressOneLabel" class="col-sm-3 col-form-label form-label">Address 1</label>
-
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="addressOne" id="addressOneLabel" placeholder="Address One" aria-label="Address One" >
-                              </div>
-                            </div>
-                            <!-- End Form -->
-
-
-                            <!-- Form -->
-                            <div class="row mb-4">
-                              <label for="addressTwoLabel" class="col-sm-3 col-form-label form-label">Address 2 </label>
-
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="addressTwo" id="addressTwoLabel" placeholder="Address Two" aria-label="Address Two" >
-                              </div>
-                            </div>
-                            <!-- End Form -->
-
-                            <!-- Form -->
-                            <div class="row mb-4">
-                              <label for="firstNameLabel" class="col-sm-3 col-form-label form-label">State & Zipcode </label>
-
-                              <div class="col-sm-9">
-                                <div class="input-group input-group-sm-vertical">
-                                  <input type="text" class="form-control" name="state" id="state" placeholder="State" >
-                                  <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="Zipcode" >
-                                </div>
-                              </div>
-                            </div>
-                            <!-- End Form -->
-
-
-
-                            <!-- Form -->
-                            <div class="row mb-4">
-                              <label for="countryLabel" class="col-sm-3 col-form-label form-label">Country</label>
-
-                              <div class="col-sm-9">
-                                <!-- Select -->
-                                <div class="tom-select-custom">
-                                  <select class="js-select form-select" id="countryLabel" data-hs-tom-select-options='{
-                                            "searchInDropdown": false
-                                          }'>
-                                    <option label="empty"></option>
-                                    <option value="language1" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Image description" width="16"/><span>English (US)</span></span>'>English (US)</option>
-                                    <option value="language2" selected data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/gb.svg" alt="Image description" width="16"/><span>English (UK)</span></span>'>English (UK)</option>
-                                    <option value="language3" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Image description" width="16"/><span>Deutsch</span></span>'>Deutsch</option>
-                                    <option value="language4" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/dk.svg" alt="Image description" width="16"/><span>Dansk</span></span>'>Dansk</option>
-                                    <option value="language5" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/es.svg" alt="Image description" width="16"/><span>Español</span></span>'>Español</option>
-                                    <option value="language6" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/nl.svg" alt="Image description" width="16"/><span>Nederlands</span></span>'>Nederlands</option>
-                                    <option value="language7" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/it.svg" alt="Image description" width="16"/><span>Italiano</span></span>'>Italiano</option>
-                                    <option value="language8" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Image description" width="16"/><span>中文 (繁體)</span></span>'>中文 (繁體)</option>
-                                  </select>
-                                </div>
-                                <!-- End Select -->
-                              </div>
-                            </div>
-                            <!-- End Form -->
-
-
-
-
-
-                        <div class="d-flex justify-content-end">
-                          <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                      </form>
-                      <!-- End Form -->
-                    </div>
-                    <!-- End Body -->
-                    </div>
-                  <!-- End Card -->
 
 
 
@@ -1347,6 +1260,16 @@
         })
       })()
     </script>
+
+<script>
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('experience-added', () => {
+            var myModalEl = document.getElementById('addExperienceModal')
+            var modal = bootstrap.Modal.getInstance(myModalEl)
+            modal.hide()
+        })
+    })
+</script>
 
   <!-- End Style Switcher JS -->
 </body>

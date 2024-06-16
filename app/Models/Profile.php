@@ -32,9 +32,15 @@ class Profile extends Model
         'timezone',
         'primary_language',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+    
 }

@@ -18,7 +18,6 @@
                                         <div class="message-text">
                                             <p> {!! format_message_content($message['content']) !!} </p>
 
-
                                         </div>
                                     </div>
                                 </div>
