@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Tutor\Lesson;
 use Illuminate\Support\Facades\Http;
 
 class AssistantChat extends Component
@@ -14,9 +15,14 @@ class AssistantChat extends Component
     public function mount($lessonId)
     {
         $this->lessonId = $lessonId;
+
+        // Fetch the lesson details
+        $lesson = Lesson::findOrFail($lessonId);
+
         $this->messages[] = [
             'role' => 'assistant',
-            'content' => 'Hi, I am AI Assistant from CodeSpace. I am happy to assist you today!'
+            'content' => "Hi, I am AI Assistant from CodeSpace. I am happy to assist you today! Here are the details of the current lesson:\n\n" .
+            "Title: " . $lesson->title . "\n"
         ];
     }
 
@@ -67,7 +73,8 @@ class AssistantChat extends Component
         ])->post('https://api.openai.com/v1/assistants', [
             'instructions' => 'You are a personal tutor helping students with programming questions.',
             'name' => 'Programming Tutor',
-            'tools' => [['type' => 'code_interpreter']],
+            'tools' => [['type' => 'code_interpreter']
+        ],
             'model' => 'gpt-4o'
         ]);
 

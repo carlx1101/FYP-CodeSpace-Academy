@@ -19,6 +19,8 @@
         <link class="css-lt" rel="stylesheet" href="{{asset('messenger/css/template.bundle.css')}}" media="(prefers-color-scheme: light)">
         <link class="css-dk" rel="stylesheet" href="{{asset('messenger/css/template.dark.bundle.css')}}" media="(prefers-color-scheme: dark)">
 
+
+
         @livewireStyles
 
         <!-- Theme mode -->
@@ -44,6 +46,51 @@
     </script>
 
     <style>
+
+       
+        /* Style for code blocks */
+        .code-block {
+            position: relative;
+            margin-bottom: 1em;
+            background-color: #2d2d2d;
+            border-radius: 5px;
+            padding: 1em;
+        }
+
+        .code-block pre {
+            background-color: #2d2d2d;
+            color: #ccc;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            background-color: #2d2d2d;
+            color: #ccc;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 0.5em;
+            top: 0.5em;
+            padding: 0.2em 0.5em;
+            font-size: 0.8em;
+            cursor: pointer;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+
+        .copy-btn:hover {
+            background-color: #555;
+        }
+    </style>
+
+    <style>
         .chat-body {
             overflow-y: auto;
             max-height: calc(100vh - 100px); /* Adjust as needed to fit your layout */
@@ -55,7 +102,6 @@
         }
 
     </style>
-
     </head>
 
     <body>
@@ -90,7 +136,7 @@
 
 
                     <!-- Chats -->
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link active py-0 py-lg-8" id="tab-chats" href="#tab-content-chats" title="Chats" data-bs-toggle="tab" role="tab">
                             <div class="icon icon-xl icon-badged">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
@@ -99,25 +145,25 @@
                                 </div>
                             </div>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <!-- Notification -->
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link py-0 py-lg-8" id="tab-notifications" href="#tab-content-notifications" title="Notifications" data-bs-toggle="tab" role="tab">
                             <div class="icon icon-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
                             </div>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <!-- Support -->
-                    <li class="nav-item d-none d-xl-block flex-xl-grow-1">
+                    {{-- <li class="nav-item d-none d-xl-block flex-xl-grow-1">
                         <a class="nav-link py-0 py-lg-8" id="tab-support" href="#tab-content-support" title="Support" data-bs-toggle="tab" role="tab">
                             <div class="icon icon-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                             </div>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <!-- Switcher -->
                     <li class="nav-item d-none d-xl-block">
@@ -2110,5 +2156,28 @@
         <!-- Scripts -->
         <script src="{{asset('messenger/js/vendor.js')}}"></script>
         <script src="{{asset('messenger/js/template.js')}}"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            var clipboard = new ClipboardJS('.copy-btn');
+
+            clipboard.on('success', function (e) {
+                e.trigger.textContent = 'Copied';
+                setTimeout(function() {
+                    e.trigger.textContent = 'Copy';
+                }, 2000); // Change text back to 'Copy' after 2 seconds
+                e.clearSelection();
+            });
+
+            clipboard.on('error', function (e) {
+                e.trigger.textContent = 'Failed';
+                setTimeout(function() {
+                    e.trigger.textContent = 'Copy';
+                }, 2000); // Change text back to 'Copy' after 2 seconds
+            });
+        });
+        </script>
+
     </body>
 </html>

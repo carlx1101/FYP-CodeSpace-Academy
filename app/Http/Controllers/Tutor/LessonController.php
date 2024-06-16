@@ -18,22 +18,14 @@ class LessonController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'lesson_type' => $request->input('lesson_type'),
-
+            'is_preview' => $request->input('is_preview', 0),
         ]);
-
-
-        if($request->input('is_preview')){
-            $lesson->is_preview = 1;
-        }
-        else {
-            $lesson->is_preview = 0;
-        }
 
         // Save the Lesson to the section
         $section->lessons()->save($lesson);
 
         // Check the lesson type
-        $lessonType = $request->input('lesson_type'); // Assuming you have a 'type' field in your form
+        $lessonType = $request->input('lesson_type');
 
         if ($lessonType === 'video') {
             // Check if the user uploaded a video file
@@ -55,7 +47,7 @@ class LessonController extends Controller
             // Associate the video with the lesson
             $lesson->video()->save($video);
 
-        }  elseif ($lessonType === 'article') {
+        } elseif ($lessonType === 'article') {
             // If the lesson type is "article," create an article record
             $article = new Article([
                 'content' => $request->input('article_content'), // Assuming you have an 'article_content' field in your form
@@ -65,8 +57,19 @@ class LessonController extends Controller
             $lesson->article()->save($article);
         }
 
-        return redirect()->back();
+        // Check if the user uploaded a knowledge document
+        if ($request->hasFile('knowledge')) {
+            // Store the uploaded PDF file in the 'knowledge' folder
+            $knowledgePath = $request->file('knowledge')->store('knowledge', 'public');
+
+            // Update the lesson with the knowledge document path
+            $lesson->knowledge = $knowledgePath;
+            $lesson->save();
+        }
+
+        return redirect()->back()->with('success', 'Lesson created successfully.');
     }
+
 
     public function destroy(Section $section, Lesson $lesson)
     {

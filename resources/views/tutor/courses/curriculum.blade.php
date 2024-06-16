@@ -510,6 +510,24 @@
                             </div>
                         </div>
 
+
+                        <div class="row mb-2">
+                            <div class="mb-3" style="text-align: left">
+
+                                <label class="form-label" for="title">Knowledge Training</label>
+
+                                <div id="knowledgeDocument" class="js-dropzone row dz-dropzone dz-dropzone-card">
+                                    <div class="dz-message">
+                                        <img class="avatar avatar-xl avatar-4x3 mb-3" src="{{ asset('backend/svg/illustrations/oc-browse.svg') }}" alt="Image Description">
+                                        <h5>Drag and drop your PDF here</h5>
+                                        <p class="mb-2">or</p>
+                                        <span class="btn btn-white btn-sm">Browse video</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -877,6 +895,19 @@
                         formData.append("video_url", lessonVideo);
                     }
                 }
+
+
+        // Get the 'knowledgeDocument' Dropzone element
+            var knowledgeDocumentDropzoneElement = $('#knowledgeDocument')[0].dropzone;
+
+            // Check if 'knowledgeDocument' Dropzone has files
+            if (knowledgeDocumentDropzoneElement) {
+                var knowledgeDocument = knowledgeDocumentDropzoneElement.files[0];
+                if (knowledgeDocument) {
+                    formData.append("knowledge", knowledgeDocument);
+                }
+            }
+
 
                 console.log("FormData:", formData);
 
