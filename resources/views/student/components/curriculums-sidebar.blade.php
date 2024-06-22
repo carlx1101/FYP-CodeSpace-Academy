@@ -53,24 +53,22 @@
             <div id="navbarVerticalMenuPagesMenu">
 
                 @foreach($section->lessons as $lesson)
-
                 <div class="nav-item">
                     <a class="nav-link " href="{{ route('student.learn', ['courseTitle' => $course->title, 'lessonId' => $lesson->id]) }}" data-placement="left">
-
-                    @if($lesson->lesson_type == 'video' )
-                    <i class="bi bi-play-circle nav-icon" ></i>
-
-                    @elseif($lesson->lesson_type == 'article')
-                    <i class="bi bi-journals nav-icon"></i>
-
-                    @endif
-
-                    <span class="nav-link-title"> {{ $lesson->title }} </span>
-
+                        @if(Auth::user()->completedLessons->contains($lesson->id))
+                            <i class="bi bi-check-circle text-success nav-icon"></i>
+                        @else
+                            @if($lesson->lesson_type == 'video' )
+                                <i class="bi bi-play-circle nav-icon"></i>
+                            @elseif($lesson->lesson_type == 'article')
+                                <i class="bi bi-journals nav-icon"></i>
+                            @endif
+                        @endif
+                        <span class="nav-link-title"> {{ $lesson->title }} </span>
                     </a>
-
                 </div>
-                @endforeach
+            @endforeach
+
 
             </div>
             <!-- End Collapse -->

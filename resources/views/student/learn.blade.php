@@ -22,6 +22,8 @@
   <link rel="preload" href="{{asset('backend/css/theme.min.css')}}" data-hs-appearance="default" as="style">
   <link rel="preload" href="{{asset('backend/css/theme-dark.min.css')}}" data-hs-appearance="dark" as="style">
 
+  @livewireStyles
+
   <style data-hs-appearance-onload-styles>
     *
     {
@@ -125,97 +127,83 @@
 
   <!-- ========== MAIN CONTENT ========== -->
   @include('student.layouts.dashboard-header')
+
   @include('student.components.curriculums-sidebar')
 
-
-
-  <!-- End Navbar Vertical -->
-
   <main id="content" role="main" class="main splitted-content-main">
-    <!-- Fluid Content -->
-    <div class="splitted-content-fluid content-space">
-      <div class="mt-xl-2">
-
-
-
-        <!-- Card -->
-        <div class="card mb-3 mb-lg-5">
-
-            <div class="card-body ">
-
-                <h1 class="card-title">{{$currentLesson->title}}</h1>
-                <p class="card-text">{{$currentLesson->description}}</p> <br>
-
-                <!-- Title -->
-                @if($currentLesson->lesson_type == 'video' && $currentLesson->video)
-
-                @php
-                    $videoUrl = $currentLesson->video->video_url;
-                    $isHttpUrl = Str::startsWith($videoUrl, ['http://', 'https://']);
-                @endphp
-
-                    <iframe width="95%" height="600" src="{{ $isHttpUrl ? $videoUrl : asset('storage/' . $videoUrl) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-                @elseif($currentLesson->lesson_type == 'article' && $currentLesson->article)
-                    {!! $currentLesson->article->content !!}
-                @else
-                    <p>No content available for this lesson.</p>
-                @endif
-
-
-                <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLessonNotes" aria-controls="offcanvasLessonNotes">View Notes</button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                    Add Note
-                  </button>
-                  <a href="{{ route('chatbot.assistant', ['lessonId' => $currentLesson->id]) }}" class="btn btn-primary">Launch Chatbot</a>
-                  <livewire:complete-lesson :lesson="$currentLesson" />
-
-                  <hr>
-
-            </div>
-        </div>
-        <!-- End Card -->
-
-
-
+      <div class="splitted-content-fluid content-space">
+          <div class="mt-xl-2">
+              <div class="card mb-3 mb-lg-5">
+                  <div class="card-body ">
+                      <h1 class="card-title">{{ $currentLesson->title }}</h1>
+                      <p class="card-text">{{ $currentLesson->description }}</p> <br>
+                      @if($currentLesson->lesson_type == 'video' && $currentLesson->video)
+                          @php
+                              $videoUrl = $currentLesson->video->video_url;
+                              $isHttpUrl = Str::startsWith($videoUrl, ['http://', 'https://']);
+                          @endphp
+                          <iframe width="95%" height="600" src="{{ $isHttpUrl ? $videoUrl : asset('storage/' . $videoUrl) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                      @elseif($currentLesson->lesson_type == 'article' && $currentLesson->article)
+                          {!! $currentLesson->article->content !!}
+                      @else
+                          <p>No content available for this lesson.</p>
+                      @endif
+                      <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLessonNotes" aria-controls="offcanvasLessonNotes">View Notes</button>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                          Add Note
+                      </button>
+                      <a href="{{ route('chatbot.assistant', ['lessonId' => $currentLesson->id]) }}" class="btn btn-primary">Launch Chatbot</a>
+                      <livewire:complete-lesson :lesson="$currentLesson" />
+                      <hr>
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
-    <!-- End Fluid Content -->
 
-
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLessonNotes" aria-labelledby="offcanvasLessonNotesLabel">
-        <div class="offcanvas-header">
-          <h5 id="offcanvasLessonNotesLabel">Notes for this lesson</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            @if($currentLesson->notes->isEmpty())
-                <p>No notes found for this lesson.</p>
-            @else
-                <ul>
-                    @foreach($currentLesson->notes as $note)
-                        <li>
-                            {{ $note->content }}
-                            <form action="{{ route('notes.destroy', $note->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </li>
-                    @endforeach
-                </ul>
-            @endif
-        </div>
-    </div>
-
-
-
-
-
-
-
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLessonNotes" aria-labelledby="offcanvasLessonNotesLabel">
+          <div class="offcanvas-header">
+              <h5 id="offcanvasLessonNotesLabel">Notes for this lesson</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+              @if($currentLesson->notes->isEmpty())
+                  <p>No notes found for this lesson.</p>
+              @else
+                  <ul>
+                      @foreach($currentLesson->notes as $note)
+                          <li>
+                              {{ $note->content }}
+                              <form action="{{ route('notes.destroy', $note->id) }}" method="POST" style="display:inline;">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                              </form>
+                          </li>
+                      @endforeach
+                  </ul>
+              @endif
+          </div>
+      </div>
   </main>
-  <!-- ========== END MAIN CONTENT ========== -->
+
+  <script>
+
+    window.addEventListener('lessonIncomplete', event => {
+        location.reload();
+    });
+
+    window.addEventListener('lessonCompleted', event => {
+        location.reload();
+    });
+</script>
+
+
+
+
+
+
+    @livewireScripts
+
 
 
 
