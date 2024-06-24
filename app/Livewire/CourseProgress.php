@@ -36,6 +36,11 @@ class CourseProgress extends Component
         $this->completed = $this->progress == 100;
     }
 
+    public function downloadCertificate()
+    {
+        return redirect()->route('certificate.download', ['course' => $this->course->id]);
+    }
+
     public function render()
     {
         return view('livewire.course-progress');

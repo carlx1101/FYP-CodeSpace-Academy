@@ -7,14 +7,15 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Student\CartController;
 use App\Http\Controllers\Student\NoteController;
-use App\Http\Controllers\Tutor\CourseController;
 
+use App\Http\Controllers\Tutor\CourseController;
 use App\Http\Controllers\Tutor\LessonController;
 use App\Http\Controllers\Tutor\SectionController;
 use App\Http\Controllers\Student\BillingController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\AssistantController;
 use App\Http\Controllers\Student\EnrollmentController;
+use App\Http\Controllers\Student\CertificateController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
 
 
@@ -66,6 +67,9 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
 
     // OpenAI Assistant
     Route::get('/assistant/{lessonId}', [AssistantController::class, 'assistant'])->name('chatbot.assistant');
+
+    // Certificate
+    Route::get('/certificate/download/{course}', [CertificateController::class, 'download'])->name('certificate.download');
 
 
 });

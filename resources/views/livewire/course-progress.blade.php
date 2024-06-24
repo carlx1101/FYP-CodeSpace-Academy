@@ -50,6 +50,10 @@
                 </div>
 
                 <a class="btn btn-primary" href="{{ route('student.learn', ['courseTitle' => $course->title]) }}">Learn Course</a>
+
+                @if ($completed)
+                    <button class="btn btn-success mt-2" wire:click="downloadCertificate">Download Certificate</button>
+                @endif
             </div>
             <!-- End Body -->
 
@@ -81,6 +85,4 @@
         </div>
         <!-- End Card -->
     </div>
-
-
 </div>
