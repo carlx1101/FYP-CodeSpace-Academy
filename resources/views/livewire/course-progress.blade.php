@@ -63,7 +63,7 @@
                 <div class="row col-divider">
                     <div class="col">
                         <span class="h4">{{ $course->lessons()->count() }}</span>
-                        <span class="d-block fs-5">Tasks</span>
+                        <span class="d-block fs-5">Total Lesson</span>
                     </div>
                     <!-- End Col -->
 
@@ -74,8 +74,8 @@
                     <!-- End Col -->
 
                     <div class="col">
-                        <span class="h4">0</span>
-                        <span class="d-block fs-5">Days left</span>
+                        <span class="h4">{{ $remaining }}</span>
+                        <span class="d-block fs-5">Remaining</span>
                     </div>
                     <!-- End Col -->
                 </div>

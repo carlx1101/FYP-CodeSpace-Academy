@@ -11,6 +11,7 @@ class CourseProgress extends Component
     public $course;
     public $progress = 0;
     public $completed = false;
+    public $remaining = 0;
 
     protected $listeners = ['lessonCompleted' => 'calculateProgress'];
 
@@ -27,11 +28,13 @@ class CourseProgress extends Component
             ->whereIn('completed_lessons.lesson_id', $this->course->lessons()->pluck('lessons.id'))
             ->count();
 
-        if ($totalLessons == 0) {
-            $this->progress = 0;
-        } else {
-            $this->progress = ($completedLessons / $totalLessons) * 100;
-        }
+            if ($totalLessons == 0) {
+                $this->progress = 0;
+                $this->remaining = 0;
+            } else {
+                $this->progress = ($completedLessons / $totalLessons) * 100;
+                $this->remaining = $totalLessons - $completedLessons;
+            }
 
         $this->completed = $this->progress == 100;
     }
