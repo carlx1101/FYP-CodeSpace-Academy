@@ -92,7 +92,7 @@ class CourseController extends Controller
             'subcategory_id' => 'required|integer|exists:subcategories,id',
             'is_free' => 'sometimes|boolean',
             'price' => 'nullable|numeric',
-           
+
             'learning_objectives' => 'nullable|array',
             'prerequisites' => 'nullable|array',
             'target_audiences' => 'nullable|array',
@@ -155,12 +155,17 @@ class CourseController extends Controller
 
     public function showStudents($courseId)
     {
-        $course = Course::with('students')->findOrFail($courseId);
-        $students = $course->students;
-
+        $course = Course::with(['students', 'lessons'])->findOrFail($courseId);
+        $totalLessons = $course->lessons->count();
+        $students = $course->students->map(function ($student) use ($totalLessons, $course) {
+            $completedLessons = $student->completedLessons()->whereIn('lesson_id', $course->lessons->pluck('id'))->count();
+            $student->completion_percentage = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+            return $student;
+        });
 
         return view('tutor.courses.students', compact('course', 'students'));
     }
+
 
 
 }
