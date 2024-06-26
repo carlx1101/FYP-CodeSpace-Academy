@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Tutor;
 
 use App\Models\Tutor\Video;
 use App\Models\Tutor\Lesson;
+use App\Models\Tutor\Option;
 use Illuminate\Http\Request;
 use App\Models\Tutor\Article;
 use App\Models\Tutor\Section;
+use App\Models\Tutor\Assessment;
 use App\Http\Controllers\Controller;
 
 class LessonController extends Controller
@@ -28,41 +30,19 @@ class LessonController extends Controller
         $lessonType = $request->input('lesson_type');
 
         if ($lessonType === 'video') {
-            // Check if the user uploaded a video file
-            if ($request->hasFile('video_url')) {
-                // Store the uploaded video file in the 'lessons' folder
-                $videoPath = $request->file('video_url')->store('lessons', 'public');
-
-                // Create a video record with the stored path
-                $video = new Video([
-                    'video_url' => $videoPath,
-                ]);
-            } else {
-                // Use the provided video URL (e.g., YouTube)
-                $video = new Video([
-                    'video_url' => $request->input('video_url'),
-                ]);
-            }
-
-            // Associate the video with the lesson
-            $lesson->video()->save($video);
-
+            // Handle video lesson
+            $this->storeVideoLesson($request, $lesson);
         } elseif ($lessonType === 'article') {
-            // If the lesson type is "article," create an article record
-            $article = new Article([
-                'content' => $request->input('article_content'), // Assuming you have an 'article_content' field in your form
-            ]);
-
-            // Associate the article with the lesson
-            $lesson->article()->save($article);
+            // Handle article lesson
+            $this->storeArticleLesson($request, $lesson);
+        } elseif ($lessonType === 'assessment') {
+            // Handle assessment lesson
+            $this->storeAssessmentLesson($request, $lesson);
         }
 
         // Check if the user uploaded a knowledge document
         if ($request->hasFile('knowledge')) {
-            // Store the uploaded PDF file in the 'knowledge' folder
             $knowledgePath = $request->file('knowledge')->store('knowledge', 'public');
-
-            // Update the lesson with the knowledge document path
             $lesson->knowledge = $knowledgePath;
             $lesson->save();
         }
@@ -70,6 +50,42 @@ class LessonController extends Controller
         return redirect()->back()->with('success', 'Lesson created successfully.');
     }
 
+    protected function storeVideoLesson(Request $request, Lesson $lesson)
+    {
+        if ($request->hasFile('video_url')) {
+            $videoPath = $request->file('video_url')->store('lessons', 'public');
+            $video = new Video(['video_url' => $videoPath]);
+        } else {
+            $video = new Video(['video_url' => $request->input('video_url')]);
+        }
+        $lesson->video()->save($video);
+    }
+
+    protected function storeArticleLesson(Request $request, Lesson $lesson)
+    {
+        $article = new Article(['content' => $request->input('article_content')]);
+        $lesson->article()->save($article);
+    }
+
+    protected function storeAssessmentLesson(Request $request, Lesson $lesson)
+    {
+        $assessment = new Assessment([
+            'lesson_id' => $lesson->id,
+            'question' => $request->input('question')
+        ]);
+        $assessment->save();
+
+        for ($i = 1; $i <= 4; $i++) {
+            $optionText = $request->input("option$i");
+            $isCorrect = $request->input('correct_option') === "option$i";
+            $option = new Option([
+                'assessment_id' => $assessment->id,
+                'option_text' => $optionText,
+                'is_correct' => $isCorrect
+            ]);
+            $option->save();
+        }
+    }
 
     public function destroy(Section $section, Lesson $lesson)
     {

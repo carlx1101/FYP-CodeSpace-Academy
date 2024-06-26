@@ -227,16 +227,19 @@
 
                           <div class="card-body d-flex justify-content-between">
                             <div class="d-flex align-items-center"> <!-- Align content vertically -->
-                              @if( $lesson->lesson_type == "video")
-                              <i class="bi bi-play-circle-fill text-primary icon-lg" style="font-size: 38px"></i>
-                              @elseif ( $lesson->lesson_type == "article")
-                                  <i class="bi bi-file-richtext-fill text-primary icon-lg" style="font-size: 38px"></i>
-                              @endif
+                                @if($lesson->lesson_type == "video")
+                                    <i class="bi bi-play-circle-fill text-primary icon-lg" style="font-size: 38px"></i>
+                                @elseif($lesson->lesson_type == "article")
+                                    <i class="bi bi-file-richtext-fill text-primary icon-lg" style="font-size: 38px"></i>
+                                @elseif($lesson->lesson_type == "assessment")
+                                    <i class="bi bi-check-circle-fill text-primary icon-lg" style="font-size: 38px"></i>
+                                @endif
                                 <div class="mx-3 mt-2">
                                     <h5>{{ $lesson->title }}</h5>
                                     <p>{{ $lesson->description }}</p>
                                 </div>
                             </div>
+
 
                             <div class="d-flex justify-content-between">
 
