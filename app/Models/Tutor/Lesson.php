@@ -29,6 +29,11 @@ class Lesson extends Model
         return $this->hasOne(Article::class);
     }
 
+    public function assessment()
+    {
+        return $this->hasOne(Assessment::class);
+    }
+
     public function notes()
     {
         return $this->hasMany(Note::class);

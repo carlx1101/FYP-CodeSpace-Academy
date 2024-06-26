@@ -282,8 +282,16 @@
                                     <!-- Fancybox -->
 
                                     @php
-                                        $videoUrl = $lesson->video->video_url;
-                                        $isHttpUrl = Str::startsWith($videoUrl, ['http://', 'https://']);
+                                        if ($lesson->lesson_type == 'video') {
+                                            # code...
+                                            $videoUrl = $lesson->video->video_url;
+                                            $isHttpUrl = Str::startsWith($videoUrl, ['http://', 'https://']);
+                                        }
+                                        else {
+                                            # code...
+                                            $videoUrl = 'abc';
+                                            $isHttpUrl = Str::startsWith($videoUrl, ['http://', 'https://']);
+                                        }
                                     @endphp
 
                                     <a class="video-player video-player-btn"

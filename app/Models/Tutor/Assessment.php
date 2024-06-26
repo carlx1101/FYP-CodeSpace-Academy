@@ -16,4 +16,9 @@ class Assessment extends Model
     {
         return $this->hasMany(Option::class);
     }
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class);
+    }
 }

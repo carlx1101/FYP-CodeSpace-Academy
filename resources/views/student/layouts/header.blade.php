@@ -4,7 +4,7 @@
       <nav class="js-mega-menu navbar-nav-wrap">
         <!-- Default Logo -->
         <a class="navbar-brand" href="../demo-course/index.html" aria-label="Front">
-          <img class="navbar-brand-logo" src="../assets/svg/logos/logo.svg" alt="Logo">
+          <img class="navbar-brand-logo" src="{{asset('frontend/images/logos/codespacesolutions.png')}}" alt="CodeSpace Solutions">
         </a>
         <!-- End Default Logo -->
 
