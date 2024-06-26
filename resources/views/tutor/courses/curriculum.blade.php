@@ -503,11 +503,75 @@
                                 </div>
                             </div>
 
+                            {{-- Assessment Tab Field --}}
                             <div class="form-group" id="assessmentFields" style="display: none;">
                                 <!-- Assessment-specific fields go here -->
-                                <label for="assessment_questions">Assessment Questions</label>
-                                <textarea name="assessment_questions" id="assessment_questions"></textarea>
+
+                                <div class="row">
+                                    <div class="mb-3" style="text-align: left">
+                                        <label class="form-label" for="title">Question</label>
+                                        <input type="text" id="title" class="form-control" name="question" placeholder="Question">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="mb-3" style="text-align: left">
+                                        <label class="form-label" for="option1">Option 1</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <input type="radio" name="correct_option" value="option1">
+                                                </span>
+                                            </div>
+                                            <input type="text" id="option1" class="form-control" name="option1" placeholder="Option 1">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="mb-3" style="text-align: left">
+                                        <label class="form-label" for="option2">Option 2</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <input type="radio" name="correct_option" value="option2">
+                                                </span>
+                                            </div>
+                                            <input type="text" id="option2" class="form-control" name="option2" placeholder="Option 2">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="mb-3" style="text-align: left">
+                                        <label class="form-label" for="option3">Option 3</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <input type="radio" name="correct_option" value="option3">
+                                                </span>
+                                            </div>
+                                            <input type="text" id="option3" class="form-control" name="option3" placeholder="Option 3">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="mb-3" style="text-align: left">
+                                        <label class="form-label" for="option4">Option 4</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <input type="radio" name="correct_option" value="option4">
+                                                </span>
+                                            </div>
+                                            <input type="text" id="option4" class="form-control" name="option4" placeholder="Option 4">
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
+
                         </div>
 
 

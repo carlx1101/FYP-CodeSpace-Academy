@@ -10,9 +10,6 @@ class PageController extends Controller
     public function home()
     {
         $courses = Course::where('publishing_status', true)->get();
-
-    
-
         return view('student.home',compact('courses'));
     }
 
