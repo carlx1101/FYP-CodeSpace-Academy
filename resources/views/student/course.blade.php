@@ -47,7 +47,7 @@
                 <div class="d-flex align-items-center me-4">
                   <div class="flex-shrink-0 avatar-group avatar-group-xs">
                     <span class="avatar avatar-xs avatar-circle">
-                      <img class="avatar-img" src="../assets/img/160x160/img10.jpg" alt="Image Description">
+                      <img class="avatar-img" src="{{asset('frontend/img/160x160/img10.jpg')}}" alt="Image Description">
                     </span>
                   </div>
                   <div class="flex-grow-1">
@@ -59,11 +59,11 @@
                 <div class="d-flex align-items-center flex-wrap">
                   <!-- Rating -->
                   <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
                   </div>
                   <!-- End Rating -->
                   <div class="ms-1">
@@ -409,7 +409,7 @@
             <a class="d-block" href="../demo-course/course-overview.html">
               <div class="row">
                 <div class="col-sm-5 col-lg-3 mb-3 mb-sm-0">
-                  <img class="card-img" src="../assets/svg/components/card-6.svg" alt="Image Description">
+                  <img class="card-img" src="{{asset('frontend/svg/components/card-6.svg')}}" alt="Image Description">
                 </div>
                 <!-- End Col -->
 
@@ -421,11 +421,11 @@
                       <div class="d-flex align-items-center flex-wrap">
                         <!-- Rating -->
                         <div class="d-flex gap-1">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                          <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                          <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                          <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                          <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                          <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
                         </div>
                         <!-- End Rating -->
                         <div class="ms-1">
@@ -464,126 +464,6 @@
               <!-- End Row -->
             </a>
             <!-- End Card -->
-
-            <!-- Card -->
-            <a class="d-block" href="../demo-course/course-overview.html">
-              <div class="row">
-                <div class="col-sm-5 col-lg-3 mb-3 mb-sm-0">
-                  <img class="card-img" src="../assets/svg/components/card-4.svg" alt="Image Description">
-                </div>
-                <!-- End Col -->
-
-                <div class="col-sm-7 col-lg-9">
-                  <div class="row">
-                    <div class="col-lg-6 mb-2 mb-lg-0">
-                      <h5 class="text-inherit">Coding block for WordPress</h5>
-
-                      <div class="d-flex align-items-center flex-wrap">
-                        <!-- Rating -->
-                        <div class="d-flex gap-1">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        </div>
-                        <!-- End Rating -->
-                        <div class="ms-1">
-                          <span class="text-body ms-1">4.95</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-lg-6">
-                      <div class="row">
-                        <div class="col-7">
-                          <div class="text-muted small mb-2">
-                            <i class="bi-book me-1"></i> 8 lessons
-                          </div>
-                          <div class="text-muted small">
-                            <i class="bi-clock me-1"></i> 1h 14m
-                          </div>
-                        </div>
-                        <!-- End Col -->
-
-                        <div class="col-5 text-end">
-                          <p class="text-muted small mb-0"><del>$59.99</del></p>
-                          <h5 class="text-primary mb-0">$39.99</h5>
-                        </div>
-                        <!-- End Col -->
-                      </div>
-                      <!-- End Row -->
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </a>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <a class="d-block" href="../demo-course/course-overview.html">
-              <div class="row">
-                <div class="col-sm-5 col-lg-3 mb-3 mb-sm-0">
-                  <img class="card-img" src="../assets/svg/components/card-15.svg" alt="Image Description">
-                </div>
-                <!-- End Col -->
-
-                <div class="col-sm-7 col-lg-9">
-                  <div class="row">
-                    <div class="col-lg-6 mb-2 mb-lg-0">
-                      <h5 class="text-inherit">The Ultimate MySQL Bootcamp: Go from SQL Beginner to Expert</h5>
-
-                      <div class="d-flex align-items-center flex-wrap">
-                        <!-- Rating -->
-                        <div class="d-flex gap-1">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                          <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        </div>
-                        <!-- End Rating -->
-                        <div class="ms-1">
-                          <span class="text-body ms-1">4.87</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-lg-6">
-                      <div class="row">
-                        <div class="col-7">
-                          <div class="text-muted small mb-2">
-                            <i class="bi-book me-1"></i> 23 lessons
-                          </div>
-                          <div class="text-muted small">
-                            <i class="bi-clock me-1"></i> 7h 47m
-                          </div>
-                        </div>
-                        <!-- End Col -->
-
-                        <div class="col-5 text-end">
-                          <p class="text-muted small mb-0"><del>$99.99</del></p>
-                          <h5 class="text-primary mb-0">$89.99</h5>
-                        </div>
-                        <!-- End Col -->
-                      </div>
-                      <!-- End Row -->
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </a>
-            <!-- End Card -->
           </div>
 
           <hr class="my-7">
@@ -593,42 +473,10 @@
           <div class="row">
             <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
               <!-- Card -->
-              <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img14.jpg); min-height: 15rem;">
+              <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url('{{ asset('frontend/img/400x500/img14.jpg')}}'); min-height: 15rem;">
                 <div class="card-body">
                   <span class="card-subtitle text-white-70">New</span>
                   <h4 class="card-title text-white">Cloud computing</h4>
-
-                  <div class="card-footer pt-0">
-                    <span class="card-link text-white">Read now</span>
-                  </div>
-                </div>
-              </a>
-              <!-- End Card -->
-            </div>
-            <!-- End Col -->
-
-            <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-              <!-- Card -->
-              <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img13.jpg); min-height: 15rem;">
-                <div class="card-body">
-                  <span class="card-subtitle text-white-70">Phython</span>
-                  <h4 class="card-title text-white">What's new in Phython 3.7.2</h4>
-
-                  <div class="card-footer pt-0">
-                    <span class="card-link text-white">Read now</span>
-                  </div>
-                </div>
-              </a>
-              <!-- End Card -->
-            </div>
-            <!-- End Col -->
-
-            <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-              <!-- Card -->
-              <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url(../assets/img/400x500/img15.jpg); min-height: 15rem;">
-                <div class="card-body">
-                  <span class="card-subtitle text-white-70">Tooling</span>
-                  <h4 class="card-title text-white">Build a staging server</h4>
 
                   <div class="card-footer pt-0">
                     <span class="card-link text-white">Read now</span>
@@ -690,11 +538,11 @@
                   <span class="display-4 text-white">4.7</span>
 
                   <div class="d-flex justify-content-center gap-2 mb-2">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="22">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="22">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="22">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="22">
-                    <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="22">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="22">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="22">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="22">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="22">
+                    <img src="{{asset('frontend/svg/illustrations/star-half.svg')}}" alt="Review rating" width="22">
                   </div>
                   <span class="text-white">Course rating</span>
                 </div>
@@ -717,11 +565,11 @@
                   <div class="col-2 text-end">
                     <div class="d-flex">
                       <div class="d-flex gap-1 me-2">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
                       </div>
                       <span>205</span>
                     </div>
@@ -741,11 +589,11 @@
                   <div class="col-2 text-end">
                     <div class="d-flex">
                       <div class="d-flex gap-1 me-2">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
                       </div>
                       <span>55</span>
                     </div>
@@ -765,11 +613,11 @@
                   <div class="col-2 text-end">
                     <div class="d-flex">
                       <div class="d-flex gap-1 me-2">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
                       </div>
                       <span>23</span>
                     </div>
@@ -789,11 +637,11 @@
                   <div class="col-2 text-end">
                     <div class="d-flex">
                       <div class="d-flex gap-1 me-2">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
                       </div>
                       <span>0</span>
                     </div>
@@ -813,11 +661,11 @@
                   <div class="col-2 text-end">
                     <div class="d-flex">
                       <div class="d-flex gap-1 me-2">
-                        <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
-                        <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
+                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
                       </div>
                       <span>4</span>
                     </div>
@@ -863,17 +711,17 @@
             <!-- Item -->
             <li class="list-comment-item">
               <div class="d-flex gap-1 mb-3">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
               </div>
 
               <!-- Media -->
               <div class="d-flex align-items-center mb-3">
                 <div class="flex-shrink-0">
-                  <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img3.jpg" alt="Image Description">
+                  <img class="avatar avatar-sm avatar-circle" src="{{asset('frontend/img/160x160/img3.jpg')}}" alt="Image Description">
                 </div>
 
                 <div class="flex-grow-1 ms-3">
@@ -911,108 +759,6 @@
             </li>
             <!-- End Item -->
 
-            <!-- Item -->
-            <li class="list-comment-item">
-              <div class="d-flex gap-1 mb-3">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-              </div>
-
-              <!-- Media -->
-              <div class="d-flex align-items-center mb-3">
-                <div class="flex-shrink-0">
-                  <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img1.jpg" alt="Image Description">
-                </div>
-
-                <div class="flex-grow-1 ms-3">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Hailey</h5>
-                    <span class="d-block small text-muted">January 19, 2019</span>
-                  </div>
-                </div>
-              </div>
-              <!-- End Media -->
-
-              <div class="mb-5">
-                <p>HUUUUUUUUUUUGE fan of Emily Milda</p>
-                <p>Master of Python, I took other classes also. I was very impressed, a very good teacher, in detail explanations, easy to understand. I owe him many thanks and hopefully. THAAAANK YOUU!</p>
-              </div>
-
-              <div class="mb-2">
-                <span class="text-dark fw-semibold">Hailey</span>
-                <span>- Verified Purchase</span>
-              </div>
-
-              <!-- Media -->
-              <div class="d-flex align-items-center">
-                <span class="small me-2">Was this helpful?</span>
-
-                <div class="d-flex gap-2">
-                  <a class="btn btn-white btn-xs" href="javascript:;">
-                    <i class="bi-hand-thumbs-up me-1"></i> Yes <span>(2)</span>
-                  </a>
-                  <a class="btn btn-white btn-xs" href="javascript:;">
-                    <i class="bi-hand-thumbs-down me-1"></i> No <span>(0)</span>
-                  </a>
-                </div>
-              </div>
-              <!-- End Media -->
-            </li>
-            <!-- End Item -->
-
-            <!-- Item -->
-            <li class="list-comment-item">
-              <div class="d-flex gap-1 mb-3">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-              </div>
-
-              <!-- Media -->
-              <div class="d-flex align-items-center mb-3">
-                <div class="flex-shrink-0">
-                  <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img8.jpg" alt="Image Description">
-                </div>
-
-                <div class="flex-grow-1 ms-3">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Chrizelle</h5>
-                    <span class="d-block small text-muted">December 21, 2018</span>
-                  </div>
-                </div>
-              </div>
-              <!-- End Media -->
-
-              <div class="mb-5">
-                <p>Section 19 needs to be addressed. the 1st topic in the section tells us it is optional and can be skipped. this is not true and your instructions tell us to contact udemy support if there is an issue. we did and they told us to contact you.</p>
-              </div>
-
-              <div class="mb-2">
-                <span class="text-dark fw-semibold">Chrizelle</span>
-                <span>- Verified Purchase</span>
-              </div>
-
-              <!-- Media -->
-              <div class="d-flex align-items-center">
-                <span class="small me-2">Was this helpful?</span>
-
-                <div class="d-flex gap-2">
-                  <a class="btn btn-white btn-xs" href="javascript:;">
-                    <i class="bi-hand-thumbs-up me-1"></i> Yes <span>(0)</span>
-                  </a>
-                  <a class="btn btn-white btn-xs" href="javascript:;">
-                    <i class="bi-hand-thumbs-down me-1"></i> No <span>(0)</span>
-                  </a>
-                </div>
-              </div>
-              <!-- End Media -->
-            </li>
-            <!-- End Item -->
           </ul>
           <!-- End Comment -->
 
@@ -1034,94 +780,13 @@
       <h3 class="mb-4">Students also bought</h3>
 
       <div class="row">
-        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-13.svg" alt="Image Description">
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.95</span>
-                    <span class="text-white-70">(1k+ reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Design &amp; Illustration</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="../demo-course/course-overview.html">From the Top: Adobe Illustrator for Beginners</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Emily Milda" href="#">
-                      <img class="avatar-img" src="../assets/img/160x160/img8.jpg" alt="Image Description">
-                    </a>
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="John O'nolan" href="#">
-                      <img class="avatar-img" src="../assets/img/160x160/img4.jpg" alt="Image Description">
-                    </a>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 8 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 7h 59m
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$129.99</del></span>
-                  <h5 class="card-title">$119.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
 
         <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
           <!-- Card -->
           <div class="card card-bordered h-100">
             <!-- Card Pinned -->
             <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-6.svg" alt="Image Description">
+              <img class="card-img-top" src="{{asset('frontend/svg/components/card-6.svg')}}" alt="Image Description">
 
               <div class="card-pinned-top-start">
                 <small class="badge bg-success rounded-pill">Featured</small>
@@ -1131,11 +796,11 @@
                 <div class="d-flex align-items-center flex-wrap">
                   <!-- Rating -->
                   <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
+                    <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
                   </div>
                   <!-- End Rating -->
                   <div class="ms-1">
@@ -1161,10 +826,10 @@
                 <div class="col">
                   <div class="avatar-group avatar-group-xs">
                     <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Aaron Larsson" href="#">
-                      <img class="avatar-img" src="../assets/img/160x160/img3.jpg" alt="Image Description">
+                      <img class="avatar-img" src="{{asset('frontend/img/160x160/img3.jpg')}}" alt="Image Description">
                     </a>
                     <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="#">
-                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
+                      <img class="avatar-img" src="{{asset('frontend/img/160x160/img7.jpg')}}" alt="Image Description">
                     </a>
                   </div>
                 </div>
@@ -1202,84 +867,6 @@
         </div>
         <!-- End Col -->
 
-        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="../assets/svg/components/card-15.svg" alt="Image Description">
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-                    <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.47</span>
-                    <span class="text-white-70">(3.8k+ reviews)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Code</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="../demo-course/course-overview.html">The Ultimate MySQL Bootcamp: Go from SQL Beginner to Expert</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="#">
-                      <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
-                    </a>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 42 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 31h 5m
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$159.99</del></span>
-                  <h5 class="card-title">$111.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
       </div>
       <!-- End Row -->
     </div>

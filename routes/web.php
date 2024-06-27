@@ -16,6 +16,7 @@ use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\AssistantController;
 use App\Http\Controllers\Student\EnrollmentController;
 use App\Http\Controllers\Student\CertificateController;
+use App\Http\Controllers\Tutor\StudentProgressController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
 
 
@@ -96,6 +97,7 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
     Route::get('/courses/{course}/students', [CourseController::class, 'showStudents'])->name('courses.students');
 
 
+    Route::get('/student/{studentId}/course/{courseId}/progress', [StudentProgressController::class, 'show'])->name('student.progress');
 
 
 });

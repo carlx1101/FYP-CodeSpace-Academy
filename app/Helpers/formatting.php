@@ -7,8 +7,6 @@ if (!function_exists('format_message_content')) {
         $formattedContent = is_array($content) ? $content[0]['text']['value'] : $content;
         // return empty instead $content
 
-
-
         // Convert Markdown to HTML using Parsedown
         $parsedown = new Parsedown();
         $htmlContent = $parsedown->text($formattedContent);
@@ -18,7 +16,7 @@ if (!function_exists('format_message_content')) {
 
             '/<pre><code class="language-([^"]+)">(.*?)<\/code><\/pre>/s',
             function ($matches) {
-                
+
                 return '<div class="code-block"><button class="copy-btn" data-clipboard-text="' . htmlspecialchars($matches[2]) . '">Copy</button><pre><code class="language-' . $matches[1] . '">' . $matches[2] . '</code></pre></div>';
             },
             $htmlContent

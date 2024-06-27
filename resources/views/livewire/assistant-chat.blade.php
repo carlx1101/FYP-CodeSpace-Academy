@@ -16,6 +16,7 @@
                                 <div class="message-body">
                                     <div class="message-content">
                                         <div class="message-text">
+                                            
                                             <p> {!! format_message_content($message['content']) !!} </p>
 
                                         </div>

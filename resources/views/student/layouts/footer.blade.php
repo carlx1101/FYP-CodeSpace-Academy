@@ -5,7 +5,7 @@
           <!-- Logo -->
           <div class="mb-5">
             <a class="navbar-brand" href="../index.html" aria-label="Space">
-              <img class="navbar-brand-logo" src="{{asset('frontend/images/logos/codespacesolutions_light.png')}}" alt="Image Description">
+              <img class="navbar-brand-logo" src="{{asset('frontend/images/logos/codespacesolutions_light.png')}}" style="max-width: none; width:15rem" alt="Image Description">
             </a>
           </div>
           <!-- End Logo -->
@@ -162,7 +162,7 @@
 
       <!-- Copyright -->
       <div class="w-md-85 text-lg-center mx-lg-auto">
-        <p class="text-white-50 small">&copy; Front. 2021 Htmlstream. All rights reserved.</p>
+        <p class="text-white-50 small">&copy; CodeSpace Solutions (003553109-A). All rights reserved.</p>
         <p class="text-white-50 small">When you visit or interact with our sites, services or tools, we or our authorised service providers may use cookies for storing information to help provide you with a better, faster and safer experience and for marketing purposes.</p>
       </div>
       <!-- End Copyright -->
