@@ -22,10 +22,13 @@ class ProfileController extends Controller
             $user = User::findOrFail($id);
             // Add debug statement
             Log::info('Decrypted ID: ' . $id);
-            return view('student.profile.public_preview', compact('user'));
+
+            return view('student.profile.public_preview', compact('user','experiences'));
         } catch (\Exception $e) {
             \Log::error('Decryption or user retrieval failed: ' . $e->getMessage());
             return redirect()->route('home')->with('error', 'Invalid or expired link.');
         }
+
+
     }
 }

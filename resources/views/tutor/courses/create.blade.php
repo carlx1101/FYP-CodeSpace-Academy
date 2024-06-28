@@ -407,12 +407,8 @@
                             <div class="col-6">
                                 <!-- Select -->
                                 <div class="tom-select-custom">
-                                    <select class="js-select form-select" name="category_id" autocomplete="off"
-                                            data-hs-tom-select-options='{
-                                            "placeholder": "Select category..."
-                                            }'>
-                                        <option value="">Select a category...</option>
-                                        @foreach($categories as $category)
+                                    <select id="categoryList" class="js-select form-select" name="category_id" required>
+                                        @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
@@ -423,22 +419,18 @@
                             <div class="col-6">
                                 <!-- Select -->
                                 <div class="tom-select-custom">
-                                    <select class="js-select form-select" name="subcategory_id" autocomplete="off"
-                                            data-hs-tom-select-options='{
-                                            "placeholder": "Select subcategory..."
-                                            }'>
-                                        <option value="">Select a subcategory...</option>
-                                        @foreach($subcategories as $subcategory)
-                                            <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
+                                    <select id="subcategoryList" class="form-select" name="subcategory_id" required disabled>
+                                        @foreach ($subcategories as $subcategory)
+                                            <option value="{{ $subcategory->id }}" class='parent-{{ $subcategory->category_id }} subcategory'>{{ $subcategory->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <!-- End Select -->
                             </div>
-
                         </div>
                     </div>
                 </div>
+                <!-- End Form -->
                 <!-- End Form -->
 
 
@@ -844,7 +836,7 @@
     $(document).ready(function () {
      // Listen for the form submission
      $("#courseCreateForm").submit(function (event) {
-         event.preventDefault(); // Prevent the default form submission
+      
 
          // Create a new FormData object and append form data to it
          var formData = new FormData(this);
@@ -893,7 +885,7 @@
             formData.append("promotional_video", promotionalVideo);
         }
 
-        
+
 
          $getCompletionMessageFromQuill = Quill.find($('#completionMessage')[0]);
          $getWelcomeMessageFromQuill = Quill.find($('#welcomeMessage')[0]);
@@ -934,6 +926,20 @@
 
   <!-- End Custom JS  -->
 
+  <script>
+    $(document).ready(function() {
+        $('#categoryList').on('change', function () {
+            console.log('Category changed'); // Debugging statement
+            $("#subcategoryList").attr('disabled', false); // Enable subcategory select
+            $("#subcategoryList").val("");
+            $(".subcategory").attr('disabled', true); // Disable all subcategory options
+            $(".subcategory").hide(); // Hide all subcategory options
+            $(".parent-" + $(this).val()).attr('disabled', false); // Enable subcategory of selected category
+            $(".parent-" + $(this).val()).show();
+            console.log('Subcategories updated'); // Debugging statement
+        });
+    });
+</script>
 
 </body>
 </html>

@@ -820,9 +820,15 @@
                            @csrf
                        </form>
 
-                          <a class="dropdown-item text-danger" href="{{route("courses.destroy",  $course->id)}}">
-                            <i class="bi-trash dropdown-item-icon"></i> Delete
-                          </a>
+
+                  <a class="dropdown-item text-danger" href="#"
+                        onclick="event.preventDefault(); document.getElementById('delete-course-{{ $course->id }}').submit();">
+                        <i class="bi-trash dropdown-item-icon"></i> Delete
+                    </a>
+                    <form id="delete-course-{{ $course->id }}" action="{{ route('courses.destroy', $course->id) }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
 
                         </div>
                       </div>

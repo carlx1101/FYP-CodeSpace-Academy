@@ -560,29 +560,31 @@
                 <!-- Ratings -->
                 <div class="d-grid gap-2">
                     @foreach ([5, 4, 3, 2, 1] as $rating)
-                        <a class="row align-items-center" href="#">
-                            <div class="col-7">
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: {{ ($reviewCounts[$rating] / array_sum($reviewCounts)) * 100 }}%;" aria-valuenow="{{ ($reviewCounts[$rating] / array_sum($reviewCounts)) * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <!-- End Col -->
-
-                            <div class="col-2 text-end">
-                                <div class="d-flex">
-                                    <div class="d-flex gap-1 me-2">
-                                        @for ($i = 0; $i < $rating; $i++)
-                                            <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="16">
-                                        @endfor
-                                        @for ($i = $rating; $i < 5; $i++)
-                                            <img src="{{ asset('frontend/svg/illustrations/star-muted.svg') }}" alt="Review rating" width="16">
-                                        @endfor
+                        @if (array_sum($reviewCounts) > 0)
+                            <a class="row align-items-center" href="#">
+                                <div class="col-7">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: {{ ($reviewCounts[$rating] / array_sum($reviewCounts)) * 100 }}%;" aria-valuenow="{{ ($reviewCounts[$rating] / array_sum($reviewCounts)) * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <span>{{ $reviewCounts[$rating] }}</span>
                                 </div>
-                            </div>
-                            <!-- End Col -->
-                        </a>
+                                <!-- End Col -->
+
+                                <div class="col-2 text-end">
+                                    <div class="d-flex">
+                                        <div class="d-flex gap-1 me-2">
+                                            @for ($i = 0; $i < $rating; $i++)
+                                                <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="16">
+                                            @endfor
+                                            @for ($i = $rating; $i < 5; $i++)
+                                                <img src="{{ asset('frontend/svg/illustrations/star-muted.svg') }}" alt="Review rating" width="16">
+                                            @endfor
+                                        </div>
+                                        <span>{{ $reviewCounts[$rating] }}</span>
+                                    </div>
+                                </div>
+                                <!-- End Col -->
+                            </a>
+                        @endif
                         <!-- End Row -->
                     @endforeach
                 </div>
@@ -655,8 +657,6 @@
                         <span class="text-dark fw-semibold">{{ $review->user->name }}</span>
                         <span>- Verified Purchase</span>
                     </div>
-
-             
                 </li>
             @endforeach
             <!-- End Item -->

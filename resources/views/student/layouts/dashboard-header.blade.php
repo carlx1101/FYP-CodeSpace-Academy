@@ -695,7 +695,7 @@
             <div class="dropdown">
               <a class="navbar-dropdown-account-wrapper" href="javascript:;" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
                 <div class="avatar avatar-sm avatar-circle">
-                  <img class="avatar-img" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+                  <img class="avatar-img" src="{{ Auth::user()->profile_photo_url }} " alt="{{ Auth::user()->name }}">
                   <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                 </div>
               </a>

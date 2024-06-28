@@ -134,6 +134,8 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
+
+
         if ($course->cover_image) {
             Storage::disk('public')->delete($course->cover_image);
         }
