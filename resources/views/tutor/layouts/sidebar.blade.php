@@ -68,6 +68,61 @@
 
 
 
+            <span class="dropdown-header mt-4">Event Management </span>
+            <small class="bi-three-dots nav-subtitle-replacer"></small>
+
+
+            <!-- Collapse -->
+            <div class="navbar-nav nav-compact">
+
+            </div>
+            <div id="navbarVerticalMenuPagesMenu">
+
+
+
+                <div class="nav-item">
+                <a class="nav-link " href="{{route('events.index')}}" data-placement="left">
+                    <i class="bi-box-seam nav-icon"></i>
+                    <span class="nav-link-title">Events</span>
+                </a>
+                </div>
+            </div>
+            <!-- End Collapse -->
+
+            <span class="dropdown-header mt-4">Content Management </span>
+            <small class="bi-three-dots nav-subtitle-replacer"></small>
+
+
+    <!-- Collapse -->
+    <div class="navbar-nav nav-compact">
+
+    </div>
+    <div id="navbarVerticalMenuContentMenu">
+      <!-- Collapse -->
+      <div class="nav-item">
+        <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuArticleManagementArticlesMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuArticleManagementArticlesMenu" aria-expanded="false" aria-controls="navbarVerticalMenuArticleManagementArticlesMenu">
+
+          <i class="bi bi-journals nav-icon"></i>
+          <span class="nav-link-title">Articles</span>
+        </a>
+
+        <div id="navbarVerticalMenuArticleManagementArticlesMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuContentMenu">
+          <a class="nav-link " href="{{route('courses.index')}}">Overview</a>
+          <a class="nav-link " href="{{route('courses.create')}}">Add Article</a>
+        </div>
+      </div>
+      <!-- End Collapse -->
+
+
+
+      <div class="nav-item">
+        <a class="nav-link " href="./landing.html" data-placement="left">
+          <i class="bi-box-seam nav-icon"></i>
+          <span class="nav-link-title">Others <span class="badge bg-info rounded-pill ms-1">New</span></span>
+        </a>
+      </div>
+    </div>
+    <!-- End Collapse -->
 
 
 

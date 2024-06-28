@@ -3,11 +3,13 @@
 use App\Http\Livewire\Sections;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Tutor\EventController;
+
 use App\Http\Controllers\Student\CartController;
 use App\Http\Controllers\Student\NoteController;
-
 use App\Http\Controllers\Tutor\CourseController;
 use App\Http\Controllers\Tutor\LessonController;
 use App\Http\Controllers\Tutor\SectionController;
@@ -74,6 +76,7 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
     Route::get('/certificate/download/{course}', [CertificateController::class, 'download'])->name('certificate.download');
 
 
+
 });
 
 Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(function () {
@@ -94,11 +97,19 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
     Route::post('sections/{section}/lessons', [LessonController::class, 'store'])->name('lessons.store');
     Route::delete('sections/{section}/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
 
+    // Enroll Student
     Route::post('/courses/{course}/enroll', [EnrollmentController::class, 'enroll'])->name('courses.enroll');
     Route::get('/courses/{course}/students', [CourseController::class, 'showStudents'])->name('courses.students');
 
+    // Show Student Progress
 
     Route::get('/student/{studentId}/course/{courseId}/progress', [StudentProgressController::class, 'show'])->name('student.progress');
+
+    // Events
+    Route::get('events', [EventController::class, 'index'])->name('events.index');
+
+    // Manage Posts
+    Route::resource('posts', PostController::class);
 
 
 });

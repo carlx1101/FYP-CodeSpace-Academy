@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Log;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 
 class ProfileController extends Controller
@@ -23,7 +24,7 @@ class ProfileController extends Controller
             // Add debug statement
             Log::info('Decrypted ID: ' . $id);
 
-            return view('student.profile.public_preview', compact('user','experiences'));
+            return view('student.profile.public_preview', compact('user'));
         } catch (\Exception $e) {
             \Log::error('Decryption or user retrieval failed: ' . $e->getMessage());
             return redirect()->route('home')->with('error', 'Invalid or expired link.');
