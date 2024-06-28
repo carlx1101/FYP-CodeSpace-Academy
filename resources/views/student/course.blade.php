@@ -526,245 +526,148 @@
 
           <hr class="my-7">
 
+
           <div class="mb-4">
             <h3>Student feedback</h3>
-          </div>
+        </div>
 
-          <div class="row mb-5">
+        <div class="row mb-5">
             <div class="col-lg-4">
-              <!-- Card -->
-              <div class="card card-sm bg-primary text-center mb-3">
-                <div class="card-body">
-                  <span class="display-4 text-white">4.7</span>
+                <!-- Card -->
+                <div class="card card-sm bg-primary text-center mb-3">
+                    <div class="card-body">
+                        <span class="display-4 text-white">{{ number_format($averageRating, 1) }}</span>
 
-                  <div class="d-flex justify-content-center gap-2 mb-2">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="22">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="22">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="22">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="22">
-                    <img src="{{asset('frontend/svg/illustrations/star-half.svg')}}" alt="Review rating" width="22">
-                  </div>
-                  <span class="text-white">Course rating</span>
+                        <div class="d-flex justify-content-center gap-2 mb-2">
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= floor($averageRating))
+                                    <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="22">
+                                @elseif ($i == ceil($averageRating))
+                                    <img src="{{ asset('frontend/svg/illustrations/star-half.svg') }}" alt="Review rating" width="22">
+                                @else
+                                    <img src="{{ asset('frontend/svg/illustrations/star-muted.svg') }}" alt="Review rating" width="22">
+                                @endif
+                            @endfor
+                        </div>
+                        <span class="text-white">Course rating</span>
+                    </div>
                 </div>
-              </div>
-              <!-- End Card -->
+                <!-- End Card -->
             </div>
             <!-- End Col -->
 
             <div class="col-lg-8">
-              <!-- Ratings -->
-              <div class="d-grid gap-2">
-                <a class="row align-items-center" href="#">
-                  <div class="col-7">
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <!-- End Col -->
+                <!-- Ratings -->
+                <div class="d-grid gap-2">
+                    @foreach ([5, 4, 3, 2, 1] as $rating)
+                        <a class="row align-items-center" href="#">
+                            <div class="col-7">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ ($reviewCounts[$rating] / array_sum($reviewCounts)) * 100 }}%;" aria-valuenow="{{ ($reviewCounts[$rating] / array_sum($reviewCounts)) * 100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <!-- End Col -->
 
-                  <div class="col-2 text-end">
-                    <div class="d-flex">
-                      <div class="d-flex gap-1 me-2">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                      </div>
-                      <span>205</span>
-                    </div>
-                  </div>
-                  <!-- End Col -->
-                </a>
-                <!-- End Row -->
-
-                <a class="row align-items-center" href="#">
-                  <div class="col-7">
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 53%;" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <!-- End Col -->
-
-                  <div class="col-2 text-end">
-                    <div class="d-flex">
-                      <div class="d-flex gap-1 me-2">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                      </div>
-                      <span>55</span>
-                    </div>
-                  </div>
-                  <!-- End Col -->
-                </a>
-                <!-- End Row -->
-
-                <a class="row align-items-center" href="#">
-                  <div class="col-7">
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <!-- End Col -->
-
-                  <div class="col-2 text-end">
-                    <div class="d-flex">
-                      <div class="d-flex gap-1 me-2">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                      </div>
-                      <span>23</span>
-                    </div>
-                  </div>
-                  <!-- End Col -->
-                </a>
-                <!-- End Row -->
-
-                <a class="row align-items-center" href="#">
-                  <div class="col-7">
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <!-- End Col -->
-
-                  <div class="col-2 text-end">
-                    <div class="d-flex">
-                      <div class="d-flex gap-1 me-2">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                      </div>
-                      <span>0</span>
-                    </div>
-                  </div>
-                  <!-- End Col -->
-                </a>
-                <!-- End Row -->
-
-                <a class="row align-items-center" href="#">
-                  <div class="col-7">
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 1%;" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <!-- End Col -->
-
-                  <div class="col-2 text-end">
-                    <div class="d-flex">
-                      <div class="d-flex gap-1 me-2">
-                        <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                        <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                      </div>
-                      <span>4</span>
-                    </div>
-                  </div>
-                  <!-- End Col -->
-                </a>
-                <!-- End Row -->
-              </div>
-              <!-- End Ratings -->
+                            <div class="col-2 text-end">
+                                <div class="d-flex">
+                                    <div class="d-flex gap-1 me-2">
+                                        @for ($i = 0; $i < $rating; $i++)
+                                            <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="16">
+                                        @endfor
+                                        @for ($i = $rating; $i < 5; $i++)
+                                            <img src="{{ asset('frontend/svg/illustrations/star-muted.svg') }}" alt="Review rating" width="16">
+                                        @endfor
+                                    </div>
+                                    <span>{{ $reviewCounts[$rating] }}</span>
+                                </div>
+                            </div>
+                            <!-- End Col -->
+                        </a>
+                        <!-- End Row -->
+                    @endforeach
+                </div>
+                <!-- End Ratings -->
             </div>
             <!-- End Col -->
-          </div>
-          <!-- End Row -->
+        </div>
+        <!-- End Row -->
 
-          <!-- Heading -->
-          <div class="border-bottom pb-4 mb-4">
+        <!-- Heading -->
+        <div class="border-bottom pb-4 mb-4">
             <div class="row align-items-center">
-              <div class="col-sm-6 mb-2 mb-sm-0">
-                <h3 class="mb-0">Reviews</h3>
-              </div>
-              <!-- End Col -->
+                <div class="col-sm-6 mb-2 mb-sm-0">
+                    <h3 class="mb-0">Reviews</h3>
+                </div>
+                <!-- End Col -->
 
-              <div class="col-sm-6">
-                <!-- Form -->
-                <form>
-                  <div class="input-group input-group-merge">
-                    <input type="search" class="form-control" placeholder="Search reviews" aria-label="Search reviews">
-                    <div class="input-group-append input-group-text">
-                      <i class="bi-search"></i>
-                    </div>
-                  </div>
-                </form>
-                <!-- End Form -->
-              </div>
-              <!-- End Col -->
+                <div class="col-sm-6">
+                    <!-- Form -->
+                    <form>
+                        <div class="input-group input-group-merge">
+                            <input type="search" class="form-control" placeholder="Search reviews" aria-label="Search reviews">
+                            <div class="input-group-append input-group-text">
+                                <i class="bi-search"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End Form -->
+                </div>
+                <!-- End Col -->
             </div>
             <!-- End Row -->
-          </div>
-          <!-- End Heading -->
+        </div>
+        <!-- End Heading -->
 
-          <!-- Comment -->
-          <ul class="list-comment list-comment-divider mb-7">
+        <!-- Comment -->
+        <ul class="list-comment list-comment-divider mb-7">
             <!-- Item -->
-            <li class="list-comment-item">
-              <div class="d-flex gap-1 mb-3">
-                <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-              </div>
+            @foreach ($course->reviews as $review)
+                <li class="list-comment-item">
+                    <div class="d-flex gap-1 mb-3">
+                        @for ($i = 0; $i < $review->rating; $i++)
+                            <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="16">
+                        @endfor
+                        @for ($i = $review->rating; $i < 5; $i++)
+                            <img src="{{ asset('frontend/svg/illustrations/star-muted.svg') }}" alt="Review rating" width="16">
+                        @endfor
+                    </div>
 
-              <!-- Media -->
-              <div class="d-flex align-items-center mb-3">
-                <div class="flex-shrink-0">
-                  <img class="avatar avatar-sm avatar-circle" src="{{asset('frontend/img/160x160/img3.jpg')}}" alt="Image Description">
-                </div>
+                    <!-- Media -->
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="flex-shrink-0">
+                            <img class="avatar avatar-sm avatar-circle" src="{{ asset('storage/' . $review->user->profile_photo_path) }}" alt="{{ $review->user->name }}">
+                        </div>
 
-                <div class="flex-grow-1 ms-3">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Dave Austin</h5>
-                    <span class="d-block small text-muted">April 3, 2019</span>
-                  </div>
-                </div>
-              </div>
-              <!-- End Media -->
+                        <div class="flex-grow-1 ms-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">{{ $review->user->name }}</h5>
+                                <span class="d-block small text-muted">{{ $review->created_at->format('F d, Y') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Media -->
 
-              <div class="mb-5">
-                <p>This course helped me in learning python in a very simple and effective way &amp; boosts up my confidence. Concepts have been explained in a crystal clear way.</p>
-              </div>
+                    <div class="mb-5">
+                        <p>{{ $review->review }}</p>
+                    </div>
 
-              <div class="mb-2">
-                <span class="text-dark fw-semibold">Dave</span>
-                <span>- Verified Purchase</span>
-              </div>
+                    <div class="mb-2">
+                        <span class="text-dark fw-semibold">{{ $review->user->name }}</span>
+                        <span>- Verified Purchase</span>
+                    </div>
 
-              <!-- Media -->
-              <div class="d-flex align-items-center">
-                <span class="small me-2">Was this helpful?</span>
-
-                <div class="d-flex gap-2">
-                  <a class="btn btn-white btn-xs" href="javascript:;">
-                    <i class="bi-hand-thumbs-up me-1"></i> Yes <span>(45)</span>
-                  </a>
-                  <a class="btn btn-white btn-xs" href="javascript:;">
-                    <i class="bi-hand-thumbs-down me-1"></i> No <span>(21)</span>
-                  </a>
-                </div>
-              </div>
-              <!-- End Media -->
-            </li>
+             
+                </li>
+            @endforeach
             <!-- End Item -->
+        </ul>
+        <!-- End Comment -->
 
-          </ul>
-          <!-- End Comment -->
-
-          <div class="text-center">
+        <div class="text-center">
             <a class="btn btn-outline-primary btn-transition" href="#">See all reviews</a>
-          </div>
+        </div>
+
+
 
           <hr class="my-7">
         </div>

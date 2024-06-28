@@ -705,6 +705,7 @@
                   <div class="d-flex align-items-center">
                     <div class="avatar avatar-sm avatar-circle">
                       <img class="avatar-img" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+
                     </div>
                     <div class="flex-grow-1 ms-3">
                       <h5 class="mb-0">{{Auth::user()->name}}</h5>

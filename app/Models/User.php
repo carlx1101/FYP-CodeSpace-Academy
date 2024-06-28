@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Review;
 use App\Models\Student\Cart;
 use App\Models\Tutor\Course;
 use App\Models\Tutor\Lesson;
@@ -125,6 +126,11 @@ class User extends Authenticatable
         }
 
         return ($completedLessons / $totalLessons) * 100;
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
 }

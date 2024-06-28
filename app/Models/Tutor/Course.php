@@ -3,6 +3,7 @@
 namespace App\Models\Tutor;
 
 use App\Models\User;
+use App\Models\Review;
 use App\Models\Admin\Category;
 use App\Models\Admin\Subcategory;
 use App\Models\Student\OrderItem;
@@ -92,5 +93,9 @@ class Course extends Model
         return $this->hasManyThrough(Lesson::class, Section::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 
 }

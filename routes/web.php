@@ -23,6 +23,7 @@ use App\Http\Controllers\Student\CourseController as StudentCourseController;
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
 Route::get('/courses/{id}', [PageController::class, 'course'])->name('course');
+Route::get('/user/public-preview/{encryptedId}', [ProfileController::class, 'showPublicPreview'])->name('user.public_preview');
 
 
 Route::middleware([

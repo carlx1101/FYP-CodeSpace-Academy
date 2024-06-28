@@ -163,11 +163,17 @@
           </div>
           <!-- End Col -->
 
-          <div class="col-sm-auto">
-            <a class="btn btn-primary" href="./user-profile-my-profile.html">
-              <i class="bi-person-fill me-1"></i> Preview
-            </a>
-          </div>
+          @php
+          use Illuminate\Support\Facades\Crypt;
+          $encryptedId = Crypt::encryptString($user->id);
+      @endphp
+
+      <div class="col-sm-auto">
+          <a class="btn btn-primary" href="{{ route('user.public_preview', ['encryptedId' => $encryptedId]) }}">
+              <i class="bi-person-fill me-1"></i> Preview Portfolio
+          </a>
+      </div>
+      
           <!-- End Col -->
         </div>
         <!-- End Row -->

@@ -33,7 +33,42 @@
     {
       opacity: 0;
     }
+
+
   </style>
+
+
+<style>
+    .star-rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    .star-rating label {
+        font-size: 2rem;
+        color: #ddd;
+        cursor: pointer;
+        padding: 0 0.1rem;
+    }
+
+    .star-rating input[type="radio"]:checked ~ label {
+        color: #f5c518;
+    }
+
+    .star-rating input[type="radio"]:hover ~ label {
+        color: #f5c518;
+    }
+
+    .star-rating label:hover ~ label {
+        color: #f5c518;
+    }
+</style>
+
 
   <script>
             window.hs_config = {"autopath":"@@autopath","deleteLine":"hs-builder:delete","deleteLine:build":"hs-builder:build-delete","deleteLine:dist":"hs-builder:dist-delete","previewMode":false,"startPath":"/index.html","vars":{"themeFont":"https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap","version":"?v=1.0"},"layoutBuilder":{"extend":{"switcherSupport":true},"header":{"layoutMode":"default","containerMode":"container-fluid"},"sidebarLayout":"default"},"themeAppearance":{"layoutSkin":"default","sidebarSkin":"default","styles":{"colors":{"primary":"#377dff","transparent":"transparent","white":"#fff","dark":"132144","gray":{"100":"#f9fafc","900":"#1e2022"}},"font":"Inter"}},"languageDirection":{"lang":"en"},"skipFilesFromBundle":{"dist":["assets/js/hs.theme-appearance.js","assets/js/hs.theme-appearance-charts.js","assets/js/demo.js"],"build":["assets/css/theme.css","assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside-mini-cache.js","assets/js/demo.js","assets/css/theme-dark.css","assets/css/docs.css","assets/vendor/icon-set/style.css","assets/js/hs.theme-appearance.js","assets/js/hs.theme-appearance-charts.js","node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js","assets/js/demo.js"]},"minifyCSSFiles":["assets/css/theme.css","assets/css/theme-dark.css"],"copyDependencies":{"dist":{"*assets/js/theme-custom.js":""},"build":{"*assets/js/theme-custom.js":"","node_modules/bootstrap-icons/font/*fonts/**":"assets/css"}},"buildFolder":"","replacePathsToCDN":{},"directoryNames":{"src":"./src","dist":"./dist","build":"./build"},"fileNames":{"dist":{"js":"theme.min.js","css":"theme.min.css"},"build":{"css":"theme.min.css","js":"theme.min.js","vendorCSS":"vendor.min.css","vendorJS":"vendor.min.js"}},"fileTypes":"jpg|png|svg|mp4|webm|ogv|json"}
@@ -157,35 +192,7 @@
           </div>
           <!-- End Col -->
 
-          {{-- <div class="col-sm-auto" aria-label="Button group">
-            <!-- Button Group -->
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadFilesModal">
-                <i class="bi-cloud-arrow-up-fill me-1"></i> Upload
-              </button>
 
-              <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" id="uploadGroupDropdown" data-bs-toggle="dropdown" aria-expanded="false"></button>
-
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="uploadGroupDropdown">
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-folder-plus dropdown-item-icon"></i> New folder
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-folder-symlink dropdown-item-icon"></i> New shared folder
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#uploadFilesModal">
-                    <i class="bi-file-earmark-arrow-up dropdown-item-icon"></i> Upload files
-                  </a>
-                  <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#uploadFilesModal">
-                    <i class="bi-upload dropdown-item-icon"></i> Upload folder
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- End Button Group -->
-          </div> --}}
           <!-- End Col -->
         </div>
         <!-- End Row -->
