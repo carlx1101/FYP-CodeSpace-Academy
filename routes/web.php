@@ -3,11 +3,11 @@
 use App\Http\Livewire\Sections;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Tutor\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Tutor\EventController;
 
+use App\Http\Controllers\Tutor\EventController;
 use App\Http\Controllers\Student\CartController;
 use App\Http\Controllers\Student\NoteController;
 use App\Http\Controllers\Tutor\CourseController;
@@ -110,6 +110,8 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
 
     // Manage Posts
     Route::resource('posts', PostController::class);
+
+
 
 
 });

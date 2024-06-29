@@ -107,8 +107,8 @@
         </a>
 
         <div id="navbarVerticalMenuArticleManagementArticlesMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuContentMenu">
-          <a class="nav-link " href="{{route('courses.index')}}">Overview</a>
-          <a class="nav-link " href="{{route('courses.create')}}">Add Article</a>
+          <a class="nav-link " href="{{route('posts.index')}}">Overview</a>
+          <a class="nav-link " href="{{route('posts.create')}}">Add Article</a>
         </div>
       </div>
       <!-- End Collapse -->

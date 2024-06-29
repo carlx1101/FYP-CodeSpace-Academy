@@ -119,120 +119,34 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link " href="../demo-course/index.html">Home</a>
+              <a class="nav-link " href="{{route('home')}}">Home</a>
             </li>
 
             <!-- Courses -->
+
             <li class="hs-has-sub-menu nav-item">
-              <a id="coursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-journals me-2"></i> Courses</a>
+                <a id="coursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi-journals me-2"></i> Courses
+                </a>
 
-              <!-- Mega Menu -->
-              <div class="hs-sub-menu dropdown-menu" aria-labelledby="coursesMegaMenu" style="min-width: 17rem;">
-                <!-- Development -->
-                <div class="hs-has-sub-menu nav-item">
-                  <a id="developmentMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-code-slash dropdown-item-icon"></i> Development</a>
+                <!-- Mega Menu -->
+                <div class="hs-sub-menu dropdown-menu" aria-labelledby="coursesMegaMenu" style="min-width: 17rem;">
+                    @foreach($categories as $category)
+                    <div class="hs-has-sub-menu nav-item">
+                        <a id="categoryMenu{{ $category->id }}" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-tag dropdown-item-icon"></i> {{ $category->name }}
+                        </a>
 
-                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="developmentMegaMenu" style="min-width: 14rem;">
-                    <a class="dropdown-item" href="#">All Business</a>
-                    <a class="dropdown-item" href="#">Finance</a>
-                    <a class="dropdown-item" href="#">Entrepreneurship</a>
-                    <a class="dropdown-item" href="#">Communications</a>
-                    <a class="dropdown-item" href="#">Management</a>
-                    <a class="dropdown-item" href="#">Sales</a>
-                    <a class="dropdown-item" href="#">Strategy</a>
-                    <a class="dropdown-item" href="#">Operations</a>
-                    <a class="dropdown-item" href="#">Project management</a>
-                    <a class="dropdown-item" href="#">Business law</a>
-                    <a class="dropdown-item" href="#">Data &amp; Analytics</a>
-                    <a class="dropdown-item" href="#">Other</a>
-                  </div>
+                        <div class="hs-sub-menu dropdown-menu" aria-labelledby="categoryMenu{{ $category->id }}" style="min-width: 14rem;">
+                            @foreach($category->subcategories as $subcategory)
+                            <a class="dropdown-item" href="#">{{ $subcategory->name }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
-                <!-- End Development -->
-
-                <!-- Business -->
-                <div class="hs-has-sub-menu nav-item">
-                  <a id="businessMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-briefcase dropdown-item-icon"></i> Business</a>
-
-                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="businessMegaMenu" style="min-width: 14rem;">
-                    <a class="dropdown-item" href="#">All Finance &amp; Accounting</a>
-                    <a class="dropdown-item" href="#">Accounting &amp; Bookkeeping</a>
-                    <a class="dropdown-item" href="#">Compliance</a>
-                    <a class="dropdown-item" href="#">Economics</a>
-                    <a class="dropdown-item" href="#">Finance</a>
-                    <a class="dropdown-item" href="#">Other</a>
-                  </div>
-                </div>
-                <!-- End Business -->
-
-                <!-- Finance & Accounting -->
-                <div class="hs-has-sub-menu nav-item">
-                  <a id="financeAccountingMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-graph-up dropdown-item-icon"></i> Finance &amp; Accounting</a>
-
-                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="financeAccountingMegaMenu" style="min-width: 14rem;">
-                    <a class="dropdown-item" href="#">All IT &amp; Software</a>
-                    <a class="dropdown-item" href="#">IT Sertification</a>
-                    <a class="dropdown-item" href="#">Network &amp; security</a>
-                    <a class="dropdown-item" href="#">Hardware</a>
-                    <a class="dropdown-item" href="#">Operating systems</a>
-                    <a class="dropdown-item" href="#">Other</a>
-                  </div>
-                </div>
-                <!-- End Finance & Accounting -->
-
-                <!-- IT & Software -->
-                <div class="hs-has-sub-menu nav-item">
-                  <a id="ITSoftwareMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-laptop dropdown-item-icon"></i> IT &amp; Software</a>
-
-                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="ITSoftwareMegaMenu" style="min-width: 14rem;">
-                    <a class="dropdown-item" href="#">All Design</a>
-                    <a class="dropdown-item" href="#">Web design</a>
-                    <a class="dropdown-item" href="#">Graphic design</a>
-                    <a class="dropdown-item" href="#">Design tools</a>
-                    <a class="dropdown-item" href="#">User experience</a>
-                    <a class="dropdown-item" href="#">Game design</a>
-                    <a class="dropdown-item" href="#">Design thinking</a>
-                    <a class="dropdown-item" href="#">3D &amp; animation</a>
-                    <a class="dropdown-item" href="#">Fashion</a>
-                    <a class="dropdown-item" href="#">Architectural design</a>
-                    <a class="dropdown-item" href="#">Interior design</a>
-                    <a class="dropdown-item" href="#">Other</a>
-                  </div>
-                </div>
-                <!-- End IT & Software -->
-
-                <!-- Design -->
-                <div class="hs-has-sub-menu nav-item">
-                  <a id="designMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-bezier2 dropdown-item-icon"></i> Design</a>
-
-                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="designMegaMenu" style="min-width: 14rem;">
-                    <a class="dropdown-item" href="#">All Marketing</a>
-                    <a class="dropdown-item" href="#">Digital marketing</a>
-                    <a class="dropdown-item" href="#">Branding</a>
-                    <a class="dropdown-item" href="#">Advertising</a>
-                    <a class="dropdown-item" href="#">Other</a>
-                  </div>
-                </div>
-                <!-- End Design -->
-
-                <!-- Music -->
-                <div class="hs-has-sub-menu nav-item">
-                  <a id="musicMegaMenu" class="hs-mega-menu-invoker dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi-music-note-list dropdown-item-icon"></i> Music</a>
-
-                  <div class="hs-sub-menu dropdown-menu" aria-labelledby="musicMegaMenu" style="min-width: 14rem;">
-                    <a class="dropdown-item" href="#">All Musics</a>
-                    <a class="dropdown-item" href="#">Instrument</a>
-                    <a class="dropdown-item" href="#">Production</a>
-                    <a class="dropdown-item" href="#">Music fundamentals</a>
-                    <a class="dropdown-item" href="#">Vocal</a>
-                    <a class="dropdown-item" href="#">Music techniques</a>
-                    <a class="dropdown-item" href="#">Music software</a>
-                    <a class="dropdown-item" href="#">Other</a>
-                  </div>
-                </div>
-                <!-- End Music -->
-              </div>
-              <!-- End Mega Menu -->
-            </li>
+                <!-- End Mega Menu -->
+            </li> 
             <!-- End Courses -->
 
             <!-- Search Form -->

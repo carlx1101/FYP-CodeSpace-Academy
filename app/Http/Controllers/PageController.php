@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Tutor\Course;
 use Illuminate\Http\Request;
+use App\Models\Admin\Category;
 
 class PageController extends Controller
 {
     public function home()
     {
+        $categories = Category::with('subcategories')->get();
         $courses = Course::where('publishing_status', true)->get();
-        return view('student.home',compact('courses'));
+        return view('student.home', compact('courses', 'categories'));
     }
+
 
     public function courses()
     {
