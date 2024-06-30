@@ -16,22 +16,46 @@ class PageController extends Controller
     }
 
 
-    public function courses()
+    public function courses(Request $request)
     {
+        $categories = Category::with('subcategories')->get();
 
+        $query = Course::where('publishing_status', true)->with(['sections.lessons']);
 
-      // Eager load sections and their lessons for each course
-      $courses = Course::where('publishing_status', true)
-      ->with(['sections.lessons'])
-      ->paginate(10);
+        // Apply filters
+        if ($request->filled('subcategory')) {
+            $query->whereHas('subcategory', function ($q) use ($request) {
+                $q->where('id', $request->input('subcategory'));
+            });
+        }
 
+        if ($request->filled('sort')) {
+            switch ($request->input('sort')) {
+                case 'highest_rated':
+                    $query->orderBy('rating', 'desc');
+                    break;
+                case 'newest':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+                case 'lowest_price':
+                    $query->orderBy('price', 'asc');
+                    break;
+                case 'highest_price':
+                    $query->orderBy('price', 'desc');
+                    break;
+            }
+        }
 
-        return view('student.courses', compact('courses'));
+        $courses = $query->paginate(10);
+
+        return view('student.courses', compact('courses', 'categories'));
     }
+
 
     public function course($id)
     {
         $course = Course::with(['sections.lessons', 'reviews.user'])->findOrFail($id);
+        $categories = Category::with('subcategories')->get();
 
         $reviewCounts = [
             5 => 0,
@@ -50,6 +74,6 @@ class PageController extends Controller
         $totalReviews = $course->reviews->count();
         $averageRating = $totalReviews > 0 ? $totalRating / $totalReviews : 0;
 
-        return view('student.course', compact('course', 'averageRating', 'reviewCounts'));
+        return view('student.course', compact('course', 'averageRating', 'reviewCounts','categories'));
     }
 }
