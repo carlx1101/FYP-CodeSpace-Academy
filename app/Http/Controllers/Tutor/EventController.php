@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Tutor;
 
-use App\Models\Event;
+use App\Models\User;
+use App\Models\Tutor\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -11,68 +12,77 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::with('guests')->get();
+        $events = Event::all();
         return view('tutor.events.index', compact('events'));
     }
 
     public function create()
     {
-        return view('events.create');
+        $users = User::all();
+        return view('events.create', compact('users'));
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'event_type' => 'required|string',
-            'date' => 'required|date',
-            'location' => 'required|string',
+        // Validate the request data
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'event_type' => 'required|string|max:255',
+            'start_date' => 'required|date_format:d/m/Y H:i',
+            'end_date' => 'required|date_format:d/m/Y H:i|after_or_equal:start_date',
+            'location' => 'required|string|max:255',
             'description' => 'required|string',
-            'guests' => 'required|array',
-            'guests.*' => 'exists:users,id',
         ]);
 
+        // Convert start_date and end_date to the correct format
+        $start_date = \Carbon\Carbon::createFromFormat('d/m/Y H:i', $request->input('start_date'));
+        $end_date = \Carbon\Carbon::createFromFormat('d/m/Y H:i', $request->input('end_date'));
+
+        // Create the event
         $event = Event::create([
-            'event_type' => $validatedData['event_type'],
-            'date' => $validatedData['date'],
-            'location' => $validatedData['location'],
-            'description' => $validatedData['description'],
-            'host_id' => Auth::id(),
+            'title' => $request->input('title'),
+            'event_type' => $request->input('event_type'),
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'location' => $request->input('location'),
+            'description' => $request->input('description'),
+            'host_id' => auth()->id(),
         ]);
 
-        $event->guests()->attach($validatedData['guests']);
-
-        return redirect()->route('events.index')->with('success', 'Event created successfully.');
+        // Return a response
+        return response()->json(['message' => 'Event created successfully!', 'event' => $event], 201);
     }
 
-    public function show(Event $event)
-    {
-        return view('events.show', compact('event'));
-    }
 
     public function edit(Event $event)
     {
-        return view('events.edit', compact('event'));
+        $users = User::all();
+        return view('events.edit', compact('event', 'users'));
     }
 
     public function update(Request $request, Event $event)
     {
-        $validatedData = $request->validate([
-            'event_type' => 'required|string',
-            'date' => 'required|date',
-            'location' => 'required|string',
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'event_type' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'location' => 'required|string|max:255',
             'description' => 'required|string',
-            'guests' => 'required|array',
+            'guests' => 'array',
             'guests.*' => 'exists:users,id',
         ]);
 
         $event->update([
-            'event_type' => $validatedData['event_type'],
-            'date' => $validatedData['date'],
-            'location' => $validatedData['location'],
-            'description' => $validatedData['description'],
+            'title' => $request->title,
+            'event_type' => $request->event_type,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'location' => $request->location,
+            'description' => $request->description,
         ]);
 
-        $event->guests()->sync($validatedData['guests']);
+        $event->users()->sync($request->guests);
 
         return redirect()->route('events.index')->with('success', 'Event updated successfully.');
     }
@@ -80,6 +90,7 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         $event->delete();
+
         return redirect()->route('events.index')->with('success', 'Event deleted successfully.');
     }
 }

@@ -106,7 +106,7 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
     Route::get('/student/{studentId}/course/{courseId}/progress', [StudentProgressController::class, 'show'])->name('student.progress');
 
     // Events
-    Route::get('events', [EventController::class, 'index'])->name('events.index');
+    Route::resource('events', EventController::class);
 
     // Manage Posts
     Route::resource('posts', PostController::class);
