@@ -34,7 +34,7 @@
             </div>
             <!-- End Collapse -->
 
-            <span class="dropdown-header mt-4">Pages</span>
+            <span class="dropdown-header mt-4">Management</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
 
             <!-- Collapse -->
@@ -42,27 +42,44 @@
 
             </div>
             <div id="navbarVerticalMenuPagesMenu">
-              <!-- Collapse -->
-              <div class="nav-item">
-                <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesUsersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesUsersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesUsersMenu">
-                  <i class="bi-people nav-icon"></i>
-                  <span class="nav-link-title">Users</span>
-                </a>
 
-                <div id="navbarVerticalMenuPagesUsersMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                  <a class="nav-link " href="./users.html">Overview</a>
-                  <a class="nav-link " href="./users-leaderboard.html">Leaderboard</a>
-                  <a class="nav-link " href="./users-add-user.html">Add User <span class="badge bg-info rounded-pill ms-1">Hot</span></a>
-                </div>
-              </div>
-              <!-- End Collapse -->
+                <div class="nav-item">
+                    <a class="nav-link " href="./landing.html" data-placement="left">
+                      <i class="bi-box-seam nav-icon"></i>
+                      <span class="nav-link-title">Manage Sales</span>
+                    </a>
+                  </div>
 
               <div class="nav-item">
                 <a class="nav-link " href="./landing.html" data-placement="left">
                   <i class="bi-box-seam nav-icon"></i>
-                  <span class="nav-link-title">Landing Page <span class="badge bg-info rounded-pill ms-1">New</span></span>
+                  <span class="nav-link-title">Manage Users</span>
                 </a>
               </div>
+
+
+              <div class="nav-item">
+                <a class="nav-link " href="./landing.html" data-placement="left">
+                  <i class="bi-box-seam nav-icon"></i>
+                  <span class="nav-link-title">Manage Courses</span>
+                </a>
+              </div>
+
+              <div class="nav-item">
+                <a class="nav-link " href="./landing.html" data-placement="left">
+                  <i class="bi-box-seam nav-icon"></i>
+                  <span class="nav-link-title">Manage Articles</span>
+                </a>
+              </div>
+
+              <div class="nav-item">
+                <a class="nav-link " href="./landing.html" data-placement="left">
+                  <i class="bi-box-seam nav-icon"></i>
+                  <span class="nav-link-title">Manage Events</span>
+                </a>
+              </div>
+
+
             </div>
             <!-- End Collapse -->
           </div>
