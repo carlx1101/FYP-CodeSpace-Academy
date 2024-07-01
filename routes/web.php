@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 
 
 use App\Http\Controllers\Tutor\PostController;
@@ -23,7 +23,12 @@ use App\Http\Controllers\Student\AssistantController;
 use App\Http\Controllers\Student\EnrollmentController;
 use App\Http\Controllers\Student\CertificateController;
 use App\Http\Controllers\Tutor\StudentProgressController;
+use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
+use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Admin\EventController as AdminEventController;
+
+
 
 
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -132,7 +137,15 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
     // Manage Courses
     Route::resource('courses', AdminCourseController::class)->names('admin.courses');
 
-    
+    // Manage Sales
+    Route::resource('sales', SaleController::class)->names('admin.sales');
+
+    // Manage Posts
+    Route::resource('posts', AdminPostController::class)->names('admin.posts');
+
+
+   // Manage Events
+   Route::resource('events', AdminEventController::class)->names('admin.events');
 
 });
 

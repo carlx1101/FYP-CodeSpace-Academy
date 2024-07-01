@@ -44,7 +44,7 @@
             <div id="navbarVerticalMenuPagesMenu">
 
                 <div class="nav-item">
-                    <a class="nav-link " href="./landing.html" data-placement="left">
+                    <a class="nav-link " href="{{route('admin.sales.index')}}" data-placement="left">
                       <i class="bi-box-seam nav-icon"></i>
                       <span class="nav-link-title">Manage Sales</span>
                     </a>
@@ -74,14 +74,14 @@
               </div>
 
               <div class="nav-item">
-                <a class="nav-link " href="./landing.html" data-placement="left">
+                <a class="nav-link " href="{{route('admin.posts.index')}}" data-placement="left">
                   <i class="bi-box-seam nav-icon"></i>
                   <span class="nav-link-title">Manage Articles</span>
                 </a>
               </div>
 
               <div class="nav-item">
-                <a class="nav-link " href="./landing.html" data-placement="left">
+                <a class="nav-link " href="{{route('admin.events.index')}}" data-placement="left">
                   <i class="bi-box-seam nav-icon"></i>
                   <span class="nav-link-title">Manage Events</span>
                 </a>
