@@ -3,7 +3,7 @@
     <div class="container">
       <nav class="js-mega-menu navbar-nav-wrap">
         <!-- Default Logo -->
-        <a class="navbar-brand" href="../demo-course/index.html" aria-label="Front">
+        <a class="navbar-brand" href="{{route('home')}}" aria-label="Front">
           <img class="navbar-brand-logo" src="{{asset('frontend/images/logos/codespacesolutions.png')}}" alt="CodeSpace Solutions">
         </a>
         <!-- End Default Logo -->
@@ -122,6 +122,10 @@
               <a class="nav-link " href="{{route('home')}}">Home</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link " href="{{route('blogs.index')}}">Blogs</a>
+              </li>
+
             <!-- Courses -->
 
             <li class="hs-has-sub-menu nav-item">
@@ -139,14 +143,15 @@
 
                         <div class="hs-sub-menu dropdown-menu" aria-labelledby="categoryMenu{{ $category->id }}" style="min-width: 14rem;">
                             @foreach($category->subcategories as $subcategory)
-                            <a class="dropdown-item" href="#">{{ $subcategory->name }}</a>
+                            <a class="dropdown-item" href="{{ route('courses', ['category' => $category->id, 'subcategory' => $subcategory->id]) }}">{{ $subcategory->name }}</a>
                             @endforeach
                         </div>
                     </div>
                     @endforeach
                 </div>
+
                 <!-- End Mega Menu -->
-            </li> 
+            </li>
             <!-- End Courses -->
 
             <!-- Search Form -->

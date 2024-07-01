@@ -13,7 +13,8 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('student.profile.show', compact('user'));
+        $experiences = $user->profile->experiences;
+        return view('student.profile.show', compact('user','experiences'));
     }
 
     public function showPublicPreview($encryptedId)
@@ -21,10 +22,12 @@ class ProfileController extends Controller
         try {
             $id = Crypt::decryptString($encryptedId);
             $user = User::findOrFail($id);
+            $experiences = $user->profile->experiences;
             // Add debug statement
             Log::info('Decrypted ID: ' . $id);
 
-            return view('student.profile.public_preview', compact('user'));
+            //dd($user->profile);
+            return view('student.profile.public_preview', compact('user','experiences'));
         } catch (\Exception $e) {
             \Log::error('Decryption or user retrieval failed: ' . $e->getMessage());
             return redirect()->route('home')->with('error', 'Invalid or expired link.');

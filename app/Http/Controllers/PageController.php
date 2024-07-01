@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tutor\Post;
 use App\Models\Tutor\Course;
 use Illuminate\Http\Request;
 use App\Models\Admin\Category;
@@ -32,7 +33,7 @@ class PageController extends Controller
         if ($request->filled('sort')) {
             switch ($request->input('sort')) {
                 case 'highest_rated':
-                    $query->orderBy('rating', 'desc');
+                    $query->withAvg('reviews', 'rating')->orderBy('reviews_avg_rating', 'desc');
                     break;
                 case 'newest':
                     $query->orderBy('created_at', 'desc');
@@ -76,4 +77,18 @@ class PageController extends Controller
 
         return view('student.course', compact('course', 'averageRating', 'reviewCounts','categories'));
     }
+
+
+    public function blogs()
+    {
+        $blogs = Post::all();
+
+        return view('student.blogs.index', compact('blogs'));
+    }
+
+    public function blog(Post $post)
+    {
+        return view('student.blogs.show', compact('post'));
+    }
+
 }

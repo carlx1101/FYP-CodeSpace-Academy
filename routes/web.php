@@ -3,16 +3,20 @@
 use App\Http\Livewire\Sections;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\Tutor\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 
+
+use App\Http\Controllers\Tutor\PostController;
 use App\Http\Controllers\Tutor\EventController;
 use App\Http\Controllers\Student\CartController;
 use App\Http\Controllers\Student\NoteController;
 use App\Http\Controllers\Tutor\CourseController;
 use App\Http\Controllers\Tutor\LessonController;
 use App\Http\Controllers\Tutor\SectionController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Student\BillingController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\AssistantController;
@@ -26,7 +30,8 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
 Route::get('/courses/{id}', [PageController::class, 'course'])->name('course');
 Route::get('/user/public-preview/{encryptedId}', [ProfileController::class, 'showPublicPreview'])->name('user.public_preview');
-
+Route::get('/blogs', [PageController::class, 'blogs'])->name('blogs.index');
+Route::get('/blogs/{post}', [PageController::class, 'blog'])->name('blogs.show');
 
 Route::middleware([
     'auth:sanctum',
@@ -118,6 +123,17 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
 
 Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
+
+    // Manage Users
+    Route::resource('users', UserController::class)->names('admin.users');
+    // Manage Categories
+    Route::resource('categories', CategoryController::class)->names('admin.categories');
+
+    // Manage Courses
+    Route::resource('courses', AdminCourseController::class)->names('admin.courses');
+
+    
+
 });
 
 

@@ -24,7 +24,7 @@
 
 <body>
   <!-- ========== HEADER ========== -->
-  @include('student.layouts.header')
+  {{-- @include('student.layouts.header') --}}
   <!-- ========== END HEADER ========== -->
 
   <!-- ========== MAIN CONTENT ========== -->
@@ -35,27 +35,29 @@
         <!-- Media -->
         <div class="d-flex align-items-lg-center">
           <div class="flex-shrink-0">
-            <img class="avatar avatar-xl avatar-circle" src="{{ asset('frontend/img/160x160/img9.jpg') }}" alt="Image Description">
+            <img class="avatar avatar-xl avatar-circle" src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Image Description">
           </div>
 
           <div class="flex-grow-1 ms-4">
             <div class="row">
               <div class="col-lg mb-3 mb-lg-0">
-                <h1 class="page-header-title h2">{{ $user->name }}</h1>
+                <h1 class="page-header-title h2">{{ $user->profile->first_name }} {{ $user->profile->last_name }}</h1>
 
                 <ul class="list-inline list-separator">
                   <li class="list-inline-item">
-                    <i class="bi-geo-alt-fill text-primary me-1"></i> {{ $user->country }}, {{ $user->state }}
+                    <i class="bi-geo-alt-fill text-primary me-1"></i> {{ $user->profile->country }}, {{ $user->profile->state }}
                   </li>
                   <li class="list-inline-item">{{ $user->email }}</li>
-                  <li class="list-inline-item">{{ $user->phone }}</li>
+                  <li class="list-inline-item">
+                    <a href="tel:{{ $user->profile->phone }}">{{ $user->profile->phone }}</a>
+                  </li>
                 </ul>
               </div>
               <!-- End Col -->
 
               <div class="col-lg-auto align-self-lg-end text-lg-right">
                 <div class="d-flex gap-2">
-                  <a class="btn btn-primary btn-sm" href="#">
+                  <a class="btn btn-primary btn-sm" href="mailto:{{$user->email}}">
                     <i class="bi-envelope-fill me-1"></i> Contact me
                   </a>
 
@@ -66,13 +68,13 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="employeeProfileShareDropdown">
-                      <a class="dropdown-item" href="{{ $user->fb_link }}">
+                      <a class="dropdown-item" href="{{ $user->profile->fb_link }}">
                         <i class="bi-facebook dropdown-item-icon"></i> Facebook
                       </a>
-                      <a class="dropdown-item" href="{{ $user->twitter_link }}">
+                      <a class="dropdown-item" href="{{ $user->profile->twitter_link }}">
                         <i class="bi-twitter dropdown-item-icon"></i> Twitter
                       </a>
-                      <a class="dropdown-item" href="{{ $user->linkedin_link }}">
+                      <a class="dropdown-item" href="{{ $user->profile->linkedin_link }}">
                         <i class="bi-linkedin dropdown-item-icon"></i> LinkedIn
                       </a>
                     </div>
@@ -97,41 +99,7 @@
           <div class="mb-8">
             <h3>Bio</h3>
 
-            <p>{{ $user->biography }}</p>
-
-            <ul class="mb-4">
-              <li>Authorized to work in {{ $user->country }} for any employer</li>
-              <li>Willing to relocate to anywhere</li>
-            </ul>
-
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="mb-4">
-                  <h5>Desired job title</h5>
-                  <p>{{ $user->headline }}</p>
-                </div>
-
-                <div class="mb-4">
-                  <h5>Desired job types</h5>
-                  <p>Full time</p>
-                </div>
-              </div>
-              <!-- End Col -->
-
-              <div class="col-sm-6">
-                <div class="mb-4">
-                  <h5>Desired work schedule</h5>
-                  <p>Monday to Friday</p>
-                </div>
-
-                <div class="mb-4">
-                  <h5>Desired salary</h5>
-                  <p>{{ $user->desired_salary }}</p>
-                </div>
-              </div>
-              <!-- End Col -->
-            </div>
-            <!-- End Row -->
+            <p>{{ $user->profile->biography }}</p>
           </div>
 
           <div class="mb-8">
@@ -145,7 +113,7 @@
               <li class="step-item">
                 <div class="step-content-wrapper">
                   <div class="step-avatar step-avatar-sm">
-                    <img class="step-avatar-img" src="{{ asset('frontend/svg/brands/'.$experience->company_logo.'.svg') }}" alt="Image Description">
+                    <img class="step-avatar-img" src="{{ asset('storage/' . $experience->company_image) }}" alt="Image Description">
                   </div>
                   <div class="step-content">
                     <h5 class="step-title">{{ $experience->position }}</h5>
@@ -165,8 +133,12 @@
           </div>
 
           <ul class="list-unstyled list-py-1">
-            <li><a href="{{ $user->website_link }}">Website</a></li>
-            <li><a href="{{ $user->github_link }}">GitHub</a></li>
+            <li><a href="{{ $user->profile->website_link }}">Website</a></li>
+            <li><a href="{{ $user->profile->twitter_link }}">Twitter</a></li>
+            <li><a href="{{ $user->profile->linkedin_link }}">LinkedIn</a></li>
+            <li><a href="{{ $user->profile->fb_link }}">Facebook</a></li>
+            <li><a href="{{ $user->profile->instagram_link }}">Instagram</a></li>
+            <li><a href="{{ $user->profile->youtube_link }}">Youtube</a></li>
             <!-- Add more links as needed -->
           </ul>
 

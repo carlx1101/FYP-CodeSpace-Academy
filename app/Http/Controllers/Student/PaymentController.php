@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use Illuminate\Http\Request;
 use App\Models\Student\Order;
+use App\Models\Admin\Category;
 use App\Models\Student\OrderItem;
 use App\Models\Student\Enrollment;
 use App\Http\Controllers\Controller;
@@ -59,6 +60,8 @@ class PaymentController extends Controller
 
     public function success()
     {
+        $categories = Category::all();
+
         $cartItems = Auth::user()->cart()->with('course')->get();
         $subtotal = 0;
 
@@ -96,7 +99,7 @@ class PaymentController extends Controller
         ]);
 
 
-        return view('student.checkout-success');
+        return view('student.checkout-success', compact('categories'));
     }
 
 

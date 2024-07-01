@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\Category;
+use App\Http\Controllers\Controller;
 
-class CateoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $categories = Category::with('subcategories')->get();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**

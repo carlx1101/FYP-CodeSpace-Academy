@@ -51,7 +51,7 @@
                   </div>
 
               <div class="nav-item">
-                <a class="nav-link " href="./landing.html" data-placement="left">
+                <a class="nav-link " href="{{route('admin.users.index')}}" data-placement="left">
                   <i class="bi-box-seam nav-icon"></i>
                   <span class="nav-link-title">Manage Users</span>
                 </a>
@@ -59,7 +59,15 @@
 
 
               <div class="nav-item">
-                <a class="nav-link " href="./landing.html" data-placement="left">
+                <a class="nav-link " href="{{route('admin.categories.index')}}" data-placement="left">
+                  <i class="bi-box-seam nav-icon"></i>
+                  <span class="nav-link-title">Manage Categories</span>
+                </a>
+              </div>
+
+
+              <div class="nav-item">
+                <a class="nav-link " href="{{route('admin.courses.index')}}" data-placement="left">
                   <i class="bi-box-seam nav-icon"></i>
                   <span class="nav-link-title">Manage Courses</span>
                 </a>

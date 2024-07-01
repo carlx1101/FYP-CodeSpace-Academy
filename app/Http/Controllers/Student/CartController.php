@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Models\Student\Cart;
 use Illuminate\Http\Request;
+use App\Models\Admin\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,8 +12,9 @@ class CartController extends Controller
 {
     public function index()
     {
+        $categories = Category::all();
         $cartItems = Auth::user()->cart()->with('course')->get();
-        return view('student.carts', compact('cartItems'));
+        return view('student.carts', compact('cartItems', 'categories'));
     }
 
     public function store(Request $request)
@@ -42,7 +44,7 @@ class CartController extends Controller
 
     public function destroy(Cart $cart)
     {
-     
+
         // Check if the authenticated user owns the cart item
         if ($cart->user_id !== Auth::id()) {
             return redirect()->route('cart.index')->with('error', 'You do not have permission to remove this course from the cart.');
