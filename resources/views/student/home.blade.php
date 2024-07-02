@@ -59,7 +59,7 @@
           </div>
 
           <div class="d-grid d-md-flex gap-3 align-items-md-center">
-            <a class="btn btn-primary" href="../page-login.html">Start a free trial</a>
+            <a class="btn btn-primary" href="{{ route('courses') }}">Explore more courses</a>
 
             <!-- Fancybox -->
             <a class="video-player video-player-btn" href="https://www.youtube.com/watch?v=d4eDWc8g0e0" role="button" data-fslightbox="youtube-video">
@@ -294,7 +294,7 @@
       <!-- End Row -->
 
       <div class="text-center">
-        <a class="btn btn-link" href="../demo-course/courses.html">See all courses <i class="bi-chevron-right small ms-1"></i></a>
+        <a class="btn btn-link" href="{{ route('courses') }}"> See All Courses <i class="bi-chevron-right small ms-1"></i></a>
       </div>
     </div>
     <!-- End Card Grid -->
@@ -337,40 +337,6 @@
     </div>
     <!-- End Testimonials -->
 
-    <!-- Clients -->
-    <div class="container content-space-t-1 content-space-t-lg-0">
-      <div class="w-lg-75 mx-lg-auto">
-        <div class="row">
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="{{asset('frontend/svg/brands/capsule-dark.svg')}}" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="{{asset('frontend/svg/brands/fitbit-dark.svg')}}" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="{{asset('frontend/svg/brands/forbes-dark.svg')}}" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="{{asset('frontend/svg/brands/mailchimp-dark.svg')}}" alt="Logo">
-          </div>
-          <!-- End Col -->
-
-          <div class="col text-center py-3">
-            <img class="avatar avatar-lg avatar-4x3" src="{{asset('frontend/svg/brands/layar-dark.svg')}}" alt="Logo">
-          </div>
-          <!-- End Col -->
-        </div>
-        <!-- End Row -->
-      </div>
-    </div>
-    <!-- End Clients -->
-
     <!-- CTA -->
     <div class="container content-space-b-2">
       <div class="text-center bg-img-start py-6" style="background: url('{{asset('frontend/svg/components/shape-6.svg')}}') center no-repeat;">
@@ -379,7 +345,7 @@
           <p>Answer a few questions and match your goals to our programs.</p>
         </div>
 
-        <a class="btn btn-primary btn-transition" href="#">Explore by category</a>
+        <a class="btn btn-primary btn-transition" href="{{ route('courses') }}">Explore more courses</a>
       </div>
     </div>
     <!-- End CTA -->

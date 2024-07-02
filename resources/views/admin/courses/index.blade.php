@@ -753,7 +753,7 @@
             <tbody>
 
             @foreach ($courses as $course)
-              <tr>
+            <tr>
                 <td class="table-column-pe-0">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll1">

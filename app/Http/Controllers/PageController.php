@@ -6,6 +6,8 @@ use App\Models\Tutor\Post;
 use App\Models\Tutor\Course;
 use Illuminate\Http\Request;
 use App\Models\Admin\Category;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -13,8 +15,30 @@ class PageController extends Controller
     {
         $categories = Category::with('subcategories')->get();
         $courses = Course::where('publishing_status', true)->get();
-        return view('student.home', compact('courses', 'categories'));
+
+        $studentProgress = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $studentProgress = $user->enrolledCourses()
+                ->with('lessons')
+                ->get()
+                ->map(function ($course) use ($user) {
+                    $totalLessons = $course->lessons->count();
+                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                    return [
+                        'course' => $course,
+                        'progress' => $progress,
+                        'completed' => $progress == 100
+                    ];
+                });
+        }
+
+        return view('student.home', compact('courses', 'categories', 'studentProgress'));
     }
+
 
 
     public function courses(Request $request)
@@ -49,7 +73,28 @@ class PageController extends Controller
 
         $courses = $query->paginate(10);
 
-        return view('student.courses', compact('courses', 'categories'));
+
+        $studentProgress = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $studentProgress = $user->enrolledCourses()
+                ->with('lessons')
+                ->get()
+                ->map(function ($course) use ($user) {
+                    $totalLessons = $course->lessons->count();
+                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                    return [
+                        'course' => $course,
+                        'progress' => $progress,
+                        'completed' => $progress == 100
+                    ];
+                });
+        }
+
+        return view('student.courses', compact('courses', 'categories','studentProgress'));
     }
 
 
@@ -75,20 +120,116 @@ class PageController extends Controller
         $totalReviews = $course->reviews->count();
         $averageRating = $totalReviews > 0 ? $totalRating / $totalReviews : 0;
 
-        return view('student.course', compact('course', 'averageRating', 'reviewCounts','categories'));
+
+        $studentProgress = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $studentProgress = $user->enrolledCourses()
+                ->with('lessons')
+                ->get()
+                ->map(function ($course) use ($user) {
+                    $totalLessons = $course->lessons->count();
+                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                    return [
+                        'course' => $course,
+                        'progress' => $progress,
+                        'completed' => $progress == 100
+                    ];
+                });
+        }
+
+        return view('student.course', compact('course', 'averageRating', 'reviewCounts','categories','studentProgress'));
     }
 
 
-    public function blogs()
+    public function blogs(Request $request)
     {
-        $blogs = Post::all();
+        $query = Post::query();
 
-        return view('student.blogs.index', compact('blogs'));
+
+        // Filter by tag if requested
+        if ($request->has('tag')) {
+            $tag = $request->input('tag');
+            $query->where('tags', 'like', '%' . $tag . '%');
+        }
+
+        // Filter by search query if requested
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', '%' . $search . '%')
+                  ->orWhere('subtitle', 'like', '%' . $search . '%')
+                  ->orWhere('content', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Paginate the results
+        $blogs = $query->orderBy('id', 'asc')->paginate(10);
+
+        // Extract unique tags from all posts
+        $tags = Post::pluck('tags')->flatMap(function($tagString) {
+            return explode(',', $tagString);
+        })->unique();
+
+        // foreach($blogs as $blog){
+        //     $blog->load('user');
+        //     dd($blog->user->name);
+        // }
+
+        $studentProgress = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $studentProgress = $user->enrolledCourses()
+                ->with('lessons')
+                ->get()
+                ->map(function ($course) use ($user) {
+                    $totalLessons = $course->lessons->count();
+                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                    return [
+                        'course' => $course,
+                        'progress' => $progress,
+                        'completed' => $progress == 100
+                    ];
+                });
+        }
+
+        return view('student.blogs.index', compact('blogs', 'tags','studentProgress'));
     }
+
+
 
     public function blog(Post $post)
     {
-        return view('student.blogs.show', compact('post'));
+
+        $studentProgress = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $studentProgress = $user->enrolledCourses()
+                ->with('lessons')
+                ->get()
+                ->map(function ($course) use ($user) {
+                    $totalLessons = $course->lessons->count();
+                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                    return [
+                        'course' => $course,
+                        'progress' => $progress,
+                        'completed' => $progress == 100
+                    ];
+                });
+        }
+
+
+        $post->load('user');
+        return view('student.blogs.show', compact('post','studentProgress'));
     }
 
 }

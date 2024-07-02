@@ -748,9 +748,9 @@
             <tbody>
 
             @foreach($users as $user)
-            @php
-            $latestExperience = $user->profile->experiences->first();
-         @endphp
+                @php
+                $latestExperience = $user->profile->experiences->first();
+                @endphp
               <tr>
                 <td class="table-column-pe-0">
                   <div class="form-check">

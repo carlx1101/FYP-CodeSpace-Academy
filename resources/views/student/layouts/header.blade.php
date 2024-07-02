@@ -176,55 +176,37 @@
               <a id="myCoursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Courses</a>
 
               <!-- Mega Menu -->
-              {{-- <div class="hs-mega-menu hs-position-right dropdown-menu" aria-labelledby="myCoursesMegaMenu" style="min-width: 22rem;">
-                <!-- Course -->
-                <a class="navbar-dropdown-menu-media-link" href="#">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0">
-                      <img class="avatar" src="../assets/svg/components/card-16.svg" alt="Image Description">
-                    </div>
+              <div class="hs-mega-menu hs-position-right dropdown-menu" aria-labelledby="myCoursesMegaMenu" style="min-width: 22rem;">
+                @if(Auth::check())
+                    @foreach($studentProgress as $progress)
+                        <a class="navbar-dropdown-menu-media-link" href="{{ route('student.learn', ['courseTitle' => $progress['course']->title]) }}">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <img class="avatar" src="{{ $progress['course']->cover_image ? asset('storage/' . $progress['course']->cover_image) : asset('default-cover.jpg') }}" alt="{{ $progress['course']->title }}">
+                                </div>
 
-                    <div class="flex-grow-1 ms-3">
-                      <div class="mb-3">
-                        <span class="navbar-dropdown-menu-media-title">Java programming masterclass for software developers</span>
-                        <p class="navbar-dropdown-menu-media-desc">By Emily Milda</p>
-                      </div>
-                      <div class="d-flex justify-content-between">
-                        <span class="card-subtitle text-body">Completed</span>
-                        <small class="text-dark fw-semibold">25%</small>
-                      </div>
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <!-- End Course -->
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="mb-3">
+                                        <span class="navbar-dropdown-menu-media-title">{{ $progress['course']->title ?? 'No Title' }}</span>
+                                        <p class="navbar-dropdown-menu-media-desc">By {{ $progress['course']->user->name ?? 'Unknown Tutor' }}
 
-                <!-- Course -->
-                <a class="navbar-dropdown-menu-media-link" href="#">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0">
-                      <img class="avatar" src="../assets/svg/components/card-5.svg" alt="Image Description">
-                    </div>
-
-                    <div class="flex-grow-1 ms-3">
-                      <div class="mb-3">
-                        <span class="navbar-dropdown-menu-media-title">The Ultimate MySQL Bootcamp: Go from SQL Beginner</span>
-                        <p class="navbar-dropdown-menu-media-desc">By Nataly Gaga and 2 others</p>
-                      </div>
-                      <div class="d-flex justify-content-between">
-                        <span class="card-subtitle text-body">Completed</span>
-                        <small class="text-dark fw-semibold">100%</small>
-                      </div>
-                      <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <!-- End Course -->
-              </div> --}}
+                                        </p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="card-subtitle text-body">{{ $progress['completed'] ? 'Completed' : 'In Progress' }}</span>
+                                        <small class="text-dark fw-semibold">{{ round($progress['progress'], 2) }}%</small>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar {{ $progress['completed'] ? 'bg-success' : '' }}" role="progressbar" style="width: {{ $progress['progress'] }}%;" aria-valuenow="{{ $progress['progress'] }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                @else
+                    <p>Please log in to see your course progress.</p>
+                @endif
+            </div>
               <!-- End Mega Menu -->
             </li>
             <!-- End My Courses -->
