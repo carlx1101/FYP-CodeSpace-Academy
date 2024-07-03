@@ -747,55 +747,51 @@
 
             <tbody>
 
-            @foreach($users as $user)
+                @foreach($users as $user)
                 @php
-                $latestExperience = $user->profile->experiences->first();
+                    $latestExperience = $user->profile && $user->profile->experiences ? $user->profile->experiences->first() : null;
                 @endphp
-              <tr>
-                <td class="table-column-pe-0">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll1">
-                    <label class="form-check-label" for="datatableCheckAll1"></label>
-                  </div>
-                </td>
+                <tr>
+                    <td class="table-column-pe-0">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll1">
+                            <label class="form-check-label" for="datatableCheckAll1"></label>
+                        </div>
+                    </td>
 
-                <td class="table-column-ps-0">
-                    <a class="d-flex align-items-center" href="./user-profile.html">
-                      <div class="avatar avatar-circle">
-                        <img class="avatar-img" src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('default-avatar.jpg') }}" alt="Image Description">
-                    </div>
-                      <div class="ms-3">
-                        <span class="d-block h5 text-inherit mb-0">Amanda Harvey <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></span>
-                        <span class="d-block fs-5 text-body">amanda@site.com</span>
-                      </div>
-                    </a>
-                  </td>
+                    <td class="table-column-ps-0">
+                        <a class="d-flex align-items-center" href="./user-profile.html">
+                            <div class="avatar avatar-circle">
+                                <img class="avatar-img" src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('default-avatar.jpg') }}" alt="Image Description">
+                            </div>
+                            <div class="ms-3">
+                                <span class="d-block h5 text-inherit mb-0">{{ $user->name }} <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></span>
+                                <span class="d-block fs-5 text-body">{{ $user->email }}</span>
+                            </div>
+                        </a>
+                    </td>
 
+                    <td>
+                        @if($latestExperience)
+                            <span class="d-block h5 mb-0">{{ $latestExperience->position }}</span>
+                            <span class="d-block fs-5">{{ $latestExperience->company_name }}</span>
+                        @else
+                            <span class="d-block h5 mb-0">N/A</span>
+                            <span class="d-block fs-5">N/A</span>
+                        @endif
+                    </td>
 
-                <td>
-                    @if($latestExperience)
-                    <span class="d-block h5 mb-0">{{ $latestExperience->position }}</span>
-                    <span class="d-block fs-5">{{ $latestExperience->company_name }}</span>
-                @else
-                    <span class="d-block h5 mb-0">N/A</span>
-                    <span class="d-block fs-5">N/A</span>
-                @endif
-                </td>
+                    <td>{{ $user->profile ? $user->profile->country : 'N/A' }}</td>
+                    <td>{{ $user->created_at ? $user->created_at->format('M d, Y') : 'N/A' }}</td>
 
-
-                <td>{{ $user->profile->country  }}</td>
-                <td>
-                    {{ $user->created_at->format('M d, Y') }}
-
-                </td>
-
-                <td>
-                  <button type="button" class="btn btn-white btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal">
-                    <i class="bi-pencil-fill me-1"></i> View Details
-                  </button>
-                </td>
-              </tr>
+                    <td>
+                        <button type="button" class="btn btn-white btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal">
+                            <i class="bi-pencil-fill me-1"></i> View Details
+                        </button>
+                    </td>
+                </tr>
             @endforeach
+
 
 
             </tbody>

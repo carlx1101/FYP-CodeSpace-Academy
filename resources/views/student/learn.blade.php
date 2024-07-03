@@ -189,6 +189,15 @@
             @endif
         </div>
     </div>
+
+
+    <!-- Chat Widget -->
+<div id="chat-widget" class="chat-widget">
+    <i class="bi bi-chat-dots"></i>
+  </div>
+
+
+  
 </main>
 
 
