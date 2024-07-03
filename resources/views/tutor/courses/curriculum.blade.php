@@ -191,7 +191,7 @@
 
               <div class="btn-group">
 
-                <button type="button" class="btn btn-white btn-sm editSection" data-bs-toggle="modal"
+                <button type="button" class="btn btn-outline-info editSection" data-bs-toggle="modal"
                 data-bs-target="#editSectionModal" data-section="{{ json_encode($section) }}">
                     <i class="bi-pencil-fill me-1"></i> Edit Section
               </button>
@@ -390,8 +390,6 @@
                 </div>
                 <div class="modal-body">
                     <form id="lessonCreateForm">
-                        <input type="text" id="section_id" name="section_id" value="{{ isset($section->id) ? $section->id : '' }}">
-
                         <div class="row">
                             <div class="mb-3" style="text-align: left">
                                 <label class="form-label" for="title">Title</label>
