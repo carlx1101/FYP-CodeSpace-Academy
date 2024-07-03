@@ -155,14 +155,16 @@
             <!-- End Courses -->
 
             <!-- Search Form -->
-            <li class="nav-item flex-grow-1 d-none d-lg-inline-block ">
-              <form class="input-group input-group-merge">
-                <div class="input-group-prepend input-group-text">
-                  <i class="bi-search"></i>
-                </div>
-                <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
-              </form>
+            <li class="nav-item flex-grow-1 d-none d-lg-inline-block">
+                <form class="input-group input-group-merge" action="{{ route('courses') }}" method="GET">
+                    <div class="input-group-prepend input-group-text">
+                        <i class="bi-search"></i>
+                    </div>
+                    <input type="text" class="form-control" name="search" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
             </li>
+
             <!-- End Search Form -->
 
             @if (Auth::user())

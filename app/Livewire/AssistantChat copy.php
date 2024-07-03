@@ -5,14 +5,12 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Tutor\Lesson;
 use Illuminate\Support\Facades\Http;
-use Smalot\PdfParser\Parser;
 
 class AssistantChat extends Component
 {
     public $lessonId;
     public $messages = [];
     public $question;
-    public $pdfContent;
 
     public function mount($lessonId)
     {
@@ -20,9 +18,6 @@ class AssistantChat extends Component
 
         // Fetch the lesson details
         $lesson = Lesson::findOrFail($lessonId);
-
-        // Extract PDF content
-        $this->pdfContent = $this->extractPdfContent($lesson->knowledge);
 
         $this->messages[] = [
             'role' => 'assistant',
@@ -70,10 +65,7 @@ class AssistantChat extends Component
 
     public function fetchAssistantResponse($userQuestion)
     {
-        // Create the prompt with the PDF content
-        $prompt = "The following is content from the lesson PDF:\n\n" . $this->pdfContent . "\n\nBased on this content, please answer the following question:\n\n" . $userQuestion;
-
-        // Create the assistant response
+        // Create the assistant
         $assistantResponse = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
@@ -81,7 +73,8 @@ class AssistantChat extends Component
         ])->post('https://api.openai.com/v1/assistants', [
             'instructions' => 'You are a personal tutor helping students with programming questions.',
             'name' => 'Programming Tutor',
-            'tools' => [['type' => 'code_interpreter']],
+            'tools' => [['type' => 'code_interpreter']
+        ],
             'model' => 'gpt-4o'
         ]);
 
@@ -103,7 +96,7 @@ class AssistantChat extends Component
             'OpenAI-Beta' => 'assistants=v2'
         ])->post("https://api.openai.com/v1/threads/{$thread['id']}/messages", [
             'role' => 'user',
-            'content' => $prompt
+            'content' => $userQuestion
         ]);
 
         // Create and poll a run
@@ -154,20 +147,9 @@ class AssistantChat extends Component
         $this->dispatch('ai-typing-end');
     }
 
-    private function extractPdfContent($filePath)
-    {
-        $fullPath = storage_path('app/public/' . $filePath);
-        if (!file_exists($fullPath)) {
-            return 'PDF file not found.';
-        }
-
-        $parser = new Parser();
-        $pdf = $parser->parseFile($fullPath);
-        return $pdf->getText();
-    }
-
     public function render()
     {
+
         return view('livewire.assistant-chat');
     }
 }

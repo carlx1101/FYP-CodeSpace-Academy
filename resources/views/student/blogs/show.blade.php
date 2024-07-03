@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Blog: Article | Front - Multipurpose Responsive Template</title>
+  <title>Blog</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="./favicon.ico">

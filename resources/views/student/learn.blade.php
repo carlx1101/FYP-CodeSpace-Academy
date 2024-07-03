@@ -137,7 +137,7 @@
                 <div class="card-body ">
                     <h1 class="card-title">{{ $currentLesson->title }}</h1>
                     <p class="card-text">{{ $currentLesson->description }}</p> <br>
-                
+
                     @if ($currentLesson->lesson_type == 'video' && $currentLesson->video)
                         @php
                             $videoUrl = $currentLesson->video->video_url;
@@ -209,6 +209,30 @@
     @livewireScripts
 
 
+    <div id="exampleModalCenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Add Note</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('notes.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="lesson_id" value="{{ $currentLesson->id }}">
+                        <div class="input-group">
+                            <textarea class="form-control" name="content" aria-label="With textarea" required></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
 
 
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>Blog: Newsroom | Front - Multipurpose Responsive Template</title>
+        <title>Blog</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="./favicon.ico">
@@ -24,7 +24,7 @@
 
 <body>
     <!-- ========== HEADER ========== -->
-    {{--@include('student.layouts.header')--}}
+    @include('student.layouts.header')
     <!-- ========== END HEADER ========== -->
 
     <!-- ========== MAIN CONTENT ========== -->
@@ -32,8 +32,8 @@
         <!-- Hero -->
         <div class="container content-space-t-3 content-space-t-lg-5 content-space-b-1 content-space-b-md-2">
             <div class="w-md-75 w-lg-50 text-center mx-md-auto">
-                <h1 class="display-4">Title</h1>
-                <p class="lead">Text</p>
+                <h1 class="display-4">Blogs</h1>
+                <p class="lead">Explore the latest tech news with CodeSpace</p>
             </div>
         </div>
         <!-- End Hero -->
@@ -189,7 +189,7 @@
             <!-- Pagination -->
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-end">
-                    {{ dd($blogs->links()) }}
+                    {{-- {{ dd($blogs->links()) }} --}}
                 </ul>
             </nav>
             <!-- End Pagination -->

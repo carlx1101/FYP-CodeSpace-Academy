@@ -41,61 +41,72 @@ class PageController extends Controller
 
 
 
-    public function courses(Request $request)
-    {
-        $categories = Category::with('subcategories')->get();
 
-        $query = Course::where('publishing_status', true)->with(['sections.lessons']);
+public function courses(Request $request)
+{
+    $categories = Category::with('subcategories')->get();
 
-        // Apply filters
-        if ($request->filled('subcategory')) {
-            $query->whereHas('subcategory', function ($q) use ($request) {
-                $q->where('id', $request->input('subcategory'));
-            });
-        }
+    $query = Course::where('publishing_status', true)->with(['sections.lessons']);
 
-        if ($request->filled('sort')) {
-            switch ($request->input('sort')) {
-                case 'highest_rated':
-                    $query->withAvg('reviews', 'rating')->orderBy('reviews_avg_rating', 'desc');
-                    break;
-                case 'newest':
-                    $query->orderBy('created_at', 'desc');
-                    break;
-                case 'lowest_price':
-                    $query->orderBy('price', 'asc');
-                    break;
-                case 'highest_price':
-                    $query->orderBy('price', 'desc');
-                    break;
-            }
-        }
-
-        $courses = $query->paginate(10);
-
-
-        $studentProgress = [];
-
-        if (Auth::check()) {
-            $user = Auth::user();
-            $studentProgress = $user->enrolledCourses()
-                ->with('lessons')
-                ->get()
-                ->map(function ($course) use ($user) {
-                    $totalLessons = $course->lessons->count();
-                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
-                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
-
-                    return [
-                        'course' => $course,
-                        'progress' => $progress,
-                        'completed' => $progress == 100
-                    ];
-                });
-        }
-
-        return view('student.courses', compact('courses', 'categories','studentProgress'));
+    // Apply filters
+    if ($request->filled('subcategory')) {
+        $query->whereHas('subcategory', function ($q) use ($request) {
+            $q->where('id', $request->input('subcategory'));
+        });
     }
+
+    if ($request->filled('sort')) {
+        switch ($request->input('sort')) {
+            case 'highest_rated':
+                $query->withAvg('reviews', 'rating')->orderBy('reviews_avg_rating', 'desc');
+                break;
+            case 'newest':
+                $query->orderBy('created_at', 'desc');
+                break;
+            case 'lowest_price':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'highest_price':
+                $query->orderBy('price', 'desc');
+                break;
+        }
+    }
+
+    // Handle search query
+    if ($request->filled('search')) {
+        $search = $request->input('search');
+        $query->where(function ($q) use ($search) {
+            $q->where('title', 'like', '%' . $search . '%')
+                ->orWhere('subtitle', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%');
+        });
+    }
+
+    $courses = $query->paginate(10);
+
+    $studentProgress = [];
+
+    if (Auth::check()) {
+        $user = Auth::user();
+        $studentProgress = $user->enrolledCourses()
+            ->with('lessons')
+            ->get()
+            ->map(function ($course) use ($user) {
+                $totalLessons = $course->lessons->count();
+                $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                return [
+                    'course' => $course,
+                    'progress' => $progress,
+                    'completed' => $progress == 100
+                ];
+            });
+    }
+
+    return view('student.courses', compact('courses', 'categories', 'studentProgress'));
+}
+
 
 
     public function course($id)
@@ -147,6 +158,8 @@ class PageController extends Controller
 
     public function blogs(Request $request)
     {
+        $categories = Category::with('subcategories')->get();
+
         $query = Post::query();
 
 
@@ -199,13 +212,15 @@ class PageController extends Controller
                 });
         }
 
-        return view('student.blogs.index', compact('blogs', 'tags','studentProgress'));
+        return view('student.blogs.index', compact('blogs', 'tags','studentProgress','categories'));
     }
 
 
 
     public function blog(Post $post)
     {
+
+        $categories = Category::with('subcategories')->get();
 
         $studentProgress = [];
 
@@ -229,7 +244,7 @@ class PageController extends Controller
 
 
         $post->load('user');
-        return view('student.blogs.show', compact('post','studentProgress'));
+        return view('student.blogs.show', compact('post','studentProgress','categories'));
     }
 
 }
