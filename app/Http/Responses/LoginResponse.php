@@ -24,6 +24,11 @@ class LoginResponse implements LoginResponseContract
         else if(auth()->user()->role == 'student'){
             $dashboard = "/student/dashboard";
         }
+
+        else if(auth()->user()->role == 'employer'){
+            $dashboard = "/employer/dashboard";
+        }
+
         return redirect()->intended($dashboard);
     }
 }

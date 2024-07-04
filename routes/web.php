@@ -164,3 +164,9 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
 
 
 
+
+Route::middleware(['auth', 'user-access:employer'])->prefix('employer')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'employerDashboard'])->name('employer.dashboard');
+
+
+});

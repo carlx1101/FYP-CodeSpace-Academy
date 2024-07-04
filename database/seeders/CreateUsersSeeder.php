@@ -32,6 +32,12 @@ class CreateUsersSeeder extends Seeder
                'role'=>0,
                'password'=> bcrypt('123456'),
             ],
+            [
+                'name'=>'Employer',
+                'email'=>'employer@codespace.com',
+                'role'=>3,
+                'password'=> bcrypt('123456'),
+             ],
         ];
 
         foreach ($users as $key => $user) {
