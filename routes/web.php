@@ -1,14 +1,15 @@
 <?php
 
 use App\Http\Livewire\Sections;
+use App\Models\Student\Newsletter;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\SaleController;
+
+
 use App\Http\Controllers\Admin\UserController;
-
-
 use App\Http\Controllers\Tutor\PostController;
 use App\Http\Controllers\Tutor\EventController;
 use App\Http\Controllers\Student\CartController;
@@ -20,21 +21,26 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Student\BillingController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\AssistantController;
+use App\Http\Controllers\Student\DiscussionController;
 use App\Http\Controllers\Student\EnrollmentController;
 use App\Http\Controllers\Student\NewsletterController;
 use App\Http\Controllers\Student\CertificateController;
 use App\Http\Controllers\Tutor\StudentProgressController;
+use App\Http\Controllers\Student\ContactInquiryController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
-use App\Models\Student\Newsletter;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
 Route::get('/courses/{id}', [PageController::class, 'course'])->name('course');
 Route::get('/user/public-preview/{encryptedId}', [ProfileController::class, 'showPublicPreview'])->name('user.public_preview');
 Route::get('/blogs', [PageController::class, 'blogs'])->name('blogs.index');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::resource('contact_inquiries', ContactInquiryController::class);
+
+
 Route::get('/blogs/{post}', [PageController::class, 'blog'])->name('blogs.show');
 Route::post('subscriptions', [NewsletterController::class, 'store'])->name('subscriptions.store');
 
@@ -87,6 +93,8 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
     Route::get('/certificate/download/{course}', [CertificateController::class, 'download'])->name('certificate.download');
 
 
+    // Discussion Forum
+    Route::post('/lessons/{lesson}/discussions', [DiscussionController::class, 'store'])->name('discussions.store');
 
 });
 

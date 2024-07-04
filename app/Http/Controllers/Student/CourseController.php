@@ -28,13 +28,15 @@ class CourseController extends Controller
         } else {
             // Default to the first lesson of the first section
             $currentLesson = $sections->first()->lessons->first();
-            $currentLesson->load('notes'); // Load notes for the default lesson
-
         }
 
+        // Load notes for the current lesson
+        $currentLesson->load('notes');
 
+        // Paginate discussions
+        $discussions = $currentLesson->discussions()->with('user')->paginate(5); // Adjust the number of items per page as needed
 
-        return view('student.learn', compact('course', 'sections', 'currentLesson'));
+        return view('student.learn', compact('course', 'sections', 'currentLesson', 'discussions'));
     }
 
 

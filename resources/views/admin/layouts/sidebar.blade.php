@@ -90,15 +90,15 @@
               <div class="nav-item">
                 <a class="nav-link " href="{{route('admin.subscriptions.index')}}" data-placement="left">
                   <i class="bi-box-seam nav-icon"></i>
-                  <span class="nav-link-title">Manage Newsletter</span>
+                  <span class="nav-link-title">Manage Newsletters</span>
                 </a>
               </div>
 
 
               <div class="nav-item">
-                <a class="nav-link " href="{{route('admin.subscriptions.index')}}" data-placement="left">
+                <a class="nav-link " href="{{route('contact_inquiries.index')}}" data-placement="left">
                   <i class="bi-box-seam nav-icon"></i>
-                  <span class="nav-link-title">Manage Inquiry</span>
+                  <span class="nav-link-title">Manage Inquiries</span>
                 </a>
               </div>
 

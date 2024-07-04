@@ -163,6 +163,104 @@
                 </div>
             </div>
         </div>
+
+        <div class="mt-xl-2">
+            <div class="card mb-3 mb-lg-5">
+
+                <div class="discussions-section mt-5">
+
+                    <!-- Discussions List -->
+                    <div class="container content-space-1 content-space-lg-3">
+                        <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+                            <h2 class="text-center">Discussion Forum</h2>
+
+                            <h2>{{ $discussions->total() }} comments</h2>
+                        </div>
+
+                        <div class="row justify-content-lg-center">
+                            <div class="col-lg-8">
+                                <ul class="list-comment">
+                                    @foreach($discussions as $discussion)
+                                        <li class="list-comment-item">
+                                            <!-- Media -->
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="flex-shrink-0">
+                                                    <img class="avatar avatar-circle" src="{{ $discussion->user->profile_photo_url }}" alt="Image Description">
+                                                </div>
+
+                                                <div class="flex-grow-1 ms-3">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <h6>{{ $discussion->user->name }}</h6>
+                                                        <span class="d-block small text-muted">{{ $discussion->created_at->diffForHumans() }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Media -->
+
+                                            <h5>{{ $discussion->title }}</h5>
+                                            <p>{{ $discussion->message }}</p>
+
+                                            <!-- Replies (if any) -->
+                                            {{-- @if($discussion->replies->isNotEmpty())
+                                                <ul class="list-comment">
+                                                    @foreach($discussion->replies as $reply)
+                                                        <li class="list-comment-item">
+                                                            <!-- Media -->
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <div class="flex-shrink-0">
+                                                                    <img class="avatar avatar-circle" src="{{ $reply->user->profile_photo_url }}" alt="Image Description">
+                                                                </div>
+
+                                                                <div class="flex-grow-1 ms-3">
+                                                                    <div class="d-flex justify-content-between align-items-center">
+                                                                        <h6>{{ $reply->user->name }}</h6>
+                                                                        <span class="d-block small text-muted">{{ $reply->created_at->diffForHumans() }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- End Media -->
+
+                                                            <p>{{ $reply->message }}</p>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif --}}
+
+                                            <a class="link" href="#">Reply</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                                <!-- Pagination -->
+                                <div class="d-flex justify-content-center">
+                                    {{ $discussions->links() }}
+                                </div>
+
+                                @auth
+                                <br><br>
+                                    <h3>Add a Discussion</h3>
+                                    <form action="{{ route('discussions.store', $currentLesson->id) }}" method="POST">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label for="title" class="form-label">Title</label>
+                                            <input type="text" class="form-control" id="title" name="title" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message" class="form-label">Message</label>
+                                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Post Discussion</button>
+                                    </form>
+                                @endauth
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Discussions List -->
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLessonNotes" aria-labelledby="offcanvasLessonNotesLabel">
@@ -192,13 +290,13 @@
 
 
     <!-- Chat Widget -->
-<div id="chat-widget" class="chat-widget">
-    <i class="bi bi-chat-dots"></i>
-  </div>
+    {{-- <div id="chat-widget" class="chat-widget">
+        <i class="bi bi-chat-dots"></i>
+    </div> --}}
 
 
-  
-</main>
+
+    </main>
 
 
   <script>

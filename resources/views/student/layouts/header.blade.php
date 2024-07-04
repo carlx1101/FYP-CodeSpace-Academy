@@ -126,6 +126,8 @@
                 <a class="nav-link " href="{{route('blogs.index')}}">Blogs</a>
               </li>
 
+
+
             <!-- Courses -->
 
             <li class="hs-has-sub-menu nav-item">
@@ -226,6 +228,9 @@
                 <button type="button" class="btn btn-primary" value="Open Window" onclick="window.open('/login','_self')">Learn Now !</button>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link " href="{{route('contact')}}">Contact</a>
+              </li>
 
             @endif
 

@@ -247,4 +247,31 @@ public function courses(Request $request)
         return view('student.blogs.show', compact('post','studentProgress','categories'));
     }
 
+    public function contact()
+    {
+        $categories = Category::with('subcategories')->get();
+
+        $studentProgress = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $studentProgress = $user->enrolledCourses()
+                ->with('lessons')
+                ->get()
+                ->map(function ($course) use ($user) {
+                    $totalLessons = $course->lessons->count();
+                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                    return [
+                        'course' => $course,
+                        'progress' => $progress,
+                        'completed' => $progress == 100
+                    ];
+                });
+        }
+
+        return view('student.contact',compact('studentProgress','categories'));
+    }
+
 }
