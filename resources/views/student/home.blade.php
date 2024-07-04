@@ -337,6 +337,8 @@
     </div>
     <!-- End Testimonials -->
 
+
+
     <!-- CTA -->
     <div class="container content-space-b-2">
       <div class="text-center bg-img-start py-6" style="background: url('{{asset('frontend/svg/components/shape-6.svg')}}') center no-repeat;">
@@ -345,7 +347,40 @@
           <p>Answer a few questions and match your goals to our programs.</p>
         </div>
 
-        <a class="btn btn-primary btn-transition" href="{{ route('courses') }}">Explore more courses</a>
+        @if (session('success'))
+        <div class="alert alert-success mt-3">
+            {{ session('success') }}
+        </div>
+         @endif
+
+
+            <!-- Subscription Form -->
+            <form action="{{ route('subscriptions.store') }}" method="POST" class="mb-5">
+                @csrf
+                <div class="row">
+                    <div class="text-center">
+                        <div class="input-group" >
+                            <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+                        </div><br>
+                        <button class="btn btn-primary w-100" type="submit">Subscribe</button>
+                    </div>
+
+
+
+
+
+                </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger mt-3">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+            </form>
       </div>
     </div>
     <!-- End CTA -->

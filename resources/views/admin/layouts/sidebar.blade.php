@@ -87,6 +87,21 @@
                 </a>
               </div>
 
+              <div class="nav-item">
+                <a class="nav-link " href="{{route('admin.subscriptions.index')}}" data-placement="left">
+                  <i class="bi-box-seam nav-icon"></i>
+                  <span class="nav-link-title">Manage Newsletter</span>
+                </a>
+              </div>
+
+
+              <div class="nav-item">
+                <a class="nav-link " href="{{route('admin.subscriptions.index')}}" data-placement="left">
+                  <i class="bi-box-seam nav-icon"></i>
+                  <span class="nav-link-title">Manage Inquiry</span>
+                </a>
+              </div>
+
 
             </div>
             <!-- End Collapse -->

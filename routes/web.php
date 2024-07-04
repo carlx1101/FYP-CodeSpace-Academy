@@ -21,15 +21,14 @@ use App\Http\Controllers\Student\BillingController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Student\AssistantController;
 use App\Http\Controllers\Student\EnrollmentController;
+use App\Http\Controllers\Student\NewsletterController;
 use App\Http\Controllers\Student\CertificateController;
 use App\Http\Controllers\Tutor\StudentProgressController;
-use App\Http\Controllers\Admin\CourseController as AdminCourseController;
-use App\Http\Controllers\Student\CourseController as StudentCourseController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
-
-
-
+use App\Http\Controllers\Admin\CourseController as AdminCourseController;
+use App\Http\Controllers\Student\CourseController as StudentCourseController;
+use App\Models\Student\Newsletter;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
@@ -37,6 +36,8 @@ Route::get('/courses/{id}', [PageController::class, 'course'])->name('course');
 Route::get('/user/public-preview/{encryptedId}', [ProfileController::class, 'showPublicPreview'])->name('user.public_preview');
 Route::get('/blogs', [PageController::class, 'blogs'])->name('blogs.index');
 Route::get('/blogs/{post}', [PageController::class, 'blog'])->name('blogs.show');
+Route::post('subscriptions', [NewsletterController::class, 'store'])->name('subscriptions.store');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -146,6 +147,10 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
 
    // Manage Events
    Route::resource('events', AdminEventController::class)->names('admin.events');
+
+   // Manage Newsletters
+   Route::get('subscriptions', [NewsletterController::class, 'index'])->name('admin.subscriptions.index');
+
 
 });
 
