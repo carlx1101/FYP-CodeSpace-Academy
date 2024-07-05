@@ -4,15 +4,16 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Post;
-use App\Models\Employer\Company;
 use App\Models\Review;
 use App\Models\Student\Cart;
 use App\Models\Tutor\Course;
 use App\Models\Tutor\Lesson;
 use App\Models\Student\Order;
 use Laravel\Jetstream\HasTeams;
+use App\Models\Employer\Company;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Student\Enrollment;
+use App\Models\Student\JobApplication;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -143,6 +144,11 @@ class User extends Authenticatable
     public function company()
     {
         return $this->hasOne(Company::class);
+    }
+
+    public function jobApplications()
+    {
+        return $this->hasMany(JobApplication::class);
     }
 
 }

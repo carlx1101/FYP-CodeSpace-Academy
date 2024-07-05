@@ -302,8 +302,8 @@ public function courses(Request $request)
         $location = $request->input('location');
 
         $jobs = JobListing::with('company')
-            ->where(function ($query) use ($search, $location) {
-                if ($search) {
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
                     $query->where('title', 'like', '%' . $search . '%')
                         ->orWhere('description', 'like', '%' . $search . '%')
                         ->orWhere('type', 'like', '%' . $search . '%')
@@ -311,18 +311,17 @@ public function courses(Request $request)
                         ->orWhereHas('company', function ($query) use ($search) {
                             $query->where('name', 'like', '%' . $search . '%');
                         });
-                }
-
-                if ($location) {
-                    $query->orWhere('location', 'like', '%' . $location . '%');
-                }
+                });
+            })
+            ->when($location, function ($query, $location) {
+                $query->where('location', 'like', '%' . $location . '%');
             })
             ->get();
 
         return view('student.jobs', compact('jobs', 'categories', 'studentProgress'));
     }
 
-    
+
     public function job(JobListing $job)
     {
         $categories = Category::with('subcategories')->get();

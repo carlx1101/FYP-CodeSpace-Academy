@@ -84,7 +84,26 @@
         <p>{{ $job->description }}</p>
 
         <div class="d-grid mt-7">
-          <a class="btn btn-primary btn-transition" href="#">Apply for this job</a>
+
+            @php
+            $application = Auth::user()->jobApplications()->where('job_listing_id', $job->id)->first();
+          @endphp
+
+          @if ($application)
+            <button class="btn btn-secondary" disabled>
+              Applied {{ $application->created_at->diffForHumans() }}
+            </button>
+          @else
+            <a class="btn btn-primary btn-transition" href="{{ route('job_applications.store', $job->id) }}"
+               onclick="event.preventDefault(); document.getElementById('apply-job-form').submit();">
+              Apply for this job
+            </a>
+            <form id="apply-job-form" action="{{ route('job_applications.store', $job->id) }}" method="POST" style="display: none;">
+              @csrf
+            </form>
+          @endif
+
+
         </div>
       </div>
     </div>

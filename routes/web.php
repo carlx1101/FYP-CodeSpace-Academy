@@ -29,6 +29,7 @@ use App\Http\Controllers\Employer\JobListingController;
 use App\Http\Controllers\Student\CertificateController;
 use App\Http\Controllers\Tutor\StudentProgressController;
 use App\Http\Controllers\Student\ContactInquiryController;
+use App\Http\Controllers\Student\JobApplicationController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
@@ -100,6 +101,10 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
 
     // Discussion Forum
     Route::post('/lessons/{lesson}/discussions', [DiscussionController::class, 'store'])->name('discussions.store');
+
+
+    // Job Applications
+    Route::post('job_applications/{jobListing}', [JobApplicationController::class, 'store'])->name('job_applications.store');
 
 });
 
