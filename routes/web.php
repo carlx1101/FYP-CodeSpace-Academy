@@ -25,6 +25,7 @@ use App\Http\Controllers\Student\AssistantController;
 use App\Http\Controllers\Student\DiscussionController;
 use App\Http\Controllers\Student\EnrollmentController;
 use App\Http\Controllers\Student\NewsletterController;
+use App\Http\Controllers\Employer\JobListingController;
 use App\Http\Controllers\Student\CertificateController;
 use App\Http\Controllers\Tutor\StudentProgressController;
 use App\Http\Controllers\Student\ContactInquiryController;
@@ -169,6 +170,7 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
 Route::middleware(['auth', 'user-access:employer'])->prefix('employer')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'employerDashboard'])->name('employer.dashboard');
     Route::resource('companies', CompanyController::class)->names('employer.companies');
+    Route::resource('job_listings', JobListingController::class)->names('employer.job_listings');
 
 
 });

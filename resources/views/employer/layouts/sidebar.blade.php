@@ -25,7 +25,7 @@
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
             <!-- Collapse -->
             <div class="nav-item">
-              <a class="nav-link " href="{{route('tutor.dashboard')}}" role="button" >
+              <a class="nav-link " href="{{route('employer.dashboard')}}" role="button" >
                 <i class="bi-house-door nav-icon"></i>
                 <span class="nav-link-title">Dashboards</span>
               </a>
@@ -49,8 +49,8 @@
                 </a>
 
                 <div id="navbarVerticalMenuCourseManagementCoursesMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                  <a class="nav-link " href="{{route('employer.companies.index')}}">Overview</a>
-                  <a class="nav-link " href="">Add Listing </a>
+                  <a class="nav-link " href="{{route('employer.job_listings.index')}}">Overview</a>
+                  <a class="nav-link " href="{{route('employer.job_listings.index')}}">Add Listing </a>
                 </div>
               </div>
               <!-- End Collapse -->
