@@ -20,6 +20,7 @@ use App\Http\Controllers\Tutor\SectionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Student\BillingController;
 use App\Http\Controllers\Student\PaymentController;
+use App\Http\Controllers\Employer\CompanyController;
 use App\Http\Controllers\Student\AssistantController;
 use App\Http\Controllers\Student\DiscussionController;
 use App\Http\Controllers\Student\EnrollmentController;
@@ -167,6 +168,7 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
 
 Route::middleware(['auth', 'user-access:employer'])->prefix('employer')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'employerDashboard'])->name('employer.dashboard');
+    Route::resource('companies', CompanyController::class)->names('employer.companies');
 
 
 });
