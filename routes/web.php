@@ -41,6 +41,9 @@ Route::get('/user/public-preview/{encryptedId}', [ProfileController::class, 'sho
 Route::get('/blogs', [PageController::class, 'blogs'])->name('blogs.index');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::resource('contact_inquiries', ContactInquiryController::class);
+Route::get('/jobs', [PageController::class, 'jobs'])->name('jobs');
+Route::get('/jobs/{job}', [PageController::class, 'job'])->name('jobs.show');
+
 
 
 Route::get('/blogs/{post}', [PageController::class, 'blog'])->name('blogs.show');

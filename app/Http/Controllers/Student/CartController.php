@@ -14,7 +14,28 @@ class CartController extends Controller
     {
         $categories = Category::all();
         $cartItems = Auth::user()->cart()->with('course')->get();
-        return view('student.carts', compact('cartItems', 'categories'));
+
+        $studentProgress = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $studentProgress = $user->enrolledCourses()
+                ->with('lessons')
+                ->get()
+                ->map(function ($course) use ($user) {
+                    $totalLessons = $course->lessons->count();
+                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                    return [
+                        'course' => $course,
+                        'progress' => $progress,
+                        'completed' => $progress == 100
+                    ];
+                });
+        }
+
+        return view('student.carts', compact('cartItems', 'categories','studentProgress'));
     }
 
     public function store(Request $request)

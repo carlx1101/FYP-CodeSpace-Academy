@@ -61,29 +61,21 @@
                   <i class="bi-chat-left-dots"></i>
                 </span> Dashboard
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{route('billings.index')}}">
                 <span class="dropdown-item-icon">
                   <i class="bi-wallet2"></i>
                 </span> Purchase history
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{route('profile.show',Auth::id())}}">
                 <span class="dropdown-item-icon">
                   <i class="bi-person"></i>
                 </span> Account
               </a>
-              <a class="dropdown-item" href="#">
-                <span class="dropdown-item-icon">
-                  <i class="bi-credit-card"></i>
-                </span> Payment methods
-              </a>
+
 
               <div class="dropdown-divider"></div>
 
-              <a class="dropdown-item" href="#">
-                <span class="dropdown-item-icon">
-                  <i class="bi-question-circle"></i>
-                </span> Help
-              </a>
+
 
                 <form method="POST" action="{{ route('logout') }}" >
                     @csrf
@@ -118,14 +110,17 @@
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link " href="{{route('home')}}">Home</a>
-            </li>
+            </li> --}}
 
             <li class="nav-item">
                 <a class="nav-link " href="{{route('blogs.index')}}">Blogs</a>
               </li>
 
+              <li class="nav-item">
+                <a class="nav-link " href="{{route('jobs')}}">Jobs</a>
+              </li>
 
 
             <!-- Courses -->
@@ -159,15 +154,18 @@
             <!-- Search Form -->
             <li class="nav-item flex-grow-1 d-none d-lg-inline-block">
                 <form class="input-group input-group-merge" action="{{ route('courses') }}" method="GET">
-                    <div class="input-group-prepend input-group-text">
-                        <i class="bi-search"></i>
-                    </div>
+
                     <input type="text" class="form-control" name="search" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi-search"></i>
+                    </button>
                 </form>
             </li>
 
             <!-- End Search Form -->
+
+
+
 
             @if (Auth::user())
            <!-- My Courses -->
@@ -227,6 +225,8 @@
             <li class="nav-item">
                 <button type="button" class="btn btn-primary" value="Open Window" onclick="window.open('/login','_self')">Learn Now !</button>
             </li>
+
+
 
             <li class="nav-item">
                 <a class="nav-link " href="{{route('contact')}}">Contact</a>

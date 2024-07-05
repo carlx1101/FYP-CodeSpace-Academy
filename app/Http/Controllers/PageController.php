@@ -6,6 +6,7 @@ use App\Models\Tutor\Post;
 use App\Models\Tutor\Course;
 use Illuminate\Http\Request;
 use App\Models\Admin\Category;
+use App\Models\Employer\JobListing;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -274,4 +275,77 @@ public function courses(Request $request)
         return view('student.contact',compact('studentProgress','categories'));
     }
 
+    public function jobs(Request $request)
+    {
+        $categories = Category::with('subcategories')->get();
+        $studentProgress = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $studentProgress = $user->enrolledCourses()
+                ->with('lessons')
+                ->get()
+                ->map(function ($course) use ($user) {
+                    $totalLessons = $course->lessons->count();
+                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                    return [
+                        'course' => $course,
+                        'progress' => $progress,
+                        'completed' => $progress == 100
+                    ];
+                });
+        }
+
+        $search = $request->input('search');
+        $location = $request->input('location');
+
+        $jobs = JobListing::with('company')
+            ->where(function ($query) use ($search, $location) {
+                if ($search) {
+                    $query->where('title', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%')
+                        ->orWhere('type', 'like', '%' . $search . '%')
+                        ->orWhere('mode', 'like', '%' . $search . '%')
+                        ->orWhereHas('company', function ($query) use ($search) {
+                            $query->where('name', 'like', '%' . $search . '%');
+                        });
+                }
+
+                if ($location) {
+                    $query->orWhere('location', 'like', '%' . $location . '%');
+                }
+            })
+            ->get();
+
+        return view('student.jobs', compact('jobs', 'categories', 'studentProgress'));
+    }
+
+    
+    public function job(JobListing $job)
+    {
+        $categories = Category::with('subcategories')->get();
+        $studentProgress = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $studentProgress = $user->enrolledCourses()
+                ->with('lessons')
+                ->get()
+                ->map(function ($course) use ($user) {
+                    $totalLessons = $course->lessons->count();
+                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                    return [
+                        'course' => $course,
+                        'progress' => $progress,
+                        'completed' => $progress == 100
+                    ];
+                });
+        }
+
+        return view('student.job', compact('job','categories','studentProgress'));
+    }
 }

@@ -17,7 +17,13 @@ return new class extends Migration
             $table->string('location');
             $table->string('type'); // Changed to string
             $table->string('mode'); // Changed to string
+
             $table->text('description');
+
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+
+
             $table->timestamps();
         });
     }

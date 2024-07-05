@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Employer;
 use Illuminate\Http\Request;
 use App\Models\Employer\JobListing;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class JobListingController extends Controller
 {
@@ -29,7 +30,17 @@ class JobListingController extends Controller
             'description' => 'required|string',
         ]);
 
-        JobListing::create($request->all());
+        $company = Auth::user()->company;
+
+
+        JobListing::create([
+            'title' => $request->title,
+            'location' => $request->location,
+            'type' => $request->type,
+            'mode' => $request->mode,
+            'description' => $request->description,
+            'company_id' => $company->id,
+        ]);
 
         return redirect()->route('employer.job_listings.index')->with('success', 'Job listing created successfully.');
     }
@@ -54,7 +65,14 @@ class JobListingController extends Controller
             'description' => 'required|string',
         ]);
 
-        $jobListing->update($request->all());
+        $jobListing->update([
+            'title' => $request->title,
+            'location' => $request->location,
+            'type' => $request->type,
+            'mode' => $request->mode,
+            'description' => $request->description,
+            'company_id' => Auth::user()->company->id,
+        ]);
 
         return redirect()->route('employer.job_listings.index')->with('success', 'Job listing updated successfully.');
     }
