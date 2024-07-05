@@ -57,12 +57,7 @@
 
 
 
-              <div class="nav-item">
-                <a class="nav-link " href="./landing.html" data-placement="left">
-                  <i class="bi-box-seam nav-icon"></i>
-                  <span class="nav-link-title">Others <span class="badge bg-info rounded-pill ms-1">New</span></span>
-                </a>
-              </div>
+
             </div>
             <!-- End Collapse -->
 
@@ -113,14 +108,6 @@
       </div>
       <!-- End Collapse -->
 
-
-
-      <div class="nav-item">
-        <a class="nav-link " href="./landing.html" data-placement="left">
-          <i class="bi-box-seam nav-icon"></i>
-          <span class="nav-link-title">Others <span class="badge bg-info rounded-pill ms-1">New</span></span>
-        </a>
-      </div>
     </div>
     <!-- End Collapse -->
 

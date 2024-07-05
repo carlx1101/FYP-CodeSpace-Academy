@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Users </title>
+  <title>Manage Inquiries </title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="./favicon.ico">
@@ -147,18 +147,18 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-no-gutter">
                 <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Users</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Inquiries</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Overview</li>
               </ol>
             </nav>
 
-            <h1 class="page-header-title">Users</h1>
+            <h1 class="page-header-title">Inquiries</h1>
           </div>
           <!-- End Col -->
 
           <div class="col-sm-auto">
             <a class="btn btn-primary" href="./users-add-user.html">
-              <i class="bi-person-plus-fill me-1"></i> Add user
+              <i class="bi-person-plus-fill me-1"></i> Add Inquiry
             </a>
           </div>
           <!-- End Col -->

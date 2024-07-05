@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Users </title>
+  <title>Newsletter </title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="./favicon.ico">
@@ -152,13 +152,13 @@
               </ol>
             </nav>
 
-            <h1 class="page-header-title">Users</h1>
+            <h1 class="page-header-title">Newsletter</h1>
           </div>
           <!-- End Col -->
 
           <div class="col-sm-auto">
             <a class="btn btn-primary" href="./users-add-user.html">
-              <i class="bi-person-plus-fill me-1"></i> Add user
+              <i class="bi-person-plus-fill me-1"></i> Add Newketter
             </a>
           </div>
           <!-- End Col -->
@@ -173,7 +173,7 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">Total users</h6>
+              <h6 class="card-subtitle mb-2">Total newsletter   </h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">

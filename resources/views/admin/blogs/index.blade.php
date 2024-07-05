@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Manage Courses</title>
+  <title>Manage Articles</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="./favicon.ico">
@@ -149,14 +149,14 @@
           <div class="col-sm mb-2 mb-sm-0">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-no-gutter">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Course Management</a></li>
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Courses</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Article Management</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Articles</a></li>
 
                 <li class="breadcrumb-item active" aria-current="page">Overview</li>
               </ol>
             </nav>
 
-            <h1 class="page-header-title">Courses</h1>
+            <h1 class="page-header-title">Article</h1>
           </div>
           <!-- End Col -->
 
@@ -164,7 +164,7 @@
             <a class="btn btn-primary" href="{{route('courses.create')}}">
               <i class="bi bi-journals me-1"></i>
 
-              Add course
+              Add Article
             </a>
           </div>
           <!-- End Col -->

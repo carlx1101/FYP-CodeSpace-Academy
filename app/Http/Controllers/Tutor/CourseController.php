@@ -36,7 +36,7 @@ class CourseController extends Controller
      */
     public function store(CourseRequest $request, Course $course)
     {
-        // dd($request->all());
+        // dd($request->all());x
         $data = $request->validated();
         if ($request->hasFile('cover_image')) {
             $data['cover_image'] = $request->file('cover_image')->store('cover_images', 'public');

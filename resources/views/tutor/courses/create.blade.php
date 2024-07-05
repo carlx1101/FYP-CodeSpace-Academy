@@ -836,7 +836,7 @@
     $(document).ready(function () {
      // Listen for the form submission
      $("#courseCreateForm").submit(function (event) {
-      
+            event.preventDefault();
 
          // Create a new FormData object and append form data to it
          var formData = new FormData(this);
