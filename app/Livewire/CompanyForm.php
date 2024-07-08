@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CompanyForm extends Component
 {
+
     public $name;
     public $industry;
     public $founded;
@@ -43,21 +44,45 @@ class CompanyForm extends Component
 
     public function save()
     {
-        $this->validate();
+        Log::info('Save method called');
 
-        $company = Company::firstOrNew(['user_id' => Auth::id()]);
-        $company->fill([
+        // Log input values
+        Log::info('Input values:', [
             'name' => $this->name,
             'industry' => $this->industry,
-            'founded' => $this->founded ? Carbon::parse($this->founded)->format('Y-m-d') : null,
+            'founded' => $this->founded,
             'size' => $this->size,
             'description' => $this->description,
             'website' => $this->website,
             'location' => $this->location,
         ]);
-        $company->save();
 
-        session()->flash('message', 'Company information updated successfully.');
+        try {
+            $this->validate();
+            Log::info('Validation passed');
+
+            $company = Company::firstOrNew(['user_id' => Auth::id()]);
+            Log::info('Company retrieved or created:', ['company' => $company]);
+
+            $company->fill([
+                'name' => $this->name,
+                'industry' => $this->industry,
+                'founded' => $this->founded ? Carbon::parse($this->founded)->format('Y-m-d') : null,
+                'size' => $this->size,
+                'description' => $this->description,
+                'website' => $this->website,
+                'location' => $this->location,
+            ]);
+            Log::info('Company filled with new values:', ['company' => $company]);
+
+            $company->save();
+            Log::info('Company saved successfully');
+
+            session()->flash('message', 'Company information updated successfully.');
+        } catch (\Exception $e) {
+            Log::error('An error occurred:', ['error' => $e->getMessage()]);
+            session()->flash('error', 'An error occurred while saving the company information.');
+        }
     }
 
     public function render()
