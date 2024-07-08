@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\View\View;
 use App\Models\Tutor\Post;
 use App\Models\Tutor\Event;
 use App\Models\Tutor\Course;
 use Illuminate\Http\Request;
 use App\Models\Student\Order;
+use App\Models\Employer\JobListing;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Student\JobApplication;
 
 class DashboardController extends Controller
 {
@@ -64,17 +68,84 @@ class DashboardController extends Controller
               // Assuming you have an Order model and each order has a total price
               $totalSales = Order::sum('total');
 
-              return view('tutor.dashboard', compact('totalCourses', 'totalBlogPosts', 'totalEvents', 'totalSales'));
+
+
+              $user = Auth::user();
+              $monthlySales = Order::selectRaw('SUM(total) as total, MONTH(created_at) as month')
+                  ->whereYear('created_at', Carbon::now()->year)
+                  ->groupBy('month')
+                  ->orderBy('month')
+                  ->pluck('total', 'month')
+                  ->toArray();
+
+              // Initialize an array with all months set to 0
+              $salesData = array_fill(1, 12, 0);
+
+              // Fill the salesData array with the actual sales data
+              foreach ($monthlySales as $month => $total) {
+                  $salesData[$month] = $total;
+              }
+
+
+              return view('tutor.dashboard', compact('totalCourses', 'totalBlogPosts', 'totalEvents', 'totalSales', 'salesData'));
             }
 
-    public function adminDashboard(): View
-    {
-        return view('admin.dashboard');
-    }
-    public function employerDashboard(): View
-    {
-        return view('employer.dashboard');
-    }
 
+
+            public function adminDashboard(): View
+            {
+                // Monthly Sales Data
+                $monthlySales = Order::selectRaw('SUM(total) as total, MONTH(created_at) as month')
+                    ->whereYear('created_at', Carbon::now()->year)
+                    ->groupBy('month')
+                    ->orderBy('month')
+                    ->pluck('total', 'month')
+                    ->toArray();
+
+                // Initialize an array with all months set to 0
+                $salesData = array_fill(1, 12, 0);
+
+                // Fill the salesData array with the actual sales data
+                foreach ($monthlySales as $month => $total) {
+                    $salesData[$month - 1] = $total; // Adjust for zero-based index
+                }
+
+                // Total Users
+                $totalUsers = User::count();
+
+                // Total Revenue
+                $totalRevenue = Order::sum('total');
+
+                // Total Orders
+                $totalOrders = Order::count();
+
+                // Total Courses
+                $totalCourses = Course::count();
+
+                return view('admin.dashboard', compact('salesData', 'totalUsers', 'totalRevenue', 'totalOrders', 'totalCourses'));
+            }
+
+
+            public function employerDashboard(): View
+            {
+                // Get the authenticated employer
+                $employerId = Auth::id();
+
+                // Find company of employerId
+                $company = User::find($employerId)->company;
+
+                // Calculate total job listings for the employer
+                $totalListings = JobListing::where('company_id', $company->id)->count();
+
+
+                // Calculate total applicants for the employer's job listings
+                $totalApplicants = JobApplication::whereHas('jobListing', function ($query) use ($company) {
+                    $query->where('company_id', $company->id);
+                })->count();
+
+                return view('employer.dashboard', compact('totalListings', 'totalApplicants'));
+
+
+            }
 
 }
