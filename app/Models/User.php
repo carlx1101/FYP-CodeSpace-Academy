@@ -151,4 +151,9 @@ class User extends Authenticatable
         return $this->hasMany(JobApplication::class);
     }
 
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
 }

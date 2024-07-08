@@ -25,6 +25,7 @@ class Course extends Model
         'description',
         'category_id',
         'subcategory_id',
+        'user_id', // Add this line
         'cover_image',
         'promotional_video',
         'price',
@@ -97,5 +98,11 @@ class Course extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
 
 }

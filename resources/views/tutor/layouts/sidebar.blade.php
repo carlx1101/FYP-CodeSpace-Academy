@@ -112,6 +112,26 @@
     <!-- End Collapse -->
 
 
+            <span class="dropdown-header mt-4">Profile Management </span>
+            <small class="bi-three-dots nav-subtitle-replacer"></small>
+
+            <!-- Collapse -->
+            <div class="navbar-nav nav-compact">
+
+            </div>
+            <div id="navbarVerticalMenuPagesMenu">
+
+
+
+                <div class="nav-item">
+                <a class="nav-link " href="{{route('tutor.profile.show', Auth::user()->id)}}" data-placement="left">
+                    <i class="bi-box-seam nav-icon"></i>
+                    <span class="nav-link-title">Profile</span>
+                </a>
+                </div>
+            </div>
+            <!-- End Collapse -->
+
 
 
           </div>

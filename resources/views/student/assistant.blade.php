@@ -224,7 +224,7 @@
                                             <div class="row align-items-center gx-5">
                                                 <div class="col-auto">
                                                     <div class="avatar avatar-online d-none d-xl-inline-block">
-                                                        <img class="avatar-img" src="assets/img/avatars/2.jpg" alt="">
+                                                        <img class="avatar-img" src="{{asset('frontend/images/logos/codespacesolutions.png')}}" alt="">
                                                     </div>
                                                 </div>
 

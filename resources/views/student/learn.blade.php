@@ -136,8 +136,8 @@
             <div class="card mb-3 mb-lg-5">
                 <div class="card-body ">
                     <h1 class="card-title">{{ $currentLesson->title }}</h1>
-                    <p class="card-text">{{ $currentLesson->description }}</p> <br>
-
+                    <p class="card-text">{{ $currentLesson->description }}</p>
+                    <hr>
                     @if ($currentLesson->lesson_type == 'video' && $currentLesson->video)
                         @php
                             $videoUrl = $currentLesson->video->video_url;
@@ -147,18 +147,26 @@
                     @elseif ($currentLesson->lesson_type == 'article' && $currentLesson->article)
                         {!! $currentLesson->article->content !!}
 
+
                     @elseif ($currentLesson->lesson_type == 'assessment' )
                         @livewire('assessment-form', ['lesson' => $currentLesson])
 
                     @else
                         <p>No content available for this lesson.</p>
                     @endif
-                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLessonNotes" aria-controls="offcanvasLessonNotes">View Notes</button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                        Add Note
-                    </button>
-                    <a href="{{ route('chatbot.assistant', ['lessonId' => $currentLesson->id]) }}" class="btn btn-primary">Launch Chatbot</a>
-                    <livewire:complete-lesson :lesson="$currentLesson" />
+                    <hr>
+
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLessonNotes" aria-controls="offcanvasLessonNotes">
+                            View Notes
+                        </button>
+                        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                            Add Note
+                        </button>
+
+                        <livewire:complete-lesson :lesson="$currentLesson" />
+                    </div>
+
                     <hr>
                 </div>
             </div>
@@ -179,13 +187,16 @@
 
                         <div class="row justify-content-lg-center">
                             <div class="col-lg-8">
+                                <hr>
                                 <ul class="list-comment">
                                     @foreach($discussions as $discussion)
+
                                         <li class="list-comment-item">
                                             <!-- Media -->
                                             <div class="d-flex align-items-center mb-3">
                                                 <div class="flex-shrink-0">
-                                                    <img class="avatar avatar-circle" src="{{ $discussion->user->profile_photo_url }}" alt="Image Description">
+
+                                                    <img class="avatar avatar-circle" src="{{ Storage::url($discussion->user->profile_photo_path) }}" alt="Image Description">
                                                 </div>
 
                                                 <div class="flex-grow-1 ms-3">
@@ -193,12 +204,19 @@
                                                         <h6>{{ $discussion->user->name }}</h6>
                                                         <span class="d-block small text-muted">{{ $discussion->created_at->diffForHumans() }}</span>
                                                     </div>
+
+                                                        <div class="">
+                                                            <h5>{{ $discussion->title }}</h5>
+
+                                                            <p>{{ $discussion->message }}</p>
+                                                        </div>
+
                                                 </div>
+
                                             </div>
                                             <!-- End Media -->
 
-                                            <h5>{{ $discussion->title }}</h5>
-                                            <p>{{ $discussion->message }}</p>
+                                            <hr>
 
                                             <!-- Replies (if any) -->
                                             {{-- @if($discussion->replies->isNotEmpty())
@@ -226,7 +244,7 @@
                                                 </ul>
                                             @endif --}}
 
-                                            <a class="link" href="#">Reply</a>
+                                            {{-- <a class="link" href="#">Reply</a> --}}
                                         </li>
                                     @endforeach
                                 </ul>
@@ -289,12 +307,6 @@
     </div>
 
 
-    <!-- Chat Widget -->
-    {{-- <div id="chat-widget" class="chat-widget">
-        <i class="bi bi-chat-dots"></i>
-    </div> --}}
-
-
 
     </main>
 
@@ -342,6 +354,36 @@
     <!-- End Modal -->
 
 
+
+    <a href="{{ route('chatbot.assistant', ['lessonId' => $currentLesson->id]) }}" class="chat-button">
+        <i class="bi-chat-dots-fill"></i>
+    </a>
+
+    <style>
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #02c0ff; /* Light blue background */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            z-index: 1000; /* Ensure the button is above other elements */
+        }
+
+
+
+        .chat-button i {
+            font-size: 24px;
+        }
+
+    </style>
 
 
 

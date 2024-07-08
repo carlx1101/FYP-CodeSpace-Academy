@@ -123,12 +123,20 @@
               </li>
 
 
+            <li class="nav-item">
+                <a class="nav-link " href="{{route('contact')}}">Contact</a>
+              </li>
+
+
+
             <!-- Courses -->
 
             <li class="hs-has-sub-menu nav-item">
                 <a id="coursesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi-journals me-2"></i> Courses
                 </a>
+
+
 
                 <!-- Mega Menu -->
                 <div class="hs-sub-menu dropdown-menu" aria-labelledby="coursesMegaMenu" style="min-width: 17rem;">
@@ -227,10 +235,6 @@
             </li>
 
 
-
-            <li class="nav-item">
-                <a class="nav-link " href="{{route('contact')}}">Contact</a>
-              </li>
 
             @endif
 

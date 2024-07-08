@@ -169,7 +169,7 @@
       <!-- End Page Header -->
 
       <div class="row justify-content-lg-center">
-        <div class="col-lg-9">
+        <div class="">
           <div class="d-grid gap-3 gap-lg-5">
 
 
@@ -186,38 +186,38 @@
 
 
               <!-- Table -->
-            @if($orders->isEmpty())
-              <p>You have no orders.</p>
-            @else
-              <div class="table-responsive position-relative">
-                <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
-                  <thead class="thead-light">
-                    <tr>
-                      <th>Reference</th>
-                      <th>Status</th>
-                      <th>Amount</th>
-                      <th>Date</th>
-                      <th>Invoice</th>
-                      <th></th>
-                    </tr>
-                  </thead>
+                @if($orders->isEmpty())
+                <p>You have no orders.</p>
+                @else
+                <div class="table-responsive position-relative">
+                    <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                    <thead class="thead-light">
+                        <tr>
+                        <th>Reference</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Invoice</th>
+                        <th></th>
+                        </tr>
+                    </thead>
 
-                  <tbody>
+                    <tbody>
 
-                    @foreach($orders as $order)
-                    <tr>
-                      <td><a href="#">#{{ $order->id }}</a></td>
-                      <td><span class="badge bg-soft-success text-success">{{ $order->status }}</span></td>
-                      <td>RM {{ $order->total }}</td>
-                      <td>{{ $order->created_at->format('Y-m-d') }}</td>
-                      <td><a class="btn btn-white btn-sm" href="{{ route('billings.show', $order->id) }}"><i class="bi-file-earmark-arrow-down-fill me-1"></i> View Invoice</a></td>
-                      {{-- <td><a class="btn btn-white btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td> --}}
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-            @endif
+                        @foreach($orders as $order)
+                        <tr>
+                        <td><a href="#">#{{ $order->id }}</a></td>
+                        <td><span class="badge bg-soft-success text-success">{{ $order->status }}</span></td>
+                        <td>RM {{ $order->total }}</td>
+                        <td>{{ $order->created_at->format('Y-m-d') }}</td>
+                        <td><a class="btn btn-white btn-sm" href="{{ route('billings.show', $order->id) }}"><i class="bi-file-earmark-arrow-down-fill me-1"></i> View Invoice</a></td>
+                        {{-- <td><a class="btn btn-white btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#accountInvoiceReceiptModal"><i class="bi-eye-fill me-1"></i> Quick view</a></td> --}}
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    </table>
+                </div>
+                @endif
               <!-- End Table -->
             </div>
             <!-- End Card -->

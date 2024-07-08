@@ -1,49 +1,3 @@
-{{-- <div class="container">
-    <h1>Job Listings</h1>
-    <a href="{{ route('employer.job_listings.create') }}" class="btn btn-primary">Create Job Listing</a>
-
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success mt-2">
-            {{ $message }}
-        </div>
-    @endif
-
-    <table class="table mt-2">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Posted Date</th>
-                <th>Location</th>
-                <th>Type</th>
-                <th>Mode</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($jobListings as $jobListing)
-                <tr>
-                    <td>{{ $jobListing->title }}</td>
-                    <td>{{ $jobListing->created_at->format('Y-m-d') }}</td>
-                    <td>{{ $jobListing->location }}</td>
-                    <td>{{ $jobListing->type }}</td>
-                    <td>{{ $jobListing->mode }}</td>
-                    <td>{{ Str::limit($jobListing->description, 50) }}</td>
-                    <td>
-                        <a href="{{ route('employer.job_listings.show', $jobListing) }}" class="btn btn-info btn-sm">View</a>
-                        <a href="{{ route('employer.job_listings.edit', $jobListing) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('employer.job_listings.destroy', $jobListing) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div> --}}
-
 
 
 
@@ -834,6 +788,10 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
+
+                            <a href="{{ route('employer.job_listings.applicants', $jobListing) }}" class="btn btn-info btn-sm">Applicants</a>
+
+                            
                         </td>
 
                 </tr>

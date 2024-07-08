@@ -47,30 +47,22 @@
                 <div class="d-flex align-items-center me-4">
                   <div class="flex-shrink-0 avatar-group avatar-group-xs">
                     <span class="avatar avatar-xs avatar-circle">
-                      <img class="avatar-img" src="{{asset('frontend/img/160x160/img10.jpg')}}" alt="Image Description">
+
+                      @if ($course->user->profile_photo_path)
+                      <img class="avatar-img" src="{{ asset('storage/' . $course->user->profile_photo_path) }}" alt="{{ $course->user->name }}">
+                  @else
+                      <!-- Display a default avatar if no profile photo exists -->
+                      <img class="avatar-img" src="{{ asset('path/to/default/avatar.png') }}" alt="{{ $course->user->name }}">
+                  @endif
                     </span>
                   </div>
                   <div class="flex-grow-1">
-                    <span class="ps-2">Created by <a class="link" href="../demo-course/author-profile.html">CodeSpace Academy</a></span>
+                    <span class="ps-2">Created by <a class="link" href="../demo-course/author-profile.html">{{$course->user->profile->first_name}}{{$course->user->profile->last_name}}</a></span>
                   </div>
                 </div>
                 <!-- End Media -->
 
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-dark me-1">4.91</span>
-                    <span>(1.5k+ reviews)</span>
-                  </div>
-                </div>
+
               </div>
             </div>
             <!-- End Col -->
@@ -125,23 +117,23 @@
 
                     </div>
 
-
+                    <div class="row">
                     <form action="{{ route('cart.store') }}" method="POST" style="display: inline;">
                             @csrf
                             <input type="hidden" name="course_id" value="{{ $course->id }}">
                             <button type="submit" class="btn btn-primary btn-transition">Add to Cart</button>
-                        </form>
-
-                    <div class="text-center mb-4">
-                      <p class="card-text small">30-day money-back guarantee</p>
+                    </form>
                     </div>
+
+
+
+
+                    <br>
 
                     <h4 class="card-title">This course includes</h4>
 
                     <ul class="list-unstyled list-py-1">
-                      <li><i class="bi-camera-video nav-icon"></i> 46.5 hours on-demand video</li>
-                      <li><i class="bi-file-text nav-icon"></i> 77 articles</li>
-                      <li><i class="bi-file-earmark-arrow-down nav-icon"></i> 85 downloadable resources</li>
+                      <li><i class="bi-file-text nav-icon"></i> {{$course->lessons->count()}}  lessons</li>
                       <li><i class="bi-stopwatch nav-icon"></i> Full time access</li>
                       <li><i class="bi-phone nav-icon"></i> Access on mobile and Tablet</li>
                       <li><i class="bi-award nav-icon"></i> Certificate of Completion</li>
@@ -332,11 +324,7 @@
             </div>
             <!-- End Accordion -->
 
-            <!-- Link -->
-            <div class="mt-3">
-              <a class="link small">2 more sections</a>
-            </div>
-            <!-- End Link -->
+
           </div>
           <!-- End Accordion -->
 
@@ -346,147 +334,34 @@
               <h3>Description</h3>
             </div>
 
-            <p>Become a Python Programmer and learn one of employer's most requested skills of 2019!</p>
+            <p>{!!$course->description!!}</p>
 
-            <p>This is the most comprehensive, yet straight-forward, course for the Python programming language on Udemy! Whether you have never programmed before, already know basic syntax, or want to learn about the advanced features of Python, this course is for you! In this course we will teach you Python 3. (Note, we also provide older Python 2 notes in case you need them)</p>
 
-            <!-- Read More - Collapse -->
-            <div class="collapse" id="collapseCourseDescriptionSection">
-              <p>With over 100 lectures and more than 20 hours of video this comprehensive course leaves no stone unturned! This course includes quizzes, tests, and homework assignments as well as 3 major projects to create a Python project portfolio!</p>
-
-              <p>This course will teach you Python in a practical manner, with every lecture comes a full coding screencast and a corresponding code notebook! Learn in whatever manner is best for you!</p>
-
-              <p>We will start by helping you get Python installed on your computer, regardless of your operating system, whether its Linux, MacOS, or Windows, we've got you covered!</p>
-
-              <p>We cover a wide variety of topics, including:</p>
-
-              <ul class="text-body pl-6">
-                <li>Command Line Basics</li>
-                <li>Installing Python</li>
-                <li>Running Python Code</li>
-                <li>Strings</li>
-                <li>Lists&nbsp;</li>
-                <li>Dictionaries</li>
-                <li>Tuples</li>
-                <li>Sets</li>
-                <li>Number Data Types</li>
-                <li>Print Formatting</li>
-                <li>Functions</li>
-                <li>Scope</li>
-                <li>args/kwargs</li>
-                <li>Built-in Functions</li>
-                <li>Debugging and Error Handling</li>
-                <li>Modules</li>
-                <li>External Modules</li>
-                <li>Object Oriented Programming</li>
-                <li>Inheritance</li>
-                <li>Polymorphism</li>
-                <li>File I/O</li>
-                <li>Advanced Methods</li>
-                <li>Unit Tests</li>
-                <li>and much more!</li>
-              </ul>
-
-              <p>This course comes with a 30 day money back guarantee! If you are not satisfied in any way, you'll get your money back. Plus you will keep access to the Notebooks as a thank you for trying out the course!</p>
-            </div>
-            <!-- End Read More - Collapse -->
-
-            <!-- Link -->
-            <a class="link link-collapse" data-bs-toggle="collapse" href="#collapseCourseDescriptionSection" role="button" aria-expanded="false" aria-controls="collapseCourseDescriptionSection">
-              <span class="link-collapse-default">Read more</span>
-              <span class="link-collapse-active">Read less</span>
-            </a>
-            <!-- End Link -->
           </div>
           <!-- End Content -->
 
           <hr class="my-7">
 
-          <h3 class="mb-4">Students also bought</h3>
-
-          <div class="d-grid gap-5">
-            <!-- Card -->
-            <a class="d-block" href="../demo-course/course-overview.html">
-              <div class="row">
-                <div class="col-sm-5 col-lg-3 mb-3 mb-sm-0">
-                  <img class="card-img" src="{{asset('frontend/svg/components/card-6.svg')}}" alt="Image Description">
-                </div>
-                <!-- End Col -->
-
-                <div class="col-sm-7 col-lg-9">
-                  <div class="row">
-                    <div class="col-lg-6 mb-2 mb-lg-0">
-                      <h5 class="text-inherit">Get started with Vue.js</h5>
-
-                      <div class="d-flex align-items-center flex-wrap">
-                        <!-- Rating -->
-                        <div class="d-flex gap-1">
-                          <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                          <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                          <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                          <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                          <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                        </div>
-                        <!-- End Rating -->
-                        <div class="ms-1">
-                          <span class="text-body ms-1">4.95</span>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End Col -->
-
-                    <div class="col-lg-6">
-                      <div class="row">
-                        <div class="col-7">
-                          <div class="text-muted small mb-2">
-                            <i class="bi-book me-1"></i> 10 lessons
-                          </div>
-                          <div class="text-muted small">
-                            <i class="bi-clock me-1"></i> 3h 25m
-                          </div>
-                        </div>
-                        <!-- End Col -->
-
-                        <div class="col-5 text-end">
-                          <p class="text-muted small mb-0"><del>$114.99</del></p>
-                          <h5 class="text-primary mb-0">$99.99</h5>
-                        </div>
-                        <!-- End Col -->
-                      </div>
-                      <!-- End Row -->
-                    </div>
-                    <!-- End Col -->
-                  </div>
-                  <!-- End Row -->
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </a>
-            <!-- End Card -->
-          </div>
-
-          <hr class="my-7">
-
-          <h3 class="mb-4">Nataly's books</h3>
-
+          <h3 class="mb-4">{{$course->user->profile->first_name}}'s books</h3>
           <div class="row">
-            <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-              <!-- Card -->
-              <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="../demo-course/course-overview.html" style="background-image: url('{{ asset('frontend/img/400x500/img14.jpg')}}'); min-height: 15rem;">
-                <div class="card-body">
-                  <span class="card-subtitle text-white-70">New</span>
-                  <h4 class="card-title text-white">Cloud computing</h4>
+            @foreach ($userPosts as $post)
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <!-- Card -->
+                    <a class="card card-sm card-stretched-vertical card-transition bg-img-start" href="{{ route('posts.show', $post->id) }}" style="background-image: url('{{ asset('frontend/img/400x500/img14.jpg') }}'); min-height: 15rem;">
+                        <div class="card-body">
+                            <span class="card-subtitle text-white-70">{{ $post->created_at->format('F d, Y H:i') }}</span>
+                            <h4 class="card-title text-white">{{ $post->title }}</h4>
 
-                  <div class="card-footer pt-0">
-                    <span class="card-link text-white">Read now</span>
-                  </div>
+                            <div class="card-footer pt-0">
+                                <span class="card-link text-white">Read now</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- End Card -->
                 </div>
-              </a>
-              <!-- End Card -->
-            </div>
-            <!-- End Col -->
-          </div>
+                <!-- End Col -->
+            @endforeach
+        </div>
           <!-- End Row -->
 
           <hr class="my-7">
@@ -498,14 +373,15 @@
           <div class="row">
             <div class="col-sm-4 mb-4 mb-sm-0">
               <div class="mb-3">
-                <img class="avatar avatar-xl avatar-circle" src="../assets/img/160x160/img10.jpg" alt="Image Description">
+                <img class="avatar avatar-xl avatar-circle" src="{{ asset('storage/' . $course->user->profile_photo_path) }}" alt="{{ $course->user->name }}">
+
               </div>
 
               <ul class="list-unstyled list-py-1">
-                <li><i class="bi-star dropdown-item-icon"></i> 4.87 Instructor rating</li>
-                <li><i class="bi-chat-left-dots dropdown-item-icon"></i> 1,533 reviews</li>
-                <li><i class="bi-person dropdown-item-icon"></i> 23,912 students</li>
-                <li><i class="bi-play-circle dropdown-item-icon"></i> 29 courses</li>
+                <li><i class="bi-star dropdown-item-icon"></i> {{$totalInstructorRating}} Instructor rating</li>
+                <li><i class="bi-chat-left-dots dropdown-item-icon"></i> {{$totalInstructorReviews}} reviews</li>
+                <li><i class="bi-person dropdown-item-icon"></i> {{$totalInstructorStudents}} students</li>
+                <li><i class="bi-play-circle dropdown-item-icon"></i> {{$totalCoursesPublished }} courses</li>
               </ul>
             </div>
             <!-- End Col -->
@@ -513,11 +389,11 @@
             <div class="col-sm-8">
               <!-- Info -->
               <div class="mb-2">
-                <h4 class="mb-1"><a href="../demo-course/author-profile.html">Nataly Gaga</a></h4>
-                <p class="fw-semibold">Head of Data Science, Pierian Data Inc.</p>
+                <h4 class="mb-1"><a href="{{ route('user.public_preview', Crypt::encryptString($course->user->id)) }}">{{ $course->user->profile->first_name }}{{ $course->user->profile->last_name }}</a></h4>
+                <p class="fw-semibold">{{ $course->user->profile->position }} at {{ $course->user->profile->company }}</p>
               </div>
 
-              <p>Nataly Gaga has a BS and MS in Mechanical Engineering from Santa Clara University and years of experience as a professional instructor and trainer for Data Science and programming. She has publications and patents in various fields such as microfluidics, materials science, and data science technologies.</p>
+              <p>{{ $course->user->profile->bio }}</p>
               <!-- End Info -->
             </div>
             <!-- End Col -->
@@ -683,94 +559,87 @@
       <h3 class="mb-4">Students also bought</h3>
 
       <div class="row">
+        @foreach ($relatedCourses as $relatedCourse)
+            <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                <!-- Card -->
+                <div class="card card-bordered h-100">
+                    <!-- Card Pinned -->
+                    <div class="card-pinned">
+                        <img class="card-img-top" src="{{ asset('storage/' . $relatedCourse->cover_image) }}" alt="{{ $relatedCourse->title }}">
+                        <div class="card-pinned-top-start">
+                            <small class="badge bg-success rounded-pill">Featured</small>
+                        </div>
+                        <div class="card-pinned-bottom-start">
+                            <div class="d-flex align-items-center flex-wrap">
+                                <!-- Rating -->
+                                <div class="d-flex gap-1">
+                                    @for ($i = 0; $i < floor($relatedCourse->average_rating); $i++)
+                                        <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="16">
+                                    @endfor
+                                    @for ($i = floor($relatedCourse->average_rating); $i < 5; $i++)
+                                        <img src="{{ asset('frontend/svg/illustrations/star-muted.svg') }}" alt="Review rating" width="16">
+                                    @endfor
+                                </div>
+                                <!-- End Rating -->
+                                <div class="ms-1">
+                                    <span class="fw-semibold text-white me-1">{{ number_format($relatedCourse->average_rating, 2) }}</span>
+                                    <span class="text-white-70">({{ $relatedCourse->reviews->count() }} reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card Pinned -->
 
-        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
-          <!-- Card -->
-          <div class="card card-bordered h-100">
-            <!-- Card Pinned -->
-            <div class="card-pinned">
-              <img class="card-img-top" src="{{asset('frontend/svg/components/card-6.svg')}}" alt="Image Description">
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <small class="card-subtitle">{{ $relatedCourse->category->name }}</small>
+                        <div class="mb-3">
+                            <h3 class="card-title">
+                                <a class="text-dark" href="{{ route('courses.show', $relatedCourse->id) }}">{{ $relatedCourse->title }}</a>
+                            </h3>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="avatar-group avatar-group-xs">
+                                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="{{ $relatedCourse->user->name }}" href="#">
+                                        <img class="avatar-img" src="{{ asset('storage/' . $relatedCourse->user->profile_photo_path) }}" alt="{{ $relatedCourse->user->name }}">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End Col -->
+                            <div class="col-auto">
+                                <ul class="list-inline list-separator small ms-auto">
+                                    <li class="list-inline-item">
+                                        <i class="bi-book me-1"></i> {{ $relatedCourse->sections->sum('lessons_count') }} lessons
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="bi-clock me-1"></i> {{ $relatedCourse->total_duration }} hours
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Col -->
+                        </div>
+                        <!-- End Row -->
+                    </div>
+                    <!-- End Card Body -->
 
-              <div class="card-pinned-top-start">
-                <small class="badge bg-success rounded-pill">Featured</small>
-              </div>
-
-              <div class="card-pinned-bottom-start">
-                <div class="d-flex align-items-center flex-wrap">
-                  <!-- Rating -->
-                  <div class="d-flex gap-1">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                    <img src="{{asset('frontend/svg/illustrations/star.svg')}}" alt="Review rating" width="16">
-                    <img src="{{asset('frontend/svg/illustrations/star-muted.svg')}}" alt="Review rating" width="16">
-                  </div>
-                  <!-- End Rating -->
-                  <div class="ms-1">
-                    <span class="fw-semibold text-white me-1">4.73</span>
-                    <span class="text-white-70">(4.7k+ reviews)</span>
-                  </div>
+                    <!-- Card Footer -->
+                    <div class="card-footer pt-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="me-2">
+                                <span class="d-block text-muted small"><del>${{ $relatedCourse->original_price }}</del></span>
+                                <h5 class="card-title">${{ $relatedCourse->discounted_price }}</h5>
+                            </div>
+                            <a class="btn btn-primary btn-sm btn-transition" href="{{ route('courses.show', $relatedCourse->id) }}">Preview</a>
+                        </div>
+                    </div>
+                    <!-- End Card Footer -->
                 </div>
-              </div>
+                <!-- End Card -->
             </div>
-            <!-- End Card Pinned -->
-
-            <!-- Card Body -->
-            <div class="card-body">
-              <small class="card-subtitle">Code</small>
-
-              <div class="mb-3">
-                <h3 class="card-title">
-                  <a class="text-dark" href="../demo-course/course-overview.html">Get started with Vue.js</a>
-                </h3>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col">
-                  <div class="avatar-group avatar-group-xs">
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Aaron Larsson" href="#">
-                      <img class="avatar-img" src="{{asset('frontend/img/160x160/img3.jpg')}}" alt="Image Description">
-                    </a>
-                    <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="#">
-                      <img class="avatar-img" src="{{asset('frontend/img/160x160/img7.jpg')}}" alt="Image Description">
-                    </a>
-                  </div>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <ul class="list-inline list-separator small ms-auto">
-                    <li class="list-inline-item">
-                      <i class="bi-book me-1"></i> 25 lessons
-                    </li>
-                    <li class="list-inline-item">
-                      <i class="bi-clock me-1"></i> 17h 46m
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </div>
-            <!-- End Card Body -->
-
-            <!-- Card Footer -->
-            <div class="card-footer pt-0">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="me-2">
-                  <span class="d-block text-muted small"><del>$169.99</del></span>
-                  <h5 class="card-title">$129.99</h5>
-                </div>
-                <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
-              </div>
-            </div>
-            <!-- End Card Footer -->
-          </div>
-          <!-- End Card -->
-        </div>
-        <!-- End Col -->
-
-      </div>
+            <!-- End Col -->
+        @endforeach
+    </div>
       <!-- End Row -->
     </div>
     <!-- End Card Grid -->

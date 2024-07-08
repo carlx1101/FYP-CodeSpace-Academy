@@ -234,16 +234,23 @@
                     </div>
                     <div class="card-pinned-bottom-start">
                         <div class="d-flex align-items-center flex-wrap">
+
+                            @php
+                                 $totalReviews = $course->reviews->count();
+                                $averageRating = $totalReviews > 0 ? $course->reviews->avg('rating') : 0;
+                                $averageRating = number_format($averageRating, 2); // Format to 2 decimal places
+                            @endphp
                             <div class="d-flex gap-1">
+                                @for ($i = 0; $i < floor($averageRating); $i++)
                                 <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="16">
-                                <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="16">
-                                <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="16">
-                                <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="16">
-                                <img src="{{ asset('frontend/svg/illustrations/star.svg') }}" alt="Review rating" width="16">
+                            @endfor
+                            @for ($i = floor($averageRating); $i < 5; $i++)
+                                <img src="{{ asset('frontend/svg/illustrations/star-muted.svg') }}" alt="Review rating" width="16">
+                            @endfor
                             </div>
                             <div class="ms-1">
-                                <span class="fw-semibold text-white me-1">4.91</span>
-                                <span class="text-white-70">(1.5k+ reviews)</span>
+                                <span class="fw-semibold text-white me-1">{{$averageRating}}</span>
+                                <span class="text-white-70">({{$course->reviews->count()}} reviews)</span>
                             </div>
                         </div>
                     </div>
@@ -257,11 +264,7 @@
                     </div>
                     <div class="row align-items-center">
                         <div class="col">
-                            <div class="avatar-group avatar-group-xs">
-                                <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Nataly Gaga" href="#">
-                                    <img class="avatar-img" src="{{ asset('frontend/img/160x160/img3.jpg') }}" alt="Image Description">
-                                </a>
-                            </div>
+                            <p>By {{$course->user->profile->last_name}}</p>
                         </div>
                         <div class="col-auto">
                             <ul class="list-inline list-separator small ms-auto">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Category;
 use App\Models\Admin\Subcategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Tutor\CourseRequest;
 
@@ -49,6 +50,7 @@ class CourseController extends Controller
         $data['learning_objectives'] = json_encode($data['learning_objectives']);
         $data['prerequisites'] = json_encode($data['prerequisites']);
         $data['target_audiences'] = json_encode($data['target_audiences']);
+        $data['user_id'] = Auth::id();
 
         Course::create($data);
 
@@ -80,7 +82,6 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
         $course = Course::findOrFail($id);
 
         $data = $request->validate([
@@ -92,7 +93,6 @@ class CourseController extends Controller
             'subcategory_id' => 'required|integer|exists:subcategories,id',
             'is_free' => 'sometimes|boolean',
             'price' => 'nullable|numeric',
-
             'learning_objectives' => 'nullable|array',
             'prerequisites' => 'nullable|array',
             'target_audiences' => 'nullable|array',
@@ -122,6 +122,8 @@ class CourseController extends Controller
         $data['learning_objectives'] = json_encode($data['learning_objectives']);
         $data['prerequisites'] = json_encode($data['prerequisites']);
         $data['target_audiences'] = json_encode($data['target_audiences']);
+
+        $data['user_id'] = $course->user_id; // Ensure the user_id is not changed
 
         // Update the course
         $course->update($data);

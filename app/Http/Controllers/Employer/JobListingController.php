@@ -83,4 +83,12 @@ class JobListingController extends Controller
 
         return redirect()->route('employer.job_listings.index')->with('success', 'Job listing deleted successfully.');
     }
+
+    public function applicants(JobListing $jobListing)
+    {
+        $applicants = $jobListing->applications()->with('user')->get();
+
+        return view('employer.job_listings.applicants', compact('jobListing', 'applicants'));
+    }
+
 }

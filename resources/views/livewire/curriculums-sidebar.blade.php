@@ -66,8 +66,12 @@
                                                 <i class="bi bi-play-circle nav-icon"></i>
                                             @elseif($lesson->lesson_type == 'article')
                                                 <i class="bi bi-journals nav-icon"></i>
+                                            @elseif($lesson->lesson_type == 'assessment')
+                                                <i class="bi bi-journals nav-icon"></i>
                                             @endif
                                         @endif
+
+
                                         <span class="nav-link-title"> {{ $lesson->title }} </span>
                                     </a>
                                 </div>
@@ -88,7 +92,7 @@
                 <small class="bi-three-dots nav-subtitle-replacer"></small>
                 <div id="navbarVerticalMenuPagesMenu">
                     <a class="nav-link" href="javascript:;" data-bs-toggle="modal" data-bs-target="#completionMessageModal">
-                        <i class="bi bi-journals nav-icon"></i>
+                        <i class="bi bi-chat-right-text nav-icon"></i>
                         <span class="nav-link-title"> Completion Message </span>
                     </a>
 

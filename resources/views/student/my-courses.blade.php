@@ -201,30 +201,7 @@
 
 
 
-      <!-- Header -->
-      <div class="row align-items-center mb-2">
-        <div class="col">
-          {{-- <h2 class="h4 mb-0">My Courses</h2> --}}
-        </div>
 
-        <div class="col-auto">
-          <!-- Nav -->
-          <ul class="nav nav-segment" id="connectionsTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="grid-tab" data-bs-toggle="tab" href="#grid" role="tab" aria-controls="grid" aria-selected="true" title="Column view">
-                <i class="bi-grid"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="list-tab" data-bs-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false" title="List view">
-                <i class="bi-view-list"></i>
-              </a>
-            </li>
-          </ul>
-          <!-- End Nav -->
-        </div>
-      </div>
-      <!-- End Header -->
 
       <!-- Tab Content -->
       <div class="tab-content" id="connectionsTabContent">
@@ -252,82 +229,7 @@
           <!-- End Folders -->
         </div>
 
-        <div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="list-tab">
-          <ul class="list-group">
-
-            @foreach($courses as $course)
-
-
-            <!-- List Item -->
-            <li class="list-group-item">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <img class="avatar avatar-xs avatar-4x3" src="{{ asset('storage/' . $course->cover_image) }}" alt="{{ $course->title }}">
-                </div>
-                <!-- End Col -->
-
-                <div class="col">
-                  <h5 class="mb-0">
-                    <a class="text-dark" href="{{ route('student.learn', ['courseTitle' => $course->title]) }}">{{$course->title}}</a>
-                  </h5>
-                  <ul class="list-inline list-separator small text-body">
-                    <li class="list-inline-item">Updated 50 min ago</li>
-                    <li class="list-inline-item">25kb</li>
-                  </ul>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-auto">
-                  <!-- Dropdown -->
-                  <div class="dropdown">
-                    <button type="button" class="btn btn-white btn-sm" id="filesListDropdown1" data-bs-toggle="dropdown" aria-expanded="false">
-                      <span class="d-none d-sm-inline-block me-1">More</span>
-                      <i class="bi-chevron-down"></i>
-                    </button>
-
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="filesListDropdown1" style="min-width: 13rem;">
-                      <span class="dropdown-header">Settings</span>
-
-                      <a class="dropdown-item" href="#">
-                        <i class="bi-share dropdown-item-icon"></i> Share file
-                      </a>
-                      <a class="dropdown-item" href="#">
-                        <i class="bi-folder-plus dropdown-item-icon"></i> Move to
-                      </a>
-                      <a class="dropdown-item" href="#">
-                        <i class="bi-star dropdown-item-icon"></i> Add to stared
-                      </a>
-                      <a class="dropdown-item" href="#">
-                        <i class="bi-pencil dropdown-item-icon"></i> Rename
-                      </a>
-                      <a class="dropdown-item" href="#">
-                        <i class="bi-download dropdown-item-icon"></i> Download
-                      </a>
-
-                      <div class="dropdown-divider"></div>
-
-                      <a class="dropdown-item" href="#">
-                        <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
-                      </a>
-                      <a class="dropdown-item" href="#">
-                        <i class="bi-trash dropdown-item-icon"></i> Delete
-                      </a>
-                    </div>
-                  </div>
-                  <!-- End Dropdown -->
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-            </li>
-            <!-- End List Item -->
-
-
-
-            @endforeach
-
-          </ul>
-        </div>
+   
       </div>
       <!-- End Tab Content -->
     </div>

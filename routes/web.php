@@ -140,6 +140,8 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
     // Manage Posts
     Route::resource('posts', PostController::class);
 
+    // Profile
+    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('tutor.profile.show');
 
 
 
@@ -179,6 +181,9 @@ Route::middleware(['auth', 'user-access:employer'])->prefix('employer')->group(f
     Route::get('/dashboard', [DashboardController::class, 'employerDashboard'])->name('employer.dashboard');
     Route::resource('companies', CompanyController::class)->names('employer.companies');
     Route::resource('job_listings', JobListingController::class)->names('employer.job_listings');
+
+    // Display candidate
+    Route::get('employer/job_listings/{jobListing}/applicants', [JobListingController::class, 'applicants'])->name('employer.job_listings.applicants');
 
 
 });

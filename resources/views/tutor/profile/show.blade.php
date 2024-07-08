@@ -1,41 +1,3 @@
-{{-- <div class="container">
-    <h1>Order Details</h1>
-
-    <h2>Order ID: {{ $order->id }}</h2>
-    <p>Total: {{ $order->total }}</p>
-    <p>Status: {{ $order->status }}</p>
-    <p>Date: {{ $order->created_at->format('Y-m-d') }}</p>
-
-    <h3>Order Items</h3>
-
-    @if($orderItems->isEmpty())
-        <p>No items found for this order.</p>
-    @else
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Course</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($orderItems as $item)
-                    <tr>
-                        <td>{{ $item->course->title }}</td>
-                        <td>{{ $item->quantity }}</td>
-                        <td>{{ $item->price }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @endif
-
-    <a href="{{ route('billings.index') }}" class="btn btn-secondary">Back to Orders</a>
-</div> --}}
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Invoice </title>
+  <title>Profile</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="./favicon.ico">
@@ -55,10 +17,17 @@
   <!-- CSS Implementing Plugins -->
   <link rel="stylesheet" href="{{asset('backend/vendor/bootstrap-icons/font/bootstrap-icons.css')}}">
 
+  <link rel="stylesheet" href="{{asset('backend/vendor/tom-select/dist/css/tom-select.bootstrap5.css')}}">
+
   <!-- CSS Front Template -->
 
   <link rel="preload" href="{{asset('backend/css/theme.min.css')}}" data-hs-appearance="default" as="style">
   <link rel="preload" href="{{asset('backend/css/theme-dark.min.css')}}" data-hs-appearance="dark" as="style">
+
+
+  @livewireStyles
+
+
 
   <style data-hs-appearance-onload-styles>
     *
@@ -72,89 +41,90 @@
     }
   </style>
 
-  <script>
-            window.hs_config = {"autopath":"@@autopath","deleteLine":"hs-builder:delete","deleteLine:build":"hs-builder:build-delete","deleteLine:dist":"hs-builder:dist-delete","previewMode":false,"startPath":"/index.html","vars":{"themeFont":"https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap","version":"?v=1.0"},"layoutBuilder":{"extend":{"switcherSupport":true},"header":{"layoutMode":"default","containerMode":"container-fluid"},"sidebarLayout":"default"},"themeAppearance":{"layoutSkin":"default","sidebarSkin":"default","styles":{"colors":{"primary":"#377dff","transparent":"transparent","white":"#fff","dark":"132144","gray":{"100":"#f9fafc","900":"#1e2022"}},"font":"Inter"}},"languageDirection":{"lang":"en"},"skipFilesFromBundle":{"dist":["assets/js/hs.theme-appearance.js","assets/js/hs.theme-appearance-charts.js","assets/js/demo.js"],"build":["assets/css/theme.css","assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside-mini-cache.js","assets/js/demo.js","assets/css/theme-dark.css","assets/css/docs.css","assets/vendor/icon-set/style.css","assets/js/hs.theme-appearance.js","assets/js/hs.theme-appearance-charts.js","node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js","assets/js/demo.js"]},"minifyCSSFiles":["assets/css/theme.css","assets/css/theme-dark.css"],"copyDependencies":{"dist":{"*assets/js/theme-custom.js":""},"build":{"*assets/js/theme-custom.js":"","node_modules/bootstrap-icons/font/*fonts/**":"assets/css"}},"buildFolder":"","replacePathsToCDN":{},"directoryNames":{"src":"./src","dist":"./dist","build":"./build"},"fileNames":{"dist":{"js":"theme.min.js","css":"theme.min.css"},"build":{"css":"theme.min.css","js":"theme.min.js","vendorCSS":"vendor.min.css","vendorJS":"vendor.min.js"}},"fileTypes":"jpg|png|svg|mp4|webm|ogv|json"}
-            window.hs_config.gulpRGBA = (p1) => {
-  const options = p1.split(',')
-  const hex = options[0].toString()
-  const transparent = options[1].toString()
+    <script>
+                window.hs_config = {"autopath":"@@autopath","deleteLine":"hs-builder:delete","deleteLine:build":"hs-builder:build-delete","deleteLine:dist":"hs-builder:dist-delete","previewMode":false,"startPath":"/index.html","vars":{"themeFont":"https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap","version":"?v=1.0"},"layoutBuilder":{"extend":{"switcherSupport":true},"header":{"layoutMode":"default","containerMode":"container-fluid"},"sidebarLayout":"default"},"themeAppearance":{"layoutSkin":"default","sidebarSkin":"default","styles":{"colors":{"primary":"#377dff","transparent":"transparent","white":"#fff","dark":"132144","gray":{"100":"#f9fafc","900":"#1e2022"}},"font":"Inter"}},"languageDirection":{"lang":"en"},"skipFilesFromBundle":{"dist":["assets/js/hs.theme-appearance.js","assets/js/hs.theme-appearance-charts.js","assets/js/demo.js"],"build":["assets/css/theme.css","assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside-mini-cache.js","assets/js/demo.js","assets/css/theme-dark.css","assets/css/docs.css","assets/vendor/icon-set/style.css","assets/js/hs.theme-appearance.js","assets/js/hs.theme-appearance-charts.js","node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js","assets/js/demo.js"]},"minifyCSSFiles":["assets/css/theme.css","assets/css/theme-dark.css"],"copyDependencies":{"dist":{"*assets/js/theme-custom.js":""},"build":{"*assets/js/theme-custom.js":"","node_modules/bootstrap-icons/font/*fonts/**":"assets/css"}},"buildFolder":"","replacePathsToCDN":{},"directoryNames":{"src":"./src","dist":"./dist","build":"./build"},"fileNames":{"dist":{"js":"theme.min.js","css":"theme.min.css"},"build":{"css":"theme.min.css","js":"theme.min.js","vendorCSS":"vendor.min.css","vendorJS":"vendor.min.js"}},"fileTypes":"jpg|png|svg|mp4|webm|ogv|json"}
+                window.hs_config.gulpRGBA = (p1) => {
+        const options = p1.split(',')
+        const hex = options[0].toString()
+        const transparent = options[1].toString()
 
-  var c;
-  if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-    c= hex.substring(1).split('');
-    if(c.length== 3){
-      c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-    }
-    c= '0x'+c.join('');
-    return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',' + transparent + ')';
-  }
-  throw new Error('Bad Hex');
-}
-            window.hs_config.gulpDarken = (p1) => {
-  const options = p1.split(',')
+        var c;
+        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length== 3){
+            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',' + transparent + ')';
+        }
+        throw new Error('Bad Hex');
+        }
+                    window.hs_config.gulpDarken = (p1) => {
+        const options = p1.split(',')
 
-  let col = options[0].toString()
-  let amt = -parseInt(options[1])
-  var usePound = false
+        let col = options[0].toString()
+        let amt = -parseInt(options[1])
+        var usePound = false
 
-  if (col[0] == "#") {
-    col = col.slice(1)
-    usePound = true
-  }
-  var num = parseInt(col, 16)
-  var r = (num >> 16) + amt
-  if (r > 255) {
-    r = 255
-  } else if (r < 0) {
-    r = 0
-  }
-  var b = ((num >> 8) & 0x00FF) + amt
-  if (b > 255) {
-    b = 255
-  } else if (b < 0) {
-    b = 0
-  }
-  var g = (num & 0x0000FF) + amt
-  if (g > 255) {
-    g = 255
-  } else if (g < 0) {
-    g = 0
-  }
-  return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
-}
-            window.hs_config.gulpLighten = (p1) => {
-  const options = p1.split(',')
+        if (col[0] == "#") {
+            col = col.slice(1)
+            usePound = true
+        }
+        var num = parseInt(col, 16)
+        var r = (num >> 16) + amt
+        if (r > 255) {
+            r = 255
+        } else if (r < 0) {
+            r = 0
+        }
+        var b = ((num >> 8) & 0x00FF) + amt
+        if (b > 255) {
+            b = 255
+        } else if (b < 0) {
+            b = 0
+        }
+        var g = (num & 0x0000FF) + amt
+        if (g > 255) {
+            g = 255
+        } else if (g < 0) {
+            g = 0
+        }
+        return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
+        }
+                    window.hs_config.gulpLighten = (p1) => {
+        const options = p1.split(',')
 
-  let col = options[0].toString()
-  let amt = parseInt(options[1])
-  var usePound = false
+        let col = options[0].toString()
+        let amt = parseInt(options[1])
+        var usePound = false
 
-  if (col[0] == "#") {
-    col = col.slice(1)
-    usePound = true
-  }
-  var num = parseInt(col, 16)
-  var r = (num >> 16) + amt
-  if (r > 255) {
-    r = 255
-  } else if (r < 0) {
-    r = 0
-  }
-  var b = ((num >> 8) & 0x00FF) + amt
-  if (b > 255) {
-    b = 255
-  } else if (b < 0) {
-    b = 0
-  }
-  var g = (num & 0x0000FF) + amt
-  if (g > 255) {
-    g = 255
-  } else if (g < 0) {
-    g = 0
-  }
-  return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
-}
-            </script>
+        if (col[0] == "#") {
+            col = col.slice(1)
+            usePound = true
+        }
+        var num = parseInt(col, 16)
+        var r = (num >> 16) + amt
+        if (r > 255) {
+            r = 255
+        } else if (r < 0) {
+            r = 0
+        }
+        var b = ((num >> 8) & 0x00FF) + amt
+        if (b > 255) {
+            b = 255
+        } else if (b < 0) {
+            b = 0
+        }
+        var g = (num & 0x0000FF) + amt
+        if (g > 255) {
+            g = 255
+        } else if (g < 0) {
+            g = 0
+        }
+        return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
+        }
+    </script>
+
 </head>
 
 <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
@@ -165,44 +135,45 @@
 
   <!-- ========== HEADER ========== -->
 
-  @include('student.layouts.dashboard-header')
+  @include("student.layouts.dashboard-header")
 
   <!-- ========== END HEADER ========== -->
 
   <!-- ========== MAIN CONTENT ========== -->
   <!-- Navbar Vertical -->
 
-  @include('student.layouts.dashboard-sidebar')
+  @include("student.layouts.dashboard-sidebar")
 
 
-  <main id="content" role="main" class="main">
+  <main id="personalInfo" role="main" class="main">
     <!-- Content -->
     <div class="content container-fluid">
       <!-- Page Header -->
-      <div class="page-header d-print-none">
+      <div class="page-header">
         <div class="row align-items-end">
           <div class="col-sm mb-2 mb-sm-0">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-no-gutter">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Account</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Invoice</li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Accounts</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Settings & Profile </li>
               </ol>
             </nav>
 
-            <h1 class="page-header-title">Invoice</h1>
+            <h1 class="page-header-title">Settings & Profile</h1>
           </div>
           <!-- End Col -->
 
-          <div class="col-sm-auto">
-            <a class="btn btn-primary-outline" href="">
-              <i class="bi-file-earmark-arrow-down me-1"></i>Download PDF
-            </a>
+          @php
+          use Illuminate\Support\Facades\Crypt;
+          $encryptedId = Crypt::encryptString($user->id);
+      @endphp
 
-
-
-
-          </div>
+      <div class="col-sm-auto">
+          <a class="btn btn-primary" href="{{ route('user.public_preview', ['encryptedId' => $encryptedId]) }}">
+              <i class="bi-person-fill me-1"></i> Preview Portfolio
+          </a>
+      </div>
+      
           <!-- End Col -->
         </div>
         <!-- End Row -->
@@ -210,455 +181,267 @@
       <!-- End Page Header -->
 
       <div class="row">
-        <div class="col-lg-12 mb-5 mb-lg-0">
-          <!-- Card -->
-          <div class="card card-lg mb-5">
-            <div class="card-body">
-              <div class="row justify-content-lg-between">
-                <div class="col-sm order-2 order-sm-1 mb-3">
-                  <div class="mb-2">
-                    <img class="avatar" src="./assets/svg/logos/logo-short.svg" alt="Logo">
-                  </div>
+        <div class="col-lg-3">
+          <!-- Navbar -->
+          <div class="navbar-expand-lg navbar-vertical mb-3 mb-lg-5">
+            <!-- Navbar Toggle -->
+            <!-- Navbar Toggle -->
+            <div class="d-grid">
+              <button type="button" class="navbar-toggler btn btn-white mb-3" data-bs-toggle="collapse" data-bs-target="#navbarVerticalNavMenu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarVerticalNavMenu">
+                <span class="d-flex justify-content-between align-items-center">
+                  <span class="text-dark">Menu</span>
 
-                  <h1 class="h2 text-primary">CodeSpace Academy.</h1>
-                </div>
-                <!-- End Col -->
+                  <span class="navbar-toggler-default">
+                    <i class="bi-list"></i>
+                  </span>
 
-                <div class="col-sm-auto order-1 order-sm-2 text-sm-end mb-3">
-                  <div class="mb-3">
-                    <h2>Invoice #</h2>
-                    <span class="d-block">3682303</span>
-                  </div>
-
-
-                </div>
-                <!-- End Col -->
-              </div>
-              <!-- End Row -->
-
-              <div class="row justify-content-md-between mb-3">
-                <div class="col-md">
-                    <h4>Bill to:</h4>
-                    <h4>{{ Auth::user()->name }}</h4>
-
-                    <address>
-                        {{-- {{dump(Auth::user()->profile->address_line_one)}} --}}
-                        {{ Auth::user()->profile->address_line_one }}<br>
-                        {{ Auth::user()->profile->address_line_two }}<br>
-                        {{ Auth::user()->profile->city }}, {{ Auth::user()->profile->state }} {{ Auth::user()->profile->zip_code }}<br>
-                        {{ Auth::user()->profile->country }}
-                    </address>
-                </div>
-                <!-- End Col -->
-
-                <div class="col-md text-md-end">
-                    <dl class="row">
-                        <dt class="col-sm-8">Invoice date:</dt>
-                        <dd class="col-sm-4">{{ $order->created_at->format('m/d/Y') }}</dd>
-                    </dl>
-                    <dl class="row">
-                        <dt class="col-sm-8">Invoice Time:</dt>
-                        <dd class="col-sm-4">{{ $order->created_at->format('g:i A') }}</dd>
-                    </dl>
-                </div>
-                <!-- End Col -->
+                  <span class="navbar-toggler-toggled">
+                    <i class="bi-x"></i>
+                  </span>
+                </span>
+              </button>
             </div>
+            <!-- End Navbar Toggle -->
+            <!-- End Navbar Toggle -->
 
-              <!-- End Row -->
+            <!-- Navbar Collapse -->
+            <div id="navbarVerticalNavMenu" class="collapse navbar-collapse">
+              <ul id="navbarSettings" class="js-sticky-block js-scrollspy card card-navbar-nav nav nav-tabs nav-lg nav-vertical" data-hs-sticky-block-options='{
+                     "parentSelector": "#navbarVerticalNavMenu",
+                     "targetSelector": "#header",
+                     "breakpoint": "lg",
+                     "startPoint": "#navbarVerticalNavMenu",
+                     "endPoint": "#stickyBlockEndPoint",
+                     "stickyOffsetTop": 20
+                   }'>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#personalInfo">
+                    <i class="bi-person nav-icon"></i> Personal information
+                  </a>
+                </li>
 
-<!-- Table -->
-<div class="table-responsive">
-  <table class="table table-borderless table-nowrap table-align-middle">
-      <thead class="thead-light">
-          <tr>
-              <th>Item</th>
-              <th>Quantity</th>
-              <th>Rate</th>
-              <th class="table-text-end">Amount</th>
-          </tr>
-      </thead>
-
-      <tbody>
-          @foreach($order->orderItems as $orderItem)
-              <tr>
-                  <th>{{ $orderItem->course->title }}</th>
-                  <td>{{ $orderItem->quantity }}</td>
-                  <td>RM {{ $orderItem->price }}</td>
-                  <td class="table-text-end">RM {{ $orderItem->quantity * $orderItem->price }}</td>
-              </tr>
-          @endforeach
-      </tbody>
-  </table>
-</div>
-<!-- End Table -->
+                <li class="nav-item">
+                  <a class="nav-link" href="#geoInfo">
+                    <i class="bi-geo-alt nav-icon"></i> Geographical information
+                  </a>
+                </li>
 
 
-              <hr class="my-5">
+                <li class="nav-item">
+                  <a class="nav-link" href="#experienceSection">
+                    <i class="bi-briefcase nav-icon"></i> Background & Experiences
+                  </a>
+                </li>
 
-              @php
-              $subtotal = 0;
-              $taxRate = 0.08; // 8%
-              foreach ($order->orderItems as $orderItem) {
-                  $subtotal += $orderItem->quantity * $orderItem->price;
-              }
-              $tax = $subtotal * $taxRate;
-              $total = $subtotal + $tax;
-              $amountPaid = $total; // Assuming the amount paid is the total for this example
-              $dueBalance = $total - $amountPaid; // Assuming no due balance for this example
-          @endphp
+                <li class="nav-item">
+                  <a class="nav-link" href="#emailSection">
+                    <i class="bi-at nav-icon"></i> Email
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#passwordSection">
+                    <i class="bi-key nav-icon"></i> Password
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#preferencesSection">
+                    <i class="bi-gear nav-icon"></i> Preferences
+                  </a>
+                </li>
 
-          <div class="row justify-content-md-end mb-3">
-              <div class="col-md-8 col-lg-7">
-                  <dl class="row text-sm-end">
-                      <dt class="col-sm-6">Subtotal:</dt>
-                      <dd class="col-sm-6">RM {{ number_format($subtotal, 2) }}</dd>
-                      <dt class="col-sm-6">Total:</dt>
-                      <dd class="col-sm-6">RM {{ number_format($total, 2) }}</dd>
-                      <dt class="col-sm-6">Tax:</dt>
-                      <dd class="col-sm-6">RM {{ number_format($tax, 2) }}</dd>
-                      <dt class="col-sm-6">Amount paid:</dt>
-                      <dd class="col-sm-6">RM{{ number_format($amountPaid, 2) }}</dd>
-                      <dt class="col-sm-6">Due balance:</dt>
-                      <dd class="col-sm-6">RM{{ number_format($dueBalance, 2) }}</dd>
-                  </dl>
-                  <!-- End Row -->
-              </div>
-          </div>
-          <!-- End Row -->
+                <li class="nav-item">
+                  <a class="nav-link" href="#recentDevicesSection">
+                    <i class="bi-phone nav-icon"></i> Recent devices
+                  </a>
+                </li>
 
-              <!-- End Row -->
 
-              <div class="mb-3">
-                <h3>Thank you!</h3>
-                <p>If you have any questions concerning this invoice, use the following contact information: 0182786997</p>
-              </div>
-
-              <p class="small mb-0">&copy; 2024 CodeSpace Academy.</p>
+                <li class="nav-item">
+                  <a class="nav-link" href="#socialAccountsSection">
+                    <i class="bi-instagram nav-icon"></i> Social accounts
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#deleteAccountSection">
+                    <i class="bi-trash nav-icon"></i> Delete account
+                  </a>
+                </li>
+              </ul>
             </div>
+            <!-- End Navbar Collapse -->
           </div>
-          <!-- End Card -->
-
-          <!-- Footer -->
-          {{-- <div class="d-flex justify-content-end d-print-none gap-3">
-            <a class="btn btn-white" href="#">
-              <i class="bi-file-earmark-arrow-down me-1"></i> PDF
-            </a>
-
-            <a class="btn btn-primary" href="javascript:;" onclick="window.print(); return false;">
-              <i class="bi-printer me-1"></i> Print details
-            </a>
-          </div> --}}
-          <!-- End Footer -->
+          <!-- End Navbar -->
         </div>
 
-        {{-- <div class="col-lg-4">
-          <!-- Card -->
-          <div class="card d-print-none">
-            <!-- Header -->
-            <div class="card-header card-header-content-between">
-              <h4 class="card-header-title">History</h4>
+        <div class="col-lg-9">
+          <div class="d-grid gap-3 gap-lg-5">
+            <!-- Card -->
+            <div class="card">
+              <!-- Profile Cover -->
+              @livewire('profile.cover-banner')
+              <!-- End Profile Cover -->
 
-              <!-- Unfold -->
-              <div class="hs-unfold">
-                <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle" id="reportsOverviewDropdown1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi-three-dots-vertical"></i>
-                </button>
+              <!-- Avatar -->
+              @livewire('profile.avatar-upload')
 
-                <div class="dropdown-menu dropdown-menu-right mt-1">
-                  <span class="dropdown-header">Settings</span>
+              <!-- End Avatar -->
 
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-share-fill dropdown-item-icon"></i> Share reports
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-download dropdown-item-icon"></i> Download
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-alt dropdown-item-icon"></i> Connect other apps
-                  </a>
+              <!-- Body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-5">
+                    <span class="d-block fs-5 mb-2">Who can see your profile photo? <i class="bi-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Your visibility setting only applies to your profile photo. Your header image is always visible to anyone."></i></span>
 
-                  <div class="dropdown-divider"></div>
-
-                  <span class="dropdown-header">Feedback</span>
-
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
-                  </a>
+                    <!-- Select -->
+                    <div class="tom-select-custom">
+                      <select class="js-select form-select" data-hs-tom-select-options='{
+                                "searchInDropdown": false,
+                                "dropdownWidth": "auto"
+                              }'>
+                        <option value="privacy1" data-option-template='<div class="d-flex align-items-start"><div class="flex-shrink-0"><i class="bi-globe"></i></div><div class="flex-grow-1 ms-2"><span class="d-block fw-semibold">Anyone</span><span class="tom-select-custom-hide small">Visible to anyone who can view your content. Accessible by installed apps.</span></div></div>'>Anyone</option>
+                        <option value="privacy2" data-option-template='<div class="d-flex align-items-start"><div class="flex-shrink-0"><i class="bi-lock"></i></div><div class="flex-grow-1 ms-2"><span class="d-block fw-semibold">Only you</span><span class="tom-select-custom-hide small">Only visible to you.</span></div></div>'>Only you</option>
+                      </select>
+                    </div>
+                    <!-- End Select -->
+                  </div>
+                  <!-- End Col -->
                 </div>
+                <!-- End Row -->
               </div>
-              <!-- End Unfold -->
+              <!-- End Body -->
             </div>
-            <!-- End Header -->
+            <!-- End Card -->
 
-            <!-- Body -->
-            <div class="card-body">
-              <span class="h1 d-block mb-3">175 <span class="h4 text-body">Invoices</span></span>
-
-              <!-- Progress -->
-              <div class="progress rounded-pill">
-                <div class="progress-bar" role="progressbar" style="width: 76%" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-danger" role="progressbar" style="width: 2%" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"></div>
+            <!-- Card -->
+            {{-- <div class="card">
+              <div class="card-header">
+                <h2 class="card-title h4">Personal information</h2>
               </div>
-              <!-- End Progress -->
-            </div>
-            <!-- End Body -->
 
-            <hr class="my-0">
+              <!-- Body -->
+              <div class="card-body">
+                <!-- Form -->
+                <form >
+                  <!-- Form -->
+                  <div class="row mb-4">
+                    <label for="firstNameLabel" class="col-sm-3 col-form-label form-label">Full name <i class="bi-question-circle text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Displayed on public forums, such as Front."></i></label>
 
-            <!-- Body -->
-            <div class="card-body">
-              <!-- Nav Scroller -->
-              <div class="js-nav-scroller hs-nav-scroller-horizontal">
-                <span class="hs-nav-scroller-arrow-prev" style="display: none;">
-                  <a class="hs-nav-scroller-arrow-link" href="javascript:;">
-                    <i class="bi-chevron-left"></i>
-                  </a>
-                </span>
+                    <div class="col-sm-9">
+                      <div class="input-group input-group-sm-vertical">
+                        <input type="text" class="form-control" name="firstName" id="firstNameLabel" placeholder="Your first name" aria-label="Your first name" >
+                        <input type="text" class="form-control" name="lastName" id="lastNameLabel" placeholder="Your last name" aria-label="Your last name" >
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Form -->
 
-                <span class="hs-nav-scroller-arrow-next" style="display: none;">
-                  <a class="hs-nav-scroller-arrow-link" href="javascript:;">
-                    <i class="bi-chevron-right"></i>
-                  </a>
-                </span>
+                  <!-- Form -->
+                  <div class="row mb-4">
+                    <label for="emailLabel" class="col-sm-3 col-form-label form-label">Email</label>
 
-                <!-- Nav -->
-                <ul class="nav nav-segment nav-fill" id="invoicesStatusTab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" id="paid-tab" data-bs-toggle="tab" href="#paid" role="tab" aria-controls="paid" aria-selected="true">
-                      <span class="legend-indicator bg-primary"></span>Paid (162)
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">
-                      <span class="legend-indicator bg-warning"></span>Pending (10)
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="declined-tab" data-bs-toggle="tab" href="#declined" role="tab" aria-controls="declined" aria-selected="true">
-                      <span class="legend-indicator bg-danger"></span>Declined (3)
-                    </a>
-                  </li>
-                </ul>
-                <!-- End Nav -->
+                    <div class="col-sm-9">
+                      <input type="email" class="form-control" name="email" id="emailLabel" placeholder="Email" aria-label="Email" >
+                    </div>
+                  </div>
+                  <!-- End Form -->
+
+                  <!-- Form -->
+                  <div class="row mb-4">
+                    <label for="phoneLabel" class="col-sm-3 col-form-label form-label">Phone </label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="js-input-mask form-control" name="phone" id="phoneLabel" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx"  data-hs-mask-options='{
+                               "mask": "+0(000)000-00-00"
+                             }'>
+                    </div>
+                  </div>
+                  <!-- End Form -->
+
+                  <!-- Form -->
+                    <div class="row mb-4">
+                    <label for="headlineLabel" class="col-sm-3 col-form-label form-label">Headline</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" name="headline" id="headlineLabel" placeholder="Headline" aria-label="Headline" >
+                    </div>
+                    </div>
+                  <!-- End Form -->
+
+
+                  <!-- Form -->
+                  <div class="row mb-4">
+                    <label for="emailLabel" class="col-sm-3 col-form-label form-label">Bio</label>
+
+                    <div class="col-sm-9">
+                      <textarea class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                    </div>
+                  <!-- End Form -->
+
+
+                  <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
+                </form>
+                <!-- End Form -->
               </div>
-              <!-- End Nav Scroller -->
-            </div>
-            <!-- End Body -->
+              <!-- End Body -->
+            </div> --}}
+            <!-- End Card -->
+            @livewire('profile.personal-information')
 
-            <hr class="my-0">
 
-            <!-- Body -->
-            <div class="card-body card-body-height">
-              <!-- Tab Content -->
-              <div class="tab-content" id="invoicesStatusTabContent">
-                <div class="tab-pane fade show active" id="paid" role="tabpanel" aria-labelledby="paid-tab">
-                  <!-- List Group -->
-                  <ul class="list-group list-group-flush list-group-no-gutters">
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Update subscription method</h5>
-                        <span class="fs-5">Rocket Science Group</span>
-                      </div>
+            @livewire('profile.geographical-information')
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$530.00 USD</span>
-                        <span class="fs-5">25 May, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
 
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Develop Slack mobile app</h5>
-                        <span class="fs-5">Slack Technologies</span>
-                      </div>
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$2500.00 USD</span>
-                        <span class="fs-5">25 May, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
+            @livewire('profile.background-experience')
 
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Create a new database for Webdev</h5>
-                        <span class="fs-5">Google LLC</span>
-                      </div>
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$7000.00 USD</span>
-                        <span class="fs-5">10 May, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
 
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">The Hub project</h5>
-                        <span class="fs-5">HubSpot</span>
-                      </div>
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$55000.00 USD</span>
-                        <span class="fs-5">12 June, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
+            @livewire('profile.update-email')
 
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Binance-chain</h5>
-                        <span class="fs-5">FrontApp</span>
-                      </div>
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$400.00 USD</span>
-                        <span class="fs-5">01 June, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
-                  </ul>
-                  <!-- End List Group -->
-                </div>
+            <!-- Card -->
+            @livewire('profile.change-password')
 
-                <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                  <!-- List Group -->
-                  <ul class="list-group list-group-flush list-group-no-gutters">
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Marketing campaign for Slack</h5>
-                        <span class="fs-5">Slack Technologies</span>
-                      </div>
+            <!-- End Card -->
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$2500.00 USD</span>
-                        <span class="fs-5">15 May, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
+            <!-- Card -->
+            @livewire('profile.user-preferences')
 
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Android app</h5>
-                        <span class="fs-5">Htmlstream Ltd.</span>
-                      </div>
+            <!-- End Card -->
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$7000.00 USD</span>
-                        <span class="fs-5">14 May, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
 
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Building startup for brand</h5>
-                        <span class="fs-5">Htmlstream Ltd.</span>
-                      </div>
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$530.00 USD</span>
-                        <span class="fs-5">15 May, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
+            @livewire('profile.user-devices')
 
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Massive dynamic project</h5>
-                        <span class="fs-5">Microsoft Corporation</span>
-                      </div>
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$55000.00 USD</span>
-                        <span class="fs-5">14 Apr, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
-                  </ul>
-                  <!-- End List Group -->
-                </div>
 
-                <div class="tab-pane fade" id="declined" role="tabpanel" aria-labelledby="declined-tab">
-                  <!-- List Group -->
-                  <ul class="list-group list-group-flush list-group-no-gutters">
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Set up a datatable for Booking.com</h5>
-                        <span class="fs-5">United States-based Booking Holdings</span>
-                      </div>
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$7000.00 USD</span>
-                        <span class="fs-5">05 May, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
 
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Redesigning the Spotify main page</h5>
-                        <span class="fs-5">Spotify Technology S.A.</span>
-                      </div>
+            <!-- Card -->
+            @livewire('profile.social-accounts')
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$530.00 USD</span>
-                        <span class="fs-5">04 May, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
 
-                    <!-- List Item -->
-                    <li class="list-group-item">
-                      <div class="mb-1">
-                        <h5 class="mb-0">Prosperops</h5>
-                        <span class="fs-5">Prosperops</span>
-                      </div>
+            <!-- Card -->
+            @livewire('profile.delete-account')
 
-                      <div class="d-flex justify-content-between">
-                        <span class="h4 text-primary">$2500.00 USD</span>
-                        <span class="fs-5">15 Apr, 2020</span>
-                      </div>
-                    </li>
-                    <!-- End List Item -->
-                  </ul>
-                  <!-- End List Group -->
-                </div>
-              </div>
-              <!-- End Tab Content -->
-            </div>
-            <!-- End Body -->
-
-            <!-- Card Footer -->
-            <a class="card-footer text-center" href="#">
-              View all invoices <i class="bi-chevron-right"></i>
-            </a>
-            <!-- End Card Footer -->
+            <!-- End Card -->
           </div>
-          <!-- End Card -->
-        </div> --}}
+
+          <!-- Sticky Block End Point -->
+          <div id="stickyBlockEndPoint"></div>
+        </div>
       </div>
+      <!-- End Row -->
     </div>
     <!-- End Content -->
 
     <!-- Footer -->
 
-    @include('student.layouts.dashboard-footer')
-
-
+    @include("student.layouts.dashboard-footer")
     <!-- End Footer -->
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
@@ -1367,6 +1150,9 @@
   <!-- End Welcome Message Modal -->
   <!-- ========== END SECONDARY CONTENTS ========== -->
 
+  @livewireScripts
+
+
   <!-- JS Global Compulsory  -->
   <script src="{{asset('backend/vendor/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('backend/vendor/jquery-migrate/dist/jquery-migrate.min.js')}}"></script>
@@ -1376,7 +1162,11 @@
   <script src="{{asset('backend/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside.min.js')}}"></script>
   <script src="{{asset('backend/vendor/hs-form-search/dist/hs-form-search.min.js')}}"></script>
 
-  <script src="{{asset('backend/vendor/hs-nav-scroller/dist/hs-nav-scroller.min.js')}}"></script>
+  <script src="{{asset('backend/vendor/hs-file-attach/dist/hs-file-attach.min.js')}}"></script>
+  <script src="{{asset('backend/vendor/hs-sticky-block/dist/hs-sticky-block.min.js')}}"></script>
+  <script src="{{asset('backend/vendor/hs-scrollspy/dist/hs-scrollspy.min.js')}}"></script>
+  <script src="{{asset('backend/vendor/imask/dist/imask.min.js')}}"></script>
+  <script src="{{asset('backend/vendor/tom-select/dist/js/tom-select.complete.min.js')}}"></script>
 
   <!-- JS Front -->
   <script src="{{asset('backend/js/theme.min.js')}}"></script>
@@ -1402,9 +1192,39 @@
         HSBsDropdown.init()
 
 
-        // INITIALIZATION OF NAV SCROLLER
+        // INITIALIZATION OF SELECT
         // =======================================================
-        new HsNavScroller('.js-nav-scroller')
+        HSCore.components.HSTomSelect.init('.js-select')
+
+
+        // INITIALIZATION OF INPUT MASK
+        // =======================================================
+        HSCore.components.HSMask.init('.js-input-mask')
+
+
+        // INITIALIZATION OF FILE ATTACHMENT
+        // =======================================================
+        new HSFileAttach('.js-file-attach')
+
+
+        // INITIALIZATION OF STICKY BLOCKS
+        // =======================================================
+        new HSStickyBlock('.js-sticky-block', {
+          targetSelector: document.getElementById('header').classList.contains('navbar-fixed') ? '#header' : null
+        })
+
+
+        // SCROLLSPY
+        // =======================================================
+        new bootstrap.ScrollSpy(document.body, {
+          target: '#navbarSettings',
+          offset: 100
+        })
+
+        new HSScrollspy('#navbarVerticalNavMenu', {
+          breakpoint: 'lg',
+          scrollOffset: -20
+        })
       }
     })()
   </script>
@@ -1446,6 +1266,16 @@
         })
       })()
     </script>
+
+<script>
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('experience-added', () => {
+            var myModalEl = document.getElementById('addExperienceModal')
+            var modal = bootstrap.Modal.getInstance(myModalEl)
+            modal.hide()
+        })
+    })
+</script>
 
   <!-- End Style Switcher JS -->
 </body>

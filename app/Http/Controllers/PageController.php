@@ -37,6 +37,8 @@ class PageController extends Controller
                 });
         }
 
+
+
         return view('student.home', compact('courses', 'categories', 'studentProgress'));
     }
 
@@ -153,7 +155,29 @@ public function courses(Request $request)
                 });
         }
 
-        return view('student.course', compact('course', 'averageRating', 'reviewCounts','categories','studentProgress'));
+        $userPosts = Post::where('user_id', $course->user_id)->get();
+
+
+
+
+           // Fetch instructor data
+           $instructor = $course->user;
+
+           $totalCoursesPublished = $instructor->courses()->where('publishing_status', true)->count();
+           $totalInstructorReviews = $instructor->courses()->withCount('reviews')->get()->sum('reviews_count');
+           $totalInstructorStudents = $instructor->courses()->withCount('enrollments')->get()->sum('enrollments_count');
+           $totalInstructorRating = $instructor->courses()->with('reviews')->get()->flatMap->reviews->avg('rating');
+
+
+                // Fetch random courses from the same category
+        $relatedCourses = Course::where('category_id', $course->category_id)
+        ->where('id', '!=', $course->id)
+        ->inRandomOrder()
+        ->take(3)
+        ->get();
+
+
+        return view('student.course', compact('course', 'averageRating', 'reviewCounts','categories','studentProgress','userPosts', 'totalCoursesPublished', 'totalInstructorReviews', 'totalInstructorStudents', 'totalInstructorRating','relatedCourses'));
     }
 
 

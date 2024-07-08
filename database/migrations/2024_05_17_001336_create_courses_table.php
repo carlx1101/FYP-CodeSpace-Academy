@@ -23,6 +23,8 @@ return new class extends Migration
             $table->text('description');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('subcategory_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Add this line
+
             $table->string('cover_image')->nullable();
             $table->string('promotional_video')->nullable();
             $table->string('primary_language');
