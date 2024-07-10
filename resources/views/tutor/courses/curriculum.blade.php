@@ -26,6 +26,7 @@
   <link rel="preload" href="{{asset('backend/css/theme-dark.min.css')}}" data-hs-appearance="dark" as="style">
 
     <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    
 
   <style data-hs-appearance-onload-styles>
     *
@@ -191,7 +192,7 @@
 
               <div class="btn-group">
 
-                <button type="button" class="btn btn-white btn-sm editSection" data-bs-toggle="modal"
+                <button type="button" class="btn btn-outline-info editSection" data-bs-toggle="modal"
                 data-bs-target="#editSectionModal" data-section="{{ json_encode($section) }}">
                     <i class="bi-pencil-fill me-1"></i> Edit Section
               </button>
@@ -242,9 +243,10 @@
 
 
                             <div class="d-flex justify-content-between">
-
+                              <div class="me-1">
+                                <button type="button" class="btn btn-outline-primary" onclick="editLesson({{ json_encode($lesson) }})" data-bs-toggle="modal" data-bs-target="#editLessonModal">Edit</button>
+                              </div>
                               <form action="{{ route('lessons.destroy', ['section' => $section, 'lesson' => $lesson]) }}" method="POST">
-                                <button type="button" class="btn btn-outline-primary">Edit</button>
                                   @csrf
                                   @method('DELETE')
                                   <button type="submit" class="btn btn-outline-danger">Delete</button>
@@ -390,8 +392,6 @@
                 </div>
                 <div class="modal-body">
                     <form id="lessonCreateForm">
-                        <input type="text" id="section_id" name="section_id" value="{{ isset($section->id) ? $section->id : '' }}">
-
                         <div class="row">
                             <div class="mb-3" style="text-align: left">
                                 <label class="form-label" for="title">Title</label>
@@ -420,9 +420,9 @@
 
                             <div class="col-sm mb-2 mb-sm-0">
                                 <!-- Form Radio -->
-                                <label class="form-control" for="formControlRadioEg1">
+                                <label class="form-control" for="addVideoFormRadio">
                                     <span class="form-check">
-                                        <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg1" value="video">
+                                        <input type="radio" class="form-check-input" name="lesson_type" id="addVideoFormRadio" value="video" required>
                                         <span class="form-check-label">Video</span>
                                     </span>
                                 </label>
@@ -431,9 +431,9 @@
 
                             <div class="col-sm mb-2 mb-sm-0">
                                 <!-- Form Radio -->
-                                <label class="form-control" for="formControlRadioEg2">
+                                <label class="form-control" for="addArticleFormRadio">
                                     <span class="form-check">
-                                        <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg2" value="article">
+                                        <input type="radio" class="form-check-input" name="lesson_type" id="addArticleFormRadio" value="article" required>
                                         <span class="form-check-label">Article</span>
                                     </span>
                                 </label>
@@ -442,9 +442,9 @@
 
                             <div class="col-sm mb-2 mb-sm-0">
                                 <!-- Form Radio -->
-                                <label class="form-control" for="formControlRadioEg2">
+                                <label class="form-control" for="addAssessmentFormRadio">
                                     <span class="form-check">
-                                        <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg2" value="assessment">
+                                        <input type="radio" class="form-check-input" name="lesson_type" id="addAssessmentFormRadio" value="assessment" required>
                                         <span class="form-check-label">Assessment</span>
                                     </span>
                                 </label>
@@ -608,7 +608,230 @@
 
 
 
+  <!-- Modal -->
+  <div class="modal fade" id="editLessonModal" tabindex="-1" aria-labelledby="editLessonLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="editLessonLabel">Edit Lesson</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="lessonEditForm" method="POST" onsubmit="return editLessonSubmit(event, this)">
+            @method("PUT")
+            @csrf
+              <div class="row">
+                  <div class="mb-3" style="text-align: left">
+                      <label class="form-label" for="title">Title</label>
+                      <input type="text" id="editTitle" class="form-control" name="title" placeholder="Title">
+                  </div>
+              </div>
 
+              <div class="row">
+                  <div class="mb-3" style="text-align: left">
+                      <label class="form-label" for="description">Description</label>
+                      <input type="text" id="editDescription" name="description" class="form-control" placeholder="Describe what student will learn in this lesson">
+                  </div>
+              </div>
+
+              <div class="row mb-2">
+                  <div class="mb-2" style="text-align: left">
+                      <input type="checkbox" name="is_preview" class="form-check-input" value="1">
+                      <label class="form-check-label">Preview Course</label>
+                  </div>
+              </div>
+
+              <div class="row mb-2">
+                  <div class="mb-2" style="text-align: left">
+                      <label class="form-label" for="description">Lesson Type</label>
+                  </div>
+
+                  <div class="col-sm mb-2 mb-sm-0">
+                      <!-- Form Radio -->
+                      <label class="form-control" for="videoFormRadio">
+                          <span class="form-check">
+                              <input type="radio" class="form-check-input" name="lesson_type" id="videoFormRadio" value="video" required>
+                              <span class="form-check-label">Video</span>
+                          </span>
+                      </label>
+                      <!-- End Form Radio -->
+                  </div>
+
+                  <div class="col-sm mb-2 mb-sm-0">
+                      <!-- Form Radio -->
+                      <label class="form-control" for="articleFormRadio">
+                          <span class="form-check">
+                              <input type="radio" class="form-check-input" name="lesson_type" id="articleFormRadio" value="article" required>
+                              <span class="form-check-label">Article</span>
+                          </span>
+                      </label>
+                      <!-- End Form Radio -->
+                  </div>
+
+                  <div class="col-sm mb-2 mb-sm-0">
+                      <!-- Form Radio -->
+                      <label class="form-control" for="assessmentFormRadio">
+                          <span class="form-check">
+                              <input type="radio" class="form-check-input" name="lesson_type" id="assessmentFormRadio" value="assessment" required>
+                              <span class="form-check-label">Assessment</span>
+                          </span>
+                      </label>
+                      <!-- End Form Radio -->
+                  </div>
+
+                  <br>
+                  <div class="row mt-2">
+                      <div class="mb-3" id="editVideoFields" style="display: none; text-align: left;">
+                      <label class="form-label" for="title">Title</label>
+
+
+                          <!-- Nav -->
+                          <div>
+                              <ul class="nav nav-segment mb-7" role="tablist">
+                                  <li class="nav-item">
+                                      <a class="nav-link active" id="nav-vid1-tab" href="#nav-vid1" data-bs-toggle="pill" data-bs-target="#nav-vid1" role="tab" aria-controls="nav-vid1" aria-selected="true">Video URL</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" id="nav-vid2-tab" href="#nav-vid2" data-bs-toggle="pill" data-bs-target="#nav-vid2" role="tab" aria-controls="nav-vid2" aria-selected="false">Upload Video</a>
+                                  </li>
+                              </ul>
+                          </div>
+                          <!-- End Nav -->
+
+                          <!-- Tab Content -->
+                          <div class="tab-content">
+                              <div class="tab-pane fade show active" id="nav-vid1" role="tabpanel" aria-labelledby="nav-one-eg1-tab">
+                                  <label class="form-label" for="video_url">Video URL</label>
+                                  <input type="text" class="form-control" name="video_url" id="edit_video_url">
+                              </div>
+
+                              <div class="tab-pane fade" id="nav-vid2" role="tabpanel" aria-labelledby="nav-two-eg1-tab">
+                                  <label class="form-label" for="video_url">Upload Video</label>
+                                  <!-- Dropzone -->
+                                  <div id="editLessonVideo" class="js-dropzone row dz-dropzone dz-dropzone-card">
+                                      <div class="dz-message">
+                                          <img class="avatar avatar-xl avatar-4x3 mb-3" src="{{ asset('backend/svg/illustrations/oc-browse.svg') }}" alt="Image Description">
+                                          <h5>Drag and drop your video here</h5>
+                                          <p class="mb-2">or</p>
+                                          <span class="btn btn-white btn-sm">Browse video</span>
+                                      </div>
+                                  </div>
+                                  <!-- End Dropzone -->
+                              </div>
+                          </div>
+                          <!-- End Tab Content -->
+                      </div>
+                  </div>
+
+                  <div class="row mt-2">
+                      <div class="mb-3" id="editArticleFields" style="display: none; text-align: left;">
+                          <!-- Article-specific fields go here -->
+                          <label for="article_content">Article Content</label>
+                          <textarea name="article_content" id="edit_article_content"></textarea>
+                          <script>
+                              CKEDITOR.replace('edit_article_content');
+                          </script>
+                      </div>
+                  </div>
+
+                  {{-- Assessment Tab Field --}}
+                  <div class="form-group" id="editAssessmentFields" style="display: none;">
+                      <!-- Assessment-specific fields go here -->
+
+                      <div class="row">
+                          <div class="mb-3" style="text-align: left">
+                              <label class="form-label" for="title">Question</label>
+                              <input type="text" id="editTitle" class="form-control" name="question" placeholder="Question">
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="mb-3" style="text-align: left">
+                              <label class="form-label" for="option1">Option 1</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text">
+                                          <input type="radio" name="correct_option" value="option1">
+                                      </span>
+                                  </div>
+                                  <input type="text" id="editOption1" class="form-control" name="option1" placeholder="Option 1">
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="mb-3" style="text-align: left">
+                              <label class="form-label" for="option2">Option 2</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text">
+                                          <input type="radio" name="correct_option" value="option2">
+                                      </span>
+                                  </div>
+                                  <input type="text" id="editOption2" class="form-control" name="option2" placeholder="Option 2">
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="mb-3" style="text-align: left">
+                              <label class="form-label" for="option3">Option 3</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text">
+                                          <input type="radio" name="correct_option" value="option3">
+                                      </span>
+                                  </div>
+                                  <input type="text" id="editOption3" class="form-control" name="option3" placeholder="Option 3">
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="mb-3" style="text-align: left">
+                              <label class="form-label" for="option4">Option 4</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text">
+                                          <input type="radio" name="correct_option" value="option4">
+                                      </span>
+                                  </div>
+                                  <input type="text" id="editOption4" class="form-control" name="option4" placeholder="Option 4">
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+
+              </div>
+
+
+              <div class="row mb-2">
+                  <div class="mb-3" style="text-align: left">
+
+                      <label class="form-label" for="title">Knowledge Training</label>
+
+                      <div id="editKnowledgeDocument" class="js-dropzone row dz-dropzone dz-dropzone-card">
+                          <div class="dz-message">
+                              <img class="avatar avatar-xl avatar-4x3 mb-3" src="{{ asset('backend/svg/illustrations/oc-browse.svg') }}" alt="Image Description">
+                              <h5>Drag and drop your PDF here</h5>
+                              <p class="mb-2">or</p>
+                              <span class="btn btn-white btn-sm">Browse video</span>
+                          </div>
+                      </div>
+                  </div>
+
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -849,7 +1072,7 @@
     <script>
   $(document).ready(function() {
       // Listen for changes in the radio inputs
-      $('input[type=radio][name=lesson_type]').change(function() {
+      $('#addLessonModal input[type=radio][name=lesson_type]').change(function() {
           var selectedType = $(this).val();
 
           // Hide all form fields
@@ -1000,6 +1223,166 @@
         });
     </script>
 
+  <script>
+    $(document).ready(function() {
+        // Listen for changes in the radio inputs
+        $('#editLessonModal input[type=radio][name=lesson_type]').change(function() {
+            var selectedType = $(this).val();
+
+            // Hide all form fields
+            $('#editLessonModal #editVideoFields, #editLessonModal #editArticleFields, #editLessonModal #editAssessmentFields').hide();
+
+            // Show the form fields for the selected type
+            $('#editLessonModal #edit' + selectedType.charAt(0).toUpperCase() + selectedType.slice(1) + 'Fields').show();
+        });
+    });
+  </script>
+
+  <script>
+    function editLesson(lesson) {
+      emptyEditVideo();
+      emptyKnowledge();
+      emptyAssessment();
+      $('#editLessonModal #editTitle[name="title"]').val(lesson.title);
+      $('#editLessonModal #editDescription[name="description"]').val(lesson.description);
+      $('#editLessonModal input[name="is_preview"]').prop("checked", lesson.is_preview);
+      $('#editLessonModal input[name="lesson_type"][value="' + lesson.lesson_type + '"]').click();
+      $('#lessonEditForm').attr('action', `{{ url("/tutor/sections") }}/${lesson.section_id}/lessons/${lesson.id}/`);
+      switch(lesson.lesson_type) {
+        case "video":
+          emptyArticle();
+          if (lesson.video.video_type === "link") {
+            let uploadTab = $('a[data-bs-target="#nav-vid1"]');
+            uploadTab.tab('show');
+            $('#editLessonModal #edit_video_url').val(lesson.video.video_url);
+          } else {
+            let uploadTab = $('a[data-bs-target="#nav-vid2"]');
+            uploadTab.tab('show');
+            let lessonVideoDropzoneElement = $('#editLessonVideo')[0].dropzone;
+            if (lessonVideoDropzoneElement) {
+              let file = {
+                name: "Lesson Video", accepted: true, status: 'success'
+              };
+              lessonVideoDropzoneElement.files.push(file);
+              lessonVideoDropzoneElement.emit('addedfile', file);
+              lessonVideoDropzoneElement.emit('thumbnail', file, "https://cdn-icons-png.flaticon.com/128/2377/2377793.png");
+              lessonVideoDropzoneElement.emit("complete", file);
+              $('#editLessonVideo .dz-progress')[0].remove();
+              $('#editLessonVideo .dz-size')[0].remove();
+              if ($('#editLessonVideo .dz-success-mark').length > 0) {
+                $('#editLessonVideo .dz-success-mark').parent().remove();
+              }
+            }
+          }
+          break;
+        case "article":
+          CKEDITOR.instances['edit_article_content'].setData(lesson.article.content);
+          break;
+        case "assessment":
+          emptyArticle();
+          $('#editLessonModal #editTitle').val(lesson.assessment.question);
+          $('#editLessonModal #editOption1').val(lesson.assessment.options[0].option_text);
+          $('#editLessonModal #editOption2').val(lesson.assessment.options[1].option_text);
+          $('#editLessonModal #editOption3').val(lesson.assessment.options[2].option_text);
+          $('#editLessonModal #editOption4').val(lesson.assessment.options[3].option_text);
+          let correctOption = lesson.assessment.options.find(option => option.is_correct);
+          if (correctOption) {
+            $('#editLessonModal input[name="correct_option"][value="option' + correctOption.option_text + '"]').prop("checked", true);
+          }
+          break;
+        default:
+          // code block
+      }
+      if (lesson.knowledge != null && lesson.knowledge != "") {
+        let lessonVideoDropzoneElement = $('#editKnowledgeDocument')[0].dropzone;
+        if (lessonVideoDropzoneElement) {
+          let file = {
+          name: "Knowledge", accepted: true, status: 'success'
+          };
+          lessonVideoDropzoneElement.files.push(file);
+          lessonVideoDropzoneElement.emit('addedfile', file);
+          lessonVideoDropzoneElement.emit('thumbnail', file, "https://cdn-icons-png.flaticon.com/512/337/337946.png");
+          lessonVideoDropzoneElement.emit("complete", file);
+          $('#editKnowledgeDocument .dz-progress')[0].remove();
+          $('#editKnowledgeDocument .dz-size')[0].remove();
+          if ($('#editKnowledgeDocument .dz-success-mark').length > 0) {
+            $('#editKnowledgeDocument .dz-success-mark').parent().remove();
+          }
+        }
+      }
+
+      
+    }
+
+    function emptyEditVideo() {
+      $('#editLessonModal #edit_video_url').val("");
+      lessonVideoDropzoneElement = $('#editLessonVideo')[0].dropzone;
+      lessonVideoDropzoneElement.destroy();
+      HSCore.components.HSDropzone.init('#editLessonVideo');
+    }
+
+    function emptyKnowledge() {
+      lessonVideoDropzoneElement = $('#editKnowledgeDocument')[0].dropzone;
+      lessonVideoDropzoneElement.destroy();
+      HSCore.components.HSDropzone.init('#editKnowledgeDocument');
+    }
+
+    function emptyArticle() {
+      CKEDITOR.instances['edit_article_content'].setData("");
+    }
+
+    function emptyAssessment() {
+      $('#editLessonModal #editTitle').val("");
+      $('#editLessonModal #editOption1').val("");
+      $('#editLessonModal #editOption2').val("");
+      $('#editLessonModal #editOption3').val("");
+      $('#editLessonModal #editOption4').val("");
+    }
+  </script>
+
+  <script>
+    function editLessonSubmit(event, elem) {
+      // Create a new FormData object and append form data to it
+      var formData = new FormData(elem);
+      var csrfToken = $('meta[name="csrf-token"]').attr('content');
+      // Get the 'lessonVideo' Dropzone element
+      var lessonVideoDropzoneElement = $('#editLessonVideo')[0].dropzone;
+      var knowledgeDocumentDropzoneElement = $('#editKnowledgeDocument')[0].dropzone;
+      // Check if 'lessonVideo' Dropzone has files
+      if (lessonVideoDropzoneElement) {
+          var lessonVideo = lessonVideoDropzoneElement.files[0];
+          if (lessonVideo) {
+              formData.append("video_url", lessonVideo);
+          }
+      }
+      if (knowledgeDocumentDropzoneElement) {
+          var knowledgeDocument = knowledgeDocumentDropzoneElement.files[0];
+          if (knowledgeDocument) {
+              formData.append("knowledge", knowledgeDocument);
+          }
+      }
+      // Make an AJAX request
+      $.ajax({
+        headers: {'X-CSRF-TOKEN': csrfToken},
+        url: elem.getAttribute('action'),
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            // Handle success response
+            console.log("Success:", response);
+            location.reload(); // Optionally reload the page to see the new lesson
+        },
+        error: function (xhr, status, error) {
+            // Handle error response
+            console.log("Error:", error);
+        }
+      });
+      event.preventDefault();
+      return false; // Prevent the default form submission
+    }
+  </script>
 
 </body>
 </html>

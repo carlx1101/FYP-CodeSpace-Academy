@@ -85,7 +85,7 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
     Route::resource('notes', NoteController::class);
 
     // Profile
-    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+    // Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
     // Billing
 
@@ -123,6 +123,7 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
     Route::put('courses/{courseId}/sections/{sectionId}/edit', [SectionController::class, 'update'])->name('sections.edit');
 
     // Manage Lesson
+    Route::put('sections/{section}/lessons/{lessonId}', [LessonController::class, 'update'])->name('lessons.update');
     Route::post('sections/{section}/lessons', [LessonController::class, 'store'])->name('lessons.store');
     Route::delete('sections/{section}/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
 
