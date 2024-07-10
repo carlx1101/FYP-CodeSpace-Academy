@@ -18,7 +18,7 @@ class SectionController extends Controller
         $course = Course::findOrFail($courseId);
 
         // Get the sections associated with the course
-        $sections = $course->sections;
+        $sections = $course->sections->load(['lessons', 'lessons.article', 'lessons.video', 'lessons.assessment', 'lessons.assessment.options']);
 
         // dd($sections);
         return view('tutor.courses.curriculum', compact('course', 'sections'));
