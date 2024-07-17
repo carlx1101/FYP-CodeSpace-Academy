@@ -15,6 +15,7 @@ class AssistantController extends Controller
     public function assistant($lessonId)
     {
         $lesson = Lesson::findOrFail($lessonId);
+        // dd($lesson);
         return view('student.assistant', compact('lesson'));
     }
 

@@ -109,21 +109,20 @@
                     <div class="mb-3">
                       <span class="card-title h2">RM {{$course->price}}</span>
                       {{-- <span class="text-muted"><del>$114.99</del></span> --}}
+
+                      
                     </div>
 
                     <div class="d-grid mb-2">
-                        <a class="btn btn-primary btn-transition" href="#">Buy now</a>
 
-
-                    </div>
-
-                    <div class="row">
-                    <form action="{{ route('cart.store') }}" method="POST" style="display: inline;">
+                        <form action="{{ route('cart.store') }}" method="POST" style="  outline: none;">
                             @csrf
                             <input type="hidden" name="course_id" value="{{ $course->id }}">
                             <button type="submit" class="btn btn-primary btn-transition">Add to Cart</button>
-                    </form>
+                        </form>
                     </div>
+
+
 
 
 

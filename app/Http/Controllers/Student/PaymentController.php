@@ -60,6 +60,26 @@ class PaymentController extends Controller
 
     public function success()
     {
+        $studentProgress = [];
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $studentProgress = $user->enrolledCourses()
+                ->with('lessons')
+                ->get()
+                ->map(function ($course) use ($user) {
+                    $totalLessons = $course->lessons->count();
+                    $completedLessons = $course->lessons->whereIn('id', $user->completedLessons->pluck('id'))->count();
+                    $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+
+                    return [
+                        'course' => $course,
+                        'progress' => $progress,
+                        'completed' => $progress == 100
+                    ];
+                });
+        }
+
         $categories = Category::all();
 
         $cartItems = Auth::user()->cart()->with('course')->get();
@@ -99,7 +119,7 @@ class PaymentController extends Controller
         ]);
 
 
-        return view('student.checkout-success', compact('categories'));
+        return view('student.checkout-success', compact('categories','studentProgress'));
     }
 
 

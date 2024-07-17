@@ -133,7 +133,7 @@
 
   <!-- ========== HEADER ========== -->
 
-  @include('tutor.layouts.header')
+  @include('admin.layouts.header')
 
 
   <!-- ========== END HEADER ========== -->
@@ -141,7 +141,7 @@
   <!-- ========== MAIN CONTENT ========== -->
   <!-- Navbar Vertical -->
 
-  @include('tutor.layouts.sidebar')
+  @include('admin.layouts.sidebar')
 
 
   <main id="content" role="main" class="main">
@@ -275,7 +275,7 @@
 
     <!-- Footer -->
 
-    @include('tutor.layouts.footer')
+    @include('admin.layouts.footer')
 
     <!-- End Footer -->
   </main>
@@ -352,7 +352,7 @@
             <div class="modal-body">
 
                 {{-- Create Section Modal Form --}}
-                <form method="POST" action="{{ route('sections.store', $course->id)}}">
+                <form method="POST" action="{{ route('admin.sections.store', $course->id)}}">
                     @csrf
 
                     <div class="mb-3">
@@ -1057,7 +1057,7 @@
             openLessonModalButtons.forEach(function (button) {
             button.addEventListener('click', function () {
                 const sectionId = this.getAttribute('data-section-id');
-        modalForm.setAttribute('action', "{{ route('lessons.store', ['sectionId']) }}".replace('sectionId', sectionId));
+        modalForm.setAttribute('action', "{{ route('admin.lessons.store', ['sectionId']) }}".replace('sectionId', sectionId));
 
 
             });
@@ -1099,7 +1099,7 @@
         <!-- Tab Content -->
         <div class="tab-content" id="editSectionModalTabContent">
             <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <form action="/tutor/courses/${section.course_id}/sections/${section.id}/edit" method="POST">
+            <form action="/admin/courses/${section.course_id}/sections/${section.id}/edit" method="POST">
                 @method('PUT')
                 @csrf
 
@@ -1204,7 +1204,7 @@
                 // Make an AJAX request
                 $.ajax({
                     headers: {'X-CSRF-TOKEN': csrfToken},
-                    url: "{{ route('lessons.store', 'sectionId') }}".replace('sectionId', sectionId),
+                    url: "{{ route('admin.lessons.store', 'sectionId') }}".replace('sectionId', sectionId),
                     type: "POST",
                     data: formData,
                     contentType: false,
@@ -1247,7 +1247,7 @@
       $('#editLessonModal #editDescription[name="description"]').val(lesson.description);
       $('#editLessonModal input[name="is_preview"]').prop("checked", lesson.is_preview);
       $('#editLessonModal input[name="lesson_type"][value="' + lesson.lesson_type + '"]').click();
-      $('#lessonEditForm').attr('action', `{{ url("/tutor/sections") }}/${lesson.section_id}/lessons/${lesson.id}/`);
+      $('#lessonEditForm').attr('action', `{{ url("/admin/sections") }}/${lesson.section_id}/lessons/${lesson.id}/`);
       switch(lesson.lesson_type) {
         case "video":
           emptyArticle();

@@ -164,7 +164,7 @@
           <!-- Card -->
           <a class="card card-hover-shadow h-100" href="#">
             <div class="card-body">
-              <h6 class="card-subtitle">Total Applicant</h6>
+              <h6 class="card-subtitle">Total Listings</h6>
 
               <div class="row align-items-center gx-2 mb-1">
                 <div class="col-6">
@@ -197,7 +197,7 @@
               </div>
               <!-- End Row -->
 
-     
+
             </div>
           </a>
           <!-- End Card -->

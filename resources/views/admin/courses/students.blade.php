@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Manage Articles</title>
+  <title>Students</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="./favicon.ico">
@@ -24,6 +23,10 @@
 
   <link rel="preload" href="{{asset('backend/css/theme.min.css')}}" data-hs-appearance="default" as="style">
   <link rel="preload" href="{{asset('backend/css/theme-dark.min.css')}}" data-hs-appearance="dark" as="style">
+
+
+  @livewireStyles
+
 
   <style data-hs-appearance-onload-styles>
     *
@@ -136,9 +139,7 @@
 
   <!-- ========== MAIN CONTENT ========== -->
   <!-- Navbar Vertical -->
-
-  @include('admin.layouts.sidebar')
-
+@include('admin.layouts.sidebar')
 
   <main id="content" role="main" class="main">
     <!-- Content -->
@@ -149,24 +150,21 @@
           <div class="col-sm mb-2 mb-sm-0">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-no-gutter">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Article Management</a></li>
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Articles</a></li>
-
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Course Management </a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">{{$course->title}}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Overview</li>
               </ol>
             </nav>
 
-            <h1 class="page-header-title">Article</h1>
+            <h1 class="page-header-title">Students</h1>
           </div>
           <!-- End Col -->
 
-          <div class="col-sm-auto">
-            <a class="btn btn-primary" href="{{route('courses.create')}}">
-              <i class="bi bi-journals me-1"></i>
-
-              Add Article
+          {{-- <div class="col-sm-auto">
+            <a class="btn btn-primary" href="./users-add-user.html">
+              <i class="bi-person-plus-fill me-1"></i> Add user
             </a>
-          </div>
+          </div> --}}
           <!-- End Col -->
         </div>
         <!-- End Row -->
@@ -179,11 +177,11 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">Total posts</h6>
+              <h6 class="card-subtitle mb-2">Total enrollments</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
-                  <span class="js-counter display-4 text-dark">{{$posts->count()}}</span>
+                  <span class="js-counter display-4 text-dark">{{count($students)}}</span>
                 </div>
                 <!-- End Col -->
 
@@ -195,7 +193,6 @@
           </div>
           <!-- End Card -->
         </div>
-
 
       </div>
       <!-- End Stats -->
@@ -211,7 +208,7 @@
                 <div class="input-group-prepend input-group-text">
                   <i class="bi-search"></i>
                 </div>
-                <input id="datatableSearch" type="search" class="form-control" placeholder="Search courses" aria-label="Search users">
+                <input id="datatableSearch" type="search" class="form-control" placeholder="Search students" aria-label="Search students">
               </div>
               <!-- End Search -->
             </form>
@@ -267,100 +264,99 @@
             <!-- End Dropdown -->
 
             <!-- Dropdown -->
-   
+
             <!-- End Dropdown -->
           </div>
         </div>
         <!-- End Header -->
 
-<!-- Table -->
-<div class="table-responsive datatable-custom position-relative">
-    <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{
-                "columnDefs": [{
-                    "targets": [0, 4],
-                    "orderable": false
-                }],
-                "order": [],
-                "info": {
-                    "totalQty": "#datatableWithPaginationInfoTotalQty"
-                },
-                "search": "#datatableSearch",
-                "entries": "#datatableEntries",
-                "pageLength": 15,
-                "isResponsive": false,
-                "isShowPaging": false,
-                "pagination": "datatablePagination"
-            }'>
-        <thead class="thead-light">
-            <tr>
+        <!-- Table -->
+        <div class="table-responsive datatable-custom position-relative">
+          <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{
+                   "columnDefs": [{
+                      "targets": [0, 6],
+                      "orderable": false
+                    }],
+                   "order": [],
+                   "info": {
+                     "totalQty": "#datatableWithPaginationInfoTotalQty"
+                   },
+                   "search": "#datatableSearch",
+                   "entries": "#datatableEntries",
+                   "pageLength": 15,
+                   "isResponsive": false,
+                   "isShowPaging": false,
+                   "pagination": "datatablePagination"
+                 }'>
+            <thead class="thead-light">
+              <tr>
                 <th class="table-column-pe-0">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
-                        <label class="form-check-label" for="datatableCheckAll"></label>
-                    </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
+                    <label class="form-check-label" for="datatableCheckAll"></label>
+                  </div>
                 </th>
-                <th class="table-column-ps-0">Title</th>
-                <th>Tags</th>
-                <th>Created At</th>
+                <th class="table-column-ps-0">Name</th>
+                <th>Email</th>
+                <th>Enroll at</th>
+                <th>Status</th>
+                <th>Progress</th>
                 <th></th>
-            </tr>
-        </thead>
+              </tr>
+            </thead>
 
-        <tbody>
-            @foreach ($posts as $post)
-            <tr>
+            <tbody>
+
+                @foreach ($students as $student)
+
+              <tr>
                 <td class="table-column-pe-0">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll{{ $post->id }}">
-                        <label class="form-check-label" for="datatableCheckAll{{ $post->id }}"></label>
-                    </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll1">
+                    <label class="form-check-label" for="datatableCheckAll1"></label>
+                  </div>
                 </td>
-
                 <td class="table-column-ps-0">
-                    <a class="d-flex align-items-center" href="{{ route('posts.show', $post->id) }}">
-                        <div class="flex-shrink-0">
-                            <img class="avatar avatar-lg" src="{{ asset('storage/' . $post->post_cover) }}" alt="{{ $post->title }}">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="text-inherit mb-0">{{ $post->title }}</h5>
-                        </div>
-                    </a>
+                  <a class="d-flex align-items-center">
+                    <div class="avatar avatar-circle">
+                        <img class="avatar-img" src="{{ $student->profile_photo_url }}" alt="{{ $student->name }}">
+                    </div>
+                    <div class="ms-3">
+                      <span class="d-block h5 text-inherit mb-0">{{ $student->name }}  </span>
+                    </div>
+                  </a>
                 </td>
-
-                <td>{{ $post->tags }}</td>
-                <td>{{ $post->created_at->format('M d, Y') }}</td>
-
                 <td>
-                    <div class="btn-group" role="group">
-                        <a class="btn btn-white btn-sm" href="{{ route('posts.edit', $post->id) }}">
-                            <i class="bi-pencil-fill me-1"></i> Edit
-                        </a>
-
-                        <!-- Button Group -->
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="postsEditDropdown{{ $post->id }}" data-bs-toggle="dropdown" aria-expanded="false"></button>
-
-                            <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="postsEditDropdown{{ $post->id }}">
-                                <a class="dropdown-item text-danger" href="#"
-                                    onclick="event.preventDefault(); document.getElementById('delete-post-{{ $post->id }}').submit();">
-                                    <i class="bi-trash dropdown-item-icon"></i> Delete
-                                </a>
-                                <form id="delete-post-{{ $post->id }}" action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" style="display: none;">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            </div>
+                  <span class="d-block fs-5">{{ $student->email }} </span>
+                </td>
+                <td>{{ $student->pivot->enrolled_at }}</td>
+                <td>
+                  <span class="legend-indicator bg-success"></span>Active
+                </td>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <span class="fs-5 me-2">{{ round($student->completion_percentage, 2) }}%</span>
+                        <div class="progress table-progress">
+                            <div class="progress-bar" role="progressbar" style="width: {{ round($student->completion_percentage, 2) }}%" aria-valuenow="{{ round($student->completion_percentage, 2) }}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <!-- End Button Group -->
                     </div>
                 </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-<!-- End Table -->
+                <td>
 
+                <a href="{{ route('admin.student.progress', ['studentId' => $student->id, 'courseId' => $course->id]) }}" class="btn btn-white btn-sm">
+                    <i class="bi-pencil-fill me-1"></i> Learning Progress
+                </a>
+
+
+                </td>
+              </tr>
+              @endforeach
+
+
+            </tbody>
+          </table>
+        </div>
+        <!-- End Table -->
 
         <!-- Footer -->
         <div class="card-footer">
@@ -410,13 +406,20 @@
 
     @include('admin.layouts.footer')
 
+
     <!-- End Footer -->
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
 
   <!-- ========== SECONDARY CONTENTS ========== -->
 
+
+
+
   <!-- ========== END SECONDARY CONTENTS ========== -->
+  @livewireScripts
+
+
 
   <!-- JS Global Compulsory  -->
   <script src="{{asset('backend/vendor/jquery/dist/jquery.min.js')}}"></script>
@@ -622,5 +625,8 @@
     </script>
 
   <!-- End Style Switcher JS -->
+
+
+
 </body>
 </html>

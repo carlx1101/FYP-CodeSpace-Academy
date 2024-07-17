@@ -1,3 +1,31 @@
+<style>
+    .coupon-bar {
+        background-color: #87CEEB;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 16px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+    .navbar {
+        margin-top: 43px; /* Adjust based on the height of the coupon bar */
+        z-index: 999;
+    }
+    body {
+        padding-top: 100px; /* Adjust based on the height of both the coupon bar and the navbar */
+    }
+    .modal {
+        z-index: 1050; /* Ensure the modal has a higher z-index than the fixed elements */
+    }
+</style>
+
+<div class="coupon-bar">
+    📚 You are currently browsing admin features.
+</div>
+
 <header id="header" class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
     <div class="navbar-nav-wrap">
       <!-- Logo -->

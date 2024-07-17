@@ -181,31 +181,7 @@
           <div class="col-sm">
             <h1 class="page-header-title">Orders <span class="badge bg-soft-dark text-dark ms-2">{{$sales->count()}}</span></h1>
 
-            <div class="d-flex mt-2">
-              <a class="text-body me-3" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exportOrdersModal">
-                <i class="bi-download me-1"></i> Export
-              </a>
 
-              <!-- Dropdown -->
-              <div class="dropdowm">
-                <a class="text-body" href="javascript:;" id="moreOptionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  More options <i class="bi-chevron-down"></i>
-                </a>
-
-                <div class="dropdown-menu mt-1" aria-labelledby="moreOptionsDropdown">
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-folder-plus dropdown-item-icon"></i> New order
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-folder dropdown-item-icon"></i> New order - Development
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-folder dropdown-item-icon"></i> New order - Staging
-                  </a>
-                </div>
-              </div>
-              <!-- End Dropdown -->
-            </div>
           </div>
           <!-- End Col -->
         </div>
@@ -225,22 +201,7 @@
             </a>
           </span>
 
-          <!-- Nav -->
-          <ul class="nav nav-tabs page-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">All products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Open</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Unfulfilled</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Unpaid</a>
-            </li>
-          </ul>
-          <!-- End Nav -->
+
         </div>
         <!-- End Nav Scroller -->
       </div>
@@ -328,107 +289,7 @@
             <!-- End Dropdown -->
 
             <!-- Dropdown -->
-            <div class="dropdown">
-              <button type="button" class="btn btn-white btn-sm w-100" id="showHideDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                <i class="bi-table me-1"></i> Columns <span class="badge bg-soft-dark text-dark rounded-circle ms-1">7</span>
-              </button>
 
-              <div class="dropdown-menu dropdown-menu-end dropdown-card" aria-labelledby="showHideDropdown" style="width: 15rem;">
-                <div class="card card-sm">
-                  <div class="card-body">
-                    <div class="d-grid gap-3">
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_order">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Order</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_order" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_date">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Date</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_date" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_customer">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Customer</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_customer" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_payment_status">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Payment status</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_payment_status" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_fulfillment_status">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Fulfillment status</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_fulfillment_status" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_payment_method">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Payment method</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_payment_method" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_total">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Total</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_total">
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_actions">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Actions</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_actions" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <!-- End Dropdown -->
           </div>
         </div>
@@ -495,7 +356,6 @@
                     </td>
                     <td>
                       <div class="d-flex align-items-center">
-                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ asset('assets/svg/brands/mastercard.svg') }}" alt="Image Description">
                         <span class="text-dark">{{$sale->payment_method}}</span>
                       </div>
                     </td>
@@ -506,41 +366,6 @@
                           <i class="bi-eye"></i> View
                         </a>
 
-                        <!-- Button Group -->
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown{{ $sale->id }}" data-bs-toggle="dropdown" aria-expanded="false"></button>
-
-                          <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown{{ $sale->id }}">
-                            <span class="dropdown-header">Options</span>
-                            <a class="js-export-copy dropdown-item" href="javascript:;">
-                              <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ asset('assets/svg/illustrations/copy-icon.svg') }}" alt="Image Description">
-                              Copy
-                            </a>
-                            <a class="js-export-print dropdown-item" href="javascript:;">
-                              <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ asset('assets/svg/illustrations/print-icon.svg') }}" alt="Image Description">
-                              Print
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <span class="dropdown-header">Download options</span>
-                            <a class="js-export-excel dropdown-item" href="javascript:;">
-                              <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ asset('assets/svg/brands/excel-icon.svg') }}" alt="Image Description">
-                              Excel
-                            </a>
-                            <a class="js-export-csv dropdown-item" href="javascript:;">
-                              <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ asset('assets/svg/components/placeholder-csv-format.svg') }}" alt="Image Description">
-                              .CSV
-                            </a>
-                            <a class="js-export-pdf dropdown-item" href="javascript:;">
-                              <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ asset('assets/svg/brands/pdf-icon.svg') }}" alt="Image Description">
-                              PDF
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:;">
-                              <i class="bi-trash dropdown-item-icon"></i> Delete
-                            </a>
-                          </div>
-                        </div>
-                        <!-- End Unfold -->
                       </div>
                     </td>
                 </tr>

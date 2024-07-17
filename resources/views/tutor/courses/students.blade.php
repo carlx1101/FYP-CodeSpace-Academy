@@ -785,9 +785,7 @@
                     </div>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-white btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal">
-                    <i class="bi-pencil-fill me-1"></i> Edit
-                  </button>
+              
                   <a href="{{ route('student.progress', ['studentId' => $student->id, 'courseId' => $course->id]) }}" class="btn btn-white btn-sm">
                     <i class="bi-pencil-fill me-1"></i> Learning Progress
                 </a>

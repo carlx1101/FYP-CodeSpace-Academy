@@ -19,7 +19,28 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::all();
-        return view('tutor.courses.index', compact('courses'));
+
+
+        $userId = Auth::id();
+
+        // Get the total number of published courses by the authenticated tutor
+        $publishedCoursesCount = Course::where('user_id', $userId)->where('publishing_status', true)->count();
+
+        // Get the total number of lessons in the courses by the authenticated tutor
+        $totalLessonsCount = Course::where('user_id', $userId)
+            ->withCount('lessons')
+            ->get()
+            ->sum('lessons_count');
+
+        // Get the total number of enrolled students in the courses by the authenticated tutor
+        $totalEnrolledStudents = Course::where('user_id', $userId)
+            ->withCount('students')
+            ->get()
+            ->sum('students_count');
+
+
+            return view('tutor.courses.index', compact('courses', 'publishedCoursesCount', 'totalLessonsCount', 'totalEnrolledStudents'));
+
     }
 
     /**

@@ -160,7 +160,7 @@
           <!-- End Col -->
 
           <div class="col-sm-auto">
-            <a class="btn btn-primary" href="{{route('courses.create')}}">
+            <a class="btn btn-primary" href="{{route('admin.courses.create')}}">
               <i class="bi bi-journals me-1"></i>
 
               Add course
@@ -178,20 +178,14 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">Total users</h6>
+              <h6 class="card-subtitle mb-2">Total courses</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
-                  <span class="js-counter display-4 text-dark">24</span>
-                  <span class="text-body fs-5 ms-1">from 22</span>
+                  <span class="js-counter display-4 text-dark">{{$courses->count()}}</span>
+
                 </div>
                 <!-- End Col -->
-
-                <div class="col-auto">
-                  <span class="badge bg-soft-success text-success p-1">
-                    <i class="bi-graph-up"></i> 5.0%
-                  </span>
-                </div>
                 <!-- End Col -->
               </div>
               <!-- End Row -->
@@ -204,19 +198,14 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">Active members</h6>
+              <h6 class="card-subtitle mb-2">Published Courses</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
-                  <span class="js-counter display-4 text-dark">12</span>
-                  <span class="text-body fs-5 ms-1">from 11</span>
+                  <span class="js-counter display-4 text-dark">{{$publishedCoursesCount}}</span>
                 </div>
 
-                <div class="col-auto">
-                  <span class="badge bg-soft-success text-success p-1">
-                    <i class="bi-graph-up"></i> 1.2%
-                  </span>
-                </div>
+
               </div>
               <!-- End Row -->
             </div>
@@ -228,20 +217,15 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">New/returning</h6>
+              <h6 class="card-subtitle mb-2">Total Lessons</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
-                  <span class="js-counter display-4 text-dark">56</span>
-                  <span class="display-4 text-dark">%</span>
-                  <span class="text-body fs-5 ms-1">from 48.7</span>
+                  <span class="js-counter display-4 text-dark">{{$totalLessonsCount }}</span>
+
                 </div>
 
-                <div class="col-auto">
-                  <span class="badge bg-soft-danger text-danger p-1">
-                    <i class="bi-graph-down"></i> 2.8%
-                  </span>
-                </div>
+
               </div>
               <!-- End Row -->
             </div>
@@ -253,18 +237,15 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">Active members</h6>
+              <h6 class="card-subtitle mb-2">Total Enrolled Students</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
-                  <span class="js-counter display-4 text-dark">28.6</span>
-                  <span class="display-4 text-dark">%</span>
-                  <span class="text-body fs-5 ms-1">from 28.6%</span>
+                  <span class="js-counter display-4 text-dark">{{$totalEnrolledStudents }}</span>
+
                 </div>
 
-                <div class="col-auto">
-                  <span class="badge bg-soft-secondary text-secondary p-1">0.0%</span>
-                </div>
+
               </div>
               <!-- End Row -->
             </div>
@@ -753,7 +734,7 @@
             <tbody>
 
             @foreach ($courses as $course)
-            <tr>
+              <tr>
                 <td class="table-column-pe-0">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll1">
@@ -787,7 +768,7 @@
 
                 <td>
                     <div class="btn-group" role="group">
-                      <a class="btn btn-white btn-sm" href="{{route("courses.edit", $course->id)}}">
+                      <a class="btn btn-white btn-sm" href="{{route("admin.courses.edit", $course->id)}}">
                         <i class="bi-pencil-fill me-1"></i> Edit
                       </a>
 
@@ -798,11 +779,11 @@
                         <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="productsEditDropdown1">
 
 
-                          <a class="dropdown-item" href="{{route('sections.index',$course->id)}}">
+                          <a class="dropdown-item" href="{{route('admin.sections.index',$course->id)}}">
                             <i class="bi-trash dropdown-item-icon"></i> Curriculums
                           </a>
 
-                          <a class="dropdown-item" href="{{route('courses.students',$course->id)}}">
+                          <a class="dropdown-item" href="{{route('admin.courses.students',$course->id)}}">
                             <i class="bi-trash dropdown-item-icon"></i> Students
                           </a>
 
@@ -816,7 +797,7 @@
                            @endif
                             </a>
 
-                       <form id="toggle-publishing-status-{{ $course->id }}" action="{{ route('courses.togglePublishingStatus', $course->id) }}" method="POST" style="display: none;">
+                       <form id="toggle-publishing-status-{{ $course->id }}" action="{{ route('admin.courses.togglePublishingStatus', $course->id) }}" method="POST" style="display: none;">
                            @csrf
                        </form>
 
@@ -825,7 +806,7 @@
                         onclick="event.preventDefault(); document.getElementById('delete-course-{{ $course->id }}').submit();">
                         <i class="bi-trash dropdown-item-icon"></i> Delete
                     </a>
-                    <form id="delete-course-{{ $course->id }}" action="{{ route('courses.destroy', $course->id) }}" method="POST" style="display: none;">
+                    <form id="delete-course-{{ $course->id }}" action="{{ route('admin.courses.destroy', $course->id) }}" method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
                     </form>

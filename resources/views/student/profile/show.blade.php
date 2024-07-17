@@ -135,14 +135,23 @@
 
   <!-- ========== HEADER ========== -->
 
-  @include("student.layouts.dashboard-header")
+  @if (Auth::user()->role == '0')
+    @include("student.layouts.dashboard-header");
+  @else (Auth::user()->role == '1')
+    @include("tutor.layouts.header");
+ @endif
+
 
   <!-- ========== END HEADER ========== -->
 
   <!-- ========== MAIN CONTENT ========== -->
   <!-- Navbar Vertical -->
 
-  @include("student.layouts.dashboard-sidebar")
+    @if (Auth::user()->role == '0')
+        @include("student.layouts.dashboard-sidebar")
+    @else (Auth::user()->role == '1')
+        @include("tutor.layouts.sidebar")
+     @endif
 
 
   <main id="personalInfo" role="main" class="main">
@@ -173,7 +182,7 @@
               <i class="bi-person-fill me-1"></i> Preview Portfolio
           </a>
       </div>
-      
+
           <!-- End Col -->
         </div>
         <!-- End Row -->
@@ -290,19 +299,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-5">
-                    <span class="d-block fs-5 mb-2">Who can see your profile photo? <i class="bi-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Your visibility setting only applies to your profile photo. Your header image is always visible to anyone."></i></span>
 
-                    <!-- Select -->
-                    <div class="tom-select-custom">
-                      <select class="js-select form-select" data-hs-tom-select-options='{
-                                "searchInDropdown": false,
-                                "dropdownWidth": "auto"
-                              }'>
-                        <option value="privacy1" data-option-template='<div class="d-flex align-items-start"><div class="flex-shrink-0"><i class="bi-globe"></i></div><div class="flex-grow-1 ms-2"><span class="d-block fw-semibold">Anyone</span><span class="tom-select-custom-hide small">Visible to anyone who can view your content. Accessible by installed apps.</span></div></div>'>Anyone</option>
-                        <option value="privacy2" data-option-template='<div class="d-flex align-items-start"><div class="flex-shrink-0"><i class="bi-lock"></i></div><div class="flex-grow-1 ms-2"><span class="d-block fw-semibold">Only you</span><span class="tom-select-custom-hide small">Only visible to you.</span></div></div>'>Only you</option>
-                      </select>
-                    </div>
-                    <!-- End Select -->
                   </div>
                   <!-- End Col -->
                 </div>

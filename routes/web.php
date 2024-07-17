@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Student\BillingController;
 use App\Http\Controllers\Student\PaymentController;
 use App\Http\Controllers\Employer\CompanyController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Student\AssistantController;
 use App\Http\Controllers\Student\DiscussionController;
 use App\Http\Controllers\Student\EnrollmentController;
@@ -34,6 +35,12 @@ use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
+use App\Http\Controllers\Admin\SectionController as AdminSectionController ;
+use App\Http\Controllers\Admin\LessonController as AdminLessonController;
+use App\Http\Controllers\Student\EnrollmentController as AdminEnrollmentController;
+use App\Http\Controllers\Tutor\StudentProgressController as AdminStudentProgressController;
+
+
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/courses', [PageController::class, 'courses'])->name('courses');
@@ -85,7 +92,7 @@ Route::middleware(['auth', 'user-access:student'])->prefix('student')->group(fun
     Route::resource('notes', NoteController::class);
 
     // Profile
-    // Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('student.profile.show');
 
     // Billing
 
@@ -113,7 +120,6 @@ Route::middleware(['auth', 'user-access:tutor'])->prefix('tutor')->group(functio
 
     // Manage Courses
     Route::resource('courses', CourseController::class);
-
     Route::post('/courses/{course}/toggle-publishing', [CourseController::class, 'togglePublishingStatus'])->name('courses.togglePublishingStatus');
 
     // Manage sections
@@ -155,9 +161,30 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
     Route::resource('users', UserController::class)->names('admin.users');
     // Manage Categories
     Route::resource('categories', CategoryController::class)->names('admin.categories');
+    Route::resource('subcategories', SubCategoryController::class)->names('admin.subcategories');
 
     // Manage Courses
     Route::resource('courses', AdminCourseController::class)->names('admin.courses');
+    Route::post('/courses/{course}/toggle-publishing', [AdminCourseController::class, 'togglePublishingStatus'])->name('admin.courses.togglePublishingStatus');
+
+    // Manage sections
+    Route::get('courses/{courseId}/sections', [AdminSectionController::class, 'index'])->name('admin.sections.index');
+    Route::post('courses/{courseId}/sections', [AdminSectionController::class, 'store'])->name('admin.sections.store');
+    Route::delete('courses/{courseId}/sections/{sectionId}', [AdminSectionController::class, 'destroy'])->name('admin.sections.destroy');
+    Route::put('courses/{courseId}/sections/{sectionId}/edit', [AdminSectionController::class, 'update'])->name('admin.sections.edit');
+
+    // Manage Lesson
+    Route::put('sections/{section}/lessons/{lessonId}', [AdminLessonController::class, 'update'])->name('admin.lessons.update');
+    Route::post('sections/{section}/lessons', [AdminLessonController::class, 'store'])->name('admin.lessons.store');
+    Route::delete('sections/{section}/lessons/{lesson}', [AdminLessonController::class, 'destroy'])->name('admin.lessons.destroy');
+
+    // Enroll Student
+    Route::post('/courses/{course}/enroll', [AdminEnrollmentController::class, 'enroll'])->name('admin.courses.enroll');
+    Route::get('/courses/{course}/students', [AdminCourseController::class, 'showStudents'])->name('admin.courses.students');
+
+
+    // Show Student Progress
+    Route::get('/student/{studentId}/course/{courseId}/progress', [AdminStudentProgressController::class, 'show'])->name('admin.student.progress');
 
     // Manage Sales
     Route::resource('sales', SaleController::class)->names('admin.sales');

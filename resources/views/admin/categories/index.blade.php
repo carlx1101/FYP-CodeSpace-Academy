@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Users </title>
+  <title>Categories</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="./favicon.ico">
@@ -129,12 +129,14 @@
 
   <!-- ========== HEADER ========== -->
 
-    @include('admin.layouts.header')
+  @include('admin.layouts.header')
+
 
   <!-- ========== END HEADER ========== -->
 
   <!-- ========== MAIN CONTENT ========== -->
   <!-- Navbar Vertical -->
+
   @include('admin.layouts.sidebar')
 
   <main id="content" role="main" class="main">
@@ -146,20 +148,25 @@
           <div class="col-sm mb-2 mb-sm-0">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-no-gutter">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Users</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Category Management</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Categories</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Overview</li>
               </ol>
             </nav>
 
-            <h1 class="page-header-title">Users</h1>
+            <h1 class="page-header-title">Categories</h1>
           </div>
           <!-- End Col -->
 
           <div class="col-sm-auto">
-            <a class="btn btn-primary" href="./users-add-user.html">
-              <i class="bi-person-plus-fill me-1"></i> Add user
+            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+              <i class="bi-person-plus-fill me-1"></i> Add Category
             </a>
+
+            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSubCategoryModal">
+                <i class="bi-person-plus-fill me-1"></i> Add SubCategory
+            </a>
+
           </div>
           <!-- End Col -->
         </div>
@@ -173,7 +180,7 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">Total categories</h6>
+              <h6 class="card-subtitle mb-2">Total Categories</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
@@ -182,11 +189,11 @@
                 </div>
                 <!-- End Col -->
 
-                <div class="col-auto">
+                {{-- <div class="col-auto">
                   <span class="badge bg-soft-success text-success p-1">
                     <i class="bi-graph-up"></i> 5.0%
                   </span>
-                </div>
+                </div> --}}
                 <!-- End Col -->
               </div>
               <!-- End Row -->
@@ -195,77 +202,8 @@
           <!-- End Card -->
         </div>
 
-        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-          <!-- Card -->
-          <div class="card h-100">
-            <div class="card-body">
-              <h6 class="card-subtitle mb-2">Active members</h6>
 
-              <div class="row align-items-center gx-2">
-                <div class="col">
-                  <span class="js-counter display-4 text-dark">12</span>
-                  <span class="text-body fs-5 ms-1">from 11</span>
-                </div>
-
-                <div class="col-auto">
-                  <span class="badge bg-soft-success text-success p-1">
-                    <i class="bi-graph-up"></i> 1.2%
-                  </span>
-                </div>
-              </div>
-              <!-- End Row -->
-            </div>
-          </div>
-          <!-- End Card -->
-        </div>
-
-        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-          <!-- Card -->
-          <div class="card h-100">
-            <div class="card-body">
-              <h6 class="card-subtitle mb-2">New/returning</h6>
-
-              <div class="row align-items-center gx-2">
-                <div class="col">
-                  <span class="js-counter display-4 text-dark">56</span>
-                  <span class="display-4 text-dark">%</span>
-                  <span class="text-body fs-5 ms-1">from 48.7</span>
-                </div>
-
-                <div class="col-auto">
-                  <span class="badge bg-soft-danger text-danger p-1">
-                    <i class="bi-graph-down"></i> 2.8%
-                  </span>
-                </div>
-              </div>
-              <!-- End Row -->
-            </div>
-          </div>
-          <!-- End Card -->
-        </div>
-
-        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-          <!-- Card -->
-          <div class="card h-100">
-            <div class="card-body">
-              <h6 class="card-subtitle mb-2">Active members</h6>
-
-              <div class="row align-items-center gx-2">
-                <div class="col">
-                  <span class="js-counter display-4 text-dark">28.6</span>
-                  <span class="display-4 text-dark">%</span>
-                  <span class="text-body fs-5 ms-1">from 28.6%</span>
-                </div>
-
-                <div class="col-auto">
-                  <span class="badge bg-soft-secondary text-secondary p-1">0.0%</span>
-                </div>
-              </div>
-              <!-- End Row -->
-            </div>
-          </div>
-          <!-- End Card -->
-        </div>
+       
       </div>
       <!-- End Stats -->
 
@@ -280,7 +218,7 @@
                 <div class="input-group-prepend input-group-text">
                   <i class="bi-search"></i>
                 </div>
-                <input id="datatableSearch" type="search" class="form-control" placeholder="Search users" aria-label="Search users">
+                <input id="datatableSearch" type="search" class="form-control" placeholder="Search Categories" aria-label="Search Categories">
               </div>
               <!-- End Search -->
             </form>
@@ -336,7 +274,7 @@
             <!-- End Dropdown -->
 
             <!-- Dropdown -->
-            <div class="dropdown">
+            {{-- <div class="dropdown">
               <button type="button" class="btn btn-white btn-sm w-100" id="usersFilterDropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                 <i class="bi-filter me-1"></i> Filter <span class="badge bg-soft-dark text-dark rounded-circle ms-1">2</span>
               </button>
@@ -704,7 +642,7 @@
                 </div>
                 <!-- End Card -->
               </div>
-            </div>
+            </div> --}}
             <!-- End Dropdown -->
           </div>
         </div>
@@ -736,9 +674,8 @@
                     <label class="form-check-label" for="datatableCheckAll"></label>
                   </div>
                 </th>
-                <th class="table-column-ps-0">Category </th>
-                <th>Subcategores</th>
-
+                <th class="table-column-ps-0">Name</th>
+                <th>Subcategories</th>
 
                 <th></th>
               </tr>
@@ -746,59 +683,118 @@
 
             <tbody>
 
-                @foreach($categories as $category)
-                <tr>
-                    <td class="table-column-pe-0">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll{{ $category->id }}">
-                            <label class="form-check-label" for="datatableCheckAll{{ $category->id }}"></label>
-                        </div>
-                    </td>
-                    <td class="table-column-ps-0">
-                        <span class="d-block h5 text-inherit mb-0">{{ $category->name }}</span>
-                    </td>
-                    <td>
-                        @if($category->subcategories->isNotEmpty())
-                            <ul>
-                                @foreach($category->subcategories as $subcategory)
-                                    <li>{{ $subcategory->name }}</li>
-                                @endforeach
-                            </ul>
-                        @else
-                            <span>N/A</span>
-                        @endif
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-white btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal-{{ $category->id }}">
-                            <i class="bi-pencil-fill me-1"></i> View Details
-                        </button>
-                    </td>
-                </tr>
+            @foreach($categories as $category)
 
-                <!-- Edit Category Modal -->
-                <div class="modal fade" id="editCategoryModal-{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Category Name</label>
-                                        <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </form>
-                            </div>
-                        </div>
+              <tr>
+                <td class="table-column-pe-0">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll1">
+                    <label class="form-check-label" for="datatableCheckAll1"></label>
+                  </div>
+                </td>
+                <td class="table-column-ps-0">
+                  <a class="d-flex align-items-center" href="./user-profile.html">
+                    {{-- <div class="avatar avatar-circle">
+                      <img class="avatar-img" src="./assets/img/160x160/img10.jpg" alt="Image Description">
+                    </div> --}}
+                    <div class="ms-3">
+                      <span class="d-block h5 text-inherit mb-0">{{$category->name}}
+                        {{-- <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i> --}}
+                    </span>
+                      {{-- <span class="d-block fs-5 text-body">amanda@site.com</span> --}}
                     </div>
-                </div>
-                <!-- End Edit Category Modal -->
-            @endforeach
+                  </a>
+                </td>
+
+
+
+                <td>
+                    <div class="row">
+                        <!-- Left Column -->
+                        <div class="col-lg-6">
+                            @foreach($category->subcategories as $subcategory)
+                                    <!-- List Pointer -->
+                                    <ul class="list-pointer list-pointer-soft-bg-primary">
+                                        <li class="list-pointer-item d-flex justify-content-between align-items-center">
+                                            <span>{{ $subcategory->name }}
+
+
+                                                <button type="button" style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;"  data-bs-toggle="modal"
+                                               class="mx-2 editSubCategory" data-bs-target="#editSubCategoryModal" data-subcategory="{{ json_encode($subcategory) }}">
+                                                    <i class="bi-pencil-fill me-1"></i>
+                                              </button>
+
+
+                                                <form action="{{ route('admin.subcategories.destroy', $subcategory->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" title="Delete" class=" mt-1" style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+                                                        <i class="bi bi-trash"> </i>
+                                                    </button>
+                                                </form>
+
+                                            </span>
+
+                                        </li>
+                                    </ul>
+                                    <!-- End List Pointer -->
+                            @endforeach
+                        </div>
+
+                        {{-- <!-- Right Column -->
+                        <div class="col-lg-6">
+                            @foreach($subcategories as $key => $subcategory)
+                                @if($key >= count($subcategories) / 2)
+                                    <!-- List Pointer -->
+                                    <ul class="list-pointer list-pointer-soft-bg-primary">
+                                        <li class="list-pointer-item d-flex justify-content-between align-items-center">
+                                            <span>{{ $subcategory->name }}
+
+                                                <form action="{{ route('subcategories.destroy', $subcategory->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" title="Delete" class="mx-3 mt-1" style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+
+                                                        <i class="bi bi-trash"> </i>
+                                                    </button>
+                                                </form>
+
+                                            </span>
+
+                                        </li>
+                                    </ul>
+                                    <!-- End List Pointer -->
+                                @endif
+                            @endforeach
+                        </div> --}}
+                    </div>
+                </td>
+
+
+                <td>
+                    <button type="button" class="btn btn-white btn-sm editCategory" data-bs-toggle="modal"
+                    data-bs-target="#editCategoryModal" data-category="{{ json_encode($category) }}">
+                        <i class="bi-pencil-fill me-1"></i> Edit
+                  </button>
+
+
+                  <button type="button" class="btn btn-white btn-sm deleteCategory" data-bs-toggle="modal"
+                  data-bs-target="#deleteCategoryModal" data-category="{{ json_encode($category) }}">
+                    <i class="bi bi-trash me-1"></i> Delete
+                </button>
+
+
+
+                </td>
+
+
+
+
+              </tr>
+
+              @endforeach
+
+
 
 
             </tbody>
@@ -847,6 +843,15 @@
         <!-- End Footer -->
       </div>
       <!-- End Card -->
+
+
+
+
+
+
+
+
+
     </div>
     <!-- End Content -->
 
@@ -854,11 +859,325 @@
 
     @include('admin.layouts.footer')
 
+
     <!-- End Footer -->
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
 
   <!-- ========== SECONDARY CONTENTS ========== -->
+
+
+      <!-- Edit subcategory -->
+    <div class="modal fade" id="editSubCategoryModal" tabindex="-1" aria-labelledby="editSubCategoryModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="editSubCategoryModalLabel">Edit SubCategory</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="modal-body">
+
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="editSubCategoryModalTabContent">
+                        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <form>
+                            @csrf
+
+
+
+                            <!-- Form -->
+                            <div class="row mb-4">
+
+                                <label for="addCategoryIdModalLabel" class="col-sm-3 col-form-label form-label">
+                                    Select Category
+                                    <i class="tio-help-outlined text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Displayed on public forums, such as Front."></i></label>
+
+
+                                <div class="col-sm-9">
+                                    <!-- Select -->
+                                        <div class="tom-select-custom">
+                                            <select name="category_id" class="js-select form-select" autocomplete="off"
+                                                    data-hs-tom-select-options='{
+                                                    "placeholder": "Select category..."
+                                                    }'>
+                                            <option value="">Select a category...</option>
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach()
+                                            </select>
+
+                                        </div>
+                                        <!-- End Select -->
+                                </div>
+                            </div>
+                            <!-- End Form -->
+
+
+
+                            <!-- Form -->
+                            <div class="row mb-4">
+                            <label for="editSubCategoryModalLabel" class="col-sm-3 col-form-label form-label">SubCategory Name <i
+                                class="tio-help-outlined text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Displayed on public forums, such as Front."></i></label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="name" id="editFullNameModalLabel"
+                                placeholder="SubCategory Name" aria-label="Your full name" value="">
+                            </div>
+                            </div>
+                            <!-- End Form -->
+
+
+                            <div class="d-flex justify-content-end">
+                            <div class="d-flex gap-3">
+                                <button type="button" class="btn btn-white" data-bs-dismiss="modal"
+                                aria-label="Close">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </div>
+                        </form>
+                        </div>
+
+                    </div>
+                    <!-- End Tab Content -->
+                    </div>
+                    <!-- End Body -->
+                </div>
+                </div>
+    </div>
+    <!-- End Edit subcategory -->
+
+
+    <!-- Edit category -->
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="editCategoryModalTabContent">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <form>
+                    @csrf
+
+
+                    <!-- Form -->
+                    <div class="row mb-4">
+                    <label for="editCategoryModalLabel" class="col-sm-3 col-form-label form-label">Category Name <i
+                        class="tio-help-outlined text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Displayed on public forums, such as Front."></i></label>
+
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="name" id="editFullNameModalLabel"
+                        placeholder="Category Name" aria-label="Your full name" value="">
+                    </div>
+                    </div>
+                    <!-- End Form -->
+
+
+                    <div class="d-flex justify-content-end">
+                    <div class="d-flex gap-3">
+                        <button type="button" class="btn btn-white" data-bs-dismiss="modal"
+                        aria-label="Close">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </form>
+                </div>
+
+            </div>
+            <!-- End Tab Content -->
+            </div>
+            <!-- End Body -->
+        </div>
+        </div>
+    </div>
+  <!-- End Edit category -->
+
+
+    <div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteCategoryModalLabel">Delete Category Record
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{-- Modal Content Will be Added Here --}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger"
+                onclick="document.getElementById('category-destroy').submit();">Confirm
+                changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Add category modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+            <!-- Tab Content -->
+            <div class="tab-content" id="addCategoryModalTabContent">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <form action="{{ route('admin.categories.store') }}" method="POST">
+                    @csrf
+
+
+                    <!-- Form -->
+                    <div class="row mb-4">
+                    <label for="addCategoryNameModalLabel" class="col-sm-3 col-form-label form-label">
+                        Category Name
+                        <i class="tio-help-outlined text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Displayed on public forums, such as Front."></i></label>
+
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                        id="addCategoryNameModalLabel" placeholder="Ex. John Doe" aria-label="Full Name"
+                        value="{{ old('name') }}">
+                        @error('name')
+                        <div class="invalid-feedback">
+                        {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    </div>
+                    <!-- End Form -->
+
+
+                    <div class="d-flex justify-content-end">
+                    <div class="d-flex gap-3">
+                        <button type="button" class="btn btn-white" data-bs-dismiss="modal"
+                        aria-label="Close">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+            <!-- End Tab Content -->
+            </div>
+            <!-- End Body -->
+        </div>
+        </div>
+    </div>
+  <!-- End Add category modal-->
+
+
+      <!-- Add subcategory modal -->
+      <div class="modal fade" id="addSubCategoryModal" tabindex="-1" aria-labelledby="addSubCategoryModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="addSubCategoryModalLabel">Add SubCategory</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body">
+          <!-- Tab Content -->
+          <div class="tab-content" id="addSubCategoryModalTabContent">
+              <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <form action="{{ route('admin.subcategories.store') }}" method="POST">
+                  @csrf
+                  <!-- Form -->
+                  <div class="row mb-4">
+
+                    <label for="addCategoryIdModalLabel" class="col-sm-3 col-form-label form-label">
+                        Select Category
+                        <i class="tio-help-outlined text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Displayed on public forums, such as Front."></i></label>
+
+
+                    <div class="col-sm-9">
+                        <!-- Select -->
+                            <div class="tom-select-custom">
+                                <select name="category_id" class="js-select form-select" autocomplete="off"
+                                        data-hs-tom-select-options='{
+                                        "placeholder": "Select category..."
+                                        }'>
+                                <option value="">Select a category...</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach()
+                                </select>
+
+                            </div>
+                            <!-- End Select -->
+                    </div>
+                  </div>
+                  <!-- End Form -->
+
+
+
+                  <!-- Form -->
+                  <div class="row mb-4">
+
+                    <label for="addSubCategoryNameModalLabel" class="col-sm-3 col-form-label form-label">
+                        SubCategory Name
+                        <i class="tio-help-outlined text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Displayed on public forums, such as Front."></i></label>
+
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                        id="addSubCategoryNameModalLabel" placeholder="Ex. " aria-label="Full Name"
+                        value="{{ old('name') }}">
+                        @error('name')
+                        <div class="invalid-feedback">
+                        {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                  </div>
+                  <!-- End Form -->
+
+
+                  <div class="d-flex justify-content-end">
+                  <div class="d-flex gap-3">
+                      <button type="button" class="btn btn-white" data-bs-dismiss="modal"
+                      aria-label="Close">Cancel</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
+                  </div>
+              </form>
+              </div>
+          </div>
+          <!-- End Tab Content -->
+          </div>
+          <!-- End Body -->
+      </div>
+      </div>
+  </div>
+<!-- End Add category modal-->
+
+
+
   <!-- Keyboard Shortcuts -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasKeyboardShortcuts" aria-labelledby="offcanvasKeyboardShortcutsLabel">
     <div class="offcanvas-header">
@@ -2471,6 +2790,9 @@
   <!-- JS Front -->
   <script src="{{asset('backend/js/theme.min.js')}}"></script>
 
+
+
+
   <!-- JS Plugins Init. -->
   <script>
     $(document).on('ready', function () {
@@ -2644,5 +2966,191 @@
     </script>
 
   <!-- End Style Switcher JS -->
+
+
+  {{-- Delete Category --}}
+  <script>
+    $(document).on('click', '.deleteCategory', function() {
+              var category = $(this).data('category');
+
+              var modalBody = $('#deleteCategoryModal .modal-body');
+
+              modalBody.empty();
+
+              let deleteModal =
+              `
+                  <p class="fs-4">Are you sure you want to remove this category: <b>${category.name}</b> ?</p>
+                  <small>This action is <span class="text-danger">IRREVERSIBLE</span>.</small>
+                  <form id="category-destroy" action="/admin/categories/${category.id}" class="d-none"
+                      method="POST">
+                      @csrf
+                      @method('DELETE')
+                  </form>
+              `;
+
+              const div = document.createElement('div');
+              div.innerHTML = deleteModal;
+
+              modalBody.append(div);
+          });
+  </script>
+
+
+  {{-- Edit  Category --}}
+
+    <script>
+        $(document).on('click', '.editCategory', function(){
+        let category = $(this).data('category');
+
+        let editCategoryModalBody = $('#editCategoryModal .modal-body');
+
+        let template = `
+        <!-- Tab Content -->
+        <div class="tab-content" id="editCategoryModalTabContent">
+            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <form action="categories/${category.id}" method="POST">
+                @method('PUT')
+                @csrf
+
+                <!-- Form -->
+                <div class="row mb-4">
+                <label for="editCategoryModalLabel" class="col-sm-3 col-form-label form-label">Full name <i
+                    class="tio-help-outlined text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Displayed on public forums, such as Front."></i></label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="editCategoryModalLabel" placeholder="Your full name"
+                    aria-label="Your full name" value="${category.name ? category.name : ''}">
+                    @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                </div>
+                <!-- End Form -->
+
+
+
+
+
+
+                <div class="d-flex justify-content-end">
+                <div class="d-flex gap-3">
+                    <button type="button" class="btn btn-white" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <!-- End Tab Content -->
+        `;
+
+        const div = document.createElement('div');
+
+        editCategoryModalBody.empty(); // Clear existing modal
+        div.innerHTML = template;
+
+        editCategoryModalBody.append(div);
+        });
+    </script>
+
+
+
+  {{-- Edit  SubCategory --}}
+
+  <script>
+    $(document).on('click', '.editSubCategory', function(){
+    let subcategory = $(this).data('subcategory');
+
+
+    let editSubCategoryModalBody = $('#editSubCategoryModal .modal-body');
+
+    let template = `
+    <!-- Tab Content -->
+    <div class="tab-content" id="editSubCategoryModalTabContent">
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <form action="subcategories/${subcategory.id}" method="POST">
+            @method('PUT')
+            @csrf
+
+
+
+            <!-- Form -->
+            <div class="row mb-4">
+
+                <label for="addCategoryIdModalLabel" class="col-sm-3 col-form-label form-label">
+                    Select Category
+                    <i class="tio-help-outlined text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Displayed on public forums, such as Front."></i></label>
+
+
+                <div class="col-sm-9">
+                    <!-- Select -->
+                        <div class="tom-select-custom">
+                            <select name="category_id" class="js-select form-select" autocomplete="off"
+                                    data-hs-tom-select-options='{
+                                    "placeholder": "Select category..."
+                                    }'>
+                            <option value="">Select a category...</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}" >{{$category->name}}</option>
+                            @endforeach()
+                            </select>
+
+                        </div>
+                        <!-- End Select -->
+                </div>
+            </div>
+            <!-- End Form -->
+
+
+
+            <!-- Form -->
+            <div class="row mb-4">
+            <label for="editSubCategoryModalLabel" class="col-sm-3 col-form-label form-label">SubCategory Name <i
+                class="tio-help-outlined text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Displayed on public forums, such as Front."></i></label>
+
+            <div class="col-sm-9">
+                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="editSubCategoryModalLabel" placeholder="Your full name"
+                aria-label="Your full name" value="${subcategory.name ? subcategory.name : ''}">
+                @error('name')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+            </div>
+            <!-- End Form -->
+
+
+
+
+
+
+            <div class="d-flex justify-content-end">
+            <div class="d-flex gap-3">
+                <button type="button" class="btn btn-white" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </form>
+        </div>
+    </div>
+    <!-- End Tab Content -->
+    `;
+
+    const div = document.createElement('div');
+
+    editSubCategoryModalBody.empty(); // Clear existing modal
+    div.innerHTML = template;
+
+    editSubCategoryModalBody.append(div);
+    });
+</script>
+
+
 </body>
 </html>

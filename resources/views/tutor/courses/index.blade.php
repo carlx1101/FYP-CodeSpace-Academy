@@ -178,20 +178,14 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">Total users</h6>
+              <h6 class="card-subtitle mb-2">Total courses</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
-                  <span class="js-counter display-4 text-dark">24</span>
-                  <span class="text-body fs-5 ms-1">from 22</span>
+                  <span class="js-counter display-4 text-dark">{{$courses->count()}}</span>
+
                 </div>
                 <!-- End Col -->
-
-                <div class="col-auto">
-                  <span class="badge bg-soft-success text-success p-1">
-                    <i class="bi-graph-up"></i> 5.0%
-                  </span>
-                </div>
                 <!-- End Col -->
               </div>
               <!-- End Row -->
@@ -204,19 +198,14 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">Active members</h6>
+              <h6 class="card-subtitle mb-2">Published Courses</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
-                  <span class="js-counter display-4 text-dark">12</span>
-                  <span class="text-body fs-5 ms-1">from 11</span>
+                  <span class="js-counter display-4 text-dark">{{$publishedCoursesCount}}</span>
                 </div>
 
-                <div class="col-auto">
-                  <span class="badge bg-soft-success text-success p-1">
-                    <i class="bi-graph-up"></i> 1.2%
-                  </span>
-                </div>
+
               </div>
               <!-- End Row -->
             </div>
@@ -228,20 +217,15 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">New/returning</h6>
+              <h6 class="card-subtitle mb-2">Total Lessons</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
-                  <span class="js-counter display-4 text-dark">56</span>
-                  <span class="display-4 text-dark">%</span>
-                  <span class="text-body fs-5 ms-1">from 48.7</span>
+                  <span class="js-counter display-4 text-dark">{{$totalLessonsCount }}</span>
+
                 </div>
 
-                <div class="col-auto">
-                  <span class="badge bg-soft-danger text-danger p-1">
-                    <i class="bi-graph-down"></i> 2.8%
-                  </span>
-                </div>
+
               </div>
               <!-- End Row -->
             </div>
@@ -253,18 +237,15 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">Active members</h6>
+              <h6 class="card-subtitle mb-2">Total Enrolled Students</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
-                  <span class="js-counter display-4 text-dark">28.6</span>
-                  <span class="display-4 text-dark">%</span>
-                  <span class="text-body fs-5 ms-1">from 28.6%</span>
+                  <span class="js-counter display-4 text-dark">{{$totalEnrolledStudents }}</span>
+
                 </div>
 
-                <div class="col-auto">
-                  <span class="badge bg-soft-secondary text-secondary p-1">0.0%</span>
-                </div>
+
               </div>
               <!-- End Row -->
             </div>

@@ -30,7 +30,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Category::create($request->only('name'));
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
+
     }
 
     /**
@@ -54,7 +61,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->update($request->only('name'));
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+    
     }
 
     /**
@@ -62,6 +77,12 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+
+        $category->subcategories()->delete();
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
     }
 }

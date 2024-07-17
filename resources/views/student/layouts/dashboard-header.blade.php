@@ -1,4 +1,29 @@
+<style>
+    .coupon-bar {
+        background-color: #87CEEB;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 16px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+    .navbar {
+        margin-top: 50px; /* Adjust based on the height of the coupon bar */
+        z-index: 999;
+    }
+    body {
+        padding-top: 100px; /* Adjust based on the height of both the coupon bar and the navbar */
+    }
+</style>
+
+<div class="coupon-bar">
+    📚 You are currently browsing student features.
+</div>
 <header id="header" class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
+
     <div class="navbar-nav-wrap">
       <!-- Logo -->
       <a class="navbar-brand" href="./index.html" aria-label="Front">
@@ -8,6 +33,8 @@
         <img class="navbar-brand-logo-mini" src="{{asset('frontend/images/logos/codespacesolutions_light.png')}}" alt="Logo" data-hs-theme-appearance="dark">
       </a>
       <!-- End Logo -->
+
+
 
       <div class="navbar-nav-wrap-content-start">
         <!-- Navbar Vertical Toggle -->
@@ -21,7 +48,9 @@
 
       </div>
 
+
       <div class="navbar-nav-wrap-content-end">
+
         <!-- Navbar -->
         <ul class="navbar-nav">
 
@@ -30,7 +59,7 @@
             <div class="dropdown">
               <a class="navbar-dropdown-account-wrapper" href="javascript:;" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
                 <div class="avatar avatar-sm avatar-circle">
-                  <img class="avatar-img" src="{{ Auth::user()->profile_photo_path ? Storage::url(Auth::user()->profile_photo_path) : Auth::user()->profile_photo_path }}" alt="{{ Auth::user()->name }}">
+                  <img class="avatar-img" src="{{ Auth::user()->profile_photo_path ? Storage::url(Auth::user()->profile_photo_path) : asset('backend/img/160x160/img6.jpg') }}" alt="{{ Auth::user()->name }}">
                   <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                 </div>
               </a>
@@ -40,7 +69,7 @@
                   <div class="d-flex align-items-center">
                     <div class="avatar avatar-sm avatar-circle">
                         {{-- {{dump(Auth::user()->profile_photo_path}} --}}
-                        <img class="avatar-img" src="{{ Auth::user()->profile_photo_path ? Storage::url(Auth::user()->profile_photo_path) : Auth::user()->profile_photo_path }}" alt="{{ Auth::user()->name }}">
+                        <img class="avatar-img" src="{{ Auth::user()->profile_photo_path ? Storage::url(Auth::user()->profile_photo_path) : asset('backend/img/160x160/img6.jpg') }}" alt="{{ Auth::user()->name }}">
 
                     </div>
                     <div class="flex-grow-1 ms-3">

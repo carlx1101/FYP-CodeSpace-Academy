@@ -64,7 +64,7 @@
             <div id="navbarVerticalMenuProfileMenu">
 
                 <div class="nav-item">
-                  <a class="nav-link" href="{{ route('profile.show', Auth::user()->id) }}" data-placement="left">
+                  <a class="nav-link" href="{{ route('student.profile.show', Auth::user()->id) }}" data-placement="left">
                     <i class="bi bi-journals nav-icon"></i>
                       <span class="nav-link-title">Account</span>
                   </a>
@@ -152,7 +152,7 @@
               <!-- End Other Links -->
             </li>
 
-          
+
           </ul>
         </div>
         <!-- End Footer -->

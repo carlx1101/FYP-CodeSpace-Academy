@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Manage Courses</title>
+  <title>Manage Articles</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="./favicon.ico">
@@ -149,22 +149,22 @@
           <div class="col-sm mb-2 mb-sm-0">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-no-gutter">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Course Management</a></li>
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Courses</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Article Management</a></li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Articles</a></li>
 
                 <li class="breadcrumb-item active" aria-current="page">Overview</li>
               </ol>
             </nav>
 
-            <h1 class="page-header-title">Courses</h1>
+            <h1 class="page-header-title">Articles</h1>
           </div>
           <!-- End Col -->
 
           <div class="col-sm-auto">
-            <a class="btn btn-primary" href="{{route('courses.create')}}">
+            <a class="btn btn-primary" href="{{route('posts.create')}}">
               <i class="bi bi-journals me-1"></i>
 
-              Add course
+              Add article
             </a>
           </div>
           <!-- End Col -->
@@ -179,20 +179,16 @@
           <!-- Card -->
           <div class="card h-100">
             <div class="card-body">
-              <h6 class="card-subtitle mb-2">Total users</h6>
+              <h6 class="card-subtitle mb-2">Total articles</h6>
 
               <div class="row align-items-center gx-2">
                 <div class="col">
-                  <span class="js-counter display-4 text-dark">24</span>
-                  <span class="text-body fs-5 ms-1">from 22</span>
+                  <span class="js-counter display-4 text-dark">{{$posts->count()}}</span>
+
                 </div>
                 <!-- End Col -->
 
-                <div class="col-auto">
-                  <span class="badge bg-soft-success text-success p-1">
-                    <i class="bi-graph-up"></i> 5.0%
-                  </span>
-                </div>
+
                 <!-- End Col -->
               </div>
               <!-- End Row -->
@@ -201,77 +197,7 @@
           <!-- End Card -->
         </div>
 
-        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-          <!-- Card -->
-          <div class="card h-100">
-            <div class="card-body">
-              <h6 class="card-subtitle mb-2">Active members</h6>
 
-              <div class="row align-items-center gx-2">
-                <div class="col">
-                  <span class="js-counter display-4 text-dark">12</span>
-                  <span class="text-body fs-5 ms-1">from 11</span>
-                </div>
-
-                <div class="col-auto">
-                  <span class="badge bg-soft-success text-success p-1">
-                    <i class="bi-graph-up"></i> 1.2%
-                  </span>
-                </div>
-              </div>
-              <!-- End Row -->
-            </div>
-          </div>
-          <!-- End Card -->
-        </div>
-
-        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-          <!-- Card -->
-          <div class="card h-100">
-            <div class="card-body">
-              <h6 class="card-subtitle mb-2">New/returning</h6>
-
-              <div class="row align-items-center gx-2">
-                <div class="col">
-                  <span class="js-counter display-4 text-dark">56</span>
-                  <span class="display-4 text-dark">%</span>
-                  <span class="text-body fs-5 ms-1">from 48.7</span>
-                </div>
-
-                <div class="col-auto">
-                  <span class="badge bg-soft-danger text-danger p-1">
-                    <i class="bi-graph-down"></i> 2.8%
-                  </span>
-                </div>
-              </div>
-              <!-- End Row -->
-            </div>
-          </div>
-          <!-- End Card -->
-        </div>
-
-        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-          <!-- Card -->
-          <div class="card h-100">
-            <div class="card-body">
-              <h6 class="card-subtitle mb-2">Active members</h6>
-
-              <div class="row align-items-center gx-2">
-                <div class="col">
-                  <span class="js-counter display-4 text-dark">28.6</span>
-                  <span class="display-4 text-dark">%</span>
-                  <span class="text-body fs-5 ms-1">from 28.6%</span>
-                </div>
-
-                <div class="col-auto">
-                  <span class="badge bg-soft-secondary text-secondary p-1">0.0%</span>
-                </div>
-              </div>
-              <!-- End Row -->
-            </div>
-          </div>
-          <!-- End Card -->
-        </div>
       </div>
       <!-- End Stats -->
 
